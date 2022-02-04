@@ -1,0 +1,70 @@
+.rwm-form {
+	@apply tw-flex 
+	tw-flex-col 
+	md:tw-flex-row 
+	tw-justify-center 
+	tw-items-center
+	tw-margin-top;
+}
+
+.rwm-form__field {
+	@apply tw-flex 
+	tw-flex-col 
+	tw-items-center 
+	tw-justify-center;
+
+	width: 224px;
+}
+
+.rwm-form__headline {
+	@apply tw-font-size-headline;
+}
+
+.rwm-form__label {
+	@apply tw-block 
+	tw-font-size-label
+	tw-mb-8;
+}
+
+.rwm-form__icon-wrapper {
+	@apply tw-flex 
+	tw-justify-center 
+	tw-items-center 
+	tw-h-11
+	tw-mb-8;
+}
+
+.rwm-form__icon g {
+	@apply tw-stroke-grey;
+}
+
+.rwm-form__input {
+	@apply tw-shadow-none
+	focus:tw-ring-transparent
+	focus:tw-border-borderInput 
+	tw-block 
+	tw-w-full 
+	tw-border-borderInput 
+	tw-rounded-md;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.rwm-form__rentings {
+	@apply tw-flex tw-justify-center
+	tw-gap-5;
+}
+
+.rwm-form__postalCode {
+	@apply tw-grid 
+	tw-grid-cols-1 
+	tw-gap-2;
+}

@@ -1,0 +1,9 @@
+li span {
+	position: relative;
+	left: -7px;
+	top: -2px;
+}
+
+::marker {
+	font-size: 1.5em;
+}

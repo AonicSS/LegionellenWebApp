@@ -1,0 +1,143 @@
+{
+	"global": {
+		"appName": "Rauchwarnmelder"
+	},
+	"button": {
+		"next": "weiter",
+		"continue": "Ich möchte trotzdem fortfahren"
+	},
+	"overlay": {
+		"2": {
+			"headline": "Ihr individuelles Angebot",
+			"contact-headline": "06196 522-7677",
+			"contact-body": "Mo bis Fr von 08:00 - 18:00 Uhr",
+			"body": {
+				"0": "Gerne unterbreiten wir Ihnen ein individuelles Angebot. Hierzu können Sie uns unter folgender Nummer erreichen:",
+				"1": "Sie können selbstverständlich mit der Preisindikation fortfahren, allerdings werden Ihnen vermutlich ein zu hoher Preis ermittelt."
+			}
+		},
+		"3": {
+			"headline": "Erhalten Sie ein individuelles Angebot",
+			"body": {
+				"0": "Gerne unterbreiten wir Ihnen für Ihre 6 Wohneinheiten ein individuelles Angebot. Hierzu können Sie uns unter folgender Nummer erreichen:"
+			},
+			"contact-headline": "06196 522-7677",
+			"contact-body": "Mo bis Fr von 08:00 - 18:00 Uhr"
+		},
+		"4": {
+			"headline": {
+				"0": "Rauchwarnmelder – Unsere Empfehlungen",
+				"1": "Wohn-, Arbeits-, und Zimmer mit sonstiger Nutzung",
+				"2": "Treppenhäuser als weitere Verbindung zur Haustür"
+			},
+			"body": {
+				"0": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+				"1": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+				"2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+			}
+		}
+	},
+	"contact": {
+		"0": "Haben Sie Fragen?",
+		"1": "06196 522-7677",
+		"2": "Mo bis Fr von 08:00 - 18:00 Uhr"
+	},
+	"questions": {
+		"0": {
+			"question": "Lassen Sie ihre Heizkostenabrechnung durch Techem durchführen?",
+			"answers": {
+				"0": {
+					"label": "Ja"
+				},
+				"1": {
+					"label": "Nein"
+				}
+			}
+		},
+		"1": {
+			"question": "Nehmen Sie bereits den Techem RWM Service in Anspruch?",
+			"answers": {
+				"0": {
+					"label": "Ja"
+				},
+				"1": {
+					"label": "Nein"
+				}
+			}
+		},
+		"2": {
+			"question": "Wie viele Wohneinheiten möchten Sie ausstatten?",
+			"sublabel": "Eine Wohneinheit entspricht einem Mietobjekt.",
+			"answers": {
+				"0": {
+					"label": "Wohneinheit"
+				},
+				"1": {
+					"label": "Wohneinheiten"
+				}
+			}
+		},
+		"3": {
+			"question": "Wo befinden sich Ihre Wohneinheiten?",
+			"sublabel": "Zur exakten Ermittlung der Anzahl der benötigten Rauchwarnmeldern ist die Postleitzahl notwendig, da verschiedene gesetzliche Bestimmungen gelten.",
+			"answers": {}
+		},
+		"4": {
+			"question": "Wie viele Geräte werden gewünscht?",
+			"answers": {
+				"0": {
+					"label": "Schlafzimmer",
+					"info": "gesetzl. vorgeschrieben"
+				},
+				"1": {
+					"label": "Kinderzimmer",
+					"info": "gesetzl. vorgeschrieben"
+				},
+				"2": {
+					"label": "Flure und Räume, die Fluchtweg sind",
+					"info": "gesetzl. vorgeschrieben"
+				},
+				"3": {
+					"label": "Wohn-, Arbeits-, und Zimmer mit sonstiger Nutzung",
+					"info": "empfohlen"
+				},
+				"4": {
+					"label": "Treppenhäuser als weitere Verbindung zur Haustür",
+					"info": "empfohlen"
+				}
+			}
+		},
+		"5": {
+			"question": "Unsere Service-Lösungen",
+			"answers": {
+				"0": {
+					"label": "Standard",
+					"body": {
+						"0": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+						"1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+						"2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor"
+					},
+					"btn": "Standard wählen"
+				},
+				"1": {
+					"label": "Standard 360",
+					"body": {
+						"0": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+						"1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+						"2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor"
+					},
+					"btn": "Standard 360 wählen"
+				},
+				"2": {
+					"label": "Standard 360 Adv",
+					"body": {
+						"0": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+						"1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+						"2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor"
+					},
+					"btn": "Standard wählen"
+				}
+			}
+		}
+	}
+}

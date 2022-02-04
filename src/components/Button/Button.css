@@ -1,0 +1,63 @@
+.rwm-btn {
+	@apply tw-btn-size 
+	tw-btn-font;
+	border-radius: 30px;
+}
+
+.rwn-btn-continue {
+	@apply tw-btn-size-close 
+	tw-btn-font;
+	border-radius: 30px;
+}
+
+.rwm-button--active {
+	@apply tw-bg-btnBgColorActive
+	tw-text-white
+	tw-btn-border-active;
+}
+
+.rwm-button--disabled {
+	@apply tw-bg-btnBgColorDisabled 
+	tw-text-btnColorDisabled
+	tw-btn-border-disabled;
+
+	pointer-events: none;
+}
+
+.rwm-icon {
+	@apply tw-h-6
+	tw-w-6 
+	tw-p-1;
+}
+
+.rwm-icon--hidden {
+	@apply tw-h-6 
+	tw-w-6 
+	tw-p-1;
+}
+
+.rwm-arrow {
+	width: 17px;
+	height: 17px;
+	border: solid 2.8px #b2b2b1;
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	transform: rotate(135deg);
+}
+
+.rwm-btn__container {
+	@apply tw-z-30
+	tw-flex
+	tw-justify-center 
+	tw-items-center
+	tw-h-14
+	tw-w-14
+	tw-bg-btnBgColorActive
+	tw-rounded-full
+	tw-py-2 
+	tw-px-4;
+}
+
+.rwm-btn-close {
+	fill: white;
+}

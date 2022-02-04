@@ -1,0 +1,17 @@
+.rwm-stepper {
+	@apply tw-flex
+	tw-items-center;
+}
+
+.rwm-stepper__rectangle {
+	@apply tw-rectangle;
+}
+
+.rwm-stepper__rectangle--active {
+	@apply tw-rectangle-active;
+}
+
+.rwm-stepper__rectangle--disabled {
+	@apply tw-cursor-default
+	tw-rectangle-disabled;
+}
