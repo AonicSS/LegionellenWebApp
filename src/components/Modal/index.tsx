@@ -8,7 +8,7 @@ import { AppReduxStoreProps } from '../../redux/reducers/App';
 import Translate from '../../utils/translate';
 
 import Button from '../Button';
-
+import Pricing from '../Form/Pricing';
 import './Modal.css';
 
 const Modal = () => {
@@ -26,12 +26,13 @@ const Modal = () => {
 	return (
 		<div className="tw-container">
 			{showModal ? (
-				<div className="rwm-overlay">
+				<div className="rwm-overlay tw-z-20">
 					<div
 						className={classNames(
 							'rwm-overlay__container',
 							{ 'tw-overlay-size-1': currentAppStep === 2 },
-							{ 'tw-overlay-size-2': currentAppStep === 3 }
+							{ 'tw-overlay-size-2': currentAppStep === 3 },
+							{ 'tw-overlay-size-3': currentAppStep === 6 }
 						)}
 					>
 						<div className="rwm-overlay__btn-container-close">
@@ -53,20 +54,22 @@ const Modal = () => {
 								)}
 							</p>
 						</div>
-						<div className="rwm-overlay__contact-container">
-							<p className="rwm-overlay__contact-headline">
-								{Translate(
-									intl,
-									`overlay.${currentAppStep}.contact-headline`
-								)}
-							</p>
-							<p className="rwm-overlay__contact-body">
-								{Translate(
-									intl,
-									`overlay.${currentAppStep}.contact-body`
-								)}
-							</p>
-						</div>
+						{currentAppStep !== 6 && (
+							<div className="rwm-overlay__contact-container">
+								<p className="rwm-overlay__contact-headline">
+									{Translate(
+										intl,
+										`overlay.${currentAppStep}.contact-headline`
+									)}
+								</p>
+								<p className="rwm-overlay__contact-body">
+									{Translate(
+										intl,
+										`overlay.${currentAppStep}.contact-body`
+									)}
+								</p>
+							</div>
+						)}
 						{currentAppStep === 2 && (
 							<div className="rwm-overlay__body-container">
 								<p className="rwm-overlay__body">
@@ -80,6 +83,11 @@ const Modal = () => {
 						{currentAppStep === 2 && (
 							<div className="rwm-overlay__btn-container-continue">
 								<Button style="CONTINUE" />
+							</div>
+						)}
+						{currentAppStep === 6 && (
+							<div className="rwm-overlay__btn-container-continue">
+								<Pricing />
 							</div>
 						)}
 					</div>

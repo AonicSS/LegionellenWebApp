@@ -246,16 +246,12 @@ module.exports = {
 				},
 				[`.${prefix}-pricing`]: {
 					width: '334px',
-					height: '455px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
 					[`@media (min-width: ${md})`]: {
 						width: '464px',
-						height: '331px',
 					},
 					[`@media (min-width: ${xl})`]: {
-						// marginRight: '52px',
 						width: '260px',
-						height: '411px',
 					},
 				},
 				[`.${prefix}-pricing-mobile`]: {
@@ -355,6 +351,15 @@ module.exports = {
 					[`@media (min-width: ${md})`]: {
 						width: '676px',
 						height: '293px',
+					},
+				},
+				[`.${prefix}-3`]: {
+					width: '334px',
+					height: '334px',
+					borderRadius: '40px',
+					[`@media (min-width: ${md})`]: {
+						width: '984px',
+						height: '745px',
 					},
 				},
 			});

@@ -12,6 +12,7 @@ export const SET_YEARS = 'SET_YEARS';
 export const INCREASE_ROOMS = 'INCREASE_BEDROOMS';
 export const DECREASE_ROOMS = 'DECREASE_BEDROOMS';
 export const SET_ROOMS = 'SET_ROOMS';
+export const SET_PRICING = 'SET_PRICING';
 
 import { PostalCode, Question } from '../reducers/App';
 
@@ -150,6 +151,15 @@ export function setRooms(
 			questionName,
 			roomName,
 			amount,
+		},
+	};
+}
+
+export function setPricing(pricing: string) {
+	return {
+		type: SET_PRICING,
+		payload: {
+			pricing,
 		},
 	};
 }

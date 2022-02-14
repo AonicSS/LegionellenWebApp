@@ -14,6 +14,7 @@ import {
 	INCREASE_ROOMS,
 	DECREASE_ROOMS,
 	SET_ROOMS,
+	SET_PRICING,
 } from '../actions/App';
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
 	years: 0,
 	postalCode: { code: '', valid: false },
 	questions: questions,
+	pricing: '',
 };
 
 export interface PostalCode {
@@ -60,6 +62,7 @@ export interface AppReduxStoreProps {
 		acceptContact: boolean;
 		acceptMarketing: boolean;
 		questions: Question[];
+		pricing: string;
 	};
 }
 
@@ -148,6 +151,11 @@ const appData = (
 			return {
 				...state,
 				years: action.payload.years,
+			};
+		case SET_PRICING:
+			return {
+				...state,
+				pricing: action.payload.pricing,
 			};
 		case SET_ANSWER:
 			const isPostalCodevalid = validPostalCode(

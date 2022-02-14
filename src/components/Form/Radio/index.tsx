@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import Translate from '../../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';

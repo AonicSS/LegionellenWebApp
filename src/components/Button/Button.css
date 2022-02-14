@@ -16,6 +16,37 @@
 	tw-btn-border-active;
 }
 
+.rwm-button--primary {
+	@apply tw-bg-btnBgColorActive
+	tw-text-white
+	tw-btn-border-active;
+	width: fit-content;
+	border-radius: 30px;
+	margin-top: 10px;
+}
+
+.rwm-button--secondary {
+	@apply tw-bg-btnBgColorActive
+	tw-btn-border-active;
+	width: fit-content;
+	height: 45px;
+	line-height: 17px;
+	background-color: #ffffff;
+	color: #e20613;
+	font-size: 14px;
+	border-radius: 30px;
+	margin-top: 15px;
+}
+
+.rwm-button--link {
+	@apply tw-btn-font;
+	color: #e20613;
+	text-decoration: underline;
+	font-size: 16px;
+	line-height: 26px;
+	margin-top: 55px;
+}
+
 .rwm-button--disabled {
 	@apply tw-bg-btnBgColorDisabled 
 	tw-text-btnColorDisabled
