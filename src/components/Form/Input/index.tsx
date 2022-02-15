@@ -12,18 +12,17 @@ import {
 	INCREASE_RENTINGS_STEP,
 } from '../../../redux/actions/App';
 import { validPostalCode } from '../../../utils/helpers';
-import { AppReduxStoreProps, Question } from '../../../redux/reducers/App';
+import { AppReduxStoreProps } from '../../../redux/reducers/App';
 import Button from '../../Button';
 
 import './Input.css';
-import { questions } from '../Questions';
 
-function FilterInput(event: any) {
-	const keyCode = 'which' in event ? event.which : event.keyCode;
+// function FilterInput(event: any) {
+// 	const keyCode = 'which' in event ? event.which : event.keyCode;
 
-	const isNotWanted = keyCode == 69 || keyCode == 101;
-	return !isNotWanted;
-}
+// 	const isNotWanted = keyCode == 69 || keyCode == 101;
+// 	return !isNotWanted;
+// }
 
 export const RentingsInput = () => {
 	const dispatch = useDispatch();

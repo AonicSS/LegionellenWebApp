@@ -1,5 +1,9 @@
 module.exports = {
-	content: ['./src/**/*.{js,jsx,ts,tsx}', './public/**/*.html'],
+	content: [
+		'./src/components/**/*.{js,jsx,ts,tsx}',
+		'./src/views/**/*.{js,jsx,ts,tsx}',
+		'./public/**/*.html',
+	],
 	prefix: 'tw-',
 	important: true,
 	theme: {
@@ -313,7 +317,7 @@ module.exports = {
 				[`.${prefix}`]: {
 					width: '183px',
 					height: '52px',
-					borderRadius: '5px;',
+					// borderRadius: '5px;',
 					border: 'solid 2px #c8c8c8',
 					textAlign: 'center',
 					[`@media (min-width: ${md})`]: {
@@ -391,7 +395,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({ addUtilities }) {
 			const prefix = 'btn-font';
 
 			addUtilities({

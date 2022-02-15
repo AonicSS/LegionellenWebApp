@@ -1,11 +1,11 @@
 .rwm-btn {
-	@apply tw-btn-size 
+	@apply tw-btn-size
 	tw-btn-font;
 	border-radius: 30px;
 }
 
 .rwn-btn-continue {
-	@apply tw-btn-size-close 
+	@apply tw-btn-size-close
 	tw-btn-font;
 	border-radius: 30px;
 }
@@ -51,19 +51,18 @@
 	@apply tw-bg-btnBgColorDisabled 
 	tw-text-btnColorDisabled
 	tw-btn-border-disabled;
-
 	pointer-events: none;
 }
 
 .rwm-icon {
 	@apply tw-h-6
-	tw-w-6 
+	tw-w-6
 	tw-p-1;
 }
 
 .rwm-icon--hidden {
-	@apply tw-h-6 
-	tw-w-6 
+	@apply tw-h-6
+	tw-w-6
 	tw-p-1;
 }
 
@@ -79,13 +78,13 @@
 .rwm-btn__container {
 	@apply tw-z-30
 	tw-flex
-	tw-justify-center 
+	tw-justify-center
 	tw-items-center
 	tw-h-14
 	tw-w-14
 	tw-bg-btnBgColorActive
 	tw-rounded-full
-	tw-py-2 
+	tw-py-2
 	tw-px-4;
 }
 

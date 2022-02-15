@@ -2,8 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_MODAL } from '../../redux/actions/App';
+import { useSelector } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import Translate from '../../utils/translate';
 
@@ -12,7 +11,6 @@ import Pricing from '../Form/Pricing';
 import './Modal.css';
 
 const Modal = () => {
-	const dispatch = useDispatch();
 	const intl = useIntl();
 
 	const currentAppStep = useSelector(

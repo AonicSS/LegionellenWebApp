@@ -16,14 +16,12 @@
 
 .rwm-radio__container-icon-check {
 	@apply md:tw-flex tw-justify-center tw-hidden md:tw-visible tw-items-center md:tw-mb-8;
-
 	width: 42px;
 	height: 28px;
 }
 
 .rwm-radio__container-icon-decline {
 	@apply md:tw-flex tw-justify-center tw-hidden md:tw-visible tw-items-center md:tw-mb-8;
-
 	width: 28px;
 	height: 28px;
 }
