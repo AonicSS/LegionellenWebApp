@@ -20,14 +20,14 @@ module.exports = {
 		},
 		colors: {
 			transparent: 'transparent',
-			white: '#fff',
-			black: '#000',
+			white: '#ffffff',
+			black: '#000000',
 			red: '#e20913',
 			grey: '#f3f3f3',
 			btnBgColorActive: '#e20613',
 			btnBgColorDisabled: '#e3e3e3',
 			btnColorDisabled: '#b2b2b1',
-			borderInput: 'c8c8c8',
+			borderInput: '#c8c8c8',
 		},
 		fontFamily: {
 			headline: ['Univers55'],
@@ -232,7 +232,7 @@ module.exports = {
 						width: '224px',
 						height: 'auto',
 						marginTop: '0px',
-						backgroundColor: '#fff',
+						backgroundColor: '#ffffff',
 					},
 				},
 				[`.${prefix}-radio`]: {
@@ -245,7 +245,7 @@ module.exports = {
 						width: '224px',
 						height: 'auto',
 						marginTop: '0px',
-						backgroundColor: '#fff',
+						backgroundColor: '#ffffff',
 					},
 				},
 				[`.${prefix}-pricing`]: {

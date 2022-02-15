@@ -19,7 +19,7 @@
 		"react-intl": "^5.24.1",
 		"react-redux": "^7.2.6",
 		"react-router-dom": "^6.2.1",
-		"react-scripts": "5.0.0",
+		"react-scripts": "^5.0.0",
 		"redux-loop": "^6.2.0",
 		"typescript": "^4.5.4",
 		"validator": "^13.7.0",
@@ -28,7 +28,7 @@
 	"scripts": {
 		"prepare:i18n": "node ./tasks/i18n/flatten.js",
 		"start": "npm-run-all prepare:* && npm run watch:css && npx react-scripts start",
-		"build": "npm-run-all prepare:* && npm run watch:css && npx react-scripts build",
+		"build": "npm-run-all prepare:* && npm run watch:css && GENERATE_SOURCEMAP=false npx react-scripts build",
 		"test": "npm-run-all prepare:* && npx react-scripts test",
 		"eject": "react-scripts eject",
 		"watch:css": "postcss src/styles/index.css -o src/styles/output.css"
@@ -68,6 +68,6 @@
 		"postcss-cli": "^9.1.0",
 		"prettier": "^2.5.1",
 		"redux-devtools-extension": "^2.13.9",
-		"tailwindcss": "^3.0.11"
+		"tailwindcss": "^3.0.22"
 	}
 }
