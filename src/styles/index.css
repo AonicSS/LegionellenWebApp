@@ -61,4 +61,10 @@
 		tw-flex
 		tw-justify-center;
 	}
+
+	.rwm-marketo__page-section {
+		@apply tw-container
+		tw-max-w-screen-xl
+		tw-mx-auto
+	}
 }
