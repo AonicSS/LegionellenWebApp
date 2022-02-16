@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { ReactComponent as Close } from '../../icons/times.svg';
 import { ReactComponent as Plus } from '../../icons/plus.svg';
@@ -27,6 +28,7 @@ interface ButtonProps extends BaseComponentProps {
 	room?: string;
 	text?: string;
 	pricing?: string;
+	link?: string;
 }
 
 const Button = ({
@@ -37,6 +39,7 @@ const Button = ({
 	room,
 	text,
 	pricing,
+	link,
 }: ButtonProps) => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
@@ -155,11 +158,14 @@ const Button = ({
 		});
 	};
 
+	const navigate = useNavigate();
+
 	const setPricing = (value: any) => {
 		dispatch({
 			type: SET_PRICING,
 			payload: { pricing: value },
 		});
+		navigate('/summary');
 	};
 
 	switch (style) {
@@ -223,6 +229,18 @@ const Button = ({
 					className={classnames(
 						'rwn-btn-continue',
 						'rwm-button--secondary'
+					)}
+				>
+					{text}
+				</button>
+			);
+		case 'FORM-LINK':
+			return (
+				<button
+					onClick={() => navigate('/' + link)}
+					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--form-link'
 					)}
 				>
 					{text}
