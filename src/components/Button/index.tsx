@@ -165,6 +165,7 @@ const Button = ({
 			type: SET_PRICING,
 			payload: { pricing: value },
 		});
+		closeModal();
 		navigate('/summary');
 	};
 

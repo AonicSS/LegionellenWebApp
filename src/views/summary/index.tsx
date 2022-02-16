@@ -9,6 +9,8 @@ import Form from '../../components/Form';
 import Button from '../../components/Button';
 
 const Summary = () => {
+	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+
 	return (
 		<Layout>
 			<Modal />
@@ -39,13 +41,13 @@ const Summary = () => {
 								Bereits RWM Service bei Techem
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								3
+								{appData.rentings}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Wohneinheiten
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								12345
+								{appData.postalCode.code}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Postleitzahl
@@ -67,7 +69,7 @@ const Summary = () => {
 								Ihre Wahl
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Standard 360
+								{appData.pricing}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Details ansehen
@@ -97,12 +99,12 @@ const Summary = () => {
 								<Button
 									text="Angebot anfordern"
 									style="FORM-LINK"
-									link="reminder"
+									link="contactform"
 								/>
 								<Button
 									text="Preisindikation erhalten"
 									style="FORM-LINK"
-									link="reminder"
+									link="emailform"
 								/>
 
 								<Button
