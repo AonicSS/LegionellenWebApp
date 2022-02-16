@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import Calculator from './views/calculator';
 import EmailForm from './views/emailform';
 import ContactForm from './views/contactform';
@@ -10,7 +10,7 @@ import './styles/index.css';
 
 function App() {
 	return (
-		<BrowserRouter>
+		<HashRouter basename={'/calculator'}>
 			<Routes>
 				<Route path="/" element={<Calculator />} />
 				<Route path="/summary" element={<Summary />} />
@@ -18,7 +18,7 @@ function App() {
 				<Route path="/emailform" element={<EmailForm />} />
 				<Route path="/contactform" element={<ContactForm />} />
 			</Routes>
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
 
