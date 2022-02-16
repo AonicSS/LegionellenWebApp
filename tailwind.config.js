@@ -1,5 +1,9 @@
 module.exports = {
-	content: ['./src/**/*.{js,jsx,ts,tsx}', './public/**/*.html'],
+	content: [
+		'./src/components/**/*.{js,jsx,ts,tsx}',
+		'./src/views/**/*.{js,jsx,ts,tsx}',
+		'./public/**/*.html',
+	],
 	prefix: 'tw-',
 	important: true,
 	theme: {
@@ -16,14 +20,14 @@ module.exports = {
 		},
 		colors: {
 			transparent: 'transparent',
-			white: '#fff',
-			black: '#000',
+			white: '#ffffff',
+			black: '#000000',
 			red: '#e20913',
 			grey: '#f3f3f3',
 			btnBgColorActive: '#e20613',
 			btnBgColorDisabled: '#e3e3e3',
 			btnColorDisabled: '#b2b2b1',
-			borderInput: 'c8c8c8',
+			borderInput: '#c8c8c8',
 		},
 		fontFamily: {
 			headline: ['Univers55'],
@@ -228,7 +232,7 @@ module.exports = {
 						width: '224px',
 						height: 'auto',
 						marginTop: '0px',
-						backgroundColor: '#fff',
+						backgroundColor: '#ffffff',
 					},
 				},
 				[`.${prefix}-radio`]: {
@@ -241,21 +245,17 @@ module.exports = {
 						width: '224px',
 						height: 'auto',
 						marginTop: '0px',
-						backgroundColor: '#fff',
+						backgroundColor: '#ffffff',
 					},
 				},
 				[`.${prefix}-pricing`]: {
 					width: '334px',
-					height: '455px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
 					[`@media (min-width: ${md})`]: {
 						width: '464px',
-						height: '331px',
 					},
 					[`@media (min-width: ${xl})`]: {
-						// marginRight: '52px',
 						width: '260px',
-						height: '411px',
 					},
 				},
 				[`.${prefix}-pricing-mobile`]: {
@@ -317,7 +317,7 @@ module.exports = {
 				[`.${prefix}`]: {
 					width: '183px',
 					height: '52px',
-					borderRadius: '5px;',
+					// borderRadius: '5px;',
 					border: 'solid 2px #c8c8c8',
 					textAlign: 'center',
 					[`@media (min-width: ${md})`]: {
@@ -357,6 +357,15 @@ module.exports = {
 						height: '293px',
 					},
 				},
+				[`.${prefix}-3`]: {
+					width: '334px',
+					height: '334px',
+					borderRadius: '40px',
+					[`@media (min-width: ${md})`]: {
+						width: '984px',
+						height: '745px',
+					},
+				},
 			});
 		},
 		function ({ addUtilities }) {
@@ -386,7 +395,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({ addUtilities }) {
 			const prefix = 'btn-font';
 
 			addUtilities({

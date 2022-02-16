@@ -4,8 +4,8 @@ import Translate from '../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_YEARS } from '../../redux/actions/App';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
-import { questions } from './Questions';
 import Pricing from './Pricing';
+import Button from '../Button';
 
 const Six = () => {
 	const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Six = () => {
 				<h1>{Translate(intl, `questions.5.question`)}</h1>
 			</label>
 
-			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24">
+			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24 tw-mt-8">
 				<div className="">
 					<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
 						<input
@@ -70,6 +70,7 @@ const Six = () => {
 				</div>
 			</fieldset>
 			<Pricing />
+			<Button text="Alle Leistungen der Service Pakete" style={'LINK'} />
 		</div>
 	);
 };

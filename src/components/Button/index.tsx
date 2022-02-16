@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { ReactComponent as Close } from '../../icons/times.svg';
 import { ReactComponent as Plus } from '../../icons/plus.svg';
@@ -11,6 +12,7 @@ import {
 	SET_MODAL,
 	INCREASE_ROOMS,
 	DECREASE_ROOMS,
+	SET_PRICING,
 } from '../../redux/actions/App';
 import Translate from '../../utils/translate';
 import classnames from 'classnames';
@@ -24,6 +26,9 @@ interface ButtonProps extends BaseComponentProps {
 	question?: string;
 	style?: string;
 	room?: string;
+	text?: string;
+	pricing?: string;
+	link?: string;
 }
 
 const Button = ({
@@ -32,6 +37,9 @@ const Button = ({
 	type,
 	modifierClass,
 	room,
+	text,
+	pricing,
+	link,
 }: ButtonProps) => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
@@ -79,6 +87,15 @@ const Button = ({
 	}, []);
 
 	const currentRentings = getCurrentRentings(questionText);
+
+	const openModal = useCallback(
+		() =>
+			dispatch({
+				type: SET_MODAL,
+				payload: { showModal: true },
+			}),
+		[]
+	);
 
 	const closeModalAndContinue = useCallback(() => {
 		dispatch({
@@ -141,6 +158,17 @@ const Button = ({
 		});
 	};
 
+	const navigate = useNavigate();
+
+	const setPricing = (value: any) => {
+		dispatch({
+			type: SET_PRICING,
+			payload: { pricing: value },
+		});
+		closeModal();
+		navigate('/summary');
+	};
+
 	switch (style) {
 		case 'NEXT':
 			const isRentingZero = getIsRentingZero(questionText);
@@ -181,6 +209,42 @@ const Button = ({
 				>
 					{' '}
 					{Translate(intl, 'button.continue')}
+				</button>
+			);
+		case 'PRIMARY':
+			return (
+				<button
+					onClick={() => setPricing(pricing)}
+					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--primary'
+					)}
+				>
+					{text}
+				</button>
+			);
+		case 'SECONDARY':
+			return (
+				<button
+					onClick={() => setPricing(pricing)}
+					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--secondary'
+					)}
+				>
+					{text}
+				</button>
+			);
+		case 'FORM-LINK':
+			return (
+				<button
+					onClick={() => navigate('/' + link)}
+					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--form-link'
+					)}
+				>
+					{text}
 				</button>
 			);
 		case 'CLOSE':
@@ -229,6 +293,15 @@ const Button = ({
 					onClick={increaseRooms}
 				>
 					<Plus width={16} height={16} />
+				</button>
+			);
+		case 'LINK':
+			return (
+				<button
+					onClick={openModal}
+					className={classnames('rwm-button--link')}
+				>
+					{text}
 				</button>
 			);
 		default:

@@ -55,10 +55,16 @@
 
 @layer components {
 	.rwm-calculator__page-section {
-		@apply tw-container 
-		tw-max-w-screen-xl 
-		tw-mx-auto 
-		tw-flex 
+		@apply tw-container
+		tw-max-w-screen-xl
+		tw-mx-auto
+		tw-flex
 		tw-justify-center;
+	}
+
+	.rwm-marketo__page-section {
+		@apply tw-container
+		tw-max-w-screen-xl
+		tw-mx-auto
 	}
 }
