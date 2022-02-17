@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 import Calculator from './views/calculator';
 import EmailForm from './views/emailform';
 import ContactForm from './views/contactform';
@@ -17,6 +17,7 @@ function App() {
 				<Route path="/reminder" element={<ReminderForm />} />
 				<Route path="/emailform" element={<EmailForm />} />
 				<Route path="/contactform" element={<ContactForm />} />
+				<Route path="*" element={<Calculator />} />
 			</Routes>
 		</HashRouter>
 	);

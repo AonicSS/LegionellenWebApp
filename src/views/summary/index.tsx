@@ -29,13 +29,13 @@ const Summary = () => {
 								Ihre Angaben
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Nein
+								{appData.questions[0].choice ? 'Ja' : 'Nein'}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Heizkostenabrechnung bei Techem
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Nein
+								{appData.questions[1].choice ? 'Ja' : 'Nein'}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Bereits RWM Service bei Techem
@@ -75,7 +75,7 @@ const Summary = () => {
 								Details ansehen
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								10 Jahre
+								{appData.years}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Laufzeit
