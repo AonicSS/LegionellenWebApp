@@ -12,9 +12,11 @@ export const SET_YEARS = 'SET_YEARS';
 export const INCREASE_ROOMS = 'INCREASE_BEDROOMS';
 export const DECREASE_ROOMS = 'DECREASE_BEDROOMS';
 export const SET_ROOMS = 'SET_ROOMS';
+export const ADD_HOUSE = 'ADD_HOUSE';
 export const SET_PRICING = 'SET_PRICING';
+export const SET_REGION = 'SET_REGION';
 
-import { PostalCode, Question } from '../reducers/App';
+import { PostalCode } from '../reducers/App';
 
 export function increaseAppStep() {
 	return {
@@ -130,13 +132,25 @@ export function increaseRooms(
 	};
 }
 
-export function decreaseRooms(roomName: string, questionName: string) {
+export function decreaseRooms(
+	roomName: string,
+	questionName: string,
+	index: number
+) {
 	return {
 		type: DECREASE_ROOMS,
 		payload: {
 			questionName,
 			roomName,
+			index,
 		},
+	};
+}
+
+export function addHouse(questionName: string) {
+	return {
+		type: ADD_HOUSE,
+		payload: { questionName },
 	};
 }
 
@@ -161,5 +175,12 @@ export function setPricing(pricing: string) {
 		payload: {
 			pricing,
 		},
+	};
+}
+
+export function setRegion(questionName: string) {
+	return {
+		type: SET_REGION,
+		payload: { questionName },
 	};
 }

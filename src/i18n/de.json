@@ -90,27 +90,14 @@
 		},
 		"4": {
 			"question": "Wie viele Geräte werden gewünscht?",
+			"recommended": "empfohlen",
+			"required": "gesetzl. vorgeschrieben",
 			"answers": {
-				"0": {
-					"label": "Schlafzimmer",
-					"info": "gesetzl. vorgeschrieben"
-				},
-				"1": {
-					"label": "Kinderzimmer",
-					"info": "gesetzl. vorgeschrieben"
-				},
-				"2": {
-					"label": "Flure und Räume, die Fluchtweg sind",
-					"info": "gesetzl. vorgeschrieben"
-				},
-				"3": {
-					"label": "Wohn-, Arbeits-, und Zimmer mit sonstiger Nutzung",
-					"info": "empfohlen"
-				},
-				"4": {
-					"label": "Treppenhäuser als weitere Verbindung zur Haustür",
-					"info": "empfohlen"
-				}
+				"bedrooms": "Schlafzimmer",
+				"nurseries": "Kinderzimmer",
+				"hallways": "Flure und Räume, die Fluchtweg sind",
+				"common": "Wohn-, Arbeits-, und Zimmer mit sonstiger Nutzung",
+				"stairs": "Treppenhäuser als weitere Verbindung zur Haustür"
 			}
 		},
 		"5": {

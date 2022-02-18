@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import Translate from '../../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,9 +9,11 @@ import {
 	DECREASE_RENTINGS,
 	SET_MODAL,
 	SET_ROOMS,
+	ADD_HOUSE,
 	INCREASE_RENTINGS_STEP,
+	SET_REGION,
 } from '../../../redux/actions/App';
-import { validPostalCode } from '../../../utils/helpers';
+import { validPostalCode, getFederalState } from '../../../utils/helpers';
 import { AppReduxStoreProps } from '../../../redux/reducers/App';
 import Button from '../../Button';
 
@@ -152,7 +154,13 @@ export const PostalCodeInput = () => {
 		dispatch({
 			type: UPDATE_POSTAL_CODE,
 			payload: {
-				postalCode: { code: value, valid: valid },
+				postalCode: {
+					code: value,
+					valid: valid,
+					area: getFederalState(value)[0]
+						? getFederalState(value)[0].bundesland
+						: '',
+				},
 			},
 		});
 		dispatch({
@@ -162,6 +170,8 @@ export const PostalCodeInput = () => {
 				choice: value,
 			},
 		});
+
+		console.log('getFederalState(value) :>> ');
 	};
 
 	return (
@@ -221,6 +231,14 @@ export const RoomsInput = () => {
 	const intl = useIntl();
 	const myRef = useRef(null);
 
+	const postalCodeArea = useSelector(
+		(state: AppReduxStoreProps) => state.appData.postalCode.area
+	);
+
+	const curentRenting = useSelector(
+		(state: AppReduxStoreProps) => state.appData.rentings
+	);
+
 	// @ts-ignore
 	const executeScroll = () => myRef.current.scrollIntoView();
 
@@ -241,6 +259,16 @@ export const RoomsInput = () => {
 		`questions.${currentAppStep - 1}.question`
 	);
 
+	useEffect(() => {
+		if (postalCodeArea === 'Berlin' || postalCodeArea === 'Brandenburg')
+			dispatch({
+				type: SET_REGION,
+				payload: {
+					questionName: questionText,
+				},
+			});
+	}, []);
+
 	const handleInput = (value: string, room: string) => {
 		dispatch({
 			type: SET_ROOMS,
@@ -256,6 +284,12 @@ export const RoomsInput = () => {
 		executeScroll();
 		dispatch({
 			type: INCREASE_RENTINGS_STEP,
+		});
+		dispatch({
+			type: ADD_HOUSE,
+			payload: {
+				questionName: questionText,
+			},
 		});
 	};
 
@@ -278,71 +312,80 @@ export const RoomsInput = () => {
 			</label>
 			<div className="tw-margin-top">
 				{question?.answers?.map((r, i) => {
-					return (
-						<div
-							key={r.name}
-							className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-14"
-						>
-							<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
-								<div className="tw-font-size-rooms-name">
-									{Translate(
-										intl,
-										`questions.${
-											currentAppStep - 1
-										}.answers.${i}.label`
-									)}
-								</div>
-							</div>
-							<fieldset className="tw-justify-row">
-								<div className="">
-									<Button
-										room={r.name}
-										style="DECREASE_ROOMS"
-										type={'DECREASE_' + r.type}
-										question={Translate(
+					if (r.house === curentRenting) {
+						return (
+							<div
+								key={r.name}
+								className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-14"
+							>
+								<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
+									<div className="tw-font-size-rooms-name">
+										{Translate(
 											intl,
 											`questions.${
 												currentAppStep - 1
-											}.question`
+											}.answers.${r.name}`
 										)}
-									/>
+									</div>
 								</div>
-								<div className="">
-									<input
-										onChange={(e) =>
-											handleInput(e.target.value, r.name!)
-										}
-										type="number"
-										name="rooms"
-										className="tw-input tw-font-size-input focus:tw-ring-transparent"
-										value={r.amount?.toString()}
-									/>
-								</div>
-								<div className="">
-									<Button
-										room={r.name}
-										style="INCREASE_ROOMS"
-										question={Translate(
+								<fieldset className="tw-justify-row">
+									<div className="">
+										<Button
+											room={r.name}
+											style="DECREASE_ROOMS"
+											type={'DECREASE_' + r.type}
+											question={Translate(
+												intl,
+												`questions.${
+													currentAppStep - 1
+												}.question`
+											)}
+										/>
+									</div>
+									<div className="">
+										<input
+											onChange={(e) =>
+												handleInput(
+													e.target.value,
+													r.name!
+												)
+											}
+											type="number"
+											name="rooms"
+											className="tw-input tw-font-size-input focus:tw-ring-transparent"
+											value={r.amount?.toString()}
+										/>
+									</div>
+									<div className="">
+										<Button
+											room={r.name}
+											style="INCREASE_ROOMS"
+											question={Translate(
+												intl,
+												`questions.${
+													currentAppStep - 1
+												}.question`
+											)}
+										/>
+									</div>
+								</fieldset>
+								<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
+									<div className="tw-font-size-rooms-label tw-text-center md:tw-text-left">
+										{Translate(
 											intl,
-											`questions.${
-												currentAppStep - 1
-											}.question`
+											`questions.${currentAppStep - 1}.${
+												r.required
+													? 'required'
+													: 'recommended'
+											}`
 										)}
-									/>
-								</div>
-							</fieldset>
-							<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
-								<div className="tw-font-size-rooms-label tw-text-center md:tw-text-left">
-									{Translate(
-										intl,
-										`questions.${
-											currentAppStep - 1
-										}.answers.${i}.info`
-									)}
+									</div>
 								</div>
 							</div>
-						</div>
-					);
+						);
+					} else {
+						return null;
+					}
 				})}
 			</div>
 			{maxRentings > 1 && currentRentingsStep < maxRentings ? (

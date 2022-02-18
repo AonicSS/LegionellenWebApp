@@ -18,6 +18,14 @@ const getFederalStateArray = (plz: number) => {
 	});
 };
 
+// return array if postal code is find in list
+export const getFederalState = (postalCode: string) => {
+	const plz = parseInt(postalCode);
+	return germanPostalCode.filter(function (germanPostalCode) {
+		return germanPostalCode.plz === plz;
+	});
+};
+
 // return type as a string (slided after [object ...). Like typeof but covers also regex etc.
 export const trueTypeOf = (obj: any) => {
 	return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();

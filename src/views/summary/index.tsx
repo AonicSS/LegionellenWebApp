@@ -3,14 +3,20 @@ import { useSelector } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import classNames from 'classnames';
 import Layout from '../../components/Layout';
-import Stepper from '../../components/Stepper';
 import Modal from '../../components/Modal';
-import Form from '../../components/Form';
 import Button from '../../components/Button';
 
 const Summary = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const getAlarmNumber = () => {
+		let alarms = 0;
 
+		appData.questions['4'].answers.forEach((element) => {
+			alarms = alarms + element.amount;
+		});
+
+		return alarms;
+	};
 	return (
 		<Layout>
 			<Modal />
@@ -53,7 +59,7 @@ const Summary = () => {
 								Postleitzahl
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								16
+								{getAlarmNumber()}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Anzahl Rauchwarnmelder

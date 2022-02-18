@@ -1,4 +1,4 @@
-import { questions } from '../../components/Form/Questions';
+import { questions, rooms } from '../../components/Form/Questions';
 import { trueTypeOf, validPostalCode } from '../../utils/helpers';
 import {
 	INCREASE_APP_STEP,
@@ -14,7 +14,9 @@ import {
 	INCREASE_ROOMS,
 	DECREASE_ROOMS,
 	SET_ROOMS,
+	ADD_HOUSE,
 	SET_PRICING,
+	SET_REGION,
 } from '../actions/App';
 
 const initialState = {
@@ -34,6 +36,7 @@ const initialState = {
 export interface PostalCode {
 	code: string;
 	valid: boolean;
+	area: string;
 }
 
 export interface Question {
@@ -41,7 +44,7 @@ export interface Question {
 	choice: any;
 	type: string;
 	btnActive: boolean;
-	answers?: Answers[];
+	answers: Answers[];
 }
 
 export interface Answers {
@@ -49,6 +52,7 @@ export interface Answers {
 	type: string;
 	amount: number;
 	required: boolean;
+	house: number;
 }
 export interface AppReduxStoreProps {
 	appData: {
@@ -221,6 +225,60 @@ const appData = (
 				}),
 			};
 		}
+		case SET_REGION:
+			return {
+				...state,
+				questions: state.questions.map((q) => {
+					if (q.question === action.payload.questionName) {
+						return {
+							...q,
+							answers: q.answers.map((a) => {
+								if (a.name === 'common') {
+									return {
+										...a,
+										amount: 1,
+										required: true,
+									};
+								} else {
+									return { ...a };
+								}
+							}),
+						};
+					} else {
+						return { ...q };
+					}
+				}),
+			};
+		case ADD_HOUSE: {
+			return {
+				...state,
+				questions: state.questions.map((q) => {
+					return q.question === action.payload.questionName
+						? {
+								...q,
+								answers: [
+									...q.answers,
+									...rooms.map((r) => {
+										if (r.name === 'common') {
+											return {
+												...r,
+												amount: 1,
+												required: true,
+												house: state.rentings,
+											};
+										} else {
+											return {
+												...r,
+												house: state.rentings,
+											};
+										}
+									}),
+								],
+						  }
+						: { ...q };
+				}),
+			};
+		}
 		case INCREASE_ROOMS:
 			return {
 				...state,
@@ -229,7 +287,10 @@ const appData = (
 						return {
 							...q,
 							answers: q.answers.map((a) => {
-								if (a.name === action.payload.roomName) {
+								if (
+									a.name === action.payload.roomName &&
+									action.payload.index === a.house
+								) {
 									return {
 										...a,
 										// @ts-ignore
@@ -253,7 +314,10 @@ const appData = (
 						return {
 							...q,
 							answers: q.answers.map((a) => {
-								if (a.name === action.payload.roomName) {
+								if (
+									a.name === action.payload.roomName &&
+									action.payload.index === a.house
+								) {
 									return {
 										...a,
 										amount: a.required

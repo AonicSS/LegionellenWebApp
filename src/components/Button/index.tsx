@@ -154,6 +154,7 @@ const Button = ({
 			payload: {
 				questionName: question,
 				roomName: room,
+				index: currentRentingsStep,
 			},
 		});
 	};
