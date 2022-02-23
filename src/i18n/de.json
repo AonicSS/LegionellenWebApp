@@ -50,7 +50,7 @@
 	},
 	"questions": {
 		"0": {
-			"question": "Lassen Sie ihre Heizkostenabrechnung durch Techem durchführen?",
+			"question": "Sind Sie für Ihre Heizkostenabrechnung bereits Kunde bei Techem?",
 			"answers": {
 				"0": {
 					"label": "Ja"
@@ -61,7 +61,7 @@
 			}
 		},
 		"1": {
-			"question": "Nehmen Sie bereits den Techem RWM Service in Anspruch?",
+			"question": "Sind Sie bereits Rauchwarnmelder-Service-Kunde von Techem?",
 			"answers": {
 				"0": {
 					"label": "Ja"
@@ -73,7 +73,7 @@
 		},
 		"2": {
 			"question": "Wie viele Wohneinheiten möchten Sie ausstatten?",
-			"sublabel": "Eine Wohneinheit entspricht einem Mietobjekt.",
+			"sublabel": "Eine Wohneinheit enspricht einem Mietobjekt, z.B. einer Wohnung.",
 			"answers": {
 				"0": {
 					"label": "Wohneinheit"

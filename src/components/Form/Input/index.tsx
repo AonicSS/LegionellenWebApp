@@ -197,17 +197,6 @@ export const PostalCodeInput = () => {
 								onChange={(e) => onChange(e.target.value)}
 							/>
 						</div>
-						{/* <div className="tw-flex tw-justify-center tw-items-center">
-							<div className="tw-font-size-label tw-flex tw-justify-center tw-items-center">
-								<Button
-									style={INCREASE_RENTINGS}
-									modifierClass="tw-mr-3"
-									type={''}
-									question={''}
-								/>
-								Weitere PLZ hinzufügen
-							</div>
-						</div> */}
 						<label className="tw-flex tw-justify-center tw-font-size-label tw-mt-2 tw-font">
 							Postleitzahl
 						</label>

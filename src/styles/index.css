@@ -62,9 +62,15 @@
 		tw-justify-center;
 	}
 
+	.rwm-forms__page-section {
+		@apply tw-container
+		tw-mx-auto;
+		max-width: 660px;
+	}
+
 	.rwm-marketo__page-section {
 		@apply tw-container
 		tw-max-w-screen-xl
-		tw-mx-auto
+		tw-mx-auto;
 	}
 }

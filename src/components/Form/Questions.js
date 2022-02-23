@@ -49,7 +49,7 @@ export const questions = [
 		question: 'Wo befinden sich Ihre Wohneinheiten?',
 		choice: '',
 		type: 'input',
-		btnActive: true,
+		btnActive: false,
 		answers: [
 			{
 				name: '',

@@ -47,6 +47,24 @@
 	tw-rounded-md;
 }
 
+.rwm-form__input-container {
+	width: 259px;
+}
+
+.rwm-form__input-container-large {
+	@apply tw-mx-auto;
+	width: 572px;
+}
+
+.rwm-form__input-custom {
+	@apply tw-shadow-none
+	focus:tw-ring-transparent;
+	width: 100%;
+	height: 48px;
+	border: solid 2px #c8c8c8 !important;
+	box-shadow: #fff !important;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
@@ -66,4 +84,48 @@ input[type='number'] {
 	@apply tw-grid
 	tw-grid-cols-1
 	tw-gap-2;
+}
+
+.round {
+	position: relative;
+}
+
+.round label {
+	background-color: #fff;
+	border: 2px solid #c8c8c8;
+	border-radius: 4px;
+	cursor: pointer;
+	height: 28px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 28px;
+	margin-top: 4px;
+}
+
+.round label:after {
+	border: 2px solid #fff;
+	border-top: none;
+	border-right: none;
+	content: '';
+	height: 6px;
+	left: 7px;
+	opacity: 0;
+	position: absolute;
+	top: 8px;
+	transform: rotate(-45deg);
+	width: 12px;
+}
+
+.round input[type='checkbox'] {
+	visibility: hidden;
+}
+
+.round input[type='checkbox']:checked + label {
+	background-color: #e20613;
+	border-color: #e20613;
+}
+
+.round input[type='checkbox']:checked + label:after {
+	opacity: 1;
 }
