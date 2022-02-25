@@ -4,16 +4,16 @@
 	},
 	"button": {
 		"next": "weiter",
-		"continue": "Ich möchte trotzdem fortfahren"
+		"continue": "Trotzdem fortfahren"
 	},
 	"overlay": {
 		"2": {
-			"headline": "Ihr individuelles Angebot",
-			"contact-headline": "06196 522-7677",
+			"headline": "Ihr individuelles Angebot erhalten",
+			"contact-headline": "06196 522 7040",
 			"contact-body": "Mo bis Fr von 08:00 - 18:00 Uhr",
 			"body": {
-				"0": "Gerne unterbreiten wir Ihnen ein individuelles Angebot. Hierzu können Sie uns unter folgender Nummer erreichen:",
-				"1": "Sie können selbstverständlich mit der Preisindikation fortfahren, allerdings werden Ihnen vermutlich ein zu hoher Preis ermittelt."
+				"0": "Um den exakten Umfang Ihres Rauchwarnmelder-Service-Pakets ermitteln zu können rufen Sie uns gerne unter folgender Nummer an:",
+				"1": "Bitte beachten Sie, dass die Rauchwarnmelder-Service Preiskalkulation für Sie möglicherweise einen zu hohen Preis ermittelt."
 			}
 		},
 		"3": {
@@ -37,9 +37,9 @@
 			}
 		},
 		"6": {
-			"headline": "Unsere Service-Lösungen im VergleichUnsere Service-Lösungen im Vergleich",
+			"headline": "Unsere Rauchwarnmelder-Lösungen im Vergleich",
 			"body": {
-				"0": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+				"0": ""
 			}
 		}
 	},
@@ -50,7 +50,7 @@
 	},
 	"questions": {
 		"0": {
-			"question": "Lassen Sie ihre Heizkostenabrechnung durch Techem durchführen?",
+			"question": "Sind Sie für Ihre Heizkostenabrechnung bereits Kunde bei Techem?",
 			"answers": {
 				"0": {
 					"label": "Ja"
@@ -61,7 +61,7 @@
 			}
 		},
 		"1": {
-			"question": "Nehmen Sie bereits den Techem RWM Service in Anspruch?",
+			"question": "Sind Sie bereits Rauchwarnmelder-Service-Kunde von Techem?",
 			"answers": {
 				"0": {
 					"label": "Ja"
@@ -73,7 +73,7 @@
 		},
 		"2": {
 			"question": "Wie viele Wohneinheiten möchten Sie ausstatten?",
-			"sublabel": "Eine Wohneinheit entspricht einem Mietobjekt.",
+			"sublabel": "Eine Wohneinheit enspricht einem Mietobjekt, z.B. einer Wohnung.",
 			"answers": {
 				"0": {
 					"label": "Wohneinheit"
@@ -85,7 +85,7 @@
 		},
 		"3": {
 			"question": "Wo befinden sich Ihre Wohneinheiten?",
-			"sublabel": "Zur exakten Ermittlung der Anzahl der benötigten Rauchwarnmeldern ist die Postleitzahl notwendig, da verschiedene gesetzliche Bestimmungen gelten.",
+			"sublabel": "Um die genaue Anzahl der benötigten Rauchwarnmelder ermitteln zu können, ist die Angabe Ihrer Postleitzahl nötig. Die gesetzlichen Bestimmungen unterscheiden sich je nach Bundesland.",
 			"answers": {}
 		},
 		"4": {
@@ -93,15 +93,15 @@
 			"recommended": "empfohlen",
 			"required": "gesetzl. vorgeschrieben",
 			"answers": {
-				"bedrooms": "Schlafzimmer",
+				"bedrooms": "Schlafräume",
 				"nurseries": "Kinderzimmer",
-				"hallways": "Flure und Räume, die Fluchtweg sind",
+				"hallways": "Flure und Räume, die Fluchtwege sind",
 				"common": "Wohn-, Arbeits-, und Zimmer mit sonstiger Nutzung",
 				"stairs": "Treppenhäuser als weitere Verbindung zur Haustür"
 			}
 		},
 		"5": {
-			"question": "Unsere Service-Lösungen",
+			"question": "Laufzeit Mietvertrag",
 			"answers": {
 				"0": {
 					"label": "Standard",

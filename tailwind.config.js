@@ -76,6 +76,18 @@ module.exports = {
 						color: '#4c4c4c',
 					},
 				},
+				[`.${prefix}label-small`]: {
+					fontFamily: 'Univers55',
+					fontSize: '12px',
+					letterSpacing: '0px',
+					color: '#222222',
+					[`@media (min-width: ${md})`]: {
+						fontSize: '12px',
+						lineHeight: '18px',
+						letterSpacing: '-0.1px',
+						color: '#4c4c4c',
+					},
+				},
 				[`.${prefix}info`]: {
 					fontFamily: 'Univers55',
 					fontSize: '18px',

@@ -1,7 +1,7 @@
 export const questions = [
 	{
 		question:
-			'Lassen Sie ihre Heizkostenabrechnung durch Techem durchführen?',
+			'Sind Sie für Ihre Heizkostenabrechnung bereits Kunde bei Techem?',
 		choice: null,
 		type: 'radio',
 		btnActive: false,
@@ -16,7 +16,7 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Nehmen Sie bereits den Techem RWM Service in Anspruch?',
+		question: 'Sind Sie bereits Rauchwarnmelder-Service-Kunde von Techem?',
 		choice: null,
 		type: 'radio',
 		btnActive: false,
@@ -49,7 +49,7 @@ export const questions = [
 		question: 'Wo befinden sich Ihre Wohneinheiten?',
 		choice: '',
 		type: 'input',
-		btnActive: true,
+		btnActive: false,
 		answers: [
 			{
 				name: '',

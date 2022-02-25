@@ -197,17 +197,6 @@ export const PostalCodeInput = () => {
 								onChange={(e) => onChange(e.target.value)}
 							/>
 						</div>
-						{/* <div className="tw-flex tw-justify-center tw-items-center">
-							<div className="tw-font-size-label tw-flex tw-justify-center tw-items-center">
-								<Button
-									style={INCREASE_RENTINGS}
-									modifierClass="tw-mr-3"
-									type={''}
-									question={''}
-								/>
-								Weitere PLZ hinzufügen
-							</div>
-						</div> */}
 						<label className="tw-flex tw-justify-center tw-font-size-label tw-mt-2 tw-font">
 							Postleitzahl
 						</label>
@@ -216,10 +205,11 @@ export const PostalCodeInput = () => {
 			</fieldset>
 			{!postalCodeValid && postalCode.length > 4 && (
 				<p className="tw-mt-12 tw-font-size-input-error">
-					Leider konnten wir die angegeben Postleitzahl nicht
+					Leider konnten wir die angegebene Postleitzahl nicht
 					zuordnen.
-					<br /> Bitte beachten Sie, dass eine Postleitzahl aus 5
-					Nummern besteht.
+					<br />
+					Bitte beachten Sie, dass eine Postleitzahl aus 5 Ziffern
+					bestehen muss.
 				</p>
 			)}
 		</div>
