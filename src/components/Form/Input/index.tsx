@@ -205,10 +205,11 @@ export const PostalCodeInput = () => {
 			</fieldset>
 			{!postalCodeValid && postalCode.length > 4 && (
 				<p className="tw-mt-12 tw-font-size-input-error">
-					Leider konnten wir die angegeben Postleitzahl nicht
+					Leider konnten wir die angegebene Postleitzahl nicht
 					zuordnen.
-					<br /> Bitte beachten Sie, dass eine Postleitzahl aus 5
-					Nummern besteht.
+					<br />
+					Bitte beachten Sie, dass eine Postleitzahl aus 5 Ziffern
+					bestehen muss.
 				</p>
 			)}
 		</div>

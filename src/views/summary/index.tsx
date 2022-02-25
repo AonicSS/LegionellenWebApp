@@ -23,7 +23,7 @@ const Summary = () => {
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<div className="tw-flex tw-flex-col">
 					<label className="rwm-form__headline">
-						<h1>Überblick</h1>
+						<h1>Zusammenfassung</h1>
 					</label>
 					<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-1 xl:tw-grid-cols-3 tw-gap-10 xl:tw-gap-14 tw-mt-16">
 						<div
@@ -72,7 +72,7 @@ const Summary = () => {
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-								Ihre Wahl
+								Ihre Ausstattung
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.pricing}
@@ -104,17 +104,16 @@ const Summary = () => {
 							<div className="tw-flex tw-flex-col tw-content-center tw-items-center tw-align-items-center">
 								<Button
 									text="Angebot anfordern"
-									style="FORM-LINK"
+									style="FORM-LINK-PRIMARY"
 									link="contactform"
 								/>
 								<Button
-									text="Preisindikation erhalten"
+									text="Erinnerung erhalten"
 									style="FORM-LINK"
 									link="emailform"
 								/>
-
 								<Button
-									text="Erinnerung erhalten"
+									text="Eingabe Kalkulation erhalten"
 									style="FORM-LINK"
 									link="reminder"
 								/>

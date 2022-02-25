@@ -248,6 +248,18 @@ const Button = ({
 					{text}
 				</button>
 			);
+		case 'FORM-LINK-PRIMARY':
+			return (
+				<button
+					onClick={() => navigate('/' + link)}
+					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--form-link-primary'
+					)}
+				>
+					{text}
+				</button>
+			);
 		case 'CLOSE':
 			return (
 				<button onClick={closeModal} className="rwm-btn__container">

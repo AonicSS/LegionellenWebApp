@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { AppReduxStoreProps } from '../../redux/reducers/App';
-import classNames from 'classnames';
 import Layout from '../../components/Layout';
-import Stepper from '../../components/Stepper';
 import Modal from '../../components/Modal';
-import Form from '../../components/Form';
 import Button from '../../components/Button';
 
 const EmailForm = () => {

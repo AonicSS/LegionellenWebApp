@@ -38,7 +38,6 @@
 	margin-top: 15px;
 }
 
-
 .rwm-button--form-link {
 	@apply tw-bg-btnBgColorActive
 	tw-btn-border-active;
@@ -50,6 +49,16 @@
 	font-size: 14px;
 	border-radius: 30px;
 	margin-top: 15px;
+	padding: 13px 14px 15px 14px;
+}
+
+.rwm-button--form-link-primary {
+	@apply tw-bg-btnBgColorActive
+	tw-btn-border-active;
+	width: 230px;
+	height: 45px;
+	line-height: 17px;
+	color: #fff;
 }
 
 .rwm-button--link {
