@@ -49,7 +49,6 @@ export const RentingsInput = () => {
 	const currentRentings = getCurrentRentings(questionText);
 
 	const handleInput = (value: string) => {
-		console.log(value);
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
@@ -170,8 +169,6 @@ export const PostalCodeInput = () => {
 				choice: value,
 			},
 		});
-
-		console.log('getFederalState(value) :>> ');
 	};
 
 	return (
@@ -287,8 +284,6 @@ export const RoomsInput = () => {
 		state.appData.questions.find((q) => q.question === questionText)
 	);
 
-	console.log(question?.answers);
-
 	return (
 		<div className="tw-justify-col tw-w-full tw-mb-16">
 			<label
@@ -296,6 +291,7 @@ export const RoomsInput = () => {
 				className="tw-flex tw-flex-col tw-justify-center tw-items-center"
 			>
 				<h1 className="tw-font-size-headline">{questionText}</h1>
+				<br />
 				<h2 className="tw-font-size-label">
 					{currentRentingsStep}. Wohneinheit
 				</h2>
@@ -306,7 +302,7 @@ export const RoomsInput = () => {
 						return (
 							<div
 								key={r.name}
-								className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-14"
+								className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-7"
 							>
 								<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
 									<div className="tw-font-size-rooms-name">
@@ -318,7 +314,7 @@ export const RoomsInput = () => {
 										)}
 									</div>
 								</div>
-								<fieldset className="tw-justify-row">
+								<fieldset className="tw-justify-row rwm-form__rentings">
 									<div className="">
 										<Button
 											room={r.name}
@@ -340,6 +336,7 @@ export const RoomsInput = () => {
 													r.name!
 												)
 											}
+											disabled
 											type="number"
 											name="rooms"
 											className="tw-input tw-font-size-input focus:tw-ring-transparent"

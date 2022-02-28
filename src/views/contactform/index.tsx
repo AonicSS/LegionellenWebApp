@@ -159,7 +159,7 @@ const ContactForm = () => {
 							<input
 								type="checkbox"
 								id="contact"
-								checked={contactAgreement}
+								defaultChecked={contactAgreement}
 								onChange={() => setContact(!contactAgreement)}
 							/>
 							<label htmlFor="contact"></label>
@@ -175,7 +175,7 @@ const ContactForm = () => {
 							<input
 								type="checkbox"
 								id="marketing"
-								checked={marketingAgreement}
+								defaultChecked={marketingAgreement}
 								onChange={() =>
 									setMarketing(!marketingAgreement)
 								}
