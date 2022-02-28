@@ -59,8 +59,12 @@ const Radio = () => {
 							name="Ja"
 							type="radio"
 							value="true"
-							defaultChecked={currentChoice}
-							className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3"
+							// defaultChecked={currentChoice}
+							className={` ${
+								currentChoice
+									? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-h-5 tw-w-5'
+									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+							} `}
 						/>
 					</div>
 				</div>
@@ -74,11 +78,16 @@ const Radio = () => {
 					<div className="rwm-form__container-input">
 						<input
 							onChange={(e) => handleChange(e.target.value)}
-							defaultChecked={currentChoice}
+							// defaultChecked={currentChoice}
 							name="Nein"
 							type="radio"
 							value="false"
-							className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 tw-items"
+							// className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 tw-items"
+							className={` ${
+								currentChoice === false
+									? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-h-5 tw-w-5'
+									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+							} `}
 						/>
 					</div>
 				</div>

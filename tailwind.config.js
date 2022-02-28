@@ -106,6 +106,7 @@ module.exports = {
 					lineHeight: '34px',
 					letterSpacing: '0px',
 					color: '#1d1d1b',
+					borderRadius: '5px',
 				},
 				[`.${prefix}input-error`]: {
 					fontFamily: 'Univers55',

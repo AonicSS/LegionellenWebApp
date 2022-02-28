@@ -38,7 +38,7 @@ const EmailForm = () => {
 							<input
 								type="checkbox"
 								id="checkbox"
-								checked={marketing}
+								defaultChecked={marketing}
 								onChange={() => setMarketing(!marketing)}
 							/>
 							<label htmlFor="checkbox"></label>

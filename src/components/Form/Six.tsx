@@ -11,10 +11,6 @@ const Six = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
 
-	const currentAppStep = useSelector(
-		(state: AppReduxStoreProps) => state.appData.step
-	);
-
 	const handleClick = useCallback((e: any) => {
 		const years = e.target.value;
 
@@ -25,6 +21,10 @@ const Six = () => {
 			},
 		});
 	}, []);
+
+	const years = useSelector(
+		(state: AppReduxStoreProps) => state.appData.years
+	);
 
 	return (
 		<div className="tw-flex tw-flex-col">
@@ -39,7 +39,11 @@ const Six = () => {
 							onClick={(event) => handleClick(event)}
 							type="radio"
 							value="5"
-							className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3"
+							className={` ${
+								years === 5
+									? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-h-5 tw-w-5'
+									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+							} `}
 						/>
 						<label htmlFor="yes" className="rwm-radio__label">
 							5 Jahre
@@ -51,7 +55,11 @@ const Six = () => {
 						onClick={(event) => handleClick(event)}
 						type="radio"
 						value="8"
-						className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3"
+						className={` ${
+							years === 8
+								? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-ring-transparent tw-h-5 tw-w-5'
+								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+						} `}
 					/>
 					<label htmlFor="yes" className="rwm-radio__label">
 						8 Jahre
@@ -62,7 +70,11 @@ const Six = () => {
 						onClick={(event) => handleClick(event)}
 						type="radio"
 						value="10"
-						className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3"
+						className={` ${
+							years === 10
+								? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-ring-transparent tw-h-5 tw-w-5'
+								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+						}  `}
 					/>
 					<label htmlFor="yes" className="rwm-radio__label">
 						10 Jahre

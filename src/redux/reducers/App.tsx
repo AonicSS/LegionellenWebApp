@@ -27,7 +27,7 @@ const initialState = {
 	showModal: false,
 	acceptContact: false,
 	acceptMarketing: false,
-	years: 0,
+	years: 10,
 	postalCode: { code: '', valid: false },
 	questions: questions,
 	pricing: '',

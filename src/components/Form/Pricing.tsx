@@ -4,6 +4,12 @@ import Button from '../Button';
 import { useSelector } from 'react-redux';
 import './Pricing.css';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
+import {
+	rentingCostNonUser,
+	rentingCostUser,
+	serviceCostNonUser,
+	serviceCostUser,
+} from '../../utils/helpers';
 
 const pricing = [
 	{
@@ -18,6 +24,7 @@ const pricing = [
 		],
 		buttonStyle: 'SECONDARY',
 		text: 'Standard wählen',
+		type: 'standard',
 	},
 	// {
 	// 	name: 'Standard 360',
@@ -44,6 +51,7 @@ const pricing = [
 		],
 		buttonStyle: 'PRIMARY',
 		text: 'Standard 360 wählen',
+		type: 'plus',
 	},
 ];
 
@@ -51,6 +59,38 @@ const Pricing = () => {
 	const isModalVisible = useSelector(
 		(state: AppReduxStoreProps) => state.appData.showModal
 	);
+
+	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+
+	const getAlarmNumber = () => {
+		let alarms = 0;
+
+		appData.questions['4'].answers.forEach((element) => {
+			alarms = alarms + element.amount;
+		});
+
+		return alarms;
+	};
+
+	const getRentingPrice = () => {
+		if (!appData.questions[0].choice) {
+			return rentingCostNonUser(
+				getAlarmNumber(),
+				appData.years,
+				appData.rentings
+			);
+		} else {
+			return rentingCostUser(getAlarmNumber(), appData.years);
+		}
+	};
+
+	const getServicePrice = (type: string) => {
+		if (!appData.questions[0].choice) {
+			return serviceCostNonUser(getAlarmNumber(), appData.years, type);
+		} else {
+			return serviceCostUser(getAlarmNumber(), appData.years, type);
+		}
+	};
 
 	return (
 		<>
@@ -68,7 +108,8 @@ const Pricing = () => {
 								{p.name}
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Nur 00,00 €
+								{`Renting ${getRentingPrice()} €`} <br />
+								{`Service ${getServicePrice(p.type)} €`}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								pro Jahr / Gerät
