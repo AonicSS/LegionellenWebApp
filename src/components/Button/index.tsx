@@ -114,16 +114,16 @@ const Button = ({
 	);
 
 	const increaseRentings = () => {
-		dispatch({
-			type: type,
-			payload: {
-				questionName: question,
-				btnActive: true,
-			},
-		});
-
 		if (currentRentings > 4 && currentAppStep === 3) {
 			dispatch({ type: SET_MODAL, payload: { showModal: true } });
+		} else {
+			dispatch({
+				type: type,
+				payload: {
+					questionName: question,
+					btnActive: true,
+				},
+			});
 		}
 	};
 
