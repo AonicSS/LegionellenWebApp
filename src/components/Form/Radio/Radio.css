@@ -33,3 +33,8 @@
 .rwm-form__container-input {
 	@apply tw-flex tw-justify-center tw-items-center tw-ml-5 md:tw-ml-0;
 }
+
+[type='radio']:checked {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/02/Red_Circle%28small%29.svg') !important;
+	background-size: 35% 100% !important;
+}

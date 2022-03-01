@@ -19,13 +19,6 @@ import Button from '../../Button';
 
 import './Input.css';
 
-// function FilterInput(event: any) {
-// 	const keyCode = 'which' in event ? event.which : event.keyCode;
-
-// 	const isNotWanted = keyCode == 69 || keyCode == 101;
-// 	return !isNotWanted;
-// }
-
 export const RentingsInput = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
@@ -39,26 +32,22 @@ export const RentingsInput = () => {
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 
-	const getCurrentRentings = useCallback((questionText: string) => {
-		const question = useSelector((state: AppReduxStoreProps) =>
-			state.appData.questions.find((q) => q.question === questionText)
-		);
-		return question?.choice;
-	}, []);
-
-	const currentRentings = getCurrentRentings(questionText);
+	const currentRentings = useSelector(
+		(state: AppReduxStoreProps) => state.appData.maxRentings
+	);
 
 	const handleInput = (value: string) => {
-		dispatch({
-			type: SET_ANSWER,
-			payload: {
-				questionName: questionText,
-				choice: value,
-				btnActive: !(value.length < 1),
-			},
-		});
 		if (parseInt(value) > 5 && currentAppStep === 3) {
 			dispatch({ type: SET_MODAL, payload: { showModal: true } });
+		} else {
+			dispatch({
+				type: SET_ANSWER,
+				payload: {
+					questionName: questionText,
+					choice: value,
+					btnActive: !(value.length < 1),
+				},
+			});
 		}
 	};
 

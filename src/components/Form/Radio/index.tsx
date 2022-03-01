@@ -37,7 +37,7 @@ const Radio = () => {
 				btnActive: true,
 			},
 		});
-		if (!val && currentAppStep === 2) {
+		if (val && currentAppStep === 2) {
 			dispatch({ type: SET_MODAL, payload: { showModal: true } });
 		}
 	};
@@ -59,10 +59,10 @@ const Radio = () => {
 							name="Ja"
 							type="radio"
 							value="true"
-							// defaultChecked={currentChoice}
+							checked={currentChoice === true}
 							className={` ${
 								currentChoice
-									? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-h-5 tw-w-5'
+									? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
 									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
 							} `}
 						/>
@@ -78,14 +78,13 @@ const Radio = () => {
 					<div className="rwm-form__container-input">
 						<input
 							onChange={(e) => handleChange(e.target.value)}
-							// defaultChecked={currentChoice}
 							name="Nein"
 							type="radio"
 							value="false"
-							// className="focus:tw-ring-transparent focus:tw-text-btnBgColorActive focus:tw-border-6 focus:tw-border-btnBgColorActive tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 tw-items"
+							checked={currentChoice === false}
 							className={` ${
 								currentChoice === false
-									? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-h-5 tw-w-5'
+									? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
 									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
 							} `}
 						/>

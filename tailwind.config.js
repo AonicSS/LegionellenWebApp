@@ -345,6 +345,12 @@ module.exports = {
 					border: '1px solid #f3f3f3',
 					backgroundColor: '#f3f3f3',
 				},
+				// [`.${prefix}-radio`]: {
+				// 	backgroundImage:
+				// 		'https://upload.wikimedia.org/wikipedia/commons/0/02/Red_Circle%28small%29.svg',
+				// 	backgroundColor: 'red',
+				// 	color: 'red',
+				// },
 			});
 		},
 		function ({ addUtilities, theme }) {
