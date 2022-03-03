@@ -32,6 +32,16 @@ export const trueTypeOf = (obj: any) => {
 	return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 };
 
+export const getAlarmNumber = (data) => {
+	let alarms = 0;
+
+	data.questions['4'].answers.forEach((element) => {
+		alarms = alarms + element.amount;
+	});
+
+	return alarms;
+};
+
 //return price for previous user
 export const rentingCostUser = (alarms: number, years: number) => {
 	const total = alarms * price[years] * years + nonUserServices.smart;
@@ -73,4 +83,24 @@ export const serviceCostUser = (
 ) => {
 	const total = alarms * userServices[service] * years;
 	return total.toFixed(2);
+};
+
+export const getRentingPrice = (data: any) => {
+	if (!data.questions[0].choice) {
+		return rentingCostNonUser(
+			getAlarmNumber(data),
+			data.years,
+			data.rentings
+		);
+	} else {
+		return rentingCostUser(getAlarmNumber(data), data.years);
+	}
+};
+
+export const getServicePrice = (type: string, data: any) => {
+	if (!data.questions[0].choice) {
+		return serviceCostNonUser(getAlarmNumber(data), data.years, type);
+	} else {
+		return serviceCostUser(getAlarmNumber(data), data.years, type);
+	}
 };

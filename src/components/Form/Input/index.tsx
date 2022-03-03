@@ -16,6 +16,8 @@ import {
 import { validPostalCode, getFederalState } from '../../../utils/helpers';
 import { AppReduxStoreProps } from '../../../redux/reducers/App';
 import Button from '../../Button';
+// import { info } from '../../../icons/Info.svg';
+import { ReactComponent as Info } from '../../../icons/Info.svg';
 
 import './Input.css';
 
@@ -274,87 +276,104 @@ export const RoomsInput = () => {
 	);
 
 	return (
-		<div className="tw-justify-col tw-w-full tw-mb-16">
+		<div className="tw-justify-col tw-w-full tw-mb-18">
 			<label
 				ref={myRef}
 				className="tw-flex tw-flex-col tw-justify-center tw-items-center"
 			>
 				<h1 className="tw-font-size-headline">{questionText}</h1>
 				<br />
-				<h2 className="tw-font-size-label">
-					{currentRentingsStep}. Wohneinheit
-				</h2>
 			</label>
-			<div className="tw-margin-top">
+			<div>
 				{question?.answers?.map((r, i) => {
-					if (r.house === curentRenting) {
+					if (r.house <= curentRenting) {
 						return (
-							<div
-								key={r.name}
-								className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-7"
-							>
-								<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
-									<div className="tw-font-size-rooms-name">
-										{Translate(
-											intl,
-											`questions.${
-												currentAppStep - 1
-											}.answers.${r.name}`
-										)}
-									</div>
-								</div>
-								<fieldset className="tw-justify-row rwm-form__rentings">
-									<div className="">
-										<Button
-											room={r.name}
-											style="DECREASE_ROOMS"
-											type={'DECREASE_' + r.type}
-											question={Translate(
+							<div key={i}>
+								{r.house <= curentRenting &&
+								r.name === 'bedrooms' ? (
+									<label
+										ref={myRef}
+										className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-6"
+									>
+										<h2 className="tw-font-size-label">
+											{r.house}. Wohneinheit
+										</h2>
+									</label>
+								) : null}
+								<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-7">
+									<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
+										<div className="tw-font-size-rooms-name">
+											{Translate(
 												intl,
 												`questions.${
 													currentAppStep - 1
-												}.question`
+												}.answers.${r.name}`
 											)}
-										/>
+										</div>
 									</div>
-									<div className="">
-										<input
-											onChange={(e) =>
-												handleInput(
-													e.target.value,
-													r.name!
-												)
-											}
-											disabled
-											type="number"
-											name="rooms"
-											className="tw-input tw-font-size-input focus:tw-ring-transparent"
-											value={r.amount?.toString()}
-										/>
-									</div>
-									<div className="">
-										<Button
-											room={r.name}
-											style="INCREASE_ROOMS"
-											question={Translate(
+									<fieldset className="tw-justify-row rwm-form__rentings">
+										<div className="">
+											<Button
+												room={r.name}
+												style="DECREASE_ROOMS"
+												type={'DECREASE_' + r.type}
+												question={Translate(
+													intl,
+													`questions.${
+														currentAppStep - 1
+													}.question`
+												)}
+											/>
+										</div>
+										<div className="">
+											<input
+												onChange={(e) =>
+													handleInput(
+														e.target.value,
+														r.name!
+													)
+												}
+												disabled
+												type="number"
+												name="rooms"
+												className="tw-input tw-font-size-input focus:tw-ring-transparent"
+												value={r.amount?.toString()}
+											/>
+										</div>
+										<div className="">
+											<Button
+												room={r.name}
+												style="INCREASE_ROOMS"
+												question={Translate(
+													intl,
+													`questions.${
+														currentAppStep - 1
+													}.question`
+												)}
+											/>
+										</div>
+									</fieldset>
+									<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
+										<div className="tw-font-size-rooms-label tw-text-center md:tw-text-left tw-flex">
+											{Translate(
 												intl,
 												`questions.${
 													currentAppStep - 1
-												}.question`
+												}.${
+													r.required
+														? 'required'
+														: 'recommended'
+												}`
 											)}
-										/>
-									</div>
-								</fieldset>
-								<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
-									<div className="tw-font-size-rooms-label tw-text-center md:tw-text-left">
-										{Translate(
-											intl,
-											`questions.${currentAppStep - 1}.${
-												r.required
-													? 'required'
-													: 'recommended'
-											}`
-										)}
+											{!r.required ? (
+												<Info
+													onClick={() =>
+														console.log('caca')
+													}
+													className="rwm-btn-info"
+												/>
+											) : null}
+										</div>
 									</div>
 								</div>
 							</div>

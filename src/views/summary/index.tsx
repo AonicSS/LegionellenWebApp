@@ -5,18 +5,15 @@ import classNames from 'classnames';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
+import {
+	getAlarmNumber,
+	getRentingPrice,
+	getServicePrice,
+} from '../../utils/helpers';
+import { stringify } from 'querystring';
 
 const Summary = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	const getAlarmNumber = () => {
-		let alarms = 0;
-
-		appData.questions['4'].answers.forEach((element) => {
-			alarms = alarms + element.amount;
-		});
-
-		return alarms;
-	};
 	return (
 		<Layout>
 			<Modal />
@@ -59,7 +56,7 @@ const Summary = () => {
 								Postleitzahl
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{getAlarmNumber()}
+								{getAlarmNumber(appData)}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Anzahl Rauchwarnmelder
@@ -87,7 +84,18 @@ const Summary = () => {
 								Laufzeit
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Nur 00,00 €
+								Nur{' '}
+								{parseInt(getRentingPrice(appData)) +
+									parseInt(
+										getServicePrice(
+											appData.pricing ===
+												'Standard wählen'
+												? 'standard'
+												: 'plus',
+											appData
+										)
+									)}{' '}
+								€
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Gesamtpreis pro Jahr

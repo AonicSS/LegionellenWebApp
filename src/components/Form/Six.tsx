@@ -39,9 +39,10 @@ const Six = () => {
 							onClick={(event) => handleClick(event)}
 							type="radio"
 							value="5"
+							checked={years === 5}
 							className={` ${
 								years === 5
-									? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-h-5 tw-w-5'
+									? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
 									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
 							} `}
 						/>
@@ -55,9 +56,10 @@ const Six = () => {
 						onClick={(event) => handleClick(event)}
 						type="radio"
 						value="8"
+						checked={years === 8}
 						className={` ${
 							years === 8
-								? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-ring-transparent tw-h-5 tw-w-5'
+								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
 								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
 						} `}
 					/>
@@ -70,9 +72,10 @@ const Six = () => {
 						onClick={(event) => handleClick(event)}
 						type="radio"
 						value="10"
+						checked={years === 10}
 						className={` ${
 							years === 10
-								? 'tw-text-btnBgColorActive tw-border-6 tw-border-btnBgColorActive focus:tw-ring-transparent tw-ring-transparent tw-h-5 tw-w-5'
+								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
 								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
 						}  `}
 					/>

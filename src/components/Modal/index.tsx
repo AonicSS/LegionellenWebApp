@@ -24,7 +24,7 @@ const Modal = () => {
 	return (
 		<div className="tw-container">
 			{showModal ? (
-				<div className="rwm-overlay tw-z-20">
+				<div className="rwm-overlay">
 					<div
 						className={classNames(
 							'rwm-overlay__container',

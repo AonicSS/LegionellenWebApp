@@ -4,6 +4,11 @@ import { AppReduxStoreProps } from '../../redux/reducers/App';
 import classNames from 'classnames';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
+import {
+	getAlarmNumber,
+	getRentingPrice,
+	getServicePrice,
+} from '../../utils/helpers';
 
 const ContactForm = () => {
 	const [firstName, setFirstName] = useState('');
@@ -28,25 +33,41 @@ const ContactForm = () => {
 				postalCode,
 				residence,
 				emailAddress,
-				marketingAgreement,
-				contactAgreement,
+				marketingAgreement: marketingAgreement ? 'Yes' : 'No',
+				contactAgreement: contactAgreement ? 'Yes' : 'No',
 			},
 			formData: {
-				...appData,
+				price:
+					parseInt(getRentingPrice(appData)) +
+					parseInt(
+						getServicePrice(
+							appData.pricing === 'Standard wählen'
+								? 'standard'
+								: 'plus',
+							appData
+						)
+					),
+				alarms: getAlarmNumber(appData),
+				houses: appData.rentings,
+				years: appData.years,
+				code: appData.postalCode.code,
+				servicePricing: appData.pricing,
+				heatingCustomer: appData.questions[0].choice ? 'Yes' : 'No',
+				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
 			},
 		};
 
-		// fetch(
-		// 	'https://prod-94.westeurope.logic.azure.com/workflows/3cb3a737941a4b468ce6fa8b7cd1391d/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2P7_0BFVWyeO-9bviXRC1UuCvE6Y37xvLj_oK_qL-eY',
-		// 	{
-		// 		method: 'POST',
-		// 		headers: {
-		// 			Accept: 'application/json, text/plain, */*',
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify(response),
-		// 	}
-		// ).then((res) => console.log('Success', res));
+		fetch(
+			'https://prod-102.westeurope.logic.azure.com:443/workflows/83f5229f56584e679f262805c2577a90/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_6davYF_vAxiUMn9ULtZaJVvcA5E3GrB_QEgbAoaOtk',
+			{
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(response),
+			}
+		).then((res) => console.log('Success', res));
 		console.log('response :>> ', response);
 	};
 

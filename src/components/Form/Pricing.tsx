@@ -4,12 +4,7 @@ import Button from '../Button';
 import { useSelector } from 'react-redux';
 import './Pricing.css';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
-import {
-	rentingCostNonUser,
-	rentingCostUser,
-	serviceCostNonUser,
-	serviceCostUser,
-} from '../../utils/helpers';
+import { getRentingPrice, getServicePrice } from '../../utils/helpers';
 
 const pricing = [
 	{
@@ -62,36 +57,6 @@ const Pricing = () => {
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 
-	const getAlarmNumber = () => {
-		let alarms = 0;
-
-		appData.questions['4'].answers.forEach((element) => {
-			alarms = alarms + element.amount;
-		});
-
-		return alarms;
-	};
-
-	const getRentingPrice = () => {
-		if (!appData.questions[0].choice) {
-			return rentingCostNonUser(
-				getAlarmNumber(),
-				appData.years,
-				appData.rentings
-			);
-		} else {
-			return rentingCostUser(getAlarmNumber(), appData.years);
-		}
-	};
-
-	const getServicePrice = (type: string) => {
-		if (!appData.questions[0].choice) {
-			return serviceCostNonUser(getAlarmNumber(), appData.years, type);
-		} else {
-			return serviceCostUser(getAlarmNumber(), appData.years, type);
-		}
-	};
-
 	return (
 		<>
 			<div className="tw-flex tw-justify-around tw-gap-10 xl:tw-gap-14">
@@ -108,8 +73,11 @@ const Pricing = () => {
 								{p.name}
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{`Renting ${getRentingPrice()} €`} <br />
-								{`Service ${getServicePrice(p.type)} €`}
+								{`Renting ${getRentingPrice(appData)} €`} <br />
+								{`Service ${getServicePrice(
+									p.type,
+									appData
+								)} €`}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								pro Jahr / Gerät
