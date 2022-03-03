@@ -43,6 +43,7 @@ module.exports = {
 	extend: {},
 	corePlugins: {
 		fontSize: false, // Font sizes are defined in the plugins section below
+		preflight: false,
 	},
 	plugins: [
 		require('@tailwindcss/forms'),

@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @layer base {
+	@import "./preflight.css";
+
 	@font-face {
 		font-family: 'Univers45Light';
 		src: local('UniversLTW02-45Light'),
