@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import classNames from 'classnames';
+import { SET_MODAL } from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -10,9 +11,10 @@ import {
 	getRentingPrice,
 	getServicePrice,
 } from '../../utils/helpers';
-import { stringify } from 'querystring';
+import { ReactComponent as Info } from '../../icons/Info.svg';
 
 const Summary = () => {
+	const dispatch = useDispatch();
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	return (
 		<Layout>
@@ -74,8 +76,19 @@ const Summary = () => {
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.pricing}
 							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
+							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel tw-flex">
 								Details ansehen
+								<Info
+									onClick={() =>
+										dispatch({
+											type: SET_MODAL,
+											payload: {
+												showModal: true,
+											},
+										})
+									}
+									className="rwm-btn-info"
+								/>
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.years}

@@ -65,6 +65,17 @@ module.exports = {
 						letterSpacing: '-0.15px',
 					},
 				},
+				[`.${prefix}sub-title`]: {
+					fontFamily: 'Univers65',
+					fontSize: '16px',
+					letterSpacing: '-0.11px',
+					color: '#222222',
+					textAlign: 'center',
+					[`@media (min-width: ${md})`]: {
+						fontSize: '16px',
+						letterSpacing: '-0.15px',
+					},
+				},
 				[`.${prefix}label`]: {
 					fontFamily: 'Univers55',
 					fontSize: '18px',
@@ -330,7 +341,8 @@ module.exports = {
 			addUtilities({
 				[`.${prefix}`]: {
 					width: '183px',
-					height: '52px',
+					height: '48px',
+					padding: '0 10px 0 10px!important',
 					// borderRadius: '5px;',
 					border: 'solid 2px #c8c8c8',
 					textAlign: 'center',
@@ -365,7 +377,7 @@ module.exports = {
 					borderRadius: '40px',
 					[`@media (min-width: ${md})`]: {
 						width: '676px',
-						height: '487px',
+						height: '400px',
 					},
 				},
 				[`.${prefix}-2`]: {
@@ -384,6 +396,15 @@ module.exports = {
 					[`@media (min-width: ${md})`]: {
 						width: '984px',
 						height: '745px',
+					},
+				},
+				[`.${prefix}-5`]: {
+					width: '334px',
+					height: '450px',
+					borderRadius: '40px',
+					[`@media (min-width: ${md})`]: {
+						width: '984px',
+						height: '350px',
 					},
 				},
 			});

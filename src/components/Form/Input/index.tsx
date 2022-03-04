@@ -16,7 +16,6 @@ import {
 import { validPostalCode, getFederalState } from '../../../utils/helpers';
 import { AppReduxStoreProps } from '../../../redux/reducers/App';
 import Button from '../../Button';
-// import { info } from '../../../icons/Info.svg';
 import { ReactComponent as Info } from '../../../icons/Info.svg';
 
 import './Input.css';
@@ -368,7 +367,12 @@ export const RoomsInput = () => {
 											{!r.required ? (
 												<Info
 													onClick={() =>
-														console.log('caca')
+														dispatch({
+															type: SET_MODAL,
+															payload: {
+																showModal: true,
+															},
+														})
 													}
 													className="rwm-btn-info"
 												/>

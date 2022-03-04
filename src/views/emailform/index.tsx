@@ -1,11 +1,62 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AppReduxStoreProps } from '../../redux/reducers/App';
+import classNames from 'classnames';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
-import Button from '../../components/Button';
+import {
+	getAlarmNumber,
+	getRentingPrice,
+	getServicePrice,
+} from '../../utils/helpers';
 
 const EmailForm = () => {
 	const [emailAddress, setEmailAddress] = useState('');
 	const [marketing, setMarketing] = useState(false);
+
+	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+
+	const submitForm = () => {
+		const response = {
+			constactData: {
+				emailAddress,
+				marketingAgreement: marketing ? 'Yes' : 'No',
+			},
+			formData: {
+				price:
+					parseInt(getRentingPrice(appData)) +
+					parseInt(
+						getServicePrice(
+							appData.pricing === 'Standard wählen'
+								? 'standard'
+								: 'plus',
+							appData
+						)
+					),
+				alarms: getAlarmNumber(appData),
+				houses: appData.rentings,
+				years: appData.years,
+				code: appData.postalCode.code,
+				servicePricing: appData.pricing,
+				heatingCustomer: appData.questions[0].choice ? 'Yes' : 'No',
+				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
+			},
+		};
+
+		fetch(
+			'https://prod-74.westeurope.logic.azure.com:443/workflows/391e47bfbd1748deba2267c8332ae3f4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JrCrPjMmkmIgB0A_tZij7CZqgfqVB7YiKEuy9NMAG_U',
+			{
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(response),
+			}
+		).then((res) => console.log('Success', res));
+		console.log('response :>> ', response);
+	};
+
 	return (
 		<Layout>
 			<Modal />
@@ -50,10 +101,15 @@ const EmailForm = () => {
 						</p>
 					</div>
 					<div className="tw-flex tw-justify-center tw-items-center tw-mt-10">
-						<Button
-							text="Preisindikation erhalten"
-							style="PRIMARY"
-						/>
+						<button
+							onClick={() => submitForm()}
+							className={classNames(
+								'rwn-btn-continue',
+								'rwm-button--primary'
+							)}
+						>
+							Preisindikation erhalten
+						</button>
 					</div>
 				</div>
 			</section>
