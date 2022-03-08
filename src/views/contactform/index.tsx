@@ -21,6 +21,7 @@ const ContactForm = () => {
 	const [emailAddress, setEmailAddress] = useState('');
 	const [marketingAgreement, setMarketing] = useState(false);
 	const [contactAgreement, setContact] = useState(false);
+	const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 
@@ -58,19 +59,19 @@ const ContactForm = () => {
 				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
 			},
 		};
+		const apiAddress: string | undefined =
+			process.env.REACT_APP_POWER_AUTOMATE_FORM;
 
-		fetch(
-			'https://prod-102.westeurope.logic.azure.com:443/workflows/83f5229f56584e679f262805c2577a90/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_6davYF_vAxiUMn9ULtZaJVvcA5E3GrB_QEgbAoaOtk',
-			{
-				method: 'POST',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(response),
-			}
-		).then((res) => console.log('Success', res));
-		console.log('response :>> ', response);
+		if (!apiAddress) throw 'API address not defined';
+
+		fetch(apiAddress, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(response),
+		}).then(() => setSucccess(true));
 	};
 
 	return (
@@ -283,6 +284,14 @@ const ContactForm = () => {
 							eirmod tempor invidunt ut labore et dolore magna
 						</p>
 					</div>
+					{success && (
+						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-center tw-items-center tw-mt-16">
+							<h4 className="tw-font-size-success">
+								Form was successfuly submited!
+							</h4>
+						</div>
+					)}
+
 					<div className="tw-flex tw-justify-center tw-items-center tw-mt-10">
 						{/* <Button text="Angebot anfordern" style="PRIMARY" /> */}
 						<button
