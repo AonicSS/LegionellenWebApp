@@ -13,6 +13,7 @@ import {
 const EmailForm = () => {
 	const [emailAddress, setEmailAddress] = useState('');
 	const [marketing, setMarketing] = useState(false);
+	const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 
@@ -42,19 +43,19 @@ const EmailForm = () => {
 				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
 			},
 		};
+		const apiAddress: string | undefined =
+			process.env.REACT_APP_POWER_AUTOMATE_EMAIL;
 
-		fetch(
-			'https://prod-74.westeurope.logic.azure.com:443/workflows/391e47bfbd1748deba2267c8332ae3f4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JrCrPjMmkmIgB0A_tZij7CZqgfqVB7YiKEuy9NMAG_U',
-			{
-				method: 'POST',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(response),
-			}
-		).then((res) => console.log('Success', res));
-		console.log('response :>> ', response);
+		if (!apiAddress) throw 'API address not defined';
+
+		fetch(apiAddress, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(response),
+		}).then((res) => setSucccess(true));
 	};
 
 	return (

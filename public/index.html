@@ -9,6 +9,10 @@
 			name="description"
 			content="Web site created using create-react-app"
 		/>
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"
+		/>
 		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 		<!--
       manifest.json provides metadata used when your web app is installed on a
@@ -32,6 +36,9 @@
 		<!-- TODO after AEM integration: Pass configurable envUrl, munchkinID, formID from model -->
 		<script src="//app-nld102.marketo.com/js/forms2/js/forms2.min.js"></script>
 		<script src="//www2.techem.com/rs/549-BHO-641/images/form-handler.js"></script>
-		<link rel="stylesheet" href="https://www2.techem.com/rs/549-BHO-641/images/mkto_landingpage-forms.css">
+		<link
+			rel="stylesheet"
+			href="https://www2.techem.com/rs/549-BHO-641/images/mkto_landingpage-forms.css"
+		/>
 	</body>
 </html>
