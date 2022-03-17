@@ -122,19 +122,19 @@ const Summary = () => {
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								Wie möchten Sie fortfahren?
 							</div>
-							<div className="tw-flex tw-flex-col tw-content-center tw-items-center tw-align-items-center">
+							<div className="tw-flex tw-flex-col tw-content-center tw-items-center tw-align-items-center tw-pt-10">
 								<Button
 									text="Angebot anfordern"
 									style="FORM-LINK-PRIMARY"
 									link="contactform"
 								/>
-								<Button
+								{/* <Button
 									text="Erinnerung erhalten"
 									style="FORM-LINK"
 									link="emailform"
-								/>
+								/> */}
 								<Button
-									text="Eingabe Kalkulation erhalten"
+									text="Erinnerung erhalten"
 									style="FORM-LINK"
 									link="reminder"
 								/>

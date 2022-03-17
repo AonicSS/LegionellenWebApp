@@ -20,6 +20,7 @@ const pricing = [
 		buttonStyle: 'SECONDARY',
 		text: 'Standard wählen',
 		type: 'standard',
+		cheapest: false,
 	},
 	// {
 	// 	name: 'Standard 360',
@@ -47,6 +48,7 @@ const pricing = [
 		buttonStyle: 'PRIMARY',
 		text: 'Standard 360 wählen',
 		type: 'plus',
+		cheapest: true,
 	},
 ];
 
@@ -69,6 +71,11 @@ const Pricing = () => {
 								`${p.position}`
 							)}
 						>
+							{p.cheapest && (
+								<div className="rwm-best-price">
+									Beste Preis Leistung
+								</div>
+							)}
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								{p.name}
 							</div>

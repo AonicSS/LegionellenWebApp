@@ -21,7 +21,6 @@ import { ReactComponent as Info } from '../../../icons/Info.svg';
 import './Input.css';
 
 export const RentingsInput = () => {
-	const dispatch = useDispatch();
 	const intl = useIntl();
 
 	const currentAppStep = useSelector(
@@ -37,21 +36,6 @@ export const RentingsInput = () => {
 		(state: AppReduxStoreProps) => state.appData.maxRentings
 	);
 
-	const handleInput = (value: string) => {
-		if (parseInt(value) > 5 && currentAppStep === 3) {
-			dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		} else {
-			dispatch({
-				type: SET_ANSWER,
-				payload: {
-					questionName: questionText,
-					choice: value,
-					btnActive: !(value.length < 1),
-				},
-			});
-		}
-	};
-
 	return (
 		<div>
 			<label className="rwm-form__headline">
@@ -62,7 +46,7 @@ export const RentingsInput = () => {
 					)}
 				</h1>
 				<h2 className="tw-font-size-overlay-body tw-text-center">
-					{Translate(intl, `questions.2.sublabel`)}
+					{Translate(intl, `questions.0.sublabel`)}
 				</h2>
 			</label>
 			<fieldset>
@@ -77,11 +61,6 @@ export const RentingsInput = () => {
 						</div>
 						<div className="tw-flex tw-justify-center">
 							<input
-								onChange={(e) =>
-									handleInput(
-										e.target.value.replace(/[^0-9]/g, '')
-									)
-								}
 								type="number"
 								name="rentings"
 								className="tw-input tw-font-size-input focus:tw-ring-transparent"
@@ -155,8 +134,9 @@ export const PostalCodeInput = () => {
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
-				questionName: `${Translate(intl, 'questions.3.question')}`,
+				questionName: `${Translate(intl, 'questions.1.question')}`,
 				choice: value,
+				btnActive: valid,
 			},
 		});
 	};
@@ -314,8 +294,8 @@ export const RoomsInput = () => {
 										<div className="">
 											<Button
 												room={r.name}
+												house={r.house}
 												style="DECREASE_ROOMS"
-												type={'DECREASE_' + r.type}
 												question={Translate(
 													intl,
 													`questions.${
@@ -343,6 +323,7 @@ export const RoomsInput = () => {
 											<Button
 												room={r.name}
 												style="INCREASE_ROOMS"
+												house={r.house}
 												question={Translate(
 													intl,
 													`questions.${

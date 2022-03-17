@@ -26,6 +26,7 @@ interface ButtonProps extends BaseComponentProps {
 	question?: string;
 	style?: string;
 	room?: string;
+	house?: number;
 	text?: string;
 	pricing?: string;
 	link?: string;
@@ -37,6 +38,7 @@ const Button = ({
 	type,
 	modifierClass,
 	room,
+	house,
 	text,
 	pricing,
 	link,
@@ -114,7 +116,7 @@ const Button = ({
 	);
 
 	const increaseRentings = () => {
-		if (currentRentings > 4 && currentAppStep === 3) {
+		if (currentRentings > 4 && currentAppStep === 1) {
 			dispatch({ type: SET_MODAL, payload: { showModal: true } });
 		} else {
 			dispatch({
@@ -143,7 +145,7 @@ const Button = ({
 			payload: {
 				questionName: question,
 				roomName: room,
-				index: currentRentingsStep,
+				index: house,
 			},
 		});
 	};
@@ -154,7 +156,7 @@ const Button = ({
 			payload: {
 				questionName: question,
 				roomName: room,
-				index: currentRentingsStep,
+				index: house,
 			},
 		});
 	};
@@ -173,7 +175,6 @@ const Button = ({
 	switch (style) {
 		case 'NEXT':
 			const isRentingZero = getIsRentingZero(questionText);
-			console;
 			const active = getActiveButton(questions);
 			return (
 				<button
@@ -183,7 +184,7 @@ const Button = ({
 						`rwm-button--${
 							(!isRentingZero &&
 								active &&
-								currentAppStep === 3) ||
+								currentAppStep === 1) ||
 							active
 								? 'active'
 								: 'disabled'
@@ -240,10 +241,7 @@ const Button = ({
 			return (
 				<button
 					onClick={() => navigate('/' + link)}
-					className={classnames(
-						'rwn-btn-continue',
-						'rwm-button--form-link'
-					)}
+					className={classnames('rwm-button--link')}
 				>
 					{text}
 				</button>

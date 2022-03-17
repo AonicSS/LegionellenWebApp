@@ -29,7 +29,7 @@ const Six = () => {
 	return (
 		<div className="tw-flex tw-flex-col">
 			<label className="rwm-form__headline">
-				<h1>{Translate(intl, `questions.5.question`)}</h1>
+				<h1>{Translate(intl, `questions.4.question`)}</h1>
 			</label>
 
 			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24 tw-mt-8">

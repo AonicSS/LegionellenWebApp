@@ -12,12 +12,12 @@ const Form = () => {
 
 	return (
 		<>
-			{currentAppStep === 1 && <Radio />}
-			{currentAppStep === 2 && <Radio />}
-			{currentAppStep === 3 && <RentingsInput />}
-			{currentAppStep === 4 && <PostalCodeInput />}
-			{currentAppStep === 5 && <RoomsInput />}
-			{currentAppStep === 6 && <Six />}
+			{currentAppStep === 1 && <RentingsInput />}
+			{currentAppStep === 2 && <PostalCodeInput />}
+			{currentAppStep === 3 && <RoomsInput />}
+			{currentAppStep === 4 && <Radio />}
+			{currentAppStep === 5 && <Six />}
+			{/* {currentAppStep === 2 && <Radio />}  */}
 		</>
 	);
 };
