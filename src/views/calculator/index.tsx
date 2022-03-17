@@ -20,7 +20,7 @@ const Calculator = () => {
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<Form />
 			</section>
-			{currentAppStep !== 6 ? (
+			{currentAppStep !== 5 ? (
 				<section className="rwm-calculator__page-section tw-margin-top">
 					<Button style="NEXT" />
 				</section>

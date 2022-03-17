@@ -7,7 +7,7 @@
 		"continue": "Trotzdem fortfahren"
 	},
 	"overlay": {
-		"2": {
+		"4": {
 			"headline": "Ihr individuelles Angebot erhalten",
 			"contact-headline": "06196 522 7040",
 			"contact-body": "Mo bis Fr von 08:00 - 18:00 Uhr",
@@ -16,7 +16,7 @@
 				"1": "Bitte beachten Sie, dass die Rauchwarnmelder-Service Preiskalkulation für Sie möglicherweise einen zu hohen Preis ermittelt."
 			}
 		},
-		"3": {
+		"1": {
 			"headline": "Erhalten Sie ein individuelles Angebot",
 			"body": {
 				"0": "Gerne unterbreiten wir Ihnen für Ihre 6 Wohneinheiten ein individuelles Angebot. Hierzu können Sie uns unter folgender Nummer erreichen:"
@@ -24,7 +24,7 @@
 			"contact-headline": "06196 522-7677",
 			"contact-body": "Mo bis Fr von 08:00 - 18:00 Uhr"
 		},
-		"5": {
+		"3": {
 			"headline": {
 				"0": "Rauchwarnmelder – Unsere Empfehlungen",
 				"1": "Wohn-, Arbeits-, und Zimmer mit sonstiger Nutzung",
@@ -50,28 +50,6 @@
 	},
 	"questions": {
 		"0": {
-			"question": "Sind Sie für Ihre Heizkostenabrechnung bereits Kunde bei Techem?",
-			"answers": {
-				"0": {
-					"label": "Ja"
-				},
-				"1": {
-					"label": "Nein"
-				}
-			}
-		},
-		"1": {
-			"question": "Sind Sie bereits Rauchwarnmelder-Service-Kunde von Techem?",
-			"answers": {
-				"0": {
-					"label": "Ja"
-				},
-				"1": {
-					"label": "Nein"
-				}
-			}
-		},
-		"2": {
 			"question": "Wie viele Wohneinheiten möchten Sie ausstatten?",
 			"sublabel": "Eine Wohneinheit enspricht einem Mietobjekt, z.B. einer Wohnung.",
 			"answers": {
@@ -83,12 +61,12 @@
 				}
 			}
 		},
-		"3": {
+		"1": {
 			"question": "Wo befinden sich Ihre Wohneinheiten?",
 			"sublabel": "Um die genaue Anzahl der benötigten Rauchwarnmelder ermitteln zu können, ist die Angabe Ihrer Postleitzahl nötig. Die gesetzlichen Bestimmungen unterscheiden sich je nach Bundesland.",
 			"answers": {}
 		},
-		"4": {
+		"2": {
 			"question": "Wie viele Geräte werden gewünscht?",
 			"recommended": "empfohlen",
 			"required": "gesetzl. vorgeschrieben",
@@ -100,7 +78,18 @@
 				"stairs": "Treppenhäuser als weitere Verbindung zur Haustür"
 			}
 		},
-		"5": {
+		"3": {
+			"question": "Sind Sie für Ihre Heizkostenabrechnung bereits Kunde bei Techem?",
+			"answers": {
+				"0": {
+					"label": "Ja"
+				},
+				"1": {
+					"label": "Nein"
+				}
+			}
+		},
+		"4": {
 			"question": "Laufzeit Mietvertrag",
 			"answers": {
 				"0": {

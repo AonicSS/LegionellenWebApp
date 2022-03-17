@@ -100,6 +100,13 @@ module.exports = {
 						color: '#4c4c4c',
 					},
 				},
+				[`.${prefix}label-best-price`]: {
+					fontFamily: 'Univers55',
+					fontSize: '12px',
+					letterSpacing: '0px',
+					lineHeight: '27px',
+					color: '#ffffff',
+				},
 				[`.${prefix}info`]: {
 					fontFamily: 'Univers55',
 					fontSize: '18px',
@@ -286,6 +293,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-pricing`]: {
+					position: 'relative',
 					width: '334px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
 					[`@media (min-width: ${md})`]: {

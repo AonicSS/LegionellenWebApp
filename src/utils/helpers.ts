@@ -35,8 +35,20 @@ export const trueTypeOf = (obj: any) => {
 export const getAlarmNumber = (data) => {
 	let alarms = 0;
 
-	data.questions['4'].answers.forEach((element) => {
+	data.questions['2'].answers.forEach((element) => {
 		alarms = alarms + element.amount;
+	});
+
+	return alarms;
+};
+
+export const getAlarmNumberForHouse = (data, house) => {
+	let alarms = 0;
+
+	data.questions['2'].answers.forEach((element) => {
+		if (element.house === house) {
+			alarms = alarms + element.amount;
+		}
 	});
 
 	return alarms;
@@ -86,7 +98,7 @@ export const serviceCostUser = (
 };
 
 export const getRentingPrice = (data: any) => {
-	if (!data.questions[0].choice) {
+	if (!data.questions[3].choice) {
 		return rentingCostNonUser(
 			getAlarmNumber(data),
 			data.years,
@@ -98,7 +110,7 @@ export const getRentingPrice = (data: any) => {
 };
 
 export const getServicePrice = (type: string, data: any) => {
-	if (!data.questions[0].choice) {
+	if (!data.questions[3].choice) {
 		return serviceCostNonUser(getAlarmNumber(data), data.years, type);
 	} else {
 		return serviceCostUser(getAlarmNumber(data), data.years, type);

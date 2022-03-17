@@ -19,9 +19,11 @@ import {
 	SET_REGION,
 } from '../actions/App';
 
+import { getAlarmNumberForHouse } from '../../utils/helpers';
+
 const initialState = {
 	step: 1,
-	maxSteps: 6,
+	maxSteps: 5,
 	rentings: 1,
 	maxRentings: 1,
 	showModal: false,
@@ -197,7 +199,7 @@ const appData = (
 									...q,
 									choice: action.payload.choice,
 									btnActive:
-										i !== 3
+										i !== 1
 											? action.payload.btnActive
 											: isPostalCodevalid,
 							  }
@@ -320,13 +322,15 @@ const appData = (
 								) {
 									return {
 										...a,
-										amount: a.required
-											? a.amount > 1
-												? a.amount - 1
-												: a.amount
-											: a.amount > 0
-											? a.amount - 1
-											: a.amount,
+										amount:
+											getAlarmNumberForHouse(
+												state,
+												action.payload.index
+											) > 1
+												? a.amount > 0
+													? a.amount - 1
+													: a.amount
+												: a.amount,
 									};
 								} else {
 									return { ...a };
