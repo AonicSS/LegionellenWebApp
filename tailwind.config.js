@@ -196,8 +196,8 @@ module.exports = {
 				},
 				[`.${prefix}pricing-headline`]: {
 					fontFamily: 'Univers65',
-					fontSize: '20px',
-					lineHeight: '28px',
+					fontSize: '24px',
+					lineHeight: '34px',
 					letterSpacing: '0.2px',
 					color: '#222222',
 				},
@@ -208,12 +208,40 @@ module.exports = {
 					letterSpacing: '0',
 					color: '#222222',
 				},
+				[`.${prefix}price-large`]: {
+					fontFamily: 'Univers65',
+					fontSize: '30px',
+					lineHeight: '28px',
+					letterSpacing: '0',
+					color: '#099ab4',
+					marginTop: '10px',
+				},
+				[`.${prefix}price-small`]: {
+					fontFamily: 'Univers65',
+					fontSize: '20px',
+					lineHeight: '24px',
+					letterSpacing: '0',
+					color: '#099ab4',
+					marginTop: '10px',
+				},
 				[`.${prefix}pricing-sublabel`]: {
 					fontFamily: 'Univers55',
 					fontSize: '16px',
 					lineHeight: '25px',
 					letterSpacing: '-0.1px',
 					color: '#4c4c4c',
+					[`@media (min-width: ${md})`]: {
+						fontSize: '12px',
+						lineHeight: '26px',
+						letterSpacing: '0',
+					},
+				},
+				[`.${prefix}price-sublabel`]: {
+					fontFamily: 'Univers55',
+					fontSize: '16px',
+					lineHeight: '25px',
+					letterSpacing: '-0.1px',
+					color: '#099ab4',
 					[`@media (min-width: ${md})`]: {
 						fontSize: '12px',
 						lineHeight: '26px',
@@ -254,14 +282,14 @@ module.exports = {
 		},
 		function ({ addUtilities, theme }) {
 			const prefix = 'container';
-			const md = theme('screens.md');
+			const lg = theme('screens.lg');
 			const xl = theme('screens.xl');
 
 			addUtilities({
 				[`.${prefix}-headline`]: {
 					width: '334px',
 					height: '136px',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: 'auto',
 						height: 'auto',
 					},
@@ -272,7 +300,7 @@ module.exports = {
 					marginTop: '30px',
 					borderRadius: '5px',
 					backgroundColor: ' #f3f3f3',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '224px',
 						height: 'auto',
 						marginTop: '0px',
@@ -285,7 +313,7 @@ module.exports = {
 					marginTop: '10px',
 					borderRadius: '5px',
 					backgroundColor: ' #f3f3f3',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '224px',
 						height: 'auto',
 						marginTop: '0px',
@@ -294,13 +322,23 @@ module.exports = {
 				},
 				[`.${prefix}-pricing`]: {
 					position: 'relative',
-					width: '334px',
+					width: '464px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '464px',
 					},
 					[`@media (min-width: ${xl})`]: {
-						width: '260px',
+						width: '464px',
+					},
+				},
+				[`.${prefix}-summary`]: {
+					position: 'relative',
+					width: '363px',
+					[`@media (min-width: ${xl})`]: {
+						width: '464px',
+					},
+					[`@media (min-width: ${xl})`]: {
+						width: '360px',
 					},
 				},
 				[`.${prefix}-pricing-mobile`]: {
@@ -378,24 +416,18 @@ module.exports = {
 					border: '1px solid #f3f3f3',
 					backgroundColor: '#f3f3f3',
 				},
-				// [`.${prefix}-radio`]: {
-				// 	backgroundImage:
-				// 		'https://upload.wikimedia.org/wikipedia/commons/0/02/Red_Circle%28small%29.svg',
-				// 	backgroundColor: 'red',
-				// 	color: 'red',
-				// },
 			});
 		},
 		function ({ addUtilities, theme }) {
 			const prefix = 'overlay-size';
-			const md = theme('screens.md');
+			const lg = theme('screens.lg');
 
 			addUtilities({
 				[`.${prefix}-1`]: {
 					width: '334px',
 					height: '497px',
 					borderRadius: '40px',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '676px',
 						height: '400px',
 					},
@@ -404,25 +436,25 @@ module.exports = {
 					width: '334px',
 					height: '334px',
 					borderRadius: '40px',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '676px',
 						height: '293px',
 					},
 				},
 				[`.${prefix}-3`]: {
-					width: '334px',
-					height: '334px',
+					width: '500px',
+					height: '1750px',
 					borderRadius: '40px',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '984px',
-						height: '745px',
+						height: '945px',
 					},
 				},
 				[`.${prefix}-5`]: {
 					width: '334px',
 					height: '450px',
 					borderRadius: '40px',
-					[`@media (min-width: ${md})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '984px',
 						height: '350px',
 					},

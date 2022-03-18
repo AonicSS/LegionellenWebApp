@@ -10,12 +10,18 @@ const pricing = [
 	{
 		name: 'Standard',
 		position: 'tw-container-pricing-1',
-		features: [
-			'Lorem text 1 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 2 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 3 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 4 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 5 ipsum dolor sit amet, consectetur adipiscing',
+		alarmFeatures: [
+			'Modernste Geräte in zertifizierter Qualität',
+			'Mindestens 10 Jahre Lebensdauer',
+			'Fachmännische Planung & Montage',
+			'Ferninspektion durch Funktechnologie',
+		],
+		serviceFeatures: [
+			'Funktionsprüfung 1x/Jahr',
+			'Online Statusanzeige 1x/Jahr',
+			'Störungsbehebung bei Bedarf und automatisiert 1x/Jahr',
+			'Prüfprotokoll 1x/Jahr, Archivierung im Kundenportal',
+			'Kostenfreie 24-Stunden-Hotline',
 		],
 		buttonStyle: 'SECONDARY',
 		text: 'Standard wählen',
@@ -38,12 +44,19 @@ const pricing = [
 	{
 		name: 'Standard 360 Adv',
 		position: 'tw-container-pricing-3',
-		features: [
-			'Lorem text 1 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 2 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 3 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 4 ipsum dolor sit amet, consectetur adipiscing',
-			'Lorem text 5 ipsum dolor sit amet, consectetur adipiscing',
+		alarmFeatures: [
+			'Modernste Geräte in zertifizierter Qualität',
+			'Mindestens 10 Jahre Lebensdauer',
+			'Fachmännische Planung & Montage',
+			'Ferninspektion durch Funktechnologie',
+		],
+		serviceFeatures: [
+			'Pro Gerät / Jahr',
+			'Funktionsprüfung 2x/Monat',
+			'Online Statusanzeige bis zu 2x/Monat',
+			'Störungsbehebung bei Bedarf und automatisiert 2x/Monat',
+			'Prüfprotokoll 1x/Jahr, Archivierung im Kundenportal',
+			'Kostenfreie 24-Stunden-Hotline',
 		],
 		buttonStyle: 'PRIMARY',
 		text: 'Standard 360 wählen',
@@ -53,15 +66,15 @@ const pricing = [
 ];
 
 const Pricing = () => {
-	const isModalVisible = useSelector(
-		(state: AppReduxStoreProps) => state.appData.showModal
-	);
+	// const isModalVisible = useSelector(
+	// 	(state: AppReduxStoreProps) => state.appData.showModal
+	// );
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 
 	return (
-		<>
-			<div className="tw-flex tw-justify-around tw-gap-10 xl:tw-gap-14">
+		<div className="tw-pb-12">
+			<div className="tw-grid tw-grid-cols-1 xl:tw-grid-cols-2 tw-gap-10 xl:tw-gap-14">
 				{pricing.map((p) => {
 					return (
 						<div
@@ -77,33 +90,75 @@ const Pricing = () => {
 								</div>
 							)}
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-								{p.name}
+								{`Gesamtpreis Rauchwarnmelder-Miete &`} {p.name}
+							</div>
+							<div className="tw-container-pricing-label tw-font-size-price-large">
+								{parseInt(getRentingPrice(appData)) +
+									parseInt(
+										getServicePrice(
+											p.name === 'Standard 360 Adv'
+												? 'plus'
+												: 'standard',
+											appData
+										)
+									)}{' '}
+								€
+							</div>
+							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+								pro Jahr / Gerät
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{`Renting ${getRentingPrice(appData)} €`} <br />
+								Preis Rauchwarnmelder-Miete
+							</div>
+							<div className="tw-container-pricing-label tw-font-size-price-small">
+								{`Nur ${getRentingPrice(appData)} €`}
+							</div>
+							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+								pro Jahr / Gerät
+							</div>
+							{p.alarmFeatures.map((f) => {
+								// if (isModalVisible || index < 3) {
+								return (
+									<ul
+										key={f}
+										className="tw-container-pricing-list tw-list-disc tw-ml-5"
+									>
+										<li className="tw-font-size-pricing-body">
+											<span>{f}</span>
+										</li>
+									</ul>
+								);
+								// } else {
+								// 	return null;
+								// }
+							})}
+							<div className="tw-container-pricing-label tw-font-size-pricing-label">
+								Preis Rauchwarnmelder-Service
+							</div>
+							<div className="tw-container-pricing-label tw-font-size-price-small">
 								{`Service ${getServicePrice(
 									p.type,
 									appData
 								)} €`}
 							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
+							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 								pro Jahr / Gerät
 							</div>
-							{p.features.map((f, index) => {
-								if (isModalVisible || index < 3) {
-									return (
-										<ul
-											key={f}
-											className="tw-container-pricing-list tw-list-disc tw-ml-5"
-										>
-											<li className="tw-font-size-pricing-body">
-												<span>{f}</span>
-											</li>
-										</ul>
-									);
-								} else {
-									return null;
-								}
+							{p.serviceFeatures.map((f) => {
+								// if (isModalVisible || index < 3) {
+								return (
+									<ul
+										key={f}
+										className="tw-container-pricing-list tw-list-disc tw-ml-5"
+									>
+										<li className="tw-font-size-pricing-body">
+											<span>{f}</span>
+										</li>
+									</ul>
+								);
+								// } else {
+								// 	return null;
+								// }
 							})}
 							<div className="tw-flex tw-justify-center">
 								<Button
@@ -116,7 +171,7 @@ const Pricing = () => {
 					);
 				})}
 			</div>
-		</>
+		</div>
 	);
 };
 
