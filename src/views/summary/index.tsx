@@ -24,24 +24,24 @@ const Summary = () => {
 					<label className="rwm-form__headline">
 						<h1>Zusammenfassung</h1>
 					</label>
-					<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-1 xl:tw-grid-cols-3 tw-gap-10 xl:tw-gap-14 tw-mt-16">
+					<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-1 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-10 xl:tw-gap-14 tw-mt-16">
 						<div
 							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 tw-container-pricing-1'
+								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								Ihre Angaben
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{appData.questions[0].choice ? 'Ja' : 'Nein'}
+								{appData.questions[3].choice ? 'Ja' : 'Nein'}
 							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
+							{/* <div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Heizkostenabrechnung bei Techem
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.questions[1].choice ? 'Ja' : 'Nein'}
-							</div>
+							</div> */}
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Bereits RWM Service bei Techem
 							</div>
@@ -67,17 +67,17 @@ const Summary = () => {
 
 						<div
 							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 tw-container-pricing-2'
+								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								Ihre Ausstattung
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{appData.pricing}
+								{`Gesamtpreis Rauchwarnmelder-Miete &`}
 							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel tw-flex">
-								Details ansehen
+							<div className="tw-container-pricing-label tw-font-size-pricing-label tw-flex">
+								{appData.pricing}
 								<Info
 									onClick={() =>
 										dispatch({
@@ -90,14 +90,7 @@ const Summary = () => {
 									className="rwm-btn-info"
 								/>
 							</div>
-							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{appData.years}
-							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
-								Laufzeit
-							</div>
-							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Nur{' '}
+							<div className="tw-container-pricing-label tw-font-size-price-large">
 								{parseInt(getRentingPrice(appData)) +
 									parseInt(
 										getServicePrice(
@@ -110,13 +103,19 @@ const Summary = () => {
 									)}{' '}
 								€
 							</div>
+							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+								pro Jahr / Gerät
+							</div>
+							<div className="tw-container-pricing-label tw-font-size-pricing-label">
+								{appData.years}
+							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
-								Gesamtpreis pro Jahr
+								Laufzeit
 							</div>
 						</div>
 						<div
 							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 tw-container-pricing-3'
+								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">

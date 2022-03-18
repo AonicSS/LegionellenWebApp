@@ -85,7 +85,7 @@ const Six = () => {
 				</div>
 			</fieldset>
 			<Pricing />
-			<Button text="Alle Leistungen der Service Pakete" style={'LINK'} />
+			{/* <Button text="Alle Leistungen der Service Pakete" style={'LINK'} /> */}
 		</div>
 	);
 };
