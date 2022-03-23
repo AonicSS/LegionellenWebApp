@@ -32,26 +32,27 @@ const Six = () => {
 				<h1>{Translate(intl, `questions.4.question`)}</h1>
 			</label>
 
-			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24 tw-mt-8">
-				<div className="">
-					<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-						<input
-							onClick={(event) => handleClick(event)}
-							type="radio"
-							value="5"
-							checked={years === 5}
-							className={` ${
-								years === 5
-									? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
-							} `}
-						/>
-						<label htmlFor="yes" className="rwm-radio__label">
-							5 Jahre
-						</label>
-					</div>
+			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24 tw-mb-14 tw-mt-10 md:tw-mt-0">
+				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
+					<label htmlFor="yes" className="rwm-radio__label tw-mb-4">
+						5 Jahre
+					</label>
+					<input
+						onClick={(event) => handleClick(event)}
+						type="radio"
+						value="5"
+						checked={years === 5}
+						className={` ${
+							years === 5
+								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
+								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
+						} `}
+					/>
 				</div>
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
+					<label htmlFor="yes" className="rwm-radio__label tw-mb-4">
+						8 Jahre
+					</label>
 					<input
 						onClick={(event) => handleClick(event)}
 						type="radio"
@@ -60,14 +61,14 @@ const Six = () => {
 						className={` ${
 							years === 8
 								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
 						} `}
 					/>
-					<label htmlFor="yes" className="rwm-radio__label">
-						8 Jahre
-					</label>
 				</div>
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
+					<label htmlFor="yes" className="rwm-radio__label tw-mb-4">
+						10 Jahre
+					</label>
 					<input
 						onClick={(event) => handleClick(event)}
 						type="radio"
@@ -76,12 +77,9 @@ const Six = () => {
 						className={` ${
 							years === 10
 								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
 						}  `}
 					/>
-					<label htmlFor="yes" className="rwm-radio__label">
-						10 Jahre
-					</label>
 				</div>
 			</fieldset>
 			<Pricing />

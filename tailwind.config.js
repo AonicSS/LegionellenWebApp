@@ -55,13 +55,13 @@ module.exports = {
 				[`.${prefix}headline`]: {
 					fontFamily: 'Univers65',
 					fontSize: '26px',
-					lineHeight: '34px',
+					lineHeight: '44px',
 					letterSpacing: '-0.11px',
 					color: '#222222',
 					textAlign: 'center',
 					[`@media (min-width: ${md})`]: {
-						fontSize: '34px',
-						lineHeight: '46px',
+						fontSize: '20px',
+						lineHeight: '37px',
 						letterSpacing: '-0.15px',
 					},
 				},
@@ -151,6 +151,7 @@ module.exports = {
 					fontFamily: 'Univers65',
 					fontSize: '20px',
 					letterSpacing: '0px',
+					lineHeight: '30px',
 					color: '#222222',
 				},
 				[`.${prefix}overlay-body`]: {
@@ -337,8 +338,20 @@ module.exports = {
 					[`@media (min-width: ${xl})`]: {
 						width: '464px',
 					},
-					[`@media (min-width: ${xl})`]: {
+					[`@media (min-width: ${lg})`]: {
 						width: '360px',
+					},
+				},
+				[`.${prefix}-room`]: {
+					position: 'relative',
+					width: '363px',
+					[`@media (min-width: ${xl})`]: {
+						width: '1000px',
+						paddingLeft: '150px',
+					},
+					[`@media (min-width: ${lg})`]: {
+						width: '1000px',
+						paddingLeft: '150px',
 					},
 				},
 				[`.${prefix}-pricing-mobile`]: {
@@ -387,8 +400,8 @@ module.exports = {
 					backgroundColor: '#e20913',
 				},
 				[`.${prefix}-disabled`]: {
-					border: '1px solid #f3f3f3',
-					backgroundColor: '#f3f3f3',
+					border: '1px solid #E3E3E3',
+					backgroundColor: '#E3E3E3',
 				},
 			});
 		},
@@ -438,7 +451,7 @@ module.exports = {
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '676px',
-						height: '293px',
+						height: '206px',
 					},
 				},
 				[`.${prefix}-3`]: {
@@ -452,11 +465,11 @@ module.exports = {
 				},
 				[`.${prefix}-5`]: {
 					width: '334px',
-					height: '450px',
+					height: '575px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '984px',
-						height: '350px',
+						height: '335px',
 					},
 				},
 			});
