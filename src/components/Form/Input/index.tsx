@@ -263,7 +263,7 @@ export const RoomsInput = () => {
 				<h1 className="tw-font-size-headline">{questionText}</h1>
 				<br />
 			</label>
-			<div>
+			<div className="tw-container-room">
 				{question?.answers?.map((r, i) => {
 					if (r.house <= curentRenting) {
 						return (
@@ -272,15 +272,15 @@ export const RoomsInput = () => {
 								r.name === 'bedrooms' ? (
 									<label
 										ref={myRef}
-										className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-6"
+										className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-6 tw-mt-14"
 									>
 										<h2 className="tw-font-size-label">
 											{r.house}. Wohneinheit
 										</h2>
 									</label>
 								) : null}
-								<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-mb-7">
-									<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
+								<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-mb-7">
+									<div className="tw-flex tw-justify-start tw-items-center tw-mb-4">
 										<div className="tw-font-size-rooms-name">
 											{Translate(
 												intl,
@@ -290,8 +290,8 @@ export const RoomsInput = () => {
 											)}
 										</div>
 									</div>
-									<fieldset className="tw-justify-row rwm-form__rentings">
-										<div className="">
+									<fieldset className="tw-justify-row rwm-form__rentings tw-mb-2">
+										<div>
 											<Button
 												room={r.name}
 												house={r.house}
@@ -304,7 +304,7 @@ export const RoomsInput = () => {
 												)}
 											/>
 										</div>
-										<div className="">
+										<div>
 											<input
 												onChange={(e) =>
 													handleInput(
@@ -319,7 +319,7 @@ export const RoomsInput = () => {
 												value={r.amount?.toString()}
 											/>
 										</div>
-										<div className="">
+										<div>
 											<Button
 												room={r.name}
 												style="INCREASE_ROOMS"
@@ -333,7 +333,7 @@ export const RoomsInput = () => {
 											/>
 										</div>
 									</fieldset>
-									<div className="tw-flex tw-justify-center md:tw-justify-start tw-items-center">
+									<div className="tw-flex tw-justify-center md:tw-justify-center lg:tw-justify-start tw-items-center">
 										<div className="tw-font-size-rooms-label tw-text-center md:tw-text-left tw-flex">
 											{Translate(
 												intl,

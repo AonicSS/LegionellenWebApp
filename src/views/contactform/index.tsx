@@ -56,7 +56,7 @@ const ContactForm = () => {
 				code: appData.postalCode.code,
 				servicePricing: appData.pricing,
 				heatingCustomer: appData.questions[0].choice ? 'Yes' : 'No',
-				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
+				// smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
 			},
 		};
 		const apiAddress: string | undefined =
@@ -102,7 +102,7 @@ const ContactForm = () => {
 									className={` ${
 										gender === 'Frau'
 											? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
 									} `}
 								/>
 								<label
@@ -121,7 +121,7 @@ const ContactForm = () => {
 									className={` ${
 										gender === 'Mann'
 											? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
 									} `}
 								/>
 								<label
@@ -140,7 +140,7 @@ const ContactForm = () => {
 									className={` ${
 										gender === 'Divers'
 											? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-3 focus:tw-ring-transparent'
+											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
 									}  `}
 								/>
 								<label

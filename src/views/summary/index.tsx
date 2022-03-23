@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { SET_MODAL } from '../../redux/actions/App';
 import Layout from '../../components/Layout';
@@ -15,15 +16,25 @@ import { ReactComponent as Info } from '../../icons/Info.svg';
 
 const Summary = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	return (
 		<Layout>
 			<Modal />
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<div className="tw-flex tw-flex-col">
-					<label className="rwm-form__headline">
-						<h1>Zusammenfassung</h1>
-					</label>
+					<div className="tw-grid tw-grid-cols-3">
+						<div className="rwm-icon tw-justify-start">
+							<div
+								onClick={() => navigate('/')}
+								className="rwm-arrow"
+							></div>
+						</div>
+						<label className="rwm-form__headline tw-justify-start">
+							<h1>Zusammenfassung</h1>
+						</label>
+					</div>
+
 					<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-1 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-10 xl:tw-gap-14 tw-mt-16">
 						<div
 							className={classNames(
@@ -94,8 +105,7 @@ const Summary = () => {
 								{parseInt(getRentingPrice(appData)) +
 									parseInt(
 										getServicePrice(
-											appData.pricing ===
-												'Standard wählen'
+											appData.pricing === 'Standard'
 												? 'standard'
 												: 'plus',
 											appData
@@ -107,7 +117,7 @@ const Summary = () => {
 								pro Jahr / Gerät
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{appData.years}
+								{appData.years} Jahre
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Laufzeit

@@ -17,7 +17,7 @@ const Calculator = () => {
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<Stepper />
 			</section>
-			<section className="rwm-calculator__page-section tw-margin-top">
+			<section className="rwm-calculator__page-section tw-mt-12">
 				<Form />
 			</section>
 			{currentAppStep !== 5 ? (
