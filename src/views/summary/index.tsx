@@ -18,6 +18,17 @@ const Summary = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+
+	const rentingPrice = getRentingPrice(
+		appData,
+		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard'
+	);
+	const servicePrice = getServicePrice(
+		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
+		appData
+	);
+	const total = rentingPrice + servicePrice;
+
 	return (
 		<Layout>
 			<Modal />
@@ -27,11 +38,13 @@ const Summary = () => {
 						<div className="rwm-icon tw-justify-start">
 							<div
 								onClick={() => navigate('/')}
-								className="rwm-arrow"
+								className="rwm-arrow tw-ml-5 tw-mt-2"
 							></div>
 						</div>
 						<label className="rwm-form__headline tw-justify-start">
-							<h1>Zusammenfassung</h1>
+							<h1 className="rwm-form__headline">
+								Zusammenfassung
+							</h1>
 						</label>
 					</div>
 
@@ -102,16 +115,7 @@ const Summary = () => {
 								/>
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-price-large">
-								{parseInt(getRentingPrice(appData)) +
-									parseInt(
-										getServicePrice(
-											appData.pricing === 'Standard'
-												? 'standard'
-												: 'plus',
-											appData
-										)
-									)}{' '}
-								€
+								{total.toFixed(2)} €
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 								pro Jahr / Gerät

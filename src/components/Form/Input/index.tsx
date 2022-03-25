@@ -17,6 +17,7 @@ import { validPostalCode, getFederalState } from '../../../utils/helpers';
 import { AppReduxStoreProps } from '../../../redux/reducers/App';
 import Button from '../../Button';
 import { ReactComponent as Info } from '../../../icons/Info.svg';
+import { ReactComponent as Chevron } from '../../../icons/chevron-left.svg';
 
 import './Input.css';
 
@@ -39,7 +40,7 @@ export const RentingsInput = () => {
 	return (
 		<div>
 			<label className="rwm-form__headline">
-				<h1>
+				<h1 className="rwm-form__headline">
 					{Translate(
 						intl,
 						`questions.${currentAppStep - 1}.question`
@@ -144,7 +145,9 @@ export const PostalCodeInput = () => {
 	return (
 		<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
 			<label className="rwm-form__headline tw-flex tw-flex-col tw-items-center tw-justify-center">
-				<h1>{Translate(intl, 'questions.3.question')}</h1>
+				<h1 className="rwm-form__headline">
+					{Translate(intl, 'questions.3.question')}
+				</h1>
 				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
 					Zur exakten Ermittlung der Anzahl der benötigten
 					Rauchwarnmeldern ist <br /> die Postleitzahl notwendig, da
@@ -370,8 +373,9 @@ export const RoomsInput = () => {
 			</div>
 			{maxRentings > 1 && currentRentingsStep < maxRentings ? (
 				<button onClick={nextRenting}>
-					<div className="tw-font-size-rooms-continue-label">
-						Weiter zur {currentRentingsStep + 1}. Wohneinheit
+					<div className="tw-flex tw-font-size-rooms-continue-label">
+						Weiter zur {currentRentingsStep + 1}. Wohneinheit{' '}
+						<Chevron className="rwm-btn-next-room" />
 					</div>
 				</button>
 			) : null}

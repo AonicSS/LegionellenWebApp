@@ -24,6 +24,15 @@ const ContactForm = () => {
 	const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const rentingPrice = getRentingPrice(
+		appData,
+		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard'
+	);
+	const servicePrice = getServicePrice(
+		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
+		appData
+	);
+	const total = rentingPrice + servicePrice;
 
 	const submitForm = () => {
 		const response = {
@@ -40,16 +49,7 @@ const ContactForm = () => {
 				contactAgreement: contactAgreement ? 'Yes' : 'No',
 			},
 			formData: {
-				price:
-					parseInt(getRentingPrice(appData)) +
-					parseInt(
-						getServicePrice(
-							appData.pricing === 'Standard wählen'
-								? 'standard'
-								: 'plus',
-							appData
-						)
-					),
+				price: total.toFixed(2),
 				alarms: getAlarmNumber(appData),
 				houses: appData.rentings,
 				years: appData.years,
@@ -80,7 +80,9 @@ const ContactForm = () => {
 			<section className="rwm-forms__page-section tw-margin-top">
 				<div className="tw-flex tw-flex-col">
 					<label className="rwm-form__headline">
-						<h1>Angebot anfordern</h1>
+						<h1 className="rwm-form__headline">
+							Angebot anfordern
+						</h1>
 						{/* <h2 className="tw-font-size-info tw-text-center tw-mt-5">
 							Lorem ipsum dolor sit amet, consetetur sadipscing
 							elitr, sed diam nonumy eirmod tempor invidunt ut
@@ -155,7 +157,7 @@ const ContactForm = () => {
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Name</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Vorname*
@@ -184,7 +186,7 @@ const ContactForm = () => {
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Anschrift</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Straße*
@@ -210,7 +212,7 @@ const ContactForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Postleitzahl*
@@ -241,14 +243,24 @@ const ContactForm = () => {
 							E-Mail Adresse*
 						</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-flex tw-flex-col tw-justify-center tw-items-start tw-mt-3">
-						<input
-							type="email"
-							name="emailAddress"
-							className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
-							value={emailAddress}
-							onChange={(e) => setEmailAddress(e.target.value)}
-						/>
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 tw-mt-3 tw-mt-2">
+						<div
+							className={
+								window.innerWidth > 768
+									? 'rwm-form__input-container-large'
+									: 'rwm-form__input-container'
+							}
+						>
+							<input
+								type="email"
+								name="emailAddress"
+								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								value={emailAddress}
+								onChange={(e) =>
+									setEmailAddress(e.target.value)
+								}
+							/>
+						</div>
 					</div>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 						<div className="round">
@@ -260,11 +272,19 @@ const ContactForm = () => {
 							/>
 							<label htmlFor="contact"></label>
 						</div>
-						<p className="tw-font-size-label-small tw-pl-6">
-							Kontaktaufnahme – Lorem ipsum dolor sit amet,
-							consetetur sadipscing elitr, sed diam nonumy eirmod
-							tempor invidunt ut labore et dolore magna
-						</p>
+						<div
+							className={
+								window.innerWidth > 768
+									? 'rwm-form__input-container-large'
+									: 'rwm-form__input-container'
+							}
+						>
+							<p className="tw-font-size-label-small tw-pl-6">
+								Kontaktaufnahme – Lorem ipsum dolor sit amet,
+								consetetur sadipscing elitr, sed diam nonumy
+								eirmod tempor invidunt ut labore et dolore magna
+							</p>
+						</div>
 					</div>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 						<div className="round">
@@ -278,11 +298,20 @@ const ContactForm = () => {
 							/>
 							<label htmlFor="marketing"></label>
 						</div>
-						<p className="tw-font-size-label-small tw-pl-6">
-							Einwilligung zur Marketing – Lorem ipsum dolor sit
-							amet, consetetur sadipscing elitr, sed diam nonumy
-							eirmod tempor invidunt ut labore et dolore magna
-						</p>
+						<div
+							className={
+								window.innerWidth > 768
+									? 'rwm-form__input-container-large'
+									: 'rwm-form__input-container'
+							}
+						>
+							<p className="tw-font-size-label-small tw-pl-6">
+								Einwilligung zur Marketing – Lorem ipsum dolor
+								sit amet, consetetur sadipscing elitr, sed diam
+								nonumy eirmod tempor invidunt ut labore et
+								dolore magna
+							</p>
+						</div>
 					</div>
 					{success && (
 						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-center tw-items-center tw-mt-16">

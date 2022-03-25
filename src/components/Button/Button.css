@@ -122,3 +122,12 @@
 	margin: 5px 0 0px 7px;
 	cursor: pointer;
 }
+
+.rwm-btn-next-room {
+	fill: #e20613;
+	width: 20px;
+	height: 20px;
+	margin: 5px 0 0px 7px;
+	transform: rotate(270deg);
+	cursor: pointer;
+}

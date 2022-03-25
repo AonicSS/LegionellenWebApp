@@ -74,8 +74,16 @@ const Pricing = () => {
 
 	return (
 		<div className="tw-pb-12">
-			<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-10 xl:tw-gap-14">
+			<div className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-10 xl:tw-gap-14">
 				{pricing.map((p) => {
+					const rentingPrice = getRentingPrice(
+						appData,
+						p.name === 'Standard 360 Adv' ? 'plus' : 'standard'
+					);
+					const servicePrice = getServicePrice(p.type, appData);
+
+					const total = rentingPrice + servicePrice;
+
 					return (
 						<div
 							key={p.name}
@@ -93,16 +101,7 @@ const Pricing = () => {
 								{`Gesamtpreis Rauchwarnmelder-Miete &`} {p.name}
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-price-large">
-								{parseInt(getRentingPrice(appData)) +
-									parseInt(
-										getServicePrice(
-											p.name === 'Standard 360 Adv'
-												? 'plus'
-												: 'standard',
-											appData
-										)
-									)}{' '}
-								€
+								{total.toFixed(2)} €
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 								pro Jahr / Gerät
@@ -111,7 +110,7 @@ const Pricing = () => {
 								Preis Rauchwarnmelder-Miete
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-price-small">
-								{`Nur ${getRentingPrice(appData)} €`}
+								{`Nur ${rentingPrice.toFixed(2)} €`}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 								pro Jahr / Gerät
@@ -136,10 +135,7 @@ const Pricing = () => {
 								Preis Rauchwarnmelder-Service
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-price-small">
-								{`Service ${getServicePrice(
-									p.type,
-									appData
-								)} €`}
+								{`Service ${servicePrice.toFixed(2)} €`}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 								pro Jahr / Gerät

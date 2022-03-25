@@ -60,7 +60,7 @@ module.exports = {
 					color: '#222222',
 					textAlign: 'center',
 					[`@media (min-width: ${md})`]: {
-						fontSize: '20px',
+						fontSize: '24px',
 						lineHeight: '37px',
 						letterSpacing: '-0.15px',
 					},
@@ -323,8 +323,10 @@ module.exports = {
 				},
 				[`.${prefix}-pricing`]: {
 					position: 'relative',
-					width: '464px',
+					width: '330px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
+					marginLeft: 'auto',
+					marginRight: 'auto',
 					[`@media (min-width: ${lg})`]: {
 						width: '464px',
 					},
@@ -383,16 +385,28 @@ module.exports = {
 		function ({ addUtilities, theme }) {
 			const prefix = 'rectangle';
 			const md = theme('screens.md');
+			const lg = theme('screens.lg');
+			const xl = theme('screens.xl');
 
 			addUtilities({
 				[`.${prefix}`]: {
 					width: '40px',
 					height: '4px',
-					margin: '0 7px;',
+					marginRight: '15px;',
 					[`@media (min-width: ${md})`]: {
 						width: '79px',
 						height: '4px',
-						margin: '0 15px;',
+						marginRight: '15px',
+					},
+					[`@media (min-width: ${lg})`]: {
+						width: '79px',
+						height: '4px',
+						marginRight: '15px',
+					},
+					[`@media (min-width: ${xl})`]: {
+						width: '79px',
+						height: '4px',
+						marginRight: '15px',
 					},
 				},
 				[`.${prefix}-active`]: {
@@ -437,7 +451,7 @@ module.exports = {
 
 			addUtilities({
 				[`.${prefix}-1`]: {
-					width: '334px',
+					width: '300px',
 					height: '497px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
@@ -446,7 +460,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-2`]: {
-					width: '334px',
+					width: '300px',
 					height: '334px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
@@ -455,7 +469,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-3`]: {
-					width: '500px',
+					width: '300px',
 					height: '1750px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
@@ -464,7 +478,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-5`]: {
-					width: '334px',
+					width: '300px',
 					height: '575px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
