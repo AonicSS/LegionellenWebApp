@@ -38,11 +38,13 @@ const Summary = () => {
 						<div className="rwm-icon tw-justify-start">
 							<div
 								onClick={() => navigate('/')}
-								className="rwm-arrow"
+								className="rwm-arrow tw-ml-5 tw-mt-2"
 							></div>
 						</div>
 						<label className="rwm-form__headline tw-justify-start">
-							<h1>Zusammenfassung</h1>
+							<h1 className="rwm-form__headline">
+								Zusammenfassung
+							</h1>
 						</label>
 					</div>
 

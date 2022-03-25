@@ -1,6 +1,7 @@
 .rwm-stepper {
 	@apply tw-flex
 	tw-items-center;
+	margin-left: -20px;
 }
 
 .rwm-stepper__rectangle {

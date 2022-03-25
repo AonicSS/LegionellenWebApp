@@ -46,17 +46,21 @@ const Radio = () => {
 		<div className="rwm-radio">
 			<label className="rwm-form__headline">{questionText}</label>
 			<fieldset className="rwm-radio__container">
-				<div className="rwm-radio__container-select tw-container-radio-first">
+				<div
+					className="rwm-radio__container-select tw-container-radio-first"
+					onClick={() => handleChange('true')}
+				>
 					<div className="rwm-radio__container-icon-check">
 						<Check fill="#4c4c4c" />
 					</div>
-					<label htmlFor="yes" className="rwm-radio__label">
+					<label htmlFor="Ja" className="rwm-radio__label">
 						Ja
 					</label>
 					<div className="rwm-form__container-input">
 						<input
 							onChange={(e) => handleChange(e.target.value)}
 							name="Ja"
+							id="Ja"
 							type="radio"
 							value="true"
 							checked={currentChoice === true}
@@ -68,17 +72,21 @@ const Radio = () => {
 						/>
 					</div>
 				</div>
-				<div className="rwm-radio__container-select tw-container-radio">
+				<div
+					className="rwm-radio__container-select tw-container-radio"
+					onClick={() => handleChange('false')}
+				>
 					<div className="rwm-radio__container-icon-decline">
 						<Decline fill="#4c4c4c" />
 					</div>
-					<label htmlFor="no" className="rwm-radio__label">
+					<label htmlFor="Nein" className="rwm-radio__label">
 						Nein
 					</label>
 					<div className="rwm-form__container-input">
 						<input
 							onChange={(e) => handleChange(e.target.value)}
 							name="Nein"
+							id="Nein"
 							type="radio"
 							value="false"
 							checked={currentChoice === false}

@@ -53,7 +53,7 @@
 
 .rwm-form__input-container-large {
 	@apply tw-mx-auto;
-	width: 572px;
+	width: 572px!important;
 }
 
 .rwm-form__input-custom {

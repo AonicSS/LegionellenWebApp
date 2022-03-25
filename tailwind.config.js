@@ -323,8 +323,10 @@ module.exports = {
 				},
 				[`.${prefix}-pricing`]: {
 					position: 'relative',
-					width: '464px',
+					width: '330px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
+					marginLeft: 'auto',
+					marginRight: 'auto',
 					[`@media (min-width: ${lg})`]: {
 						width: '464px',
 					},
@@ -449,7 +451,7 @@ module.exports = {
 
 			addUtilities({
 				[`.${prefix}-1`]: {
-					width: '334px',
+					width: '300px',
 					height: '497px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
@@ -458,7 +460,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-2`]: {
-					width: '334px',
+					width: '300px',
 					height: '334px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
@@ -467,7 +469,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-3`]: {
-					width: '500px',
+					width: '300px',
 					height: '1750px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
@@ -476,7 +478,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}-5`]: {
-					width: '334px',
+					width: '300px',
 					height: '575px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {

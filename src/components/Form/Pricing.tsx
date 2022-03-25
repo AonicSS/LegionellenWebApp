@@ -74,7 +74,7 @@ const Pricing = () => {
 
 	return (
 		<div className="tw-pb-12">
-			<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-10 xl:tw-gap-14">
+			<div className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-10 xl:tw-gap-14">
 				{pricing.map((p) => {
 					const rentingPrice = getRentingPrice(
 						appData,

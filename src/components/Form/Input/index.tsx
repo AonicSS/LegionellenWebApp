@@ -17,6 +17,7 @@ import { validPostalCode, getFederalState } from '../../../utils/helpers';
 import { AppReduxStoreProps } from '../../../redux/reducers/App';
 import Button from '../../Button';
 import { ReactComponent as Info } from '../../../icons/Info.svg';
+import { ReactComponent as Chevron } from '../../../icons/chevron-left.svg';
 
 import './Input.css';
 
@@ -372,8 +373,9 @@ export const RoomsInput = () => {
 			</div>
 			{maxRentings > 1 && currentRentingsStep < maxRentings ? (
 				<button onClick={nextRenting}>
-					<div className="tw-font-size-rooms-continue-label">
-						Weiter zur {currentRentingsStep + 1}. Wohneinheit
+					<div className="tw-flex tw-font-size-rooms-continue-label">
+						Weiter zur {currentRentingsStep + 1}. Wohneinheit{' '}
+						<Chevron className="rwm-btn-next-room" />
 					</div>
 				</button>
 			) : null}
