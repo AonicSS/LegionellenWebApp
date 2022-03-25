@@ -60,7 +60,7 @@ module.exports = {
 					color: '#222222',
 					textAlign: 'center',
 					[`@media (min-width: ${md})`]: {
-						fontSize: '20px',
+						fontSize: '24px',
 						lineHeight: '37px',
 						letterSpacing: '-0.15px',
 					},
@@ -383,16 +383,28 @@ module.exports = {
 		function ({ addUtilities, theme }) {
 			const prefix = 'rectangle';
 			const md = theme('screens.md');
+			const lg = theme('screens.lg');
+			const xl = theme('screens.xl');
 
 			addUtilities({
 				[`.${prefix}`]: {
 					width: '40px',
 					height: '4px',
-					margin: '0 7px;',
+					marginRight: '15px;',
 					[`@media (min-width: ${md})`]: {
 						width: '79px',
 						height: '4px',
-						margin: '0 15px;',
+						marginRight: '15px',
+					},
+					[`@media (min-width: ${lg})`]: {
+						width: '79px',
+						height: '4px',
+						marginRight: '15px',
+					},
+					[`@media (min-width: ${xl})`]: {
+						width: '79px',
+						height: '4px',
+						marginRight: '15px',
 					},
 				},
 				[`.${prefix}-active`]: {

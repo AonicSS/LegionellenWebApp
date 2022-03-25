@@ -44,7 +44,7 @@ const Radio = () => {
 
 	return (
 		<div className="rwm-radio">
-			<label className="rwm-radio__headline">{questionText}</label>
+			<label className="rwm-form__headline">{questionText}</label>
 			<fieldset className="rwm-radio__container">
 				<div className="rwm-radio__container-select tw-container-radio-first">
 					<div className="rwm-radio__container-icon-check">

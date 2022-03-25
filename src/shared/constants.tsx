@@ -19,7 +19,7 @@ export const nonUserServices = {
 	standard: 2.8,
 	plus: 3.08,
 	smart: 71.4,
-	registration: 2.25,
+	registration: 2.52,
 	instalation: 65.7,
 	radio: 14.28,
 };

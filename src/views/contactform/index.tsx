@@ -24,6 +24,15 @@ const ContactForm = () => {
 	const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const rentingPrice = getRentingPrice(
+		appData,
+		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard'
+	);
+	const servicePrice = getServicePrice(
+		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
+		appData
+	);
+	const total = rentingPrice + servicePrice;
 
 	const submitForm = () => {
 		const response = {
@@ -40,16 +49,7 @@ const ContactForm = () => {
 				contactAgreement: contactAgreement ? 'Yes' : 'No',
 			},
 			formData: {
-				price:
-					parseInt(getRentingPrice(appData)) +
-					parseInt(
-						getServicePrice(
-							appData.pricing === 'Standard wählen'
-								? 'standard'
-								: 'plus',
-							appData
-						)
-					),
+				price: total.toFixed(2),
 				alarms: getAlarmNumber(appData),
 				houses: appData.rentings,
 				years: appData.years,

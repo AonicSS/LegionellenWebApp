@@ -55,26 +55,42 @@ export const getAlarmNumberForHouse = (data, house) => {
 };
 
 //return price for previous user
-export const rentingCostUser = (alarms: number, years: number) => {
-	const total = alarms * price[years] * years + nonUserServices.smart;
+export const rentingCostUser = (
+	alarms: number,
+	years: number,
+	type: string
+) => {
+	console.log('rentingCostUser');
+	console.log('alarms :>> ', alarms);
+	console.log('years :>> ', years);
+	console.log('type :>> ', type);
+	const total =
+		alarms * price[years] * years +
+		(type === 'plus' ? nonUserServices.smart : 0);
 
-	return total.toFixed(2);
+	return total;
 };
 
 //return price for non user
 export const rentingCostNonUser = (
 	alarms: number,
 	years: number,
-	rentings: number
+	rentings: number,
+	type: string
 ) => {
+	console.log('rentingCostNonUser');
+	console.log('alarms :>> ', alarms);
+	console.log('years :>> ', years);
+	console.log('rentings :>> ', rentings);
+	console.log('type :>> ', type);
 	const total =
 		alarms * price[years] * years +
 		nonUserServices.instalation * rentings +
 		alarms * nonUserServices.registration +
 		nonUserServices.radio * rentings +
-		nonUserServices.smart;
+		(type === 'plus' ? nonUserServices.smart : 0);
 
-	return total.toFixed(2);
+	return total;
 };
 
 //return price for non user
@@ -84,7 +100,7 @@ export const serviceCostNonUser = (
 	service: string
 ) => {
 	const total = alarms * nonUserServices[service] * years;
-	return total.toFixed(2);
+	return total;
 };
 
 //return price for users
@@ -94,18 +110,20 @@ export const serviceCostUser = (
 	service: string
 ) => {
 	const total = alarms * userServices[service] * years;
-	return total.toFixed(2);
+	return total;
 };
 
-export const getRentingPrice = (data: any) => {
+export const getRentingPrice = (data: any, type: string) => {
+	console.log('data.questions[3].choice :>> ', data.questions[3].choice);
 	if (!data.questions[3].choice) {
 		return rentingCostNonUser(
 			getAlarmNumber(data),
 			data.years,
-			data.rentings
+			data.rentings,
+			type
 		);
 	} else {
-		return rentingCostUser(getAlarmNumber(data), data.years);
+		return rentingCostUser(getAlarmNumber(data), data.years, type);
 	}
 };
 

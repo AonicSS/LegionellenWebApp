@@ -39,7 +39,7 @@ export const RentingsInput = () => {
 	return (
 		<div>
 			<label className="rwm-form__headline">
-				<h1>
+				<h1 className="rwm-form__headline">
 					{Translate(
 						intl,
 						`questions.${currentAppStep - 1}.question`
@@ -144,7 +144,9 @@ export const PostalCodeInput = () => {
 	return (
 		<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
 			<label className="rwm-form__headline tw-flex tw-flex-col tw-items-center tw-justify-center">
-				<h1>{Translate(intl, 'questions.3.question')}</h1>
+				<h1 className="rwm-form__headline">
+					{Translate(intl, 'questions.3.question')}
+				</h1>
 				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
 					Zur exakten Ermittlung der Anzahl der benötigten
 					Rauchwarnmeldern ist <br /> die Postleitzahl notwendig, da
