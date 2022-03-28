@@ -60,10 +60,6 @@ export const rentingCostUser = (
 	years: number,
 	type: string
 ) => {
-	console.log('rentingCostUser');
-	console.log('alarms :>> ', alarms);
-	console.log('years :>> ', years);
-	console.log('type :>> ', type);
 	const total =
 		alarms * price[years] * years +
 		(type === 'plus' ? nonUserServices.smart : 0);
@@ -78,11 +74,6 @@ export const rentingCostNonUser = (
 	rentings: number,
 	type: string
 ) => {
-	console.log('rentingCostNonUser');
-	console.log('alarms :>> ', alarms);
-	console.log('years :>> ', years);
-	console.log('rentings :>> ', rentings);
-	console.log('type :>> ', type);
 	const total =
 		alarms * price[years] * years +
 		nonUserServices.instalation * rentings +
@@ -114,7 +105,6 @@ export const serviceCostUser = (
 };
 
 export const getRentingPrice = (data: any, type: string) => {
-	console.log('data.questions[3].choice :>> ', data.questions[3].choice);
 	if (!data.questions[3].choice) {
 		return rentingCostNonUser(
 			getAlarmNumber(data),

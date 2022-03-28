@@ -34,6 +34,23 @@ const ContactForm = () => {
 	);
 	const total = rentingPrice + servicePrice;
 
+	const isValidDateValue = () => {
+		if (
+			gender !== '' &&
+			firstName !== '' &&
+			lastName !== '' &&
+			street !== '' &&
+			houseNumber !== '' &&
+			postalCode !== '' &&
+			residence !== '' &&
+			emailAddress !== ''
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	const submitForm = () => {
 		const response = {
 			constactData: {
@@ -324,10 +341,12 @@ const ContactForm = () => {
 					<div className="tw-flex tw-justify-center tw-items-center tw-mt-10">
 						{/* <Button text="Angebot anfordern" style="PRIMARY" /> */}
 						<button
+							disabled={isValidDateValue()}
 							onClick={() => submitForm()}
 							className={classNames(
 								'rwn-btn-continue',
-								'rwm-button--primary'
+								'rwm-button--primary',
+								isValidDateValue() ? '' : 'rwm-button--disabled'
 							)}
 						>
 							Angebot anfordern
