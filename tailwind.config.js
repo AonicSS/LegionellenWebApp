@@ -261,6 +261,19 @@ module.exports = {
 						letterSpacing: '-0.09px',
 					},
 				},
+				[`.${prefix}footer-phone`]: {
+					fontFamily: 'Univers55',
+					fontSize: '16px',
+					lineHeight: '26px',
+					letterSpacing: '0.2px',
+					color: '#4c4c4c',
+					textAlign: 'center',
+					marginTop: '50px',
+					paddingBottom: '50px',
+				},
+				[`.${prefix}bold`]: {
+					fontFamily: 'Univers65',
+				},
 			});
 		},
 		function ({ addUtilities }) {
