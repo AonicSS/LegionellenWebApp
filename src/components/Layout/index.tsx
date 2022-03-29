@@ -11,7 +11,7 @@ const Layout = ({ children, className = '', ...props }: LayoutProps) => {
 				{children}
 				<p className="tw-font-size-footer-phone">
 					Mo bis Fr von 08-18 Uhr für Ihre Fragen erreichbar:{' '}
-					<span className="tw-font-size-bold">06196 522-7677</span>
+					<span className="tw-font-size-bold">06196 522 7040</span>
 				</p>
 			</main>
 		</>

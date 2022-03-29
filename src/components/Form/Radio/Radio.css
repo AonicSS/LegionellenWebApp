@@ -7,7 +7,7 @@
 }
 
 .rwm-radio__container {
-	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-2 tw-justify-center tw-items-center tw-padding-top;
+	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-2 tw-justify-center tw-items-center;
 }
 
 .rwm-radio__container-select {

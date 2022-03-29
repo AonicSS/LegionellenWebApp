@@ -45,7 +45,7 @@ const Radio = () => {
 	return (
 		<div className="rwm-radio">
 			<label className="rwm-form__headline">{questionText}</label>
-			<fieldset className="rwm-radio__container">
+			<fieldset className="rwm-radio__container lg:tw-mt-16 xl:tw-mt-16">
 				<div
 					className="rwm-radio__container-select tw-container-radio-first"
 					onClick={() => handleChange('true')}
@@ -53,7 +53,7 @@ const Radio = () => {
 					<div className="rwm-radio__container-icon-check">
 						<Check fill="#4c4c4c" />
 					</div>
-					<label htmlFor="Ja" className="rwm-radio__label">
+					<label htmlFor="Ja" className="rwm-radio__label tw-mb-1">
 						Ja
 					</label>
 					<div className="rwm-form__container-input">
@@ -79,7 +79,7 @@ const Radio = () => {
 					<div className="rwm-radio__container-icon-decline">
 						<Decline fill="#4c4c4c" />
 					</div>
-					<label htmlFor="Nein" className="rwm-radio__label">
+					<label htmlFor="Nein" className="rwm-radio__label tw-mb-1">
 						Nein
 					</label>
 					<div className="rwm-form__container-input">

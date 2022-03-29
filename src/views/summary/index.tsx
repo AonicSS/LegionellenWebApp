@@ -43,7 +43,7 @@ const Summary = () => {
 						</div>
 						<label className="rwm-form__headline tw-justify-start">
 							<h1 className="rwm-form__headline">
-								Zusammenfassung
+								Ihr Rauchwarnmelder-Angebot
 							</h1>
 						</label>
 					</div>
@@ -67,13 +67,13 @@ const Summary = () => {
 								{appData.questions[1].choice ? 'Ja' : 'Nein'}
 							</div> */}
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
-								Bereits RWM Service bei Techem
+								Kunde bei Techem
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.rentings}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
-								Wohneinheiten
+								Wohnungen
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.postalCode.code}
@@ -95,7 +95,7 @@ const Summary = () => {
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-								Ihre Ausstattung
+								Ihr Produktpaket
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{`Gesamtpreis Rauchwarnmelder-Miete &`}
@@ -133,7 +133,7 @@ const Summary = () => {
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-								Wie möchten Sie fortfahren?
+								Ihr Angebot ist nur noch einen Schritt entfernt!
 							</div>
 							<div className="tw-flex tw-flex-col tw-content-center tw-items-center tw-align-items-center tw-pt-10">
 								<Button

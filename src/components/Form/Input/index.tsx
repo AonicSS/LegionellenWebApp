@@ -20,6 +20,7 @@ import { ReactComponent as Info } from '../../../icons/Info.svg';
 import { ReactComponent as Chevron } from '../../../icons/chevron-left.svg';
 
 import './Input.css';
+import classNames from 'classnames';
 
 export const RentingsInput = () => {
 	const intl = useIntl();
@@ -146,12 +147,12 @@ export const PostalCodeInput = () => {
 		<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
 			<label className="rwm-form__headline tw-flex tw-flex-col tw-items-center tw-justify-center">
 				<h1 className="rwm-form__headline">
-					{Translate(intl, 'questions.3.question')}
+					{Translate(intl, 'questions.1.question')}
 				</h1>
 				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
-					Zur exakten Ermittlung der Anzahl der benötigten
-					Rauchwarnmeldern ist <br /> die Postleitzahl notwendig, da
-					verschiedene gesetzliche Bestimmungen gelten.
+					Rauchwarnmeldern unterscheiden sich je nach Bundesland.{' '}
+					<br /> Um die genaue Anzahl ermitteln zu können, ist daher
+					die Angabe der Postleitzahl nötig.
 				</h2>
 			</label>
 			<fieldset className="rwm-form">
@@ -261,21 +262,25 @@ export const RoomsInput = () => {
 		<div className="tw-justify-col tw-w-full tw-mb-18">
 			<label
 				ref={myRef}
-				className="tw-flex tw-flex-col tw-justify-center tw-items-center"
+				className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-1"
 			>
 				<h1 className="tw-font-size-headline">{questionText}</h1>
-				<br />
 			</label>
 			<div className="tw-container-room">
 				{question?.answers?.map((r, i) => {
 					if (r.house <= curentRenting) {
 						return (
-							<div key={i}>
+							<div
+								className={classNames(
+									`${!r.required ? 'tw-mb-16' : ''}`
+								)}
+								key={i}
+							>
 								{r.house <= curentRenting &&
 								r.name === 'bedrooms' ? (
 									<label
 										ref={myRef}
-										className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-6 tw-mt-14"
+										className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-10"
 									>
 										<h2 className="tw-font-size-label">
 											{r.house}. Wohneinheit
@@ -284,7 +289,7 @@ export const RoomsInput = () => {
 								) : null}
 								<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-mb-7">
 									<div className="tw-flex tw-justify-start tw-items-center tw-mb-4">
-										<div className="tw-font-size-rooms-name">
+										<div className="tw-font-size-rooms-name tw-ml-6 md:tw-ml-0 lg:tw-ml-0 xl:tw-ml-0">
 											{Translate(
 												intl,
 												`questions.${
@@ -348,19 +353,17 @@ export const RoomsInput = () => {
 														: 'recommended'
 												}`
 											)}
-											{!r.required ? (
-												<Info
-													onClick={() =>
-														dispatch({
-															type: SET_MODAL,
-															payload: {
-																showModal: true,
-															},
-														})
-													}
-													className="rwm-btn-info"
-												/>
-											) : null}
+											<Info
+												onClick={() =>
+													dispatch({
+														type: SET_MODAL,
+														payload: {
+															showModal: true,
+														},
+													})
+												}
+												className="rwm-btn-info"
+											/>
 										</div>
 									</div>
 								</div>
