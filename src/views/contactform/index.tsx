@@ -43,7 +43,9 @@ const ContactForm = () => {
 			houseNumber !== '' &&
 			postalCode !== '' &&
 			residence !== '' &&
-			emailAddress !== ''
+			emailAddress !== '' &&
+			marketingAgreement === true &&
+			contactAgreement === true
 		) {
 			return true;
 		} else {
@@ -297,9 +299,22 @@ const ContactForm = () => {
 							}
 						>
 							<p className="tw-font-size-label-small tw-pl-6">
-								Kontaktaufnahme – Lorem ipsum dolor sit amet,
-								consetetur sadipscing elitr, sed diam nonumy
-								eirmod tempor invidunt ut labore et dolore magna
+								Mit dem Absenden dieses Formulars willige ich
+								darin ein, dass die Techem Energy Services GmbH,
+								sowie eventuell deren Tochtergesellschaften bzw.
+								die mit ihr verbundenen Gesellschaften, die von
+								mir oben eingetragenen Daten zum Zweck der
+								Bearbeitung dieser Anfrage und ggf. für eine
+								erforderliche Kontaktaufnahme verarbeitet. Ich
+								bestätige weiter, dass ich zur Überlassung
+								vorgenannter Kontaktdaten berechtigt bin. Diese
+								Einwilligung erfolgt freiwillig und ist mit
+								Wirkung für die Zukunft jederzeit widerrufbar.
+								Einzelheiten zum Datenschutz bei der Techem
+								Energy Services GmbH entnehmen Sie bitte dem{' '}
+								<a href="https://www.techem.com/de/de/datenschutzhinweis">
+									Datenschutzhinweis.
+								</a>
 							</p>
 						</div>
 					</div>
@@ -323,10 +338,23 @@ const ContactForm = () => {
 							}
 						>
 							<p className="tw-font-size-label-small tw-pl-6">
-								Einwilligung zur Marketing – Lorem ipsum dolor
-								sit amet, consetetur sadipscing elitr, sed diam
-								nonumy eirmod tempor invidunt ut labore et
-								dolore magna
+								Mit dem Absenden dieses Formulars willige ich
+								ein, dass die Techem Energy Services GmbH, sowie
+								deren Tochtergesellschaften und die mit ihr
+								verbundenen Gesellschaften, die von mir oben
+								eingetragenen Daten zum Zweck der Bearbeitung
+								dieser Anfrage, der werblichen Ansprache per
+								E-Mail und der Auswertung zu Marketingzwecken
+								verarbeitet werden. Ich bestätige weiter, dass
+								ich zur Überlassung vorgenannter Kontaktdaten
+								berechtigt bin. Diese Einwilligung erfolgt
+								freiwillig und ist mit Wirkung für die Zukunft
+								jederzeit widerrufbar. Einzelheiten zum
+								Datenschutz bei der Techem Energy Services GmbH
+								entnehmen Sie bitte den{' '}
+								<a href="https://www.techem.com/de/de/datenschutzhinweis">
+									Datenschutzbestimmungen.
+								</a>
 							</p>
 						</div>
 					</div>

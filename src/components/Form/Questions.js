@@ -15,7 +15,7 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Wo befinden sich Ihre Wohneinheiten?',
+		question: 'Wo befindet sich die auszustattende Wohnung?',
 		choice: '',
 		type: 'input',
 		btnActive: false,
@@ -30,7 +30,7 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Wie viele Geräte werden gewünscht?',
+		question: 'Bitte wählen Sie die Anzahl der Geräte',
 		choice: 1,
 		type: 'input',
 		btnActive: true,
@@ -75,8 +75,7 @@ export const questions = [
 		],
 	},
 	{
-		question:
-			'Sind Sie für Ihre Heizkostenabrechnung bereits Kunde bei Techem?',
+		question: 'Sind Sie Kunde der Techem Heizkostenabrechnung?',
 		choice: null,
 		type: 'radio',
 		btnActive: false,

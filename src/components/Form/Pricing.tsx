@@ -64,12 +64,11 @@ const pricing = [
 		cheapest: true,
 	},
 ];
+export interface PricingProps extends React.HTMLProps<HTMLDivElement> {
+	modal?: boolean;
+}
 
-const Pricing = () => {
-	// const isModalVisible = useSelector(
-	// 	(state: AppReduxStoreProps) => state.appData.showModal
-	// );
-
+const Pricing = ({ modal }: PricingProps) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 
 	return (
@@ -84,87 +83,169 @@ const Pricing = () => {
 
 					const total = rentingPrice + servicePrice;
 
-					return (
-						<div
-							key={p.name}
-							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6',
-								`${p.position}`
-							)}
-						>
-							{p.cheapest && (
-								<div className="rwm-best-price">
-									Beste Preis Leistung
+					console.log('modal :>> ', modal);
+					console.log('p.name :>> ', p.name);
+					console.log('appData.pricing :>> ', appData.pricing);
+
+					if (!modal) {
+						return (
+							<div
+								key={p.name}
+								className={classNames(
+									'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6',
+									`${p.position}`
+								)}
+							>
+								{p.cheapest && (
+									<div className="rwm-best-price">
+										Beste Preis Leistung
+									</div>
+								)}
+								<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
+									{`Gesamtpreis Rauchwarnmelder-Miete &`}{' '}
+									{p.name}
 								</div>
-							)}
-							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-								{`Gesamtpreis Rauchwarnmelder-Miete &`} {p.name}
+								<div className="tw-container-pricing-label tw-font-size-price-large">
+									{total.toFixed(2)} €
+								</div>
+								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+									pro Jahr / Gerät
+								</div>
+								<div className="tw-container-pricing-label tw-font-size-pricing-label">
+									Preis Rauchwarnmelder-Miete
+								</div>
+								<div className="tw-container-pricing-label tw-font-size-price-small">
+									{`Nur ${rentingPrice.toFixed(2)} €`}
+								</div>
+								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+									pro Jahr / Gerät
+								</div>
+								{p.alarmFeatures.map((f) => {
+									// if (isModalVisible || index < 3) {
+									return (
+										<ul
+											key={f}
+											className="tw-container-pricing-list tw-list-disc tw-ml-5"
+										>
+											<li className="tw-font-size-pricing-body">
+												<span>{f}</span>
+											</li>
+										</ul>
+									);
+									// } else {
+									// 	return null;
+									// }
+								})}
+								<div className="tw-container-pricing-label tw-font-size-pricing-label">
+									Preis Rauchwarnmelder-Service
+								</div>
+								<div className="tw-container-pricing-label tw-font-size-price-small">
+									{`Service ${servicePrice.toFixed(2)} €`}
+								</div>
+								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+									pro Jahr / Gerät
+								</div>
+								{p.serviceFeatures.map((f) => {
+									// if (isModalVisible || index < 3) {
+									return (
+										<ul
+											key={f}
+											className="tw-container-pricing-list tw-list-disc tw-ml-5"
+										>
+											<li className="tw-font-size-pricing-body">
+												<span>{f}</span>
+											</li>
+										</ul>
+									);
+									// } else {
+									// 	return null;
+									// }
+								})}
+								<div className="tw-flex tw-justify-center">
+									<Button
+										text={p.text}
+										style={p.buttonStyle}
+										pricing={p.name}
+									/>
+								</div>
 							</div>
-							<div className="tw-container-pricing-label tw-font-size-price-large">
-								{total.toFixed(2)} €
-							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-								pro Jahr / Gerät
-							</div>
-							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Preis Rauchwarnmelder-Miete
-							</div>
-							<div className="tw-container-pricing-label tw-font-size-price-small">
-								{`Nur ${rentingPrice.toFixed(2)} €`}
-							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-								pro Jahr / Gerät
-							</div>
-							{p.alarmFeatures.map((f) => {
-								// if (isModalVisible || index < 3) {
-								return (
-									<ul
-										key={f}
-										className="tw-container-pricing-list tw-list-disc tw-ml-5"
-									>
-										<li className="tw-font-size-pricing-body">
-											<span>{f}</span>
-										</li>
-									</ul>
-								);
-								// } else {
-								// 	return null;
-								// }
-							})}
-							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								Preis Rauchwarnmelder-Service
-							</div>
-							<div className="tw-container-pricing-label tw-font-size-price-small">
-								{`Service ${servicePrice.toFixed(2)} €`}
-							</div>
-							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-								pro Jahr / Gerät
-							</div>
-							{p.serviceFeatures.map((f) => {
-								// if (isModalVisible || index < 3) {
-								return (
-									<ul
-										key={f}
-										className="tw-container-pricing-list tw-list-disc tw-ml-5"
-									>
-										<li className="tw-font-size-pricing-body">
-											<span>{f}</span>
-										</li>
-									</ul>
-								);
-								// } else {
-								// 	return null;
-								// }
-							})}
-							<div className="tw-flex tw-justify-center">
-								<Button
-									text={p.text}
-									style={p.buttonStyle}
-									pricing={p.name}
-								/>
-							</div>
-						</div>
-					);
+						);
+					} else {
+						if (p.name === appData.pricing) {
+							return (
+								<div
+									key={p.name}
+									className={classNames(
+										'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 tw-container-pricing-3'
+									)}
+								>
+									{/* {p.cheapest && (
+										<div className="rwm-best-price">
+											Beste Preis Leistung
+										</div>
+									)} */}
+									<div className="tw-container-pricing-modal">
+										<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
+											{`Gesamtpreis Rauchwarnmelder-Miete &`}{' '}
+											{p.name}
+										</div>
+										<div className="tw-container-pricing-label tw-font-size-price-large">
+											{total.toFixed(2)} €
+										</div>
+										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+											pro Jahr / Gerät
+										</div>
+										<div className="tw-container-pricing-label tw-font-size-pricing-label">
+											Preis Rauchwarnmelder-Miete
+										</div>
+										<div className="tw-container-pricing-label tw-font-size-price-small">
+											{`Nur ${rentingPrice.toFixed(2)} €`}
+										</div>
+										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+											pro Jahr / Gerät
+										</div>
+										{p.alarmFeatures.map((f) => {
+											return (
+												<ul
+													key={f}
+													className="tw-container-pricing-list tw-list-disc tw-ml-5"
+												>
+													<li className="tw-font-size-pricing-body">
+														<span>{f}</span>
+													</li>
+												</ul>
+											);
+										})}
+										<div className="tw-container-pricing-label tw-font-size-pricing-label">
+											Preis Rauchwarnmelder-Service
+										</div>
+										<div className="tw-container-pricing-label tw-font-size-price-small">
+											{`Service ${servicePrice.toFixed(
+												2
+											)} €`}
+										</div>
+										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
+											pro Jahr / Gerät
+										</div>
+										{p.serviceFeatures.map((f) => {
+											return (
+												<ul
+													key={f}
+													className="tw-container-pricing-list tw-list-disc tw-ml-5"
+												>
+													<li className="tw-font-size-pricing-body">
+														<span>{f}</span>
+													</li>
+												</ul>
+											);
+										})}
+									</div>
+								</div>
+							);
+						} else {
+							return null;
+						}
+					}
 				})}
 			</div>
 		</div>

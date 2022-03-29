@@ -28,13 +28,15 @@ const Six = () => {
 
 	return (
 		<div className="tw-flex tw-flex-col">
-			<label className="rwm-form__headline">
-				<h1>{Translate(intl, `questions.4.question`)}</h1>
+			<label>
+				<h1 className="rwm-form__headline">
+					{Translate(intl, `questions.4.question`)}
+				</h1>
 			</label>
 
 			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24 tw-mb-14 tw-mt-10 md:tw-mt-0">
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-					<label htmlFor="yes" className="rwm-radio__label tw-mb-4">
+					<label htmlFor="yes" className="rwm-radio__label tw-mb-6">
 						5 Jahre
 					</label>
 					<input
@@ -50,7 +52,7 @@ const Six = () => {
 					/>
 				</div>
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-					<label htmlFor="yes" className="rwm-radio__label tw-mb-4">
+					<label htmlFor="yes" className="rwm-radio__label tw-mb-6">
 						8 Jahre
 					</label>
 					<input
@@ -66,7 +68,7 @@ const Six = () => {
 					/>
 				</div>
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-					<label htmlFor="yes" className="rwm-radio__label tw-mb-4">
+					<label htmlFor="yes" className="rwm-radio__label tw-mb-6">
 						10 Jahre
 					</label>
 					<input

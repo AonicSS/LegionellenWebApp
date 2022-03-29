@@ -17,11 +17,11 @@ const Calculator = () => {
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<Stepper />
 			</section>
-			<section className="rwm-calculator__page-section tw-mt-12">
+			<section className="rwm-calculator__page-section tw-mt-8">
 				<Form />
 			</section>
 			{currentAppStep !== 5 ? (
-				<section className="rwm-calculator__page-section tw-margin-top">
+				<section className="rwm-calculator__page-section tw-mt-14">
 					<Button style="NEXT" />
 				</section>
 			) : null}

@@ -92,22 +92,6 @@ const Modal = () => {
 										)}
 									</p>
 								</div>
-								<div className="rwm-overlay__headline-container tw-mt-6">
-									<h1 className="rwm-overlay__headline">
-										{Translate(
-											intl,
-											`overlay.${currentAppStep}.headline.2`
-										)}
-									</h1>
-								</div>
-								<div className="rwm-overlay__body-container">
-									<p className="rwm-overlay__body">
-										{Translate(
-											intl,
-											`overlay.${currentAppStep}.body.2`
-										)}
-									</p>
-								</div>
 							</>
 						)}
 						{currentAppStep === 5 ||
@@ -144,7 +128,7 @@ const Modal = () => {
 						)}
 						{currentAppStep === 5 && (
 							<div className="rwm-overlay__btn-container-continue">
-								<Pricing />
+								<Pricing modal={true} />
 							</div>
 						)}
 					</div>

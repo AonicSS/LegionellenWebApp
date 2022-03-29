@@ -111,6 +111,7 @@ module.exports = {
 					fontFamily: 'Univers55',
 					fontSize: '18px',
 					letterSpacing: '0px',
+					lineHeight: '25px',
 					color: '#222222',
 					[`@media (min-width: ${md})`]: {
 						fontSize: '16px',
@@ -184,7 +185,7 @@ module.exports = {
 				[`.${prefix}rooms-label`]: {
 					fontFamily: 'Univers55',
 					fontSize: '16px',
-					lineHeight: '26px',
+					lineHeight: '12px',
 					letterSpacing: '-0.1px',
 					color: '#4c4c4c',
 				},
@@ -336,7 +337,8 @@ module.exports = {
 				},
 				[`.${prefix}-pricing`]: {
 					position: 'relative',
-					width: '330px',
+					width: '315px',
+					// height: '530px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
 					marginLeft: 'auto',
 					marginRight: 'auto',
@@ -367,6 +369,14 @@ module.exports = {
 					[`@media (min-width: ${lg})`]: {
 						width: '1000px',
 						paddingLeft: '150px',
+					},
+				},
+				[`.${prefix}-pricing-modal`]: {
+					overflowY: 'scroll',
+					position: 'relative',
+					height: '450px',
+					[`@media (min-width: ${lg})`]: {
+						height: '600px',
 					},
 				},
 				[`.${prefix}-pricing-mobile`]: {
@@ -461,6 +471,7 @@ module.exports = {
 		function ({ addUtilities, theme }) {
 			const prefix = 'overlay-size';
 			const lg = theme('screens.lg');
+			const xl = theme('screens.');
 
 			addUtilities({
 				[`.${prefix}-1`]: {
@@ -474,7 +485,7 @@ module.exports = {
 				},
 				[`.${prefix}-2`]: {
 					width: '300px',
-					height: '334px',
+					height: '310px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '676px',
@@ -483,20 +494,24 @@ module.exports = {
 				},
 				[`.${prefix}-3`]: {
 					width: '300px',
-					height: '1750px',
+					height: '545px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
-						width: '984px',
-						height: '945px',
+						width: '470px',
+						height: '745px',
+					},
+					[`@media (min-width: ${xl})`]: {
+						width: '470px',
+						height: '745px',
 					},
 				},
 				[`.${prefix}-5`]: {
 					width: '300px',
-					height: '575px',
+					height: '570px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '984px',
-						height: '335px',
+						height: '240px',
 					},
 				},
 			});
