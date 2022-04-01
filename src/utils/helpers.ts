@@ -36,7 +36,9 @@ export const getAlarmNumber = (data) => {
 	let alarms = 0;
 
 	data.questions['2'].answers.forEach((element) => {
-		alarms = alarms + element.amount;
+		if (element.house <= data.maxRentings) {
+			alarms = alarms + element.amount;
+		}
 	});
 
 	return alarms;
@@ -61,8 +63,9 @@ export const rentingCostUser = (
 	type: string
 ) => {
 	const total =
-		alarms * price[years] * years +
-		(type === 'plus' ? nonUserServices.smart : 0);
+		(alarms * price[years] * years +
+			(type === 'plus' ? nonUserServices.smart / alarms : 0)) /
+		years;
 
 	return total;
 };
@@ -75,11 +78,12 @@ export const rentingCostNonUser = (
 	type: string
 ) => {
 	const total =
-		alarms * price[years] * years +
-		nonUserServices.instalation * rentings +
-		alarms * nonUserServices.registration +
-		nonUserServices.radio * rentings +
-		(type === 'plus' ? nonUserServices.smart : 0);
+		(alarms * price[years] * years +
+			nonUserServices.instalation * rentings +
+			alarms * nonUserServices.registration +
+			nonUserServices.radio * rentings +
+			(type === 'plus' ? nonUserServices.smart / alarms : 0)) /
+		years;
 
 	return total;
 };
@@ -90,7 +94,7 @@ export const serviceCostNonUser = (
 	years: number,
 	service: string
 ) => {
-	const total = alarms * nonUserServices[service] * years;
+	const total = (alarms * nonUserServices[service] * years) / years;
 	return total;
 };
 
@@ -100,7 +104,7 @@ export const serviceCostUser = (
 	years: number,
 	service: string
 ) => {
-	const total = alarms * userServices[service] * years;
+	const total = (alarms * userServices[service] * years) / years;
 	return total;
 };
 

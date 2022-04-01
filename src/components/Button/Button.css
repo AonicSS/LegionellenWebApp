@@ -29,13 +29,12 @@
 	@apply tw-bg-btnBgColorActive
 	tw-btn-border-active;
 	width: fit-content;
-	height: 45px;
 	line-height: 17px;
 	background-color: #ffffff;
 	color: #e20613;
 	font-size: 14px;
 	border-radius: 30px;
-	margin-top: 15px;
+	margin-top: 44px;
 }
 
 .rwm-button--form-link {
@@ -62,12 +61,12 @@
 }
 
 .rwm-button--link {
-	@apply tw-btn-font;
+	@apply tw-btn-font-thin;
 	color: #e20613;
 	text-decoration: underline;
 	font-size: 16px;
 	line-height: 26px;
-	margin-top: 55px;
+	margin-top: 30px;
 }
 
 .rwm-button--disabled {
@@ -119,7 +118,7 @@
 	fill: #e20613;
 	width: 20px;
 	height: 20px;
-	margin: -4px 0 0px 7px;
+	margin: 3px 0 0px 7px;
 	cursor: pointer;
 }
 
@@ -127,7 +126,7 @@
 	fill: #e20613;
 	width: 20px;
 	height: 20px;
-	margin: 5px 0 0px 7px;
+	margin: 7px 0 0px 7px;
 	transform: rotate(270deg);
 	cursor: pointer;
 }

@@ -9,10 +9,10 @@ const Layout = ({ children, className = '', ...props }: LayoutProps) => {
 		<>
 			<main className={className} {...props}>
 				{children}
-				<p className="tw-font-size-footer-phone">
+				{/* <p className="tw-font-size-footer-phone">
 					Mo bis Fr von 08-18 Uhr für Ihre Fragen erreichbar:{' '}
 					<span className="tw-font-size-bold">06196 522 7040</span>
-				</p>
+				</p> */}
 			</main>
 		</>
 	);

@@ -316,7 +316,7 @@ module.exports = {
 					borderRadius: '5px',
 					backgroundColor: ' #f3f3f3',
 					[`@media (min-width: ${lg})`]: {
-						width: '224px',
+						width: '150px',
 						height: 'auto',
 						marginTop: '0px',
 						backgroundColor: '#ffffff',
@@ -329,10 +329,11 @@ module.exports = {
 					borderRadius: '5px',
 					backgroundColor: ' #f3f3f3',
 					[`@media (min-width: ${lg})`]: {
-						width: '224px',
+						width: '150px',
 						height: 'auto',
 						marginTop: '0px',
 						backgroundColor: '#ffffff',
+						alignItems: 'center',
 					},
 				},
 				[`.${prefix}-pricing`]: {
@@ -343,10 +344,10 @@ module.exports = {
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					[`@media (min-width: ${lg})`]: {
-						width: '464px',
+						width: '364px',
 					},
 					[`@media (min-width: ${xl})`]: {
-						width: '464px',
+						width: '364px',
 					},
 				},
 				[`.${prefix}-summary`]: {
@@ -497,11 +498,11 @@ module.exports = {
 					height: '545px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
-						width: '470px',
+						width: '368px',
 						height: '745px',
 					},
 					[`@media (min-width: ${xl})`]: {
-						width: '470px',
+						width: '368px',
 						height: '745px',
 					},
 				},
@@ -527,7 +528,7 @@ module.exports = {
 				[`.${prefix}-close`]: {
 					width: '308px',
 					height: '54px',
-					padding: '13px 28px 15px 30px',
+					padding: '13px 30px 15px 30px',
 				},
 			});
 		},
@@ -560,6 +561,13 @@ module.exports = {
 					lineHeight: '26px',
 					letterSpacing: '0.3px',
 					color: '#b2b2b1',
+					textAlign: 'center',
+				},
+				[`.${prefix}-thin`]: {
+					fontFamily: 'Univers55',
+					fontSize: '16px',
+					lineHeight: '26px',
+					letterSpacing: '0.3px',
 					textAlign: 'center',
 				},
 			});

@@ -7,7 +7,11 @@
 }
 
 .rwm-radio__container {
-	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-2 tw-justify-center tw-items-center;
+	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-2 tw-justify-center tw-items-center lg:tw-gap-10;
+}
+
+.rwm-radio__container-years {
+	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-3 tw-justify-center tw-items-center; width: 357px; margin: auto;
 }
 
 .rwm-radio__container-select {
@@ -15,19 +19,19 @@
 }
 
 .rwm-radio__container-icon-check {
-	@apply lg:tw-flex tw-justify-center tw-hidden lg:tw-visible tw-items-center lg:tw-mb-8;
+	@apply lg:tw-flex tw-justify-center tw-hidden lg:tw-visible tw-items-center;
 	width: 42px;
 	height: 28px;
 }
 
 .rwm-radio__container-icon-decline {
-	@apply lg:tw-flex tw-justify-center tw-hidden lg:tw-visible tw-items-center lg:tw-mb-8;
+	@apply lg:tw-flex tw-justify-center tw-hidden lg:tw-visible tw-items-center;
 	width: 28px;
 	height: 28px;
 }
 
 .rwm-radio__label {
-	@apply tw-flex tw-justify-center tw-items-center lg:tw-block tw-font-size-label lg:tw-mt-8 tw-text-center;
+	@apply tw-flex tw-justify-center tw-items-center lg:tw-block tw-font-size-label lg:tw-mt-6 tw-text-center;
 }
 
 .rwm-radio__main-label {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Translate from '../../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_ANSWER, SET_MODAL } from '../../../redux/actions/App';
+import { SET_ANSWER } from '../../../redux/actions/App';
 import { ReactComponent as Check } from '../../../icons/check.svg';
 import { ReactComponent as Decline } from '../../../icons/times.svg';
 
@@ -27,19 +27,18 @@ const Radio = () => {
 			state.appData.questions[currentAppStep - 1].choice
 	);
 
-	const handleChange = (value: string) => {
-		const val = value === 'true' ? true : false;
+	const handleChange = (value: boolean) => {
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
 				questionName: questionText,
-				choice: val,
+				choice: value,
 				btnActive: true,
 			},
 		});
-		if (val && currentAppStep === 2) {
-			dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		}
+		// if (val && currentAppStep === 2) {
+		// 	dispatch({ type: SET_MODAL, payload: { showModal: true } });
+		// }
 	};
 
 	return (
@@ -48,7 +47,7 @@ const Radio = () => {
 			<fieldset className="rwm-radio__container lg:tw-mt-16 xl:tw-mt-16">
 				<div
 					className="rwm-radio__container-select tw-container-radio-first"
-					onClick={() => handleChange('true')}
+					onClick={() => handleChange(true)}
 				>
 					<div className="rwm-radio__container-icon-check">
 						<Check fill="#4c4c4c" />
@@ -58,23 +57,18 @@ const Radio = () => {
 					</label>
 					<div className="rwm-form__container-input">
 						<input
-							onChange={(e) => handleChange(e.target.value)}
+							onChange={() => handleChange(true)}
 							name="Ja"
 							id="Ja"
 							type="radio"
-							value="true"
 							checked={currentChoice === true}
-							className={` ${
-								currentChoice
-									? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-							} `}
+							className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
 						/>
 					</div>
 				</div>
 				<div
 					className="rwm-radio__container-select tw-container-radio"
-					onClick={() => handleChange('false')}
+					onClick={() => handleChange(false)}
 				>
 					<div className="rwm-radio__container-icon-decline">
 						<Decline fill="#4c4c4c" />
@@ -84,17 +78,12 @@ const Radio = () => {
 					</label>
 					<div className="rwm-form__container-input">
 						<input
-							onChange={(e) => handleChange(e.target.value)}
+							onChange={() => handleChange(false)}
 							name="Nein"
 							id="Nein"
 							type="radio"
-							value="false"
 							checked={currentChoice === false}
-							className={` ${
-								currentChoice === false
-									? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-									: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-							} `}
+							className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
 						/>
 					</div>
 				</div>

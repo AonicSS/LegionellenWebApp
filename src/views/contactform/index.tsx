@@ -70,7 +70,7 @@ const ContactForm = () => {
 			formData: {
 				price: total.toFixed(2),
 				alarms: getAlarmNumber(appData),
-				houses: appData.rentings,
+				houses: appData.maxRentings,
 				years: appData.years,
 				code: appData.postalCode.code,
 				servicePricing: appData.pricing,
@@ -102,12 +102,6 @@ const ContactForm = () => {
 						<h1 className="rwm-form__headline">
 							Angebot anfordern
 						</h1>
-						{/* <h2 className="tw-font-size-info tw-text-center tw-mt-5">
-							Lorem ipsum dolor sit amet, consetetur sadipscing
-							elitr, sed diam nonumy eirmod tempor invidunt ut
-							labore et dolore magna aliquyam erat, sed diam
-							voluptua.
-						</h2> */}
 					</label>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
 						<h4 className="tw-font-size-sub-title">Anrede*</h4>
@@ -367,9 +361,8 @@ const ContactForm = () => {
 					)}
 
 					<div className="tw-flex tw-justify-center tw-items-center tw-mt-10">
-						{/* <Button text="Angebot anfordern" style="PRIMARY" /> */}
 						<button
-							disabled={isValidDateValue()}
+							disabled={!isValidDateValue()}
 							onClick={() => submitForm()}
 							className={classNames(
 								'rwn-btn-continue',
