@@ -70,7 +70,7 @@ const ContactForm = () => {
 			formData: {
 				price: total.toFixed(2),
 				alarms: getAlarmNumber(appData),
-				houses: appData.rentings,
+				houses: appData.maxRentings,
 				years: appData.years,
 				code: appData.postalCode.code,
 				servicePricing: appData.pricing,
@@ -102,18 +102,12 @@ const ContactForm = () => {
 						<h1 className="rwm-form__headline">
 							Angebot anfordern
 						</h1>
-						{/* <h2 className="tw-font-size-info tw-text-center tw-mt-5">
-							Lorem ipsum dolor sit amet, consetetur sadipscing
-							elitr, sed diam nonumy eirmod tempor invidunt ut
-							labore et dolore magna aliquyam erat, sed diam
-							voluptua.
-						</h2> */}
 					</label>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
 						<h4 className="tw-font-size-sub-title">Anrede*</h4>
 					</div>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
-						<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-3">
+						<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
 							<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
 								<input
 									onClick={() => setGender('Frau')}
@@ -176,7 +170,7 @@ const ContactForm = () => {
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Name</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Vorname*
@@ -202,10 +196,10 @@ const ContactForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
+					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Anschrift</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Straße*
@@ -231,7 +225,7 @@ const ContactForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Postleitzahl*
@@ -262,7 +256,7 @@ const ContactForm = () => {
 							E-Mail Adresse*
 						</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 tw-mt-2">
 						<div
 							className={
 								window.innerWidth > 768
@@ -367,9 +361,8 @@ const ContactForm = () => {
 					)}
 
 					<div className="tw-flex tw-justify-center tw-items-center tw-mt-10">
-						{/* <Button text="Angebot anfordern" style="PRIMARY" /> */}
 						<button
-							disabled={isValidDateValue()}
+							disabled={!isValidDateValue()}
 							onClick={() => submitForm()}
 							className={classNames(
 								'rwn-btn-continue',

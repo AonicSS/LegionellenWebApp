@@ -70,7 +70,7 @@ const Summary = () => {
 								Kunde bei Techem
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{appData.rentings}
+								{appData.maxRentings}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Wohnungen
@@ -135,7 +135,7 @@ const Summary = () => {
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								Ihr Angebot ist nur noch einen Schritt entfernt!
 							</div>
-							<div className="tw-flex tw-flex-col tw-content-center tw-items-center tw-align-items-center tw-pt-10">
+							<div className="tw-flex tw-flex-col tw-content-left tw-items-start tw-align-items-start tw-pt-3 tw-pl-6">
 								<Button
 									text="Angebot anfordern"
 									style="FORM-LINK-PRIMARY"

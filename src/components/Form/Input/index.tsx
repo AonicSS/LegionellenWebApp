@@ -47,7 +47,7 @@ export const RentingsInput = () => {
 						`questions.${currentAppStep - 1}.question`
 					)}
 				</h1>
-				<h2 className="tw-font-size-overlay-body tw-text-center">
+				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
 					{Translate(intl, `questions.0.sublabel`)}
 				</h2>
 			</label>
@@ -268,7 +268,7 @@ export const RoomsInput = () => {
 			</label>
 			<div className="tw-container-room">
 				{question?.answers?.map((r, i) => {
-					if (r.house <= curentRenting) {
+					if (r.house <= maxRentings) {
 						return (
 							<div
 								className={classNames(
@@ -323,7 +323,7 @@ export const RoomsInput = () => {
 												disabled
 												type="number"
 												name="rooms"
-												className="tw-input tw-font-size-input focus:tw-ring-transparent"
+												className="tw-input tw-font-size-input focus:tw-ring-transparent tw-mb-4 md:tw-mb-0 lg:tw-mb-0 xl:tw-mb-0"
 												value={r.amount?.toString()}
 											/>
 										</div>
@@ -362,7 +362,7 @@ export const RoomsInput = () => {
 														},
 													})
 												}
-												className="rwm-btn-info"
+												className="rwm-btn-info tw-mt-[-4px]"
 											/>
 										</div>
 									</div>

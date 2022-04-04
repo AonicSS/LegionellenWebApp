@@ -5,19 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SET_YEARS } from '../../redux/actions/App';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import Pricing from './Pricing';
-import Button from '../Button';
 
 const Six = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
 
-	const handleClick = useCallback((e: any) => {
-		const years = e.target.value;
-
+	const handleClick = useCallback((value: any) => {
 		dispatch({
 			type: SET_YEARS,
 			payload: {
-				years: parseInt(years),
+				years: value,
 			},
 		});
 	}, []);
@@ -34,54 +31,63 @@ const Six = () => {
 				</h1>
 			</label>
 
-			<fieldset className="tw-grid tw-grid-cols-3 tw-gap-24 tw-mb-14 tw-mt-10 md:tw-mt-0">
+			<fieldset className="rwm-radio__container-years tw-mb-14 tw-mt-10 md:tw-mt-0">
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-					<label htmlFor="yes" className="rwm-radio__label tw-mb-6">
-						5 Jahre
-					</label>
-					<input
-						onClick={(event) => handleClick(event)}
-						type="radio"
-						value="5"
-						checked={years === 5}
-						className={` ${
-							years === 5
-								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-						} `}
-					/>
+					<div
+						className="rwm-radio__container-select tw-container-radio"
+						onClick={() => handleClick(5)}
+					>
+						<label htmlFor="yes" className="rwm-radio__label">
+							5 Jahre
+						</label>
+						<div className="rwm-form__container-input">
+							<input
+								onClick={() => handleClick(5)}
+								type="radio"
+								value="5"
+								checked={years === 5}
+								className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
+							/>
+						</div>
+					</div>
 				</div>
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-					<label htmlFor="yes" className="rwm-radio__label tw-mb-6">
-						8 Jahre
-					</label>
-					<input
-						onClick={(event) => handleClick(event)}
-						type="radio"
-						value="8"
-						checked={years === 8}
-						className={` ${
-							years === 8
-								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-						} `}
-					/>
+					<div
+						className="rwm-radio__container-select tw-container-radio"
+						onClick={() => handleClick(8)}
+					>
+						<label htmlFor="yes" className="rwm-radio__label">
+							8 Jahre
+						</label>
+						<div className="rwm-form__container-input">
+							<input
+								onClick={() => handleClick(8)}
+								type="radio"
+								value="8"
+								checked={years === 8}
+								className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
+							/>
+						</div>
+					</div>
 				</div>
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
-					<label htmlFor="yes" className="rwm-radio__label tw-mb-6">
-						10 Jahre
-					</label>
-					<input
-						onClick={(event) => handleClick(event)}
-						type="radio"
-						value="10"
-						checked={years === 10}
-						className={` ${
-							years === 10
-								? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-								: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-						}  `}
-					/>
+					<div
+						className="rwm-radio__container-select tw-container-radio"
+						onClick={() => handleClick(10)}
+					>
+						<label htmlFor="yes" className="rwm-radio__label">
+							10 Jahre
+						</label>
+						<div className="rwm-form__container-input">
+							<input
+								onClick={() => handleClick(10)}
+								type="radio"
+								value="10"
+								checked={years === 10}
+								className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
+							/>
+						</div>
+					</div>
 				</div>
 			</fieldset>
 			<Pricing />
