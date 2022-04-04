@@ -107,7 +107,7 @@ const ContactForm = () => {
 						<h4 className="tw-font-size-sub-title">Anrede*</h4>
 					</div>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
-						<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-3">
+						<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
 							<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
 								<input
 									onClick={() => setGender('Frau')}
@@ -170,7 +170,7 @@ const ContactForm = () => {
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Name</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Vorname*
@@ -196,10 +196,10 @@ const ContactForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
+					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Anschrift</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Straße*
@@ -225,7 +225,7 @@ const ContactForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-12 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Postleitzahl*
@@ -256,7 +256,7 @@ const ContactForm = () => {
 							E-Mail Adresse*
 						</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 tw-mt-3 tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 tw-mt-2">
 						<div
 							className={
 								window.innerWidth > 768
