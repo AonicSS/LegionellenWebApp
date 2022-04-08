@@ -17,11 +17,11 @@ const pricing = [
 			'Ferninspektion durch Funktechnologie',
 		],
 		serviceFeatures: [
-			'Funktionsprüfung 1x/Jahr',
-			'Online Statusanzeige 1x/Jahr',
-			'Störungsbehebung bei Bedarf und automatisiert 1x/Jahr',
-			'Prüfprotokoll 1x/Jahr, Archivierung im Kundenportal',
-			'Kostenfreie 24-Stunden-Hotline',
+			'Automatische Funk-Ferninspektion 1x/Jahr',
+			'Speicherung der Prüfprotokolle im Kundenportal',
+			'Online-Statusanzeige - 1x/Jahr aktualisiert',
+			'Kostenlose 24/7-Hotline',
+			'Störungsbehebung bei Bedarf & automatisiert 1x/Jahr',
 		],
 		buttonStyle: 'SECONDARY',
 		text: 'Standard wählen',
@@ -51,12 +51,13 @@ const pricing = [
 			'Ferninspektion durch Funktechnologie',
 		],
 		serviceFeatures: [
-			'Pro Gerät / Jahr',
-			'Funktionsprüfung 2x/Monat',
-			'Online Statusanzeige bis zu 2x/Monat',
-			'Störungsbehebung bei Bedarf und automatisiert 2x/Monat',
-			'Prüfprotokoll 1x/Jahr, Archivierung im Kundenportal',
-			'Kostenfreie 24-Stunden-Hotline',
+			'Automatische Funk-Ferninspektion 2x/Monat',
+			'Speicherung der Prüfprotokolle im Kundenportal',
+			'Online-Statusanzeige - bis zu 2x/Monat aktualisiert',
+			'Kostenlose 24/7-Hotline',
+			'Störungsbehebung bei Bedarf & automatisiert 2x/Monat',
+			'Lückenlose Transparenz & minimiertes Haftungsrisiko',
+			'Mehr Komfort & dauerhaft sicher',
 		],
 		buttonStyle: 'PRIMARY',
 		text: 'Standard 360 wählen',
@@ -73,7 +74,7 @@ const Pricing = ({ modal }: PricingProps) => {
 
 	return (
 		<div className="tw-pb-12">
-			<div className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-10 xl:tw-gap-14">
+			<div className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-[52px] xl:tw-gap-[50px]">
 				{pricing.map((p) => {
 					const rentingPrice = getRentingPrice(
 						appData,
@@ -102,7 +103,7 @@ const Pricing = ({ modal }: PricingProps) => {
 									</div>
 								)}
 								<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-									{`Gesamtpreis Rauchwarnmelder-Miete &`}{' '}
+									{`Gesamtpreis für Gerätemiete & Service`}{' '}
 									{p.name}
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-large">

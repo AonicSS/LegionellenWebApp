@@ -34,20 +34,19 @@ const Summary = () => {
 			<Modal />
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<div className="tw-flex tw-flex-col">
-					<div className="tw-grid tw-grid-cols-3">
-						<div className="rwm-icon tw-justify-start">
-							<div
-								onClick={() => navigate('/')}
-								className="rwm-arrow tw-ml-5 tw-mt-2"
-							></div>
-						</div>
-						<label className="rwm-form__headline tw-justify-start">
+					<div className="rwm-icon tw-justify-start">
+						<div
+							onClick={() => navigate('/')}
+							className="rwm-arrow tw-ml-5 tw-mt-2"
+						></div>
+					</div>
+					<div className="rwm-form__headline-mobile lg:tw-mt-[-30px] xl:tw-mt-[-30px]">
+						<label className="rwm-form__headline tw-text-center">
 							<h1 className="rwm-form__headline">
-								Ihr Rauchwarnmelder-Angebot
+								Ihr Rauchwarnmelder - Angebot
 							</h1>
 						</label>
 					</div>
-
 					<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-1 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-10 xl:tw-gap-14 tw-mt-16">
 						<div
 							className={classNames(

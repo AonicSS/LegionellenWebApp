@@ -21,7 +21,7 @@ const ContactForm = () => {
 	const [emailAddress, setEmailAddress] = useState('');
 	const [marketingAgreement, setMarketing] = useState(false);
 	const [contactAgreement, setContact] = useState(false);
-	const [success, setSucccess] = useState(false);
+	// const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	const rentingPrice = getRentingPrice(
@@ -90,7 +90,11 @@ const ContactForm = () => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(response),
-		}).then(() => setSucccess(true));
+		}).then(
+			() =>
+				(window.location.href =
+					'https://www.techem.com/de/de/system/rwmr-angebot')
+		);
 	};
 
 	return (
@@ -170,7 +174,7 @@ const ContactForm = () => {
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Name</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Vorname*
@@ -183,7 +187,7 @@ const ContactForm = () => {
 								onChange={(e) => setFirstName(e.target.value)}
 							/>
 						</div>
-						<div className="rwm-form__input-container">
+						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Name*
 							</label>
@@ -199,7 +203,7 @@ const ContactForm = () => {
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-items-start tw-mt-12">
 						<h4 className="tw-font-size-sub-title">Anschrift</h4>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Straße*
@@ -212,7 +216,7 @@ const ContactForm = () => {
 								onChange={(e) => setStreet(e.target.value)}
 							/>
 						</div>
-						<div className="rwm-form__input-container">
+						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Hausnummer*
 							</label>
@@ -225,7 +229,7 @@ const ContactForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-space-x-7 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Postleitzahl*
@@ -238,7 +242,7 @@ const ContactForm = () => {
 								onChange={(e) => setPostaCode(e.target.value)}
 							/>
 						</div>
-						<div className="rwm-form__input-container">
+						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
 								Wohnort*
 							</label>
@@ -257,13 +261,7 @@ const ContactForm = () => {
 						</h4>
 					</div>
 					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 tw-mt-2">
-						<div
-							className={
-								window.innerWidth > 768
-									? 'rwm-form__input-container-large'
-									: 'rwm-form__input-container'
-							}
-						>
+						<div className="rwm-form__input-container-large">
 							<input
 								type="email"
 								name="emailAddress"
@@ -285,13 +283,7 @@ const ContactForm = () => {
 							/>
 							<label htmlFor="contact"></label>
 						</div>
-						<div
-							className={
-								window.innerWidth > 768
-									? 'rwm-form__input-container-large'
-									: 'rwm-form__input-container'
-							}
-						>
+						<div className="rwm-form__input-container-large">
 							<p className="tw-font-size-label-small tw-pl-6">
 								Mit dem Absenden dieses Formulars willige ich
 								darin ein, dass die Techem Energy Services GmbH,
@@ -324,13 +316,7 @@ const ContactForm = () => {
 							/>
 							<label htmlFor="marketing"></label>
 						</div>
-						<div
-							className={
-								window.innerWidth > 768
-									? 'rwm-form__input-container-large'
-									: 'rwm-form__input-container'
-							}
-						>
+						<div className="rwm-form__input-container-large">
 							<p className="tw-font-size-label-small tw-pl-6">
 								Mit dem Absenden dieses Formulars willige ich
 								ein, dass die Techem Energy Services GmbH, sowie
@@ -352,13 +338,13 @@ const ContactForm = () => {
 							</p>
 						</div>
 					</div>
-					{success && (
+					{/* {success && (
 						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-center tw-items-center tw-mt-16">
 							<h4 className="tw-font-size-success">
 								Form was successfuly submited!
 							</h4>
 						</div>
-					)}
+					)} */}
 
 					<div className="tw-flex tw-justify-center tw-items-center tw-mt-10">
 						<button

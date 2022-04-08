@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import * as Scroll from 'react-scroll';
 import { useIntl } from 'react-intl';
 import Translate from '../../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';
@@ -190,7 +191,7 @@ export const PostalCodeInput = () => {
 export const RoomsInput = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
-	const myRef = useRef(null);
+	const scroll = Scroll.animateScroll;
 
 	const postalCodeArea = useSelector(
 		(state: AppReduxStoreProps) => state.appData.postalCode.area
@@ -199,9 +200,6 @@ export const RoomsInput = () => {
 	const curentRenting = useSelector(
 		(state: AppReduxStoreProps) => state.appData.rentings
 	);
-
-	// @ts-ignore
-	const executeScroll = () => myRef.current.scrollIntoView();
 
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
@@ -242,7 +240,7 @@ export const RoomsInput = () => {
 	};
 
 	const nextRenting = () => {
-		executeScroll();
+		scroll.scrollMore(500);
 		dispatch({
 			type: INCREASE_RENTINGS_STEP,
 		});
@@ -260,10 +258,7 @@ export const RoomsInput = () => {
 
 	return (
 		<div className="tw-justify-col tw-w-full tw-mb-18">
-			<label
-				ref={myRef}
-				className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-1"
-			>
+			<label className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-1">
 				<h1 className="tw-font-size-headline">{questionText}</h1>
 			</label>
 			<div className="tw-container-room">
@@ -278,11 +273,8 @@ export const RoomsInput = () => {
 							>
 								{r.house <= curentRenting &&
 								r.name === 'bedrooms' ? (
-									<label
-										ref={myRef}
-										className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-10"
-									>
-										<h2 className="tw-font-size-label">
+									<label className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-10">
+										<h2 className="tw-font-size-label lg:tw-ml-[-150px] xl:tw-ml-[-150px]">
 											{r.house}. Wohneinheit
 										</h2>
 									</label>
@@ -323,7 +315,7 @@ export const RoomsInput = () => {
 												disabled
 												type="number"
 												name="rooms"
-												className="tw-input tw-font-size-input focus:tw-ring-transparent tw-mb-4 md:tw-mb-0 lg:tw-mb-0 xl:tw-mb-0"
+												className="room-input tw-input tw-font-size-input focus:tw-ring-transparent tw-mb-4 md:tw-mb-0 lg:tw-mb-0 xl:tw-mb-0"
 												value={r.amount?.toString()}
 											/>
 										</div>
