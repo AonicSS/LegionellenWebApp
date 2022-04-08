@@ -11,7 +11,9 @@
 }
 
 .rwm-radio__container-years {
-	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-3 tw-justify-center tw-items-center; width: 357px; margin: auto;
+	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-3 tw-justify-center tw-items-center;
+	width: 357px;
+	margin: auto;
 }
 
 .rwm-radio__container-select {
@@ -47,6 +49,6 @@
 }
 
 [type='radio']:checked {
-	background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/02/Red_Circle%28small%29.svg') !important;
+	background-image: url('/src/icons/red-circle.svg') !important;
 	background-size: 35% 100% !important;
 }

@@ -499,11 +499,11 @@ module.exports = {
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '368px',
-						height: '745px',
+						height: '645px',
 					},
 					[`@media (min-width: ${xl})`]: {
 						width: '368px',
-						height: '745px',
+						height: '645px',
 					},
 				},
 				[`.${prefix}-5`]: {

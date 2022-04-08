@@ -15,6 +15,18 @@
 	width: 224px;
 }
 
+.rwm-form__headline-container {
+	@apply xl:tw-mt-[-30px];
+}
+
+.rwm-form__headline-mobile {
+	@apply tw-mt-[0px]
+	tw-w-[225px]
+	lg:tw-w-[500px]
+	xl:tw-w-[500px];
+	margin: auto;
+}
+
 .rwm-form__headline {
 	@apply tw-font-size-headline;
 }
@@ -48,12 +60,19 @@
 }
 
 .rwm-form__input-container {
-	width: 259px;
+	@apply tw-w-[330px]
+	xl:tw-w-[259px]
+	tw-justify-items-center;
 }
 
 .rwm-form__input-container-large {
-	@apply tw-mx-auto;
-	width: 572px!important;
+	@apply tw-mx-auto
+	tw-w-[330px]
+	xl:tw-w-[572px]
+	tw-space-x-0
+	md:tw-space-x-7
+	lg:tw-space-x-7
+	xl:tw-space-x-7;
 }
 
 .rwm-form__input-custom {
@@ -129,4 +148,12 @@ input[type='number'] {
 
 .round input[type='checkbox']:checked + label:after {
 	opacity: 1;
+}
+
+.room-input::placeholder {
+	font-family: 'Univers65';
+	font-size: '24px';
+	line-height: '34px';
+	letter-spacing: '0px';
+	color: '#1d1d1b';
 }

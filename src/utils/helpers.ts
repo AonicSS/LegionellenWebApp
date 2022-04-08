@@ -64,8 +64,9 @@ export const rentingCostUser = (
 ) => {
 	const total =
 		(alarms * price[years] * years +
-			(type === 'plus' ? nonUserServices.smart / alarms : 0)) /
-		years;
+			(type === 'plus' ? nonUserServices.smart : 0)) /
+		years /
+		alarms;
 
 	return total;
 };
@@ -79,11 +80,12 @@ export const rentingCostNonUser = (
 ) => {
 	const total =
 		(alarms * price[years] * years +
-			nonUserServices.instalation * rentings +
 			alarms * nonUserServices.registration +
+			nonUserServices.instalation +
 			nonUserServices.radio * rentings +
-			(type === 'plus' ? nonUserServices.smart / alarms : 0)) /
-		years;
+			(type === 'plus' ? nonUserServices.smart : 0)) /
+		years /
+		alarms;
 
 	return total;
 };
@@ -94,7 +96,7 @@ export const serviceCostNonUser = (
 	years: number,
 	service: string
 ) => {
-	const total = (alarms * nonUserServices[service] * years) / years;
+	const total = (alarms * nonUserServices[service] * years) / years / alarms;
 	return total;
 };
 
@@ -104,7 +106,7 @@ export const serviceCostUser = (
 	years: number,
 	service: string
 ) => {
-	const total = (alarms * userServices[service] * years) / years;
+	const total = (alarms * userServices[service] * years) / years / alarms;
 	return total;
 };
 

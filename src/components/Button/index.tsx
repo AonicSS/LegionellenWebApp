@@ -56,10 +56,6 @@ const Button = ({
 		(state: AppReduxStoreProps) => state.appData.questions
 	);
 
-	const currentRentingsStep = useSelector(
-		(state: AppReduxStoreProps) => state.appData.rentings
-	);
-
 	const questionText = `${Translate(
 		intl,
 		`questions.${currentAppStep - 1}.question`
