@@ -47,7 +47,7 @@ const Radio = () => {
 			<fieldset className="rwm-radio__container lg:tw-mt-16 xl:tw-mt-16">
 				<div
 					className="rwm-radio__container-select tw-container-radio-first"
-					// onClick={() => handleChange(true)}
+					onClick={() => handleChange(true)}
 				>
 					<div className="rwm-radio__container-icon-check">
 						<Check fill="#4c4c4c" />
@@ -68,7 +68,7 @@ const Radio = () => {
 				</div>
 				<div
 					className="rwm-radio__container-select tw-container-radio"
-					// onClick={() => handleChange(false)}
+					onClick={() => handleChange(false)}
 				>
 					<div className="rwm-radio__container-icon-decline">
 						<Decline fill="#4c4c4c" />

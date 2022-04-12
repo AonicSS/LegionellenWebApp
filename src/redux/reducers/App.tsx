@@ -239,7 +239,7 @@ const appData = (
 									return {
 										...a,
 										amount: 1,
-										required: true,
+										required: action.payload.value,
 									};
 								} else {
 									return { ...a };

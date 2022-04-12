@@ -1,6 +1,6 @@
 export const questions = [
 	{
-		question: 'Wie viele Wohneinheiten möchten Sie ausstatten?',
+		question: 'Wie viele Wohnungen möchten Sie ausstatten?',
 		choice: '1',
 		type: 'input',
 		btnActive: true,
@@ -30,7 +30,7 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Bitte wählen Sie die Anzahl der Geräte',
+		question: 'Die Wohnung umfasst diese Räume:',
 		choice: 1,
 		type: 'input',
 		btnActive: true,

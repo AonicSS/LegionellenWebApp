@@ -57,17 +57,19 @@ const Summary = () => {
 								Ihre Angaben
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{appData.questions[3].choice ? 'Ja' : 'Nein'}
+								{getAlarmNumber(appData)}
 							</div>
+							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
+								Anzahl Rauchwarnmelder
+							</div>
+
 							{/* <div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
 								Heizkostenabrechnung bei Techem
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.questions[1].choice ? 'Ja' : 'Nein'}
 							</div> */}
-							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
-								Kunde bei Techem
-							</div>
+
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.maxRentings}
 							</div>
@@ -81,10 +83,10 @@ const Summary = () => {
 								Postleitzahl
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{getAlarmNumber(appData)}
+								{appData.questions[3].choice ? 'Ja' : 'Nein'}
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-pricing-sublabel">
-								Anzahl Rauchwarnmelder
+								Kunde bei Techem
 							</div>
 						</div>
 
@@ -97,10 +99,12 @@ const Summary = () => {
 								Ihr Produktpaket
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
-								{`Gesamtpreis Rauchwarnmelder-Miete &`}
+								{`Gesamtpreis für Gerätemiete & Service`}
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label tw-flex">
-								{appData.pricing}
+								{appData.pricing === 'Standard 360 Adv'
+									? 'Plus'
+									: ''}
 								<Info
 									onClick={() =>
 										dispatch({
@@ -117,7 +121,7 @@ const Summary = () => {
 								{total.toFixed(2)} €
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-								pro Jahr / Gerät
+								pro Gerät / Jahr
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-pricing-label">
 								{appData.years} Jahre
