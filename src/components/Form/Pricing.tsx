@@ -14,7 +14,6 @@ const pricing = [
 			'Modernste Geräte in zertifizierter Qualität',
 			'Mindestens 10 Jahre Lebensdauer',
 			'Fachmännische Planung & Montage',
-			'Ferninspektion durch Funktechnologie',
 		],
 		serviceFeatures: [
 			'Automatische Funk-Ferninspektion 1x/Jahr',
@@ -24,7 +23,7 @@ const pricing = [
 			'Störungsbehebung bei Bedarf & automatisiert 1x/Jahr',
 		],
 		buttonStyle: 'SECONDARY',
-		text: 'Standard wählen',
+		text: 'Basis Paket wählen',
 		type: 'standard',
 		cheapest: false,
 	},
@@ -48,7 +47,6 @@ const pricing = [
 			'Modernste Geräte in zertifizierter Qualität',
 			'Mindestens 10 Jahre Lebensdauer',
 			'Fachmännische Planung & Montage',
-			'Ferninspektion durch Funktechnologie',
 		],
 		serviceFeatures: [
 			'Automatische Funk-Ferninspektion 2x/Monat',
@@ -60,7 +58,7 @@ const pricing = [
 			'Mehr Komfort & dauerhaft sicher',
 		],
 		buttonStyle: 'PRIMARY',
-		text: 'Standard 360 wählen',
+		text: 'Plus Paket wählen',
 		type: 'plus',
 		cheapest: true,
 	},
@@ -99,27 +97,27 @@ const Pricing = ({ modal }: PricingProps) => {
 							>
 								{p.cheapest && (
 									<div className="rwm-best-price">
-										Beste Preis Leistung
+										Techem Empfehlung
 									</div>
 								)}
 								<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 									{`Gesamtpreis für Gerätemiete & Service`}{' '}
-									{p.name}
+									{p.name === 'Standard' ? '' : 'Plus'}
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-large">
 									{total.toFixed(2)} €
 								</div>
 								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-									pro Jahr / Gerät
+									pro Gerät / Jahr
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
-									Preis Rauchwarnmelder-Miete
+									Rauchwarnmelder-Miete
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-small">
 									{`Nur ${rentingPrice.toFixed(2)} €`}
 								</div>
 								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-									pro Jahr / Gerät
+									pro Gerät / Jahr
 								</div>
 								{p.alarmFeatures.map((f) => {
 									// if (isModalVisible || index < 3) {
@@ -138,13 +136,14 @@ const Pricing = ({ modal }: PricingProps) => {
 									// }
 								})}
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
-									Preis Rauchwarnmelder-Service
+									Rauchwarnmelder-Service{' '}
+									{p.name === 'Standard' ? '' : 'Plus'}
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-small">
 									{`Service ${servicePrice.toFixed(2)} €`}
 								</div>
 								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-									pro Jahr / Gerät
+									pro Gerät / Jahr
 								</div>
 								{p.serviceFeatures.map((f) => {
 									// if (isModalVisible || index < 3) {
@@ -177,33 +176,30 @@ const Pricing = ({ modal }: PricingProps) => {
 								<div
 									key={p.name}
 									className={classNames(
-										'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 tw-container-pricing-3'
+										'tw-container-pricing-nobg tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6'
 									)}
 								>
-									{/* {p.cheapest && (
-										<div className="rwm-best-price">
-											Beste Preis Leistung
-										</div>
-									)} */}
 									<div className="tw-container-pricing-modal">
 										<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-											{`Gesamtpreis Rauchwarnmelder-Miete &`}{' '}
-											{p.name}
+											{`Gesamtpreis für Gerätemiete & Service`}{' '}
+											{p.name === 'Standard'
+												? ''
+												: 'Plus'}
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-price-large">
 											{total.toFixed(2)} €
 										</div>
 										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-											pro Jahr / Gerät
+											pro Gerät / Jahr
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-pricing-label">
-											Preis Rauchwarnmelder-Miete
+											Rauchwarnmelder-Miete
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-price-small">
 											{`Nur ${rentingPrice.toFixed(2)} €`}
 										</div>
 										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-											pro Jahr / Gerät
+											pro Gerät / Jahr
 										</div>
 										{p.alarmFeatures.map((f) => {
 											return (
@@ -218,7 +214,10 @@ const Pricing = ({ modal }: PricingProps) => {
 											);
 										})}
 										<div className="tw-container-pricing-label tw-font-size-pricing-label">
-											Preis Rauchwarnmelder-Service
+											Rauchwarnmelder-Service{' '}
+											{p.name === 'Standard'
+												? ''
+												: 'Plus'}
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-price-small">
 											{`Service ${servicePrice.toFixed(
@@ -226,7 +225,7 @@ const Pricing = ({ modal }: PricingProps) => {
 											)} €`}
 										</div>
 										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
-											pro Jahr / Gerät
+											pro Gerät / Jahr
 										</div>
 										{p.serviceFeatures.map((f) => {
 											return (

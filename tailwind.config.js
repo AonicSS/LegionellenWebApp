@@ -350,6 +350,21 @@ module.exports = {
 						width: '364px',
 					},
 				},
+				[`.${prefix}-pricing-nobg`]: {
+					position: 'relative',
+					width: '315px',
+					// height: '530px',
+					// boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
+					border: 'none',
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					[`@media (min-width: ${lg})`]: {
+						width: '364px',
+					},
+					[`@media (min-width: ${xl})`]: {
+						width: '364px',
+					},
+				},
 				[`.${prefix}-summary`]: {
 					position: 'relative',
 					width: '363px',

@@ -83,7 +83,7 @@ export const RentingsInput = () => {
 				</div>
 				<div className="tw-flex tw-justify-center tw-items-center">
 					<label className="tw-font-size-label tw-mt-4 tw-font">
-						{currentRentings > 1 ? `Wohneinheiten` : `Wohneinheit`}
+						{currentRentings > 1 ? `Wohnungen` : `Wohnung`}
 					</label>
 				</div>
 			</fieldset>
@@ -151,6 +151,7 @@ export const PostalCodeInput = () => {
 					{Translate(intl, 'questions.1.question')}
 				</h1>
 				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
+					Die gesetzlichen Bestimmungen zur Ausstattung mit
 					Rauchwarnmeldern unterscheiden sich je nach Bundesland.{' '}
 					<br /> Um die genaue Anzahl ermitteln zu können, ist daher
 					die Angabe der Postleitzahl nötig.
@@ -219,14 +220,18 @@ export const RoomsInput = () => {
 	);
 
 	useEffect(() => {
-		if (postalCodeArea === 'Berlin' || postalCodeArea === 'Brandenburg')
-			dispatch({
-				type: SET_REGION,
-				payload: {
-					questionName: questionText,
-				},
-			});
-	}, []);
+		dispatch({
+			type: SET_REGION,
+			payload: {
+				questionName: questionText,
+				value:
+					postalCodeArea === 'Berlin' ||
+					postalCodeArea === 'Brandenburg'
+						? true
+						: false,
+			},
+		});
+	}, [postalCodeArea]);
 
 	const handleInput = (value: string, room: string) => {
 		dispatch({
@@ -267,7 +272,7 @@ export const RoomsInput = () => {
 						return (
 							<div
 								className={classNames(
-									`${!r.required ? 'tw-mb-16' : ''}`
+									`${(i + 1) / 5 === 1 ? 'tw-mb-16' : ''}`
 								)}
 								key={i}
 							>
@@ -275,11 +280,11 @@ export const RoomsInput = () => {
 								r.name === 'bedrooms' ? (
 									<label className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-mb-10">
 										<h2 className="tw-font-size-label lg:tw-ml-[-150px] xl:tw-ml-[-150px]">
-											{r.house}. Wohneinheit
+											{r.house}. Wohnung
 										</h2>
 									</label>
 								) : null}
-								<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-mb-7">
+								<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-h-14 tw-mb-7">
 									<div className="tw-flex tw-justify-start tw-items-center tw-mb-4">
 										<div className="tw-font-size-rooms-name tw-ml-6 md:tw-ml-0 lg:tw-ml-0 xl:tw-ml-0">
 											{Translate(
@@ -369,7 +374,7 @@ export const RoomsInput = () => {
 			{maxRentings > 1 && currentRentingsStep < maxRentings ? (
 				<button onClick={nextRenting}>
 					<div className="tw-flex tw-font-size-rooms-continue-label">
-						Weiter zur {currentRentingsStep + 1}. Wohneinheit{' '}
+						Weiter zur {currentRentingsStep + 1}. Wohnung{' '}
 						<Chevron className="rwm-btn-next-room" />
 					</div>
 				</button>

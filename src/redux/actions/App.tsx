@@ -178,9 +178,9 @@ export function setPricing(pricing: string) {
 	};
 }
 
-export function setRegion(questionName: string) {
+export function setRegion(questionName: string, value: boolean) {
 	return {
 		type: SET_REGION,
-		payload: { questionName },
+		payload: { questionName, value },
 	};
 }
