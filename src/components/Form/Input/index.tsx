@@ -272,7 +272,11 @@ export const RoomsInput = () => {
 						return (
 							<div
 								className={classNames(
-									`${(i + 1) / 5 === 1 ? 'tw-mb-16' : ''}`
+									`${
+										(i + 1) / 5 === 1
+											? 'tw-mb-16'
+											: 'tw-mb-10'
+									}`
 								)}
 								key={i}
 							>
@@ -284,7 +288,7 @@ export const RoomsInput = () => {
 										</h2>
 									</label>
 								) : null}
-								<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-h-14 tw-mb-7">
+								<div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-h-30 lg:tw-h-14 tw-mb-7">
 									<div className="tw-flex tw-justify-start tw-items-center tw-mb-4">
 										<div className="tw-font-size-rooms-name tw-ml-6 md:tw-ml-0 lg:tw-ml-0 xl:tw-ml-0">
 											{Translate(

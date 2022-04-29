@@ -96,7 +96,9 @@ export const serviceCostNonUser = (
 	years: number,
 	service: string
 ) => {
-	const total = (alarms * nonUserServices[service] * years) / years / alarms;
+	const total =
+		(alarms * nonUserServices[service] * years) / years / alarms +
+		nonUserServices.grundpreis / alarms;
 	return total;
 };
 

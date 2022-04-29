@@ -44,7 +44,6 @@ const ContactForm = () => {
 			postalCode !== '' &&
 			residence !== '' &&
 			emailAddress !== '' &&
-			marketingAgreement === true &&
 			contactAgreement === true
 		) {
 			return true;
