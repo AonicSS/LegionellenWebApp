@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import * as Scroll from 'react-scroll';
 import Translate from '../../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_ANSWER } from '../../../redux/actions/App';
@@ -12,6 +13,8 @@ import { AppReduxStoreProps } from '../../../redux/reducers/App';
 const Radio = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
+	const Element = Scroll.Element;
+	const scroller = Scroll.scroller;
 
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
@@ -26,6 +29,15 @@ const Radio = () => {
 		(state: AppReduxStoreProps) =>
 			state.appData.questions[currentAppStep - 1].choice
 	);
+
+	useEffect(() => {
+		scroller.scrollTo('myScrollToElement', {
+			duration: 1500,
+			delay: 100,
+			smooth: true,
+			offset: 50,
+		});
+	}, []);
 
 	const handleChange = (value: boolean) => {
 		dispatch({
@@ -43,6 +55,7 @@ const Radio = () => {
 
 	return (
 		<div className="rwm-radio">
+			<Element name="myScrollToElement"></Element>
 			<label className="rwm-form__headline">{questionText}</label>
 			<fieldset className="rwm-radio__container lg:tw-mt-16 xl:tw-mt-16">
 				<div

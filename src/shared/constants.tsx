@@ -22,4 +22,5 @@ export const nonUserServices = {
 	registration: 2.52,
 	instalation: 65.7,
 	radio: 14.28,
+	grundpreis: 44.74,
 };

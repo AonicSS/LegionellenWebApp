@@ -82,10 +82,6 @@ const Pricing = ({ modal }: PricingProps) => {
 
 					const total = rentingPrice + servicePrice;
 
-					console.log('modal :>> ', modal);
-					console.log('p.name :>> ', p.name);
-					console.log('appData.pricing :>> ', appData.pricing);
-
 					if (!modal) {
 						return (
 							<div
@@ -105,7 +101,11 @@ const Pricing = ({ modal }: PricingProps) => {
 									{p.name === 'Standard' ? '' : 'Plus'}
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-large">
-									{total.toFixed(2)} €
+									{total
+										.toFixed(2)
+										.toString()
+										.replace('.', ',')}{' '}
+									€
 								</div>
 								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 									pro Gerät / Jahr
@@ -114,7 +114,10 @@ const Pricing = ({ modal }: PricingProps) => {
 									Rauchwarnmelder-Miete
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-small">
-									{`Nur ${rentingPrice.toFixed(2)} €`}
+									{`Nur ${rentingPrice
+										.toFixed(2)
+										.toString()
+										.replace('.', ',')} €`}
 								</div>
 								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 									pro Gerät / Jahr
@@ -140,7 +143,10 @@ const Pricing = ({ modal }: PricingProps) => {
 									{p.name === 'Standard' ? '' : 'Plus'}
 								</div>
 								<div className="tw-container-pricing-label tw-font-size-price-small">
-									{`Service ${servicePrice.toFixed(2)} €`}
+									{`Service ${servicePrice
+										.toFixed(2)
+										.toString()
+										.replace('.', ',')} €`}
 								</div>
 								<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 									pro Gerät / Jahr
@@ -187,7 +193,11 @@ const Pricing = ({ modal }: PricingProps) => {
 												: 'Plus'}
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-price-large">
-											{total.toFixed(2)} €
+											{total
+												.toFixed(2)
+												.toString()
+												.replace('.', ',')}{' '}
+											€
 										</div>
 										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 											pro Gerät / Jahr
@@ -196,7 +206,10 @@ const Pricing = ({ modal }: PricingProps) => {
 											Rauchwarnmelder-Miete
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-price-small">
-											{`Nur ${rentingPrice.toFixed(2)} €`}
+											{`Nur ${rentingPrice
+												.toFixed(2)
+												.toString()
+												.replace('.', ',')} €`}
 										</div>
 										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 											pro Gerät / Jahr
@@ -220,9 +233,10 @@ const Pricing = ({ modal }: PricingProps) => {
 												: 'Plus'}
 										</div>
 										<div className="tw-container-pricing-label tw-font-size-price-small">
-											{`Service ${servicePrice.toFixed(
-												2
-											)} €`}
+											{`Service ${servicePrice
+												.toFixed(2)
+												.toString()
+												.replace('.', ',')} €`}
 										</div>
 										<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 											pro Gerät / Jahr

@@ -30,7 +30,7 @@ const initialState = {
 	acceptContact: false,
 	acceptMarketing: false,
 	years: 10,
-	postalCode: { code: '', valid: false },
+	postalCode: { code: '', valid: false, area: '' },
 	questions: questions,
 	pricing: '',
 };
@@ -238,7 +238,13 @@ const appData = (
 								if (a.name === 'common') {
 									return {
 										...a,
-										amount: 1,
+										amount:
+											state.postalCode.area ===
+												'Berlin' ||
+											state.postalCode.area ===
+												'Brandenburg'
+												? 1
+												: 0,
 										required: action.payload.value,
 									};
 								} else {
@@ -264,8 +270,20 @@ const appData = (
 										if (r.name === 'common') {
 											return {
 												...r,
-												amount: 1,
-												required: true,
+												amount:
+													state.postalCode.area ===
+														'Berlin' ||
+													state.postalCode.area ===
+														'Brandenburg'
+														? 1
+														: 0,
+												required:
+													state.postalCode.area ===
+														'Berlin' ||
+													state.postalCode.area ===
+														'Brandenburg'
+														? true
+														: false,
 												house: state.rentings,
 											};
 										} else {

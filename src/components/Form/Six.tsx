@@ -31,7 +31,7 @@ const Six = () => {
 				</h1>
 			</label>
 
-			<fieldset className="rwm-radio__container-years tw-mb-14 tw-mt-10 md:tw-mt-0">
+			<fieldset className="rwm-radio__container-years tw-mb-14 tw-mt-10 lg:tw-mt-0 xl:tw-mt-0">
 				<div className="tw-flex tw-flex-col tw-justify-center tw-items-center">
 					<div
 						className="rwm-radio__container-select tw-container-radio"

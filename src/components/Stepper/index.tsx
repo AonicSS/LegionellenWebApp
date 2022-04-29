@@ -10,12 +10,6 @@ import './Stepper.css';
 const Stepper = () => {
 	const dispatch = useDispatch();
 
-	const setAppStep = useCallback((step: number) => {
-		step < currentAppStep
-			? dispatch({ type: SET_APP_STEP, payload: { step: step } })
-			: currentAppStep;
-	}, []);
-
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
 	);
@@ -27,6 +21,12 @@ const Stepper = () => {
 	const showModal = useSelector(
 		(state: AppReduxStoreProps) => state.appData.showModal
 	);
+
+	const setAppStep = (step: number) => {
+		step < currentAppStep
+			? dispatch({ type: SET_APP_STEP, payload: { step: step } })
+			: currentAppStep;
+	};
 
 	return (
 		<div className="rwm-stepper">

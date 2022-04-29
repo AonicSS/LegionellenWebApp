@@ -118,7 +118,8 @@ const Summary = () => {
 								/>
 							</div>
 							<div className="tw-container-pricing-label tw-font-size-price-large">
-								{total.toFixed(2)} €
+								{total.toFixed(2).toString().replace('.', ',')}{' '}
+								€
 							</div>
 							<div className="tw-container-pricing-sublabel tw-font-size-price-sublabel">
 								pro Gerät / Jahr

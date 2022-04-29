@@ -61,6 +61,8 @@
 
 .rwm-form__input-container {
 	@apply tw-w-[330px]
+	md:tw-w-[259px]
+	lg:tw-w-[259px]
 	xl:tw-w-[259px]
 	tw-justify-items-center;
 }
@@ -68,6 +70,8 @@
 .rwm-form__input-container-large {
 	@apply tw-mx-auto
 	tw-w-[330px]
+	md:tw-w-[572px]
+	lg:tw-w-[572px]
 	xl:tw-w-[572px]
 	tw-space-x-0
 	md:tw-space-x-7

@@ -501,7 +501,7 @@ module.exports = {
 				},
 				[`.${prefix}-2`]: {
 					width: '300px',
-					height: '310px',
+					height: '285px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '676px',
@@ -510,7 +510,7 @@ module.exports = {
 				},
 				[`.${prefix}-3`]: {
 					width: '300px',
-					height: '545px',
+					height: '480px',
 					borderRadius: '40px',
 					[`@media (min-width: ${lg})`]: {
 						width: '368px',
@@ -525,9 +525,11 @@ module.exports = {
 					width: '300px',
 					height: '570px',
 					borderRadius: '40px',
+					paddingTop: '40px',
+					paddingBottom: '40px',
 					[`@media (min-width: ${lg})`]: {
-						width: '984px',
-						height: '240px',
+						width: '676px',
+						height: '315px',
 					},
 				},
 			});
