@@ -186,7 +186,7 @@ const Pricing = ({ modal }: PricingProps) => {
 									)}
 								>
 									<div className="tw-container-pricing-modal">
-										<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
+										<div className="tw-container-pricing-headline-modal tw-font-size-pricing-headline">
 											{`Gesamtpreis für Gerätemiete & Service`}{' '}
 											{p.name === 'Standard'
 												? ''
