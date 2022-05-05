@@ -13,7 +13,6 @@ import { AppReduxStoreProps } from '../../../redux/reducers/App';
 const Radio = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
-	const Element = Scroll.Element;
 	const scroller = Scroll.scroller;
 
 	const currentAppStep = useSelector(
@@ -35,7 +34,7 @@ const Radio = () => {
 			duration: 1500,
 			delay: 100,
 			smooth: true,
-			offset: 50,
+			offset: 0,
 		});
 	}, []);
 
@@ -55,7 +54,6 @@ const Radio = () => {
 
 	return (
 		<div className="rwm-radio">
-			<Element name="myScrollToElement"></Element>
 			<label className="rwm-form__headline">{questionText}</label>
 			<fieldset className="rwm-radio__container lg:tw-mt-16 xl:tw-mt-16">
 				<div
