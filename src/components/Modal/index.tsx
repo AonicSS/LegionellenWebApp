@@ -127,7 +127,7 @@ const Modal = () => {
 							</div>
 						)}
 						{currentAppStep === 5 && (
-							<div className="rwm-overlay__btn-container-continue">
+							<div>
 								<Pricing modal={true} />
 							</div>
 						)}

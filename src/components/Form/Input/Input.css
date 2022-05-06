@@ -97,6 +97,8 @@ input::-webkit-inner-spin-button {
 
 input[type='number'] {
 	-moz-appearance: textfield;
+	-webkit-text-fill-color: #1d1d1b;
+	opacity: 1;
 }
 
 .rwm-form__rentings {

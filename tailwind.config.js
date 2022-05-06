@@ -401,6 +401,9 @@ module.exports = {
 				[`.${prefix}-pricing-headline`]: {
 					padding: '30px 19px 10px 21px',
 				},
+				[`.${prefix}-pricing-headline-modal`]: {
+					padding: '0px 19px 10px 21px',
+				},
 				[`.${prefix}-pricing-label`]: {
 					padding: '0px 19px 0px 21px',
 				},
