@@ -83,6 +83,7 @@
 	@apply tw-shadow-none
 	focus:tw-ring-transparent;
 	width: 100%;
+	box-sizing: border-box;
 	height: 48px !important;
 	padding: 0 10px 0 10px !important;
 	border: solid 2px #c8c8c8 !important;

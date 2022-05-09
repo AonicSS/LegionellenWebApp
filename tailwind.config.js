@@ -390,9 +390,9 @@ module.exports = {
 				[`.${prefix}-pricing-modal`]: {
 					overflowY: 'scroll',
 					position: 'relative',
-					height: '450px',
+					height: '480px',
 					[`@media (min-width: ${lg})`]: {
-						height: '600px',
+						height: '645px',
 					},
 				},
 				[`.${prefix}-pricing-mobile`]: {
