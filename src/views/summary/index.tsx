@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
@@ -13,11 +13,22 @@ import {
 	getServicePrice,
 } from '../../utils/helpers';
 import { ReactComponent as Info } from '../../icons/Info.svg';
+import * as Scroll from 'react-scroll';
 
 const Summary = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const scroller = Scroll.scroller;
+	const Element = Scroll.Element;
+	useEffect(() => {
+		scroller.scrollTo('myScrollToElement', {
+			duration: 1500,
+			delay: 100,
+			smooth: true,
+			offset: -100,
+		});
+	}, []);
 
 	const rentingPrice = getRentingPrice(
 		appData,
@@ -32,6 +43,7 @@ const Summary = () => {
 	return (
 		<Layout>
 			<Modal />
+			<Element name="myScrollToElement"></Element>
 			<section className="rwm-calculator__page-section tw-margin-top">
 				<div className="tw-flex tw-flex-col">
 					<div className="rwm-icon tw-justify-start">
