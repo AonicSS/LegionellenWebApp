@@ -39,7 +39,7 @@ const EmailForm = () => {
 				years: appData.years,
 				code: appData.postalCode.code,
 				servicePricing: appData.pricing,
-				heatingCustomer: appData.questions[0].choice ? 'Yes' : 'No',
+				heatingCustomer: appData.questions[3].choice ? 'Yes' : 'No',
 				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
 			},
 		};
