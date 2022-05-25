@@ -15,7 +15,7 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Wo befindet sich die auszustattende Wohnung?',
+		question: 'Wo befindet sich die auszustattende(n) Wohnung(en)?',
 		choice: '',
 		type: 'input',
 		btnActive: false,

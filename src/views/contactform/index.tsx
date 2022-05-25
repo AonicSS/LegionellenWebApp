@@ -181,7 +181,7 @@ const ContactForm = () => {
 							<input
 								type="text"
 								name="firstName"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={firstName}
 								onChange={(e) => setFirstName(e.target.value)}
 							/>
@@ -193,7 +193,7 @@ const ContactForm = () => {
 							<input
 								type="text"
 								name="lastName"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={lastName}
 								onChange={(e) => setLastName(e.target.value)}
 							/>
@@ -210,7 +210,7 @@ const ContactForm = () => {
 							<input
 								type="text"
 								name="streetName"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={street}
 								onChange={(e) => setStreet(e.target.value)}
 							/>
@@ -222,7 +222,7 @@ const ContactForm = () => {
 							<input
 								type="text"
 								name="houseNumber"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={houseNumber}
 								onChange={(e) => setHouseNumber(e.target.value)}
 							/>
@@ -236,7 +236,7 @@ const ContactForm = () => {
 							<input
 								type="number"
 								name="postalCode"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={postalCode}
 								onChange={(e) => setPostaCode(e.target.value)}
 							/>
@@ -248,7 +248,7 @@ const ContactForm = () => {
 							<input
 								type="text"
 								name="residence"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={residence}
 								onChange={(e) => setResidence(e.target.value)}
 							/>
@@ -264,7 +264,7 @@ const ContactForm = () => {
 							<input
 								type="email"
 								name="emailAddress"
-								className="rwm-form__input-custom tw-border-2 tw-rounded-md focus:tw-ring-transparent"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
 								value={emailAddress}
 								onChange={(e) =>
 									setEmailAddress(e.target.value)

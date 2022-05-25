@@ -48,9 +48,6 @@ export const RentingsInput = () => {
 						`questions.${currentAppStep - 1}.question`
 					)}
 				</h1>
-				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
-					{Translate(intl, `questions.0.sublabel`)}
-				</h2>
 			</label>
 			<fieldset>
 				<div className="rwm-form">

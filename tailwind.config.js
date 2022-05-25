@@ -84,7 +84,6 @@ module.exports = {
 					[`@media (min-width: ${md})`]: {
 						fontSize: '16px',
 						lineHeight: '26px',
-						letterSpacing: '-0.1px',
 						color: '#4c4c4c',
 					},
 				},
