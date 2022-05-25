@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 declare global {
 	interface Window {
 		MktoForms2: any;
+		siteDataLayer: any;
 	}
 }
 
