@@ -30,10 +30,7 @@ const Summary = () => {
 		});
 	}, []);
 
-	const rentingPrice = getRentingPrice(
-		appData,
-		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard'
-	);
+	const rentingPrice = getRentingPrice(appData);
 	const servicePrice = getServicePrice(
 		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
 		appData

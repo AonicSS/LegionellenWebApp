@@ -57,16 +57,8 @@ export const getAlarmNumberForHouse = (data, house) => {
 };
 
 //return price for previous user
-export const rentingCostUser = (
-	alarms: number,
-	years: number,
-	type: string
-) => {
-	const total =
-		(alarms * price[years] * years +
-			(type === 'plus' ? nonUserServices.smart : 0)) /
-		years /
-		alarms;
+export const rentingCostUser = (alarms: number, years: number) => {
+	const total = (alarms * price[years] * years) / years / alarms;
 
 	return total;
 };
@@ -75,15 +67,13 @@ export const rentingCostUser = (
 export const rentingCostNonUser = (
 	alarms: number,
 	years: number,
-	rentings: number,
-	type: string
+	rentings: number
 ) => {
 	const total =
 		(alarms * price[years] * years +
 			alarms * nonUserServices.registration +
 			nonUserServices.instalation +
-			nonUserServices.radio * rentings +
-			(type === 'plus' ? nonUserServices.smart : 0)) /
+			nonUserServices.radio * rentings) /
 		years /
 		alarms;
 
@@ -97,8 +87,11 @@ export const serviceCostNonUser = (
 	service: string
 ) => {
 	const total =
-		(alarms * nonUserServices[service] * years) / years / alarms +
-		nonUserServices.grundpreis / alarms;
+		(alarms * nonUserServices[service] * years +
+			nonUserServices.grundpreis +
+			(service === 'plus' ? nonUserServices.smart : 0)) /
+		years /
+		alarms;
 	return total;
 };
 
@@ -108,20 +101,23 @@ export const serviceCostUser = (
 	years: number,
 	service: string
 ) => {
-	const total = (alarms * userServices[service] * years) / years / alarms;
+	const total =
+		(alarms * userServices[service] * years +
+			(service === 'plus' ? nonUserServices.smart : 0)) /
+		years /
+		alarms;
 	return total;
 };
 
-export const getRentingPrice = (data: any, type: string) => {
+export const getRentingPrice = (data: any) => {
 	if (!data.questions[3].choice) {
 		return rentingCostNonUser(
 			getAlarmNumber(data),
 			data.years,
-			data.rentings,
-			type
+			data.rentings
 		);
 	} else {
-		return rentingCostUser(getAlarmNumber(data), data.years, type);
+		return rentingCostUser(getAlarmNumber(data), data.years);
 	}
 };
 

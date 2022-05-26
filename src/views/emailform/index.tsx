@@ -16,10 +16,7 @@ const EmailForm = () => {
 	const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	const rentingPrice = getRentingPrice(
-		appData,
-		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard'
-	);
+	const rentingPrice = getRentingPrice(appData);
 	const servicePrice = getServicePrice(
 		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
 		appData

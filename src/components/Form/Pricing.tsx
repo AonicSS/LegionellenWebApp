@@ -74,10 +74,7 @@ const Pricing = ({ modal }: PricingProps) => {
 		<div className="tw-pb-12">
 			<div className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-gap-[52px] xl:tw-gap-[50px]">
 				{pricing.map((p) => {
-					const rentingPrice = getRentingPrice(
-						appData,
-						p.name === 'Standard 360 Adv' ? 'plus' : 'standard'
-					);
+					const rentingPrice = getRentingPrice(appData);
 					const servicePrice = getServicePrice(p.type, appData);
 
 					const total = rentingPrice + servicePrice;
