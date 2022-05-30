@@ -172,7 +172,7 @@ const ContactForm = () => {
 					</div>
 					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 						<div className="rwm-form__input-container">
-							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
+							<label className="tw-flex tw-font-size-label tw-font italic">
 								Vorname*
 							</label>
 							<input
@@ -184,7 +184,7 @@ const ContactForm = () => {
 							/>
 						</div>
 						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
+							<label className="tw-flex tw-font-size-label tw-font italic">
 								Name*
 							</label>
 							<input
@@ -201,7 +201,7 @@ const ContactForm = () => {
 					</div>
 					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
 						<div className="rwm-form__input-container">
-							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
+							<label className="tw-flex tw-font-size-label tw-font italic">
 								Straße*
 							</label>
 							<input
@@ -213,7 +213,7 @@ const ContactForm = () => {
 							/>
 						</div>
 						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
+							<label className="tw-flex tw-font-size-label tw-font italic">
 								Hausnummer*
 							</label>
 							<input
@@ -227,7 +227,7 @@ const ContactForm = () => {
 					</div>
 					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 						<div className="rwm-form__input-container">
-							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
+							<label className="tw-flex tw-font-size-label tw-font italic">
 								Postleitzahl*
 							</label>
 							<input
@@ -239,7 +239,7 @@ const ContactForm = () => {
 							/>
 						</div>
 						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-							<label className="tw-flex tw-font-size-label tw-mb-2 tw-font">
+							<label className="tw-flex tw-font-size-label tw-font italic">
 								Wohnort*
 							</label>
 							<input
@@ -252,7 +252,7 @@ const ContactForm = () => {
 						</div>
 					</div>
 					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
-						<h4 className="tw-font-size-sub-title">
+						<h4 className="tw-font-size-sub-title italic">
 							E-Mail Adresse*
 						</h4>
 					</div>
@@ -280,7 +280,7 @@ const ContactForm = () => {
 							<label htmlFor="contact"></label>
 						</div>
 						<div className="rwm-form__input-container-large">
-							<p className="tw-font-size-label-small tw-pl-6">
+							<p className="tw-font-size-label-small tw-pl-6 italic">
 								Mit dem Absenden dieses Formulars willige ich
 								darin ein, dass die Techem Energy Services GmbH,
 								sowie eventuell deren Tochtergesellschaften bzw.

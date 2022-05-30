@@ -83,7 +83,7 @@ module.exports = {
 					color: '#222222',
 					[`@media (min-width: ${md})`]: {
 						fontSize: '16px',
-						lineHeight: '26px',
+						lineHeight: '28px',
 						color: '#4c4c4c',
 					},
 				},
