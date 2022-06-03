@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import * as Scroll from 'react-scroll';
 import { useIntl } from 'react-intl';
 import Translate from '../../../utils/translate';
@@ -115,19 +115,25 @@ export const PostalCodeInput = () => {
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 
+	const roomStepText = `${Translate(
+		intl,
+		`questions.${currentAppStep}.question`
+	)}`;
+
 	const currentPostalCode = getCurrentPostalCode(questionText);
 
 	const onChange = (value: string) => {
 		const valid = validPostalCode(value);
+		const area = getFederalState(value)[0];
+		const bundesland = getFederalState(value)[0]?.bundesland;
+
 		dispatch({
 			type: UPDATE_POSTAL_CODE,
 			payload: {
 				postalCode: {
 					code: value,
 					valid: valid,
-					area: getFederalState(value)[0]
-						? getFederalState(value)[0].bundesland
-						: '',
+					area: area ? bundesland : '',
 				},
 			},
 		});
@@ -137,6 +143,16 @@ export const PostalCodeInput = () => {
 				questionName: `${Translate(intl, 'questions.1.question')}`,
 				choice: value,
 				btnActive: valid,
+			},
+		});
+		dispatch({
+			type: SET_REGION,
+			payload: {
+				questionName: roomStepText,
+				value:
+					bundesland === 'Berlin' || bundesland === 'Brandenburg'
+						? true
+						: false,
 			},
 		});
 	};
@@ -215,20 +231,6 @@ export const RoomsInput = () => {
 		intl,
 		`questions.${currentAppStep - 1}.question`
 	);
-
-	useEffect(() => {
-		dispatch({
-			type: SET_REGION,
-			payload: {
-				questionName: questionText,
-				value:
-					postalCodeArea === 'Berlin' ||
-					postalCodeArea === 'Brandenburg'
-						? true
-						: false,
-			},
-		});
-	}, [postalCodeArea]);
 
 	const handleInput = (value: string, room: string) => {
 		dispatch({
