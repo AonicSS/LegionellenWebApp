@@ -129,12 +129,12 @@ const ContactForm = () => {
 							</div>
 							<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
 								<input
-									onClick={() => setGender('Mann')}
+									onClick={() => setGender('Herr')}
 									type="radio"
-									value="Mann"
-									checked={gender === 'Mann'}
+									value="Herr"
+									checked={gender === 'Herr'}
 									className={` ${
-										gender === 'Mann'
+										gender === 'Herr'
 											? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
 											: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
 									} `}
@@ -143,7 +143,7 @@ const ContactForm = () => {
 									htmlFor="yes"
 									className="rwm-radio__gender-label"
 								>
-									Mann
+									Herr
 								</label>
 							</div>
 							<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
