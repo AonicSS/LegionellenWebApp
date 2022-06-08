@@ -14,6 +14,7 @@ import {
 } from '../../utils/helpers';
 import { ReactComponent as Info } from '../../icons/Info.svg';
 import * as Scroll from 'react-scroll';
+import { trackSummary } from '../../utils/tracking';
 
 const Summary = () => {
 	const dispatch = useDispatch();
@@ -28,6 +29,10 @@ const Summary = () => {
 			smooth: true,
 			offset: -100,
 		});
+
+		const pricing =
+			appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard';
+		trackSummary('summary', pricing);
 	}, []);
 
 	const rentingPrice = getRentingPrice(appData);

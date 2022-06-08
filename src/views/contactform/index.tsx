@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import classNames from 'classnames';
@@ -9,6 +9,7 @@ import {
 	getRentingPrice,
 	getServicePrice,
 } from '../../utils/helpers';
+import { trackPage } from '../../utils/tracking';
 
 const ContactForm = () => {
 	const [gender, setGender] = useState('');
@@ -92,6 +93,10 @@ const ContactForm = () => {
 					'https://www.techem.com/de/de/system/rwmr-angebot')
 		);
 	};
+
+	useEffect(() => {
+		trackPage('contactForm');
+	}, []);
 
 	return (
 		<Layout>
