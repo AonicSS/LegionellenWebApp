@@ -7,6 +7,7 @@ import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema.svg';
+import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/probeentnahmeventile.svg';
 import {RentingsInput} from "../../Input";
 
 const Trinkwasseranlage = () => {
@@ -84,8 +85,14 @@ const Trinkwasseranlage = () => {
 		}
 		case 1: {
 			return (
-				<Radio questionTextOverride={"Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?"}
-					   answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>
+				<div>
+					<Radio questionTextOverride={"Sind Probeentnahmeventile verbaut?"}
+						   answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>
+
+					<div className="tw-flex tw-justify-center tw-mt-28">
+						<StrangschemaIcon height={300}/>
+					</div>
+				</div>
 			);
 		}
 		case 2: {
