@@ -39,8 +39,6 @@ const Stepper = () => {
 
 	return (
 		<div className="rwm-stepper">
-			<div>{currentAppStep}</div>
-			<div>{currentSubStep}</div>
 			{((currentSubStep !== 0) || (currentAppStep !== 1)) && !showModal ? (
 				<Button style="PREVIOUS"/>
 			) : (
