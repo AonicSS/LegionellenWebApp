@@ -77,73 +77,58 @@ export interface AppReduxStoreProps {
 	};
 }
 
+function getStateRules(state: any): any {
+	let newState = {
+		...state,
+	};
+	if (state.step === 1) {
+		if (state.questions[0].choice !== "unsure") {
+			newState.maxSubSteps = 1;
+		} else if (state.questions[0].choice === "unsure" && state.subStep === 0) {
+			newState.maxSubSteps = 3;
+		}
+	}
+	return newState;
+}
+
 const appData = (
 	state = initialState,
 	action: { type: any; payload?: any }
 ) => {
 	switch (action.type) {
-		case INCREASE_APP_STEP:
-			if (state.step === 1) {
-				if (state.subStep === state.maxSubSteps) {
-					return {
-						...state,
-						subStep: 0,
-						maxSubSteps: 10,
-						step:
-							state.step < state.maxSteps
-								? state.step + 1
-								: state.maxSteps,
-					};
-				} else if (state.questions[0].choice !== "unsure" && state.subStep === 0) {
-					return {
-						...state,
-						subStep: 1,
-						maxSubSteps: 1,
-					};
-				} else if (state.questions[0].choice === "unsure" && state.subStep === 0) {
-					return {
-						...state,
-						subStep: state.subStep + 1,
-						maxSubSteps: 3,
-					};
-				} else {
-					return {
-						...state,
-						subStep: state.subStep < state.maxSubSteps ? state.subStep + 1 : state.subStep,
-					};
-				}
+		case INCREASE_APP_STEP: {
+			let newState = getStateRules(state);
+			if (state.subStep === state.maxSubSteps) {
+				return {
+					...newState,
+					subStep: 0,
+					step:
+						state.step < state.maxSteps
+							? state.step + 1
+							: state.maxSteps,
+				};
+			}
+
+			return {
+				...newState,
+				subStep: state.subStep < state.maxSubSteps ? state.subStep + 1 : state.subStep,
+			};
+		}
+		case DECREASE_APP_STEP: {
+			let newState = getStateRules(state);
+			if (state.subStep === 0) {
+				return {
+					...newState,
+					subStep: newState.maxSubSteps,
+					step: state.step > 1 ? state.step - 1 : 1,
+				};
 			}
 			return {
-				...state,
-				step:
-					state.step < state.maxSteps
-						? state.step + 1
-						: state.maxSteps,
+				...newState,
+				subStep: state.subStep > 0 ? state.subStep - 1 : state.subStep,
 			};
-		case DECREASE_APP_STEP:
-			if (state.step === 1) {
-				if (state.subStep === 0) {
-					return {
-						...state,
-						subStep: 0,
-						maxSubSteps: 10,
-						step: state.step > 1 ? state.step - 1 : 1,
-					};
-				} else {
-					return {
-						...state,
-						subStep: state.subStep > 0 ? state.subStep - 1 : state.subStep,
-						maxSubSteps: 10,
-					};
-				}
-			}
-			return {
-				...state,
-				step: state.step > 1 ? state.step - 1 : 1,
-				subStep: 10,
-				maxSubSteps: 10,
-			};
-		case SET_APP_STEP:
+		}
+		case SET_APP_STEP: {
 			let newState = {
 				...state,
 				...(action.payload.step !== undefined && {step: action.payload.step}),
@@ -155,6 +140,7 @@ const appData = (
 				newState.maxSubSteps = 1;
 			}
 			return newState;
+		}
 		case INCREASE_RENTINGS:
 			return {
 				...state,
