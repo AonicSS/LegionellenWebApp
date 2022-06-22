@@ -41,7 +41,7 @@ const Radio = ({
 
 	const currentChoice = useSelector(
 		(state: AppReduxStoreProps) =>
-			state.appData.questions[currentAppStep - 1].choice
+			state.appData.questions.find((x)=>x.question === questionText)!.choice
 	);
 
 	useEffect(() => {
@@ -62,9 +62,6 @@ const Radio = ({
 				btnActive: true,
 			},
 		});
-		// if (val && currentAppStep === 2) {
-		// 	dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		// }
 	};
 
 	return (
@@ -74,6 +71,7 @@ const Radio = ({
 				className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 lg:tw-grid-cols-${Object.keys(answersOverride).length}`}>
 				{Object.keys(answersOverride).map((answer: string) => {
 					return (<div
+						key={answer}
 						className="rwm-radio__container-select tw-container-radio"
 						onClick={() => handleChange(answer)}
 					>

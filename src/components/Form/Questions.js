@@ -30,6 +30,51 @@ export const questions = [
 		],
 	},
 	{
+		question: 'Sind Probeentnahmeventile verbaut?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
+		question: 'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
+		question: 'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
 		question: 'Die Wohnung umfasst diese Räume:',
 		choice: 1,
 		type: 'input',

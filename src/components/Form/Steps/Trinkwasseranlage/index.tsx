@@ -11,8 +11,6 @@ import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/prob
 import {RentingsInput} from "../../Input";
 
 const Trinkwasseranlage = () => {
-	const dispatch = useDispatch();
-
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
 
@@ -46,20 +44,6 @@ const Trinkwasseranlage = () => {
 			offset: -50,
 		});
 	}, []);
-
-	const handleChange = (value: string) => {
-		dispatch({
-			type: SET_ANSWER,
-			payload: {
-				questionName: questionText,
-				choice: value,
-				btnActive: true,
-			},
-		});
-		// if (val && currentAppStep === 2) {
-		// 	dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		// }
-	};
 
 
 	switch (currentSubStep) {

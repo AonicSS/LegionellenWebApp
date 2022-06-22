@@ -89,7 +89,7 @@ function getStateRules(state: any): any {
 		}
 	}
 	if (state.step === 2) {
-		newState.maxSubSteps = 2;
+		newState.maxSubSteps = 4;
 	}
 	return newState;
 }
@@ -219,49 +219,18 @@ const appData = (
 				pricing: action.payload.pricing,
 			};
 		case SET_ANSWER:
-			const isPostalCodevalid = validPostalCode(
-				action.payload.choice.toString()
-			);
-			if (
-				action.payload.questionName ===
-				'Wie viele Wohneinheiten möchten Sie ausstatten?'
-			) {
-				return {
-					...state,
-					rentings:
-						action.payload.choice === ''
-							? 0
-							: parseInt(action.payload.choice),
-					questions: state.questions.map((q, i) => {
-						return q.question === action.payload.questionName
-							? {
-								...q,
-								choice: action.payload.choice,
-								btnActive:
-									i !== 3
-										? action.payload.btnActive
-										: isPostalCodevalid,
-							}
-							: {...q};
-					}),
-				};
-			} else {
-				return {
-					...state,
-					questions: state.questions.map((q, i) => {
-						return q.question === action.payload.questionName
-							? {
-								...q,
-								choice: action.payload.choice,
-								btnActive:
-									i !== 1
-										? action.payload.btnActive
-										: isPostalCodevalid,
-							}
-							: {...q};
-					}),
-				};
-			}
+			return {
+				...state,
+				questions: state.questions.map((q, i) => {
+					return q.question === action.payload.questionName
+						? {
+							...q,
+							choice: action.payload.choice,
+							btnActive: action.payload.btnActive,
+						}
+						: {...q};
+				}),
+			};
 		case SET_ROOMS: {
 			return {
 				...state,

@@ -49,7 +49,7 @@ const Stepper = () => {
 			{Array(maxSteps)
 				.fill(0)
 				.map((_, key) => (
-					<div>
+					<div key={key}>
 						<div style={{
 							width: "150px",
 							height: "3px",

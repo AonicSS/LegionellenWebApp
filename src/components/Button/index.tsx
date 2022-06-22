@@ -170,7 +170,6 @@ const Button = ({
 
 	switch (style) {
 		case 'NEXT':
-			const isRentingZero = getIsRentingZero(questionText);
 			const active = getActiveButton(questions);
 			return (
 				<button
@@ -178,8 +177,7 @@ const Button = ({
 					className={classnames(
 						'rwm-btn',
 						`rwm-button--${
-							(!isRentingZero &&
-								active &&
+							(active &&
 								currentAppStep === 1) ||
 							active
 								? 'active'
