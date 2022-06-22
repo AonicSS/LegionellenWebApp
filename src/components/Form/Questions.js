@@ -1,6 +1,6 @@
 export const questions = [
 	{
-		question: 'Besteht für Ihre Liegenschaft eine Prüfpflicht ?',
+		question: 'Besteht für Ihre Liegenschaft eine Prüfpflicht?',
 		choice: '1',
 		type: 'input',
 		btnActive: true,
@@ -15,23 +15,8 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
-		choice: '',
-		type: 'input',
-		btnActive: true,
-		answers: [
-			{
-				name: '',
-				type: '',
-				amount: 0,
-				required: false,
-				house: 1,
-			},
-		],
-	},
-	{
-		question: 'Sind Probeentnahmeventile verbaut?',
-		choice: '',
+		question: 'Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?',
+		choice: '1',
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -61,6 +46,36 @@ export const questions = [
 	},
 	{
 		question: 'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
+		question: 'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
+		question: 'Sind Probeentnahmeventile verbaut?',
 		choice: '',
 		type: 'input',
 		btnActive: true,

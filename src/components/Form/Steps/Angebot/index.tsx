@@ -90,19 +90,6 @@ const Angebot = () => {
 					questionTextOverride={"Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?"}></Radio>
 			);
 		}
-		case 3: {
-			return (
-				<Radio
-					questionTextOverride={"Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?"}></Radio>
-			);
-		}
-
-		case 4: {
-			return (
-				<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
-					erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
-			);
-		}
 	}
 
 
