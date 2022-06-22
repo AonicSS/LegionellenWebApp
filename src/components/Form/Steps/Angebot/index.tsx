@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../../utils/translate';
@@ -6,9 +6,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
+import classNames from "classnames";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
+
+	const [street, setStreet] = useState('');
+	const [houseNumber, setHouseNumber] = useState('');
+	const [postalCode, setPostalCode] = useState('');
+	const [residence, setResidence] = useState('');
 
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
@@ -61,7 +67,67 @@ const Angebot = () => {
 	switch (currentSubStep) {
 		default:
 		case 0: {
-			return <Radio></Radio>;
+			return (<section className="rwm-forms__page-section tw-margin-top">
+				<div className="tw-flex tw-flex-col">
+					<label className="rwm-form__headline">
+						<h1 className="rwm-form__headline">
+							Wo befindet sich die zu prüfende Liegenschaft?
+						</h1>
+					</label>
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
+						<div className="rwm-form__input-container">
+							<label className="tw-flex tw-font-size-label tw-font">
+								Straße*
+							</label>
+							<input
+								type="text"
+								name="streetName"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+								value={street}
+								onChange={(e) => setStreet(e.target.value)}
+							/>
+						</div>
+						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+							<label className="tw-flex tw-font-size-label tw-font">
+								Hausnummer*
+							</label>
+							<input
+								type="text"
+								name="houseNumber"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+								value={houseNumber}
+								onChange={(e) => setHouseNumber(e.target.value)}
+							/>
+						</div>
+					</div>
+					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
+						<div className="rwm-form__input-container">
+							<label className="tw-flex tw-font-size-label tw-font">
+								Postleitzahl*
+							</label>
+							<input
+								type="number"
+								name="postalCode"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+								value={postalCode}
+								onChange={(e) => setPostalCode(e.target.value)}
+							/>
+						</div>
+						<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+							<label className="tw-flex tw-font-size-label tw-font">
+								Wohnort*
+							</label>
+							<input
+								type="text"
+								name="residence"
+								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+								value={residence}
+								onChange={(e) => setResidence(e.target.value)}
+							/>
+						</div>
+					</div>
+				</div>
+			</section>);
 		}
 		case 1: {
 			if (currentAppData.questions[0].choice === 'yes') {
