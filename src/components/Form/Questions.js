@@ -15,7 +15,7 @@ export const questions = [
 		],
 	},
 	{
-		question: 'Wo befindet sich die auszustattende(n) Wohnung(en)?',
+		question: 'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
 		choice: '',
 		type: 'input',
 		btnActive: false,

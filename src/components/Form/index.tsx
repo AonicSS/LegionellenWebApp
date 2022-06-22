@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { AppReduxStoreProps } from '../../redux/reducers/App';
+import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {AppReduxStoreProps} from '../../redux/reducers/App';
 import Radio from './Radio';
-import { RentingsInput, PostalCodeInput, RoomsInput } from './Input';
+import {RentingsInput, PostalCodeInput, RoomsInput} from './Input';
 import Six from './Six';
-import { trackStepper } from '../../utils/tracking';
+import {trackStepper} from '../../utils/tracking';
 import Pruefpflicht from "./Steps/Pruefpflicht";
+import Trinkwasseranlage from "./Steps/Trinkwasseranlage";
+import Angebot from "./Steps/Angebot";
 
 const Form = () => {
 	const currentAppStep = useSelector(
@@ -22,12 +24,9 @@ const Form = () => {
 
 	return (
 		<>
-			{currentAppStep === 1 && < Pruefpflicht />}
-			{currentAppStep === 2 && <PostalCodeInput />}
-			{currentAppStep === 3 && <RoomsInput />}
-			{currentAppStep === 4 && <RentingsInput />}
-			{currentAppStep === 5 && <Six />}
-			{/* {currentAppStep === 2 && <Radio />}  */}
+			{currentAppStep === 1 && <Pruefpflicht/>}
+			{currentAppStep === 2 && <Trinkwasseranlage/>}
+			{currentAppStep === 3 && <Angebot/>}
 		</>
 	);
 };

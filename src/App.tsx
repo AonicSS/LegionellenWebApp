@@ -10,7 +10,7 @@ import './styles/index.css';
 
 function App() {
 	return (
-		<HashRouter basename={'/calculator'}>
+		<HashRouter basename={'/'}>
 			<Routes>
 				<Route path="/" element={<Calculator />} />
 				<Route path="/summary" element={<Summary />} />

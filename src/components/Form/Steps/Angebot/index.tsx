@@ -7,7 +7,7 @@ import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 
-const Pruefpflicht = () => {
+const Angebot = () => {
 	const dispatch = useDispatch();
 
 	const intl = useIntl();
@@ -61,7 +61,7 @@ const Pruefpflicht = () => {
 	switch (currentSubStep) {
 		default:
 		case 0: {
-			return <Radio answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>;
+			return <Radio></Radio>;
 		}
 		case 1: {
 			if (currentAppData.questions[0].choice === 'yes') {
@@ -87,15 +87,13 @@ const Pruefpflicht = () => {
 		case 2: {
 			return (
 				<Radio
-					questionTextOverride={"Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?"}
-					answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>
+					questionTextOverride={"Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?"}></Radio>
 			);
 		}
 		case 3: {
 			return (
 				<Radio
-					questionTextOverride={"Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?"}
-					answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>
+					questionTextOverride={"Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?"}></Radio>
 			);
 		}
 
@@ -110,4 +108,4 @@ const Pruefpflicht = () => {
 
 };
 
-export default Pruefpflicht;
+export default Angebot;
