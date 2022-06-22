@@ -85,12 +85,11 @@ function getStateRules(state: any): any {
 		if (state.questions[0].choice !== "unsure") {
 			newState.maxSubSteps = 1;
 		} else if (state.questions[0].choice === "unsure") {
-			newState.maxSubSteps = 3;
+			newState.maxSubSteps = 4;
 		}
 	}
 	if (state.step === 2) {
-		newState.subStep = 0;
-		newState.maxSubSteps = 0;
+		newState.maxSubSteps = 2;
 	}
 	return newState;
 }

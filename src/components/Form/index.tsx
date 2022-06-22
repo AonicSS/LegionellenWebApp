@@ -5,6 +5,7 @@ import Radio from './Radio';
 import { RentingsInput, PostalCodeInput, RoomsInput } from './Input';
 import Six from './Six';
 import { trackStepper } from '../../utils/tracking';
+import Pruefpflicht from "./Steps/Pruefpflicht";
 
 const Form = () => {
 	const currentAppStep = useSelector(
@@ -21,7 +22,7 @@ const Form = () => {
 
 	return (
 		<>
-			{currentAppStep === 1 && <Radio />}
+			{currentAppStep === 1 && < Pruefpflicht />}
 			{currentAppStep === 2 && <PostalCodeInput />}
 			{currentAppStep === 3 && <RoomsInput />}
 			{currentAppStep === 4 && <RentingsInput />}

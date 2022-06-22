@@ -11,7 +11,10 @@ import {ReactComponent as Decline} from '../../../icons/times.svg';
 import './Radio.css';
 import {AppReduxStoreProps} from '../../../redux/reducers/App';
 
-const Radio = () => {
+const Radio = ({
+				   questionTextOverride,
+				   questionNameOverride,
+			   }: any) => {
 	const dispatch = useDispatch();
 
 	const intl = useIntl();
@@ -29,7 +32,7 @@ const Radio = () => {
 		(state: AppReduxStoreProps) => state.appData
 	);
 
-	const questionText = `${Translate(
+	const questionText = questionTextOverride ?? `${Translate(
 		intl,
 		`questions.${currentAppStep - 1}.question`
 	)}`;
@@ -84,9 +87,6 @@ const Radio = () => {
 					className="rwm-radio__container-select tw-container-radio-first"
 					onClick={() => handleChange('yes')}
 				>
-					<div className="rwm-radio__container-icon-check">
-						<Check fill="#4c4c4c"/>
-					</div>
 					<label htmlFor="Ja" className="rwm-radio__label tw-mb-1">
 						Ja
 					</label>
@@ -105,9 +105,6 @@ const Radio = () => {
 					className="rwm-radio__container-select tw-container-radio"
 					onClick={() => handleChange('no')}
 				>
-					<div className="rwm-radio__container-icon-decline">
-						<Decline fill="#4c4c4c"/>
-					</div>
 					<label htmlFor="Nein" className="rwm-radio__label tw-mb-1">
 						Nein
 					</label>
@@ -126,9 +123,6 @@ const Radio = () => {
 					className="rwm-radio__container-select tw-container-radio"
 					onClick={() => handleChange('unsure')}
 				>
-					<div className="rwm-radio__container-icon-decline">
-						<Decline fill="#4c4c4c"/>
-					</div>
 					<label htmlFor="Unsicher" className="rwm-radio__label tw-mb-1">
 						Ich weiß nicht
 					</label>
