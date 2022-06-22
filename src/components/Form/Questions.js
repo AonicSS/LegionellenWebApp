@@ -1,6 +1,6 @@
 export const questions = [
 	{
-		question: 'Wie viele Wohnungen möchten Sie ausstatten?',
+		question: 'Besteht für Ihre Liegenschaft eine Prüfpflicht ?',
 		choice: '1',
 		type: 'input',
 		btnActive: true,

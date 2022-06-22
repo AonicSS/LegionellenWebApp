@@ -48,7 +48,7 @@
 	},
 	"questions": {
 		"0": {
-			"question": "Wie viele Wohnungen möchten Sie ausstatten?",
+			"question": "Besteht für Ihre Liegenschaft eine Prüfpflicht ?",
 			"sublabel": "Eine Wohneinheit enspricht einem Mietobjekt, z.B. einer Wohnung.",
 			"answers": {
 				"0": {

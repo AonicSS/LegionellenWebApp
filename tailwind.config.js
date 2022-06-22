@@ -436,26 +436,24 @@ module.exports = {
 					marginRight: '15px;',
 					[`@media (min-width: ${md})`]: {
 						width: '79px',
-						height: '4px',
+						height: '3px',
 						marginRight: '15px',
 					},
 					[`@media (min-width: ${lg})`]: {
 						width: '79px',
-						height: '4px',
+						height: '3px',
 						marginRight: '15px',
 					},
 					[`@media (min-width: ${xl})`]: {
 						width: '79px',
-						height: '4px',
+						height: '3px',
 						marginRight: '15px',
 					},
 				},
 				[`.${prefix}-active`]: {
-					border: '1px solid #e20913',
 					backgroundColor: '#e20913',
 				},
 				[`.${prefix}-disabled`]: {
-					border: '1px solid #E3E3E3',
 					backgroundColor: '#E3E3E3',
 				},
 			});

@@ -1,5 +1,5 @@
-import { questions, rooms } from '../../components/Form/Questions';
-import { trueTypeOf, validPostalCode } from '../../utils/helpers';
+import {questions, rooms} from '../../components/Form/Questions';
+import {trueTypeOf, validPostalCode} from '../../utils/helpers';
 import {
 	INCREASE_APP_STEP,
 	DECREASE_APP_STEP,
@@ -19,18 +19,20 @@ import {
 	SET_REGION,
 } from '../actions/App';
 
-import { getAlarmNumberForHouse } from '../../utils/helpers';
+import {getAlarmNumberForHouse} from '../../utils/helpers';
 
 const initialState = {
 	step: 1,
-	maxSteps: 5,
+	subStep: 0,
+	maxSubSteps: 10,
+	maxSteps: 3,
 	rentings: 1,
 	maxRentings: 1,
 	showModal: false,
 	acceptContact: false,
 	acceptMarketing: false,
 	years: 10,
-	postalCode: { code: '', valid: false, area: '' },
+	postalCode: {code: '', valid: false, area: ''},
 	questions: questions,
 	pricing: '',
 };
@@ -56,8 +58,11 @@ export interface Answers {
 	required: boolean;
 	house: number;
 }
+
 export interface AppReduxStoreProps {
 	appData: {
+		subStep: number;
+		maxSubSteps: number;
 		step: number;
 		rentings: number;
 		maxSteps: number;
@@ -78,6 +83,26 @@ const appData = (
 ) => {
 	switch (action.type) {
 		case INCREASE_APP_STEP:
+			if (state.step === 1) {
+				debugger;
+				if (state.subStep === state.maxSubSteps) {
+					return {
+						...state,
+						subStep: 0,
+						maxSubSteps: 10,
+						step:
+							state.step < state.maxSteps
+								? state.step + 1
+								: state.maxSteps,
+					};
+				} else {
+					return {
+						...state,
+						subStep: state.subStep < state.maxSubSteps ? state.subStep + 1 : state.subStep,
+						maxSubSteps: 10,
+					};
+				}
+			}
 			return {
 				...state,
 				step:
@@ -86,9 +111,28 @@ const appData = (
 						: state.maxSteps,
 			};
 		case DECREASE_APP_STEP:
+			if (state.step === 1) {
+				debugger;
+				if (state.subStep === 0) {
+					return {
+						...state,
+						subStep: 0,
+						maxSubSteps: 10,
+						step: state.step > 1 ? state.step - 1 : 1,
+					};
+				} else {
+					return {
+						...state,
+						subStep: state.subStep > 0 ? state.subStep - 1 : state.subStep,
+						maxSubSteps: 10,
+					};
+				}
+			}
 			return {
 				...state,
 				step: state.step > 1 ? state.step - 1 : 1,
+				subStep: 10,
+				maxSubSteps: 10,
 			};
 		case SET_APP_STEP:
 			return {
@@ -102,18 +146,18 @@ const appData = (
 				questions: state.questions.map((q, i) => {
 					return q.question === action.payload.questionName
 						? {
-								...q,
-								choice:
-									trueTypeOf(state.questions[i].choice) ===
-									'string'
-										? //@ts-ignore
-										  parseInt(state.questions[i].choice) +
-										  1
-										: //@ts-ignore
-										  state.questions[i].choice + 1,
-								btnActive: action.payload.btnActive,
-						  }
-						: { ...q };
+							...q,
+							choice:
+								trueTypeOf(state.questions[i].choice) ===
+								'string'
+									? //@ts-ignore
+									parseInt(state.questions[i].choice) +
+									1
+									: //@ts-ignore
+									state.questions[i].choice + 1,
+							btnActive: action.payload.btnActive,
+						}
+						: {...q};
 				}),
 			};
 		case INCREASE_RENTINGS_STEP:
@@ -131,16 +175,16 @@ const appData = (
 				questions: state.questions.map((q, i) => {
 					return q.question === action.payload.questionName
 						? {
-								...q,
-								choice:
-									//@ts-ignore
-									state.questions[i].choice > 0
-										? //@ts-ignore
-										  state.questions[i].choice - 1
-										: 0,
-								btnActive: action.payload.btnActive,
-						  }
-						: { ...q };
+							...q,
+							choice:
+							//@ts-ignore
+								state.questions[i].choice > 0
+									? //@ts-ignore
+									state.questions[i].choice - 1
+									: 0,
+							btnActive: action.payload.btnActive,
+						}
+						: {...q};
 				}),
 			};
 		case UPDATE_POSTAL_CODE:
@@ -180,14 +224,14 @@ const appData = (
 					questions: state.questions.map((q, i) => {
 						return q.question === action.payload.questionName
 							? {
-									...q,
-									choice: action.payload.choice,
-									btnActive:
-										i !== 3
-											? action.payload.btnActive
-											: isPostalCodevalid,
-							  }
-							: { ...q };
+								...q,
+								choice: action.payload.choice,
+								btnActive:
+									i !== 3
+										? action.payload.btnActive
+										: isPostalCodevalid,
+							}
+							: {...q};
 					}),
 				};
 			} else {
@@ -196,14 +240,14 @@ const appData = (
 					questions: state.questions.map((q, i) => {
 						return q.question === action.payload.questionName
 							? {
-									...q,
-									choice: action.payload.choice,
-									btnActive:
-										i !== 1
-											? action.payload.btnActive
-											: isPostalCodevalid,
-							  }
-							: { ...q };
+								...q,
+								choice: action.payload.choice,
+								btnActive:
+									i !== 1
+										? action.payload.btnActive
+										: isPostalCodevalid,
+							}
+							: {...q};
 					}),
 				};
 			}
@@ -213,17 +257,17 @@ const appData = (
 				questions: state.questions.map((q) => {
 					return q.question === action.payload.questionName
 						? {
-								...q,
-								answers: q.answers.map((a) => {
-									return a.name === action.payload.roomName
-										? {
-												...a,
-												amount: action.payload.amount,
-										  }
-										: { ...a };
-								}),
-						  }
-						: { ...q };
+							...q,
+							answers: q.answers.map((a) => {
+								return a.name === action.payload.roomName
+									? {
+										...a,
+										amount: action.payload.amount,
+									}
+									: {...a};
+							}),
+						}
+						: {...q};
 				}),
 			};
 		}
@@ -240,20 +284,20 @@ const appData = (
 										...a,
 										amount:
 											state.postalCode.area ===
-												'Berlin' ||
+											'Berlin' ||
 											state.postalCode.area ===
-												'Brandenburg'
+											'Brandenburg'
 												? 1
 												: 0,
 										required: action.payload.value,
 									};
 								} else {
-									return { ...a };
+									return {...a};
 								}
 							}),
 						};
 					} else {
-						return { ...q };
+						return {...q};
 					}
 				}),
 			};
@@ -263,39 +307,39 @@ const appData = (
 				questions: state.questions.map((q) => {
 					return q.question === action.payload.questionName
 						? {
-								...q,
-								answers: [
-									...q.answers,
-									...rooms.map((r) => {
-										if (r.name === 'common') {
-											return {
-												...r,
-												amount:
-													state.postalCode.area ===
-														'Berlin' ||
-													state.postalCode.area ===
-														'Brandenburg'
-														? 1
-														: 0,
-												required:
-													state.postalCode.area ===
-														'Berlin' ||
-													state.postalCode.area ===
-														'Brandenburg'
-														? true
-														: false,
-												house: state.rentings,
-											};
-										} else {
-											return {
-												...r,
-												house: state.rentings,
-											};
-										}
-									}),
-								],
-						  }
-						: { ...q };
+							...q,
+							answers: [
+								...q.answers,
+								...rooms.map((r) => {
+									if (r.name === 'common') {
+										return {
+											...r,
+											amount:
+												state.postalCode.area ===
+												'Berlin' ||
+												state.postalCode.area ===
+												'Brandenburg'
+													? 1
+													: 0,
+											required:
+												state.postalCode.area ===
+												'Berlin' ||
+												state.postalCode.area ===
+												'Brandenburg'
+													? true
+													: false,
+											house: state.rentings,
+										};
+									} else {
+										return {
+											...r,
+											house: state.rentings,
+										};
+									}
+								}),
+							],
+						}
+						: {...q};
 				}),
 			};
 		}
@@ -317,12 +361,12 @@ const appData = (
 										amount: parseInt(a.amount) + 1,
 									};
 								} else {
-									return { ...a };
+									return {...a};
 								}
 							}),
 						};
 					} else {
-						return { ...q };
+						return {...q};
 					}
 				}),
 			};
@@ -351,12 +395,12 @@ const appData = (
 												: a.amount,
 									};
 								} else {
-									return { ...a };
+									return {...a};
 								}
 							}),
 						};
 					} else {
-						return { ...q };
+						return {...q};
 					}
 				}),
 			};

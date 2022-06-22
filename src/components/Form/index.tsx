@@ -11,16 +11,20 @@ const Form = () => {
 		(state: AppReduxStoreProps) => state.appData.step
 	);
 
+	const currentSubStep = useSelector(
+		(state: AppReduxStoreProps) => state.appData.subStep
+	);
+
 	useEffect(() => {
 		trackStepper(currentAppStep);
 	}, [currentAppStep]);
 
 	return (
 		<>
-			{currentAppStep === 1 && <RentingsInput />}
+			{currentAppStep === 1 && <Radio />}
 			{currentAppStep === 2 && <PostalCodeInput />}
 			{currentAppStep === 3 && <RoomsInput />}
-			{currentAppStep === 4 && <Radio />}
+			{currentAppStep === 4 && <RentingsInput />}
 			{currentAppStep === 5 && <Six />}
 			{/* {currentAppStep === 2 && <Radio />}  */}
 		</>

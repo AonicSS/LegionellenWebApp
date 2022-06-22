@@ -6,10 +6,6 @@ module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	extends: [
-		'plugin:@typescript-eslint/recommended', // uses typescript-specific linting rules
-		'plugin:react/recommended', // uses react-specific linting rules
-		'plugin:prettier/recommended', // enables eslint-plugin-prettier and eslint-config-prettier
-		'prettier', // disables react-specific linting rules that conflict with prettier
 	],
 	globals: {
 		Atomics: 'readonly',

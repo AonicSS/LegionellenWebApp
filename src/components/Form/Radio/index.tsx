@@ -19,6 +19,14 @@ const Radio = () => {
 		(state: AppReduxStoreProps) => state.appData.step
 	);
 
+	const currentSubStep = useSelector(
+		(state: AppReduxStoreProps) => state.appData.subStep
+	);
+
+	const currentAppData = useSelector(
+		(state: AppReduxStoreProps) => state.appData
+	);
+
 	const questionText = `${Translate(
 		intl,
 		`questions.${currentAppStep - 1}.question`
@@ -51,6 +59,17 @@ const Radio = () => {
 		// 	dispatch({ type: SET_MODAL, payload: { showModal: true } });
 		// }
 	};
+
+	if(currentAppData.questions[0].choice && currentSubStep === 1){
+		return (
+			<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
+		);
+	}
+	if(!currentAppData.questions[0].choice && currentSubStep === 1){
+		return (
+			<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können trotzdem jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum Gesundheitsschutz für Ihre Mieter*innen bei.</div>
+		);
+	}
 
 	return (
 		<div className="rwm-radio">
