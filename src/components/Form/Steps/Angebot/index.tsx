@@ -7,6 +7,8 @@ import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import classNames from "classnames";
+import Pricing from "../../Pricing";
+import {ReactComponent as StrangschemaIcon} from "../../../../icons/strangschema.svg";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
@@ -74,7 +76,8 @@ const Angebot = () => {
 							Wo befindet sich die zu prüfende Liegenschaft?
 						</h1>
 					</label>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
+					<div
+						className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-font">
 								Straße*
@@ -100,7 +103,8 @@ const Angebot = () => {
 							/>
 						</div>
 					</div>
-					<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
+					<div
+						className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 						<div className="rwm-form__input-container">
 							<label className="tw-flex tw-font-size-label tw-font">
 								Postleitzahl*
@@ -130,30 +134,13 @@ const Angebot = () => {
 			</section>);
 		}
 		case 1: {
-			if (currentAppData.questions[0].choice === 'yes') {
-				return (
-					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
-						erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
-				);
-			}
-			if (currentAppData.questions[0].choice === 'no') {
-				return (
-					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können
-						trotzdem
-						jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum
-						Gesundheitsschutz für
-						Ihre Mieter*innen bei.</div>
-				);
-			}
 			return (
-				<Radio questionTextOverride={"Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?"}
-					   answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>
-			);
-		}
-		case 2: {
-			return (
-				<Radio
-					questionTextOverride={"Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?"}></Radio>
+				<section className="tw-margin-top">
+					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14">
+						<h1>Unser Angebot für Sie</h1>
+					</div>
+					<Pricing/>
+				</section>
 			);
 		}
 	}
