@@ -84,9 +84,13 @@ function getStateRules(state: any): any {
 	if (state.step === 1) {
 		if (state.questions[0].choice !== "unsure") {
 			newState.maxSubSteps = 1;
-		} else if (state.questions[0].choice === "unsure" && state.subStep === 0) {
+		} else if (state.questions[0].choice === "unsure") {
 			newState.maxSubSteps = 3;
 		}
+	}
+	if (state.step === 2) {
+		newState.subStep = 0;
+		newState.maxSubSteps = 0;
 	}
 	return newState;
 }
@@ -98,14 +102,17 @@ const appData = (
 	switch (action.type) {
 		case INCREASE_APP_STEP: {
 			let newState = getStateRules(state);
-			if (state.subStep === state.maxSubSteps) {
-				return {
-					...newState,
-					subStep: 0,
+			if (state.subStep === newState.maxSubSteps) {
+				let newState = getStateRules({
+					...state,
 					step:
 						state.step < state.maxSteps
 							? state.step + 1
 							: state.maxSteps,
+				});
+				return {
+					...newState,
+					subStep: 0,
 				};
 			}
 
@@ -117,10 +124,13 @@ const appData = (
 		case DECREASE_APP_STEP: {
 			let newState = getStateRules(state);
 			if (state.subStep === 0) {
+				let newState = getStateRules({
+					...state,
+					step: state.step > 1 ? state.step - 1 : 1,
+				});
 				return {
 					...newState,
 					subStep: newState.maxSubSteps,
-					step: state.step > 1 ? state.step - 1 : 1,
 				};
 			}
 			return {
