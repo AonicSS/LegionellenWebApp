@@ -18,7 +18,7 @@ export const questions = [
 		question: 'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
 		choice: '',
 		type: 'input',
-		btnActive: false,
+		btnActive: true,
 		answers: [
 			{
 				name: '',

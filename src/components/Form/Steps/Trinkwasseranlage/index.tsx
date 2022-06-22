@@ -7,6 +7,7 @@ import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema.svg';
+import {RentingsInput} from "../../Input";
 
 const Trinkwasseranlage = () => {
 	const dispatch = useDispatch();
@@ -59,33 +60,29 @@ const Trinkwasseranlage = () => {
 		// }
 	};
 
+
 	switch (currentSubStep) {
 		default:
 		case 0: {
-			return <div>
+			let currentAnswer = (currentAppData.questions.find((x) => x.question === questionText));
+			return (<div>
 				<Radio>
 				</Radio>
 				<div className="tw-flex tw-justify-center tw-mt-28">
 					<StrangschemaIcon height={300}/>
 				</div>
-			</div>;
+				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'yes') &&
+					<>
+						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
+						<RentingsInput/>
+					</>
+				}
+				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'no') &&
+					<>Test</>
+				}
+			</div>);
 		}
 		case 1: {
-			if (currentAppData.questions[0].choice === 'yes') {
-				return (
-					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
-						erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
-				);
-			}
-			if (currentAppData.questions[0].choice === 'no') {
-				return (
-					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können
-						trotzdem
-						jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum
-						Gesundheitsschutz für
-						Ihre Mieter*innen bei.</div>
-				);
-			}
 			return (
 				<Radio questionTextOverride={"Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?"}
 					   answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>

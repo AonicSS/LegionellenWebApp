@@ -41,14 +41,6 @@ export const RentingsInput = () => {
 
 	return (
 		<div>
-			<label className="rwm-form__headline">
-				<h1 className="rwm-form__headline">
-					{Translate(
-						intl,
-						`questions.${currentAppStep - 1}.question`
-					)}
-				</h1>
-			</label>
 			<fieldset>
 				<div className="rwm-form">
 					<div className="rwm-form__rentings">
