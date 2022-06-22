@@ -84,7 +84,6 @@ const appData = (
 	switch (action.type) {
 		case INCREASE_APP_STEP:
 			if (state.step === 1) {
-				debugger;
 				if (state.subStep === state.maxSubSteps) {
 					return {
 						...state,
@@ -95,11 +94,22 @@ const appData = (
 								? state.step + 1
 								: state.maxSteps,
 					};
+				} else if (state.questions[0].choice !== "unsure" && state.subStep === 0) {
+					return {
+						...state,
+						subStep: 1,
+						maxSubSteps: 1,
+					};
+				} else if (state.questions[0].choice === "unsure" && state.subStep === 0) {
+					return {
+						...state,
+						subStep: state.subStep + 1,
+						maxSubSteps: 3,
+					};
 				} else {
 					return {
 						...state,
 						subStep: state.subStep < state.maxSubSteps ? state.subStep + 1 : state.subStep,
-						maxSubSteps: 10,
 					};
 				}
 			}
@@ -112,7 +122,6 @@ const appData = (
 			};
 		case DECREASE_APP_STEP:
 			if (state.step === 1) {
-				debugger;
 				if (state.subStep === 0) {
 					return {
 						...state,
@@ -135,10 +144,17 @@ const appData = (
 				maxSubSteps: 10,
 			};
 		case SET_APP_STEP:
-			return {
+			let newState = {
 				...state,
-				step: action.payload.step,
-			};
+				...(action.payload.step !== undefined && {step: action.payload.step}),
+				...(action.payload.subStep !== undefined && {subStep: action.payload.subStep}),
+				...(action.payload.maxSubSteps !== undefined && {maxSubSteps: action.payload.maxSubSteps}),
+			}
+			if (state.step !== action.payload.step) {
+				newState.subStep = 1;
+				newState.maxSubSteps = 1;
+			}
+			return newState;
 		case INCREASE_RENTINGS:
 			return {
 				...state,

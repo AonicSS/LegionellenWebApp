@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import React, {useEffect} from 'react';
+import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../utils/translate';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_ANSWER } from '../../../redux/actions/App';
-import { ReactComponent as Check } from '../../../icons/check.svg';
-import { ReactComponent as Decline } from '../../../icons/times.svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {SET_ANSWER, SET_APP_STEP} from '../../../redux/actions/App';
+import {ReactComponent as Check} from '../../../icons/check.svg';
+import {ReactComponent as Decline} from '../../../icons/times.svg';
+
 
 import './Radio.css';
-import { AppReduxStoreProps } from '../../../redux/reducers/App';
+import {AppReduxStoreProps} from '../../../redux/reducers/App';
 
 const Radio = () => {
 	const dispatch = useDispatch();
+
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
 
@@ -46,7 +48,7 @@ const Radio = () => {
 		});
 	}, []);
 
-	const handleChange = (value: boolean) => {
+	const handleChange = (value: string) => {
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
@@ -60,14 +62,17 @@ const Radio = () => {
 		// }
 	};
 
-	if(currentAppData.questions[0].choice && currentSubStep === 1){
+	if (currentAppData.questions[0].choice === 'yes' && currentSubStep === 1) {
 		return (
-			<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
+			<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
+				erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
 		);
 	}
-	if(!currentAppData.questions[0].choice && currentSubStep === 1){
+	if (currentAppData.questions[0].choice === 'no' && currentSubStep === 1) {
 		return (
-			<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können trotzdem jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum Gesundheitsschutz für Ihre Mieter*innen bei.</div>
+			<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können trotzdem
+				jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum Gesundheitsschutz für
+				Ihre Mieter*innen bei.</div>
 		);
 	}
 
@@ -77,42 +82,63 @@ const Radio = () => {
 			<fieldset className="rwm-radio__container lg:tw-mt-16 xl:tw-mt-16">
 				<div
 					className="rwm-radio__container-select tw-container-radio-first"
-					onClick={() => handleChange(true)}
+					onClick={() => handleChange('yes')}
 				>
 					<div className="rwm-radio__container-icon-check">
-						<Check fill="#4c4c4c" />
+						<Check fill="#4c4c4c"/>
 					</div>
 					<label htmlFor="Ja" className="rwm-radio__label tw-mb-1">
 						Ja
 					</label>
 					<div className="rwm-form__container-input">
 						<input
-							onChange={() => handleChange(true)}
+							onChange={() => handleChange('yes')}
 							name="Ja"
 							id="Ja"
 							type="radio"
-							checked={currentChoice === true}
+							checked={currentChoice === 'yes'}
 							className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
 						/>
 					</div>
 				</div>
 				<div
 					className="rwm-radio__container-select tw-container-radio"
-					onClick={() => handleChange(false)}
+					onClick={() => handleChange('no')}
 				>
 					<div className="rwm-radio__container-icon-decline">
-						<Decline fill="#4c4c4c" />
+						<Decline fill="#4c4c4c"/>
 					</div>
 					<label htmlFor="Nein" className="rwm-radio__label tw-mb-1">
 						Nein
 					</label>
 					<div className="rwm-form__container-input">
 						<input
-							onChange={() => handleChange(false)}
+							onChange={() => handleChange('no')}
 							name="Nein"
 							id="Nein"
 							type="radio"
-							checked={currentChoice === false}
+							checked={currentChoice === 'no'}
+							className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
+						/>
+					</div>
+				</div>
+				<div
+					className="rwm-radio__container-select tw-container-radio"
+					onClick={() => handleChange('unsure')}
+				>
+					<div className="rwm-radio__container-icon-decline">
+						<Decline fill="#4c4c4c"/>
+					</div>
+					<label htmlFor="Unsicher" className="rwm-radio__label tw-mb-1">
+						Ich weiß nicht
+					</label>
+					<div className="rwm-form__container-input">
+						<input
+							onChange={() => handleChange('unsure')}
+							name="Unsicher"
+							id="Unsicher"
+							type="radio"
+							checked={currentChoice === 'unsure'}
 							className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
 						/>
 					</div>

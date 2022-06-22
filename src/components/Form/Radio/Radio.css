@@ -7,7 +7,7 @@
 }
 
 .rwm-radio__container {
-	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-2 tw-justify-center tw-items-center lg:tw-gap-10;
+	@apply tw-grid tw-grid-rows-none lg:tw-grid-cols-3 tw-justify-center tw-items-center lg:tw-gap-10;
 }
 
 .rwm-radio__container-years {

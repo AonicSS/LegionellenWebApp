@@ -30,11 +30,13 @@ export function decreaseAppStep() {
 	};
 }
 
-export function setAppStep(step: number) {
+export function setAppStep(step?: number, subStep?: number, maxSubStep?: number) {
 	return {
 		type: SET_APP_STEP,
 		payload: {
 			step,
+			subStep,
+			maxSubStep
 		},
 	};
 }
