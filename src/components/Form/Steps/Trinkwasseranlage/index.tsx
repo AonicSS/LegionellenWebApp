@@ -63,7 +63,7 @@ const Trinkwasseranlage = () => {
 					</>
 				}
 				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'no') &&
-					<Radio showTitle={false} orientation={"vertical"}>
+					<Radio questionTextOverride={"Konnten Sie das Strangschema ermitteln?"} showTitle={false} orientation={"vertical"} answersOverride={{'yes': 'Mit diesen Informationen konnte ich das Strangschema ermitteln und kennen nun die Anzahl der Stränge.', 'no': 'Ich kenne das Strangschema nicht und benötige Unterstützung.'}}>
 					</Radio>
 				}
 			</div>);

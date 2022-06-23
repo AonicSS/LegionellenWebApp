@@ -67,35 +67,73 @@ const Radio = ({
 	};
 
 	return (
-		<div className="rwm-radio">
+		<>
 			{
-				showTitle && <label className="rwm-form__headline">{questionText}</label>
+				(orientation === 'vertical') &&
+
+				<div className="tw-flex">
+					{
+						showTitle && <label className="rwm-form__headline">{questionText}</label>
+					}
+					<fieldset
+						className={`tw-w-full lg:tw-grid-rows-${Object.keys(answersOverride).length}`}>
+						{Object.keys(answersOverride).map((answer: string) => {
+							return (<div
+								key={answer}
+								className="tw-w-full"
+								onClick={() => handleChange(answer)}
+							>
+								<div className="tw-mb-10">
+									<input
+										onChange={() => handleChange(answer)}
+										name={answersOverride[answer]}
+										id={answersOverride[answer]}
+										type="radio"
+										checked={currentChoice === answer}
+										className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
+									/>
+									<label htmlFor={answersOverride[answer]} className="tw-ml-10">
+										{answersOverride[answer]}
+									</label>
+								</div>
+							</div>);
+						})}
+					</fieldset>
+				</div>
 			}
-			<fieldset
-				className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 lg:tw-grid-cols-${Object.keys(answersOverride).length}`}>
-				{Object.keys(answersOverride).map((answer: string) => {
-					return (<div
-						key={answer}
-						className="rwm-radio__container-select tw-container-radio"
-						onClick={() => handleChange(answer)}
-					>
-						<label htmlFor={answersOverride[answer]} className="rwm-radio__label tw-mb-1">
-							{answersOverride[answer]}
-						</label>
-						<div className="rwm-form__container-input">
-							<input
-								onChange={() => handleChange(answer)}
-								name={answersOverride[answer]}
-								id={answersOverride[answer]}
-								type="radio"
-								checked={currentChoice === answer}
-								className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
-							/>
-						</div>
-					</div>);
-				})}
-			</fieldset>
-		</div>
+			{
+				(orientation === 'horizontal') &&
+				<div className="rwm-radio">
+					{
+						showTitle && <label className="rwm-form__headline">{questionText}</label>
+					}
+					<fieldset
+						className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 lg:tw-grid-cols-${Object.keys(answersOverride).length}`}>
+						{Object.keys(answersOverride).map((answer: string) => {
+							return (<div
+								key={answer}
+								className="rwm-radio__container-select tw-container-radio"
+								onClick={() => handleChange(answer)}
+							>
+								<label htmlFor={answersOverride[answer]} className="rwm-radio__label tw-mb-1">
+									{answersOverride[answer]}
+								</label>
+								<div className="rwm-form__container-input">
+									<input
+										onChange={() => handleChange(answer)}
+										name={answersOverride[answer]}
+										id={answersOverride[answer]}
+										type="radio"
+										checked={currentChoice === answer}
+										className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
+									/>
+								</div>
+							</div>);
+						})}
+					</fieldset>
+				</div>
+			}
+		</>
 	);
 };
 

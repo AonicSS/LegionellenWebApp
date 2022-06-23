@@ -75,6 +75,21 @@ export const questions = [
 		],
 	},
 	{
+		question: 'Konnten Sie das Strangschema ermitteln?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
 		question: 'Sind Probeentnahmeventile verbaut?',
 		choice: '',
 		type: 'input',
