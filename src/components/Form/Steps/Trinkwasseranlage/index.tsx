@@ -63,8 +63,21 @@ const Trinkwasseranlage = () => {
 					</>
 				}
 				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'no') &&
-					<Radio questionTextOverride={"Konnten Sie das Strangschema ermitteln?"} showTitle={false} orientation={"vertical"} answersOverride={{'yes': 'Mit diesen Informationen konnte ich das Strangschema ermitteln und kennen nun die Anzahl der Stränge.', 'no': 'Ich kenne das Strangschema nicht und benötige Unterstützung.'}}>
-					</Radio>
+					<>
+						<Radio questionTextOverride={"Konnten Sie das Strangschema ermitteln?"} showTitle={false}
+							   orientation={"vertical"} answersOverride={{
+							'yes': 'Mit diesen Informationen konnte ich das Strangschema ermitteln und kennen nun die Anzahl der Stränge.',
+							'no': 'Ich kenne das Strangschema nicht und benötige Unterstützung.'
+						}}>
+						</Radio>
+						{
+							((currentAppData.questions.find((x) => x.question === "Konnten Sie das Strangschema ermitteln?")!.choice) === 'yes') &&
+							<>
+								<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
+								<NumericInput/>
+							</>
+						}
+					</>
 				}
 			</div>);
 		}
