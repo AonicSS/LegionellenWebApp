@@ -82,6 +82,8 @@ const Trinkwasseranlage = () => {
 			</div>);
 		}
 		case 1: {
+
+			let currentAnswer = (currentAppData.questions.find((x) => x.question === "Sind Probeentnahmeventile verbaut?"));
 			return (
 				<div>
 					<Radio questionTextOverride={"Sind Probeentnahmeventile verbaut?"}
@@ -90,6 +92,24 @@ const Trinkwasseranlage = () => {
 					<div className="tw-flex tw-justify-center tw-mt-28">
 						<ProbeenthahmeventileIcon height={300}/>
 					</div>
+
+					{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'unsure') &&
+						<>
+							<Radio questionTextOverride={"Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?"} showTitle={false}
+								   orientation={"vertical"} answersOverride={{
+								'yes': 'Diese Information war hilfreich. Ich weiß jetzt, ob Probeentnahmeventile verbaut sind.',
+								'no': 'Ich weiß nicht, ob Probeentnahmeventile verbaut sind und benötige Unterstützung.'
+							}}>
+							</Radio>
+							{
+								((currentAppData.questions.find((x) => x.question === "Konnten Sie das Strangschema ermitteln?")!.choice) === 'yes') &&
+								<>
+									<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
+									<NumericInput/>
+								</>
+							}
+						</>
+					}
 				</div>
 			);
 		}

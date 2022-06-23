@@ -105,6 +105,21 @@ export const questions = [
 		],
 	},
 	{
+		question: 'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?',
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: '',
+				type: '',
+				amount: 0,
+				required: false,
+				house: 1,
+			},
+		],
+	},
+	{
 		question: 'Die Wohnung umfasst diese Räume:',
 		choice: 1,
 		type: 'input',
