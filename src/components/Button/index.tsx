@@ -258,7 +258,7 @@ const Button = ({
 					<Close className="rwm-btn-close" />
 				</button>
 			);
-		case 'INCREASE_RENTINGS':
+		case 'INCREASE_STRANG_AMOUNT':
 			return (
 				<button
 					className={classnames(
@@ -270,7 +270,7 @@ const Button = ({
 					<Plus width={16} height={16} />
 				</button>
 			);
-		case 'DECREASE_RENTINGS':
+		case 'DECREASE_STRANG_AMOUNT':
 			return (
 				<button
 					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"

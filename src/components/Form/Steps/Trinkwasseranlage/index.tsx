@@ -8,7 +8,7 @@ import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema.svg';
 import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/probeentnahmeventile.svg';
-import {RentingsInput} from "../../Input";
+import {NumericInput} from "../../Input";
 
 const Trinkwasseranlage = () => {
 	const intl = useIntl();
@@ -59,11 +59,12 @@ const Trinkwasseranlage = () => {
 				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'yes') &&
 					<>
 						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
-						<RentingsInput/>
+						<NumericInput/>
 					</>
 				}
 				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'no') &&
-					<>Test</>
+					<Radio showTitle={false} orientation={"vertical"}>
+					</Radio>
 				}
 			</div>);
 		}

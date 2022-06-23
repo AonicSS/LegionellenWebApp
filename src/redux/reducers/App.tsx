@@ -5,8 +5,8 @@ import {
 	DECREASE_APP_STEP,
 	SET_APP_STEP,
 	INCREASE_RENTINGS_STEP,
-	INCREASE_RENTINGS,
-	DECREASE_RENTINGS,
+	INCREASE_STRANG_AMOUNT,
+	DECREASE_STRANG_AMOUNT,
 	UPDATE_POSTAL_CODE,
 	SET_MODAL,
 	SET_ANSWER,
@@ -153,26 +153,10 @@ const appData = (
 			}
 			return newState;
 		}
-		case INCREASE_RENTINGS:
+		case INCREASE_STRANG_AMOUNT:
 			return {
 				...state,
 				maxRentings: state.maxRentings + 1,
-				questions: state.questions.map((q, i) => {
-					return q.question === action.payload.questionName
-						? {
-							...q,
-							choice:
-								trueTypeOf(state.questions[i].choice) ===
-								'string'
-									? //@ts-ignore
-									parseInt(state.questions[i].choice) +
-									1
-									: //@ts-ignore
-									state.questions[i].choice + 1,
-							btnActive: action.payload.btnActive,
-						}
-						: {...q};
-				}),
 			};
 		case INCREASE_RENTINGS_STEP:
 			return {
@@ -182,24 +166,10 @@ const appData = (
 						? state.rentings + 1
 						: state.maxRentings,
 			};
-		case DECREASE_RENTINGS:
+		case DECREASE_STRANG_AMOUNT:
 			return {
 				...state,
 				maxRentings: state.maxRentings > 0 ? state.maxRentings - 1 : 0,
-				questions: state.questions.map((q, i) => {
-					return q.question === action.payload.questionName
-						? {
-							...q,
-							choice:
-							//@ts-ignore
-								state.questions[i].choice > 0
-									? //@ts-ignore
-									state.questions[i].choice - 1
-									: 0,
-							btnActive: action.payload.btnActive,
-						}
-						: {...q};
-				}),
 			};
 		case UPDATE_POSTAL_CODE:
 			return {

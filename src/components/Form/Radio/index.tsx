@@ -12,10 +12,12 @@ import './Radio.css';
 import {AppReduxStoreProps} from '../../../redux/reducers/App';
 
 const Radio = ({
+				   showTitle = true,
 				   questionTextOverride,
 				   questionNameOverride,
 				   answersOverride = {'yes': 'Ja', 'no': 'Nein'},
-				   children
+				   children,
+				   orientation = 'horizontal'
 			   }: any) => {
 	const dispatch = useDispatch();
 
@@ -41,7 +43,7 @@ const Radio = ({
 
 	const currentChoice = useSelector(
 		(state: AppReduxStoreProps) =>
-			state.appData.questions.find((x)=>x.question === questionText)!.choice
+			state.appData.questions.find((x) => x.question === questionText)!.choice
 	);
 
 	useEffect(() => {
@@ -66,7 +68,9 @@ const Radio = ({
 
 	return (
 		<div className="rwm-radio">
-			<label className="rwm-form__headline">{questionText}</label>
+			{
+				showTitle && <label className="rwm-form__headline">{questionText}</label>
+			}
 			<fieldset
 				className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 lg:tw-grid-cols-${Object.keys(answersOverride).length}`}>
 				{Object.keys(answersOverride).map((answer: string) => {

@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	SET_ANSWER,
 	UPDATE_POSTAL_CODE,
-	INCREASE_RENTINGS,
-	DECREASE_RENTINGS,
+	INCREASE_STRANG_AMOUNT,
+	DECREASE_STRANG_AMOUNT,
 	SET_MODAL,
 	SET_ROOMS,
 	ADD_HOUSE,
@@ -23,7 +23,7 @@ import { ReactComponent as Chevron } from '../../../icons/chevron-left.svg';
 import './Input.css';
 import classNames from 'classnames';
 
-export const RentingsInput = () => {
+export const NumericInput = () => {
 	const intl = useIntl();
 
 	const currentAppStep = useSelector(
@@ -46,8 +46,8 @@ export const RentingsInput = () => {
 					<div className="rwm-form__rentings">
 						<div className="tw-flex tw-justify-end tw-items-center">
 							<Button
-								style={DECREASE_RENTINGS}
-								type={DECREASE_RENTINGS}
+								style={DECREASE_STRANG_AMOUNT}
+								type={DECREASE_STRANG_AMOUNT}
 								question={questionText}
 							/>
 						</div>
@@ -63,17 +63,12 @@ export const RentingsInput = () => {
 
 						<div className="tw-flex tw-justify-start tw-items-center">
 							<Button
-								style={INCREASE_RENTINGS}
-								type={INCREASE_RENTINGS}
+								style={INCREASE_STRANG_AMOUNT}
+								type={INCREASE_STRANG_AMOUNT}
 								question={questionText}
 							/>
 						</div>
 					</div>
-				</div>
-				<div className="tw-flex tw-justify-center tw-items-center">
-					<label className="tw-font-size-label tw-mt-4 tw-font">
-						{currentRentings > 1 ? `Wohnungen` : `Wohnung`}
-					</label>
 				</div>
 			</fieldset>
 		</div>
