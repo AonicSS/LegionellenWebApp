@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { AppReduxStoreProps } from '../../redux/reducers/App';
+import {useSelector} from 'react-redux';
+import {AppReduxStoreProps} from '../../redux/reducers/App';
 import Layout from '../../components/Layout';
 import Stepper from '../../components/Stepper';
 import Modal from '../../components/Modal';
@@ -12,22 +12,30 @@ const Calculator = () => {
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
 	);
+	const currentSubStep = useSelector(
+		(state: AppReduxStoreProps) => state.appData.subStep
+	);
 	const Element = Scroll.Element;
 	return (
 		<Layout>
-			<Modal />
+			<Modal/>
 			<Element name="myScrollToElement"></Element>
 			<section className="rwm-calculator__page-section tw-margin-top">
-				<Stepper />
+				<Stepper/>
 			</section>
 			<section className="rwm-calculator__page-section tw-mt-8">
-				<Form />
+				<Form/>
 			</section>
-			{currentAppStep !== 5 ? (
+			{(currentAppStep !== 3) &&
 				<section className="rwm-calculator__page-section tw-mt-14">
-					<Button style="NEXT" />
+					<Button style="NEXT"/>
 				</section>
-			) : null}
+			}
+			{(currentAppStep === 3 && currentSubStep === 0) &&
+				<section className="rwm-calculator__page-section tw-mt-14">
+					<Button style="NEXT" text={"Preis berechnen"}/>
+				</section>
+			}
 		</Layout>
 	);
 };

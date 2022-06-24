@@ -175,6 +175,8 @@ const Button = ({
 				<button
 					onClick={increaseAppStep}
 					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
 							(active &&
@@ -185,7 +187,7 @@ const Button = ({
 						}`
 					)}
 				>
-					{Translate(intl, 'button.next')}
+					{text ?? Translate(intl, 'button.next')}
 				</button>
 			);
 		case 'PREVIOUS':
