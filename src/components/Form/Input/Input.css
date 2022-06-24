@@ -23,12 +23,13 @@
 	@apply tw-mt-[0px]
 	tw-w-[225px]
 	lg:tw-w-[500px]
-	xl:tw-w-[500px];
+	xl:tw-w-[1000px];
 	margin: auto;
 }
 
 .rwm-form__headline {
 	@apply tw-font-size-headline;
+	@apply tw-text-left;
 }
 
 .rwm-form__label {

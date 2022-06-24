@@ -92,7 +92,7 @@ function getStateRules(state: any): any {
 		newState.maxSubSteps = 1;
 	}
 	if (state.step === 3) {
-		newState.maxSubSteps = 2;
+		newState.maxSubSteps = 3;
 	}
 	return newState;
 }

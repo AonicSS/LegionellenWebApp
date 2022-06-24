@@ -366,13 +366,7 @@ module.exports = {
 				},
 				[`.${prefix}-summary`]: {
 					position: 'relative',
-					width: '363px',
-					[`@media (min-width: ${xl})`]: {
-						width: '464px',
-					},
-					[`@media (min-width: ${lg})`]: {
-						width: '360px',
-					},
+					width: '100%',
 				},
 				[`.${prefix}-room`]: {
 					position: 'relative',

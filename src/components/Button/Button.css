@@ -52,7 +52,6 @@
 		color: #e20613;
 		font-size: 14px;
 		border-radius: 30px;
-		margin-top: 120px;
 	}
 }
 
@@ -99,7 +98,7 @@
 }
 
 .rwm-button--disabled {
-	@apply tw-bg-btnBgColorDisabled 
+	@apply tw-bg-btnBgColorDisabled
 	tw-text-btnColorDisabled
 	tw-btn-border-disabled;
 	pointer-events: none;
