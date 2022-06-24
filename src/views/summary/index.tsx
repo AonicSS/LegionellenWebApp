@@ -27,6 +27,16 @@ const Summary = () => {
 	const [houseNumber, setHouseNumber] = useState('');
 	const [postalCode, setPostalCode] = useState('');
 	const [residence, setResidence] = useState('');
+
+	const [gender, setGender] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [emailAddress, setEmailAddress] = useState('');
+	const [phoneNumber, setPhoneNumber] = useState('');
+	const [customerNumber, setCustomerNumber] = useState('');
+	const [marketingAgreement, setMarketing] = useState(false);
+	const [contactAgreement, setContact] = useState(false);
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
@@ -160,60 +170,147 @@ const Summary = () => {
 								Kontaktdaten
 							</h1>
 						</label>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
+						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
+							<h4 className="tw-font-size-sub-title">Anrede*</h4>
+						</div>
+						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
+							<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
+								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
+									<input
+										onClick={() => setGender('Frau')}
+										type="radio"
+										value="Frau"
+										checked={gender === 'Frau'}
+										className={` ${
+											gender === 'Frau'
+												? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
+												: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
+										} `}
+									/>
+									<label
+										htmlFor="yes"
+										className="rwm-radio__gender-label"
+									>
+										Frau
+									</label>
+								</div>
+								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
+									<input
+										onClick={() => setGender('Herr')}
+										type="radio"
+										value="Herr"
+										checked={gender === 'Herr'}
+										className={` ${
+											gender === 'Herr'
+												? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
+												: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
+										} `}
+									/>
+									<label
+										htmlFor="yes"
+										className="rwm-radio__gender-label"
+									>
+										Herr
+									</label>
+								</div>
+								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
+									<input
+										onClick={() => setGender('Divers')}
+										type="radio"
+										value="Divers"
+										checked={gender === 'Divers'}
+										className={` ${
+											gender === 'Divers'
+												? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
+												: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
+										}  `}
+									/>
+									<label
+										htmlFor="yes"
+										className="rwm-radio__gender-label"
+									>
+										Divers
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
+							<h4 className="tw-font-size-sub-title">Name</h4>
+						</div>
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
-									Straße*
+									Vorname*
 								</label>
 								<input
 									type="text"
-									name="streetName"
+									name="firstName"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={street}
-									onChange={(e) => setStreet(e.target.value)}
+									value={firstName}
+									onChange={(e) => setFirstName(e.target.value)}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 								<label className="tw-flex tw-font-size-label tw-font">
-									Hausnummer*
+									Name*
 								</label>
 								<input
 									type="text"
-									name="houseNumber"
+									name="lastName"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={houseNumber}
-									onChange={(e) => setHouseNumber(e.target.value)}
+									value={lastName}
+									onChange={(e) => setLastName(e.target.value)}
 								/>
 							</div>
 						</div>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
+
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
-									Postleitzahl*
+									E-Mail Adresse*
 								</label>
 								<input
-									type="number"
-									name="postalCode"
+									type="email"
+									name="emailAddress"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={postalCode}
-									onChange={(e) => setPostalCode(e.target.value)}
+									value={emailAddress}
+									onChange={(e) =>
+										setEmailAddress(e.target.value)
+									}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 								<label className="tw-flex tw-font-size-label tw-font">
-									Wohnort*
+									Telefonnummer*
 								</label>
 								<input
-									type="text"
-									name="residence"
+									type="phone"
+									name="phoneNumber"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={residence}
-									onChange={(e) => setResidence(e.target.value)}
+									value={phoneNumber}
+									onChange={(e) =>
+										setPhoneNumber(e.target.value)
+									}
 								/>
 							</div>
 						</div>
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+							<div className="rwm-form__input-container">
+								<label className="tw-flex tw-font-size-label tw-font">
+									Kundennummer*
+								</label>
+								<input
+									type="text"
+									name="customerNumber"
+									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+									value={customerNumber}
+									onChange={(e) =>
+										setCustomerNumber(e.target.value)
+									}
+								/>
+							</div>
+						</div>
+
 					</div>
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
