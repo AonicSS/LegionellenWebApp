@@ -11,6 +11,7 @@ import Pricing from "../../Pricing";
 import {ReactComponent as StrangschemaIcon} from "../../../../icons/strangschema.svg";
 import Button from "../../../Button";
 import Summary from "../../../../views/summary";
+import SummaryFinal from "../../../../views/summary-final";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
@@ -152,6 +153,11 @@ const Angebot = () => {
 		case 2: {
 			return (
 				<Summary />
+			);
+		}
+		case 3: {
+			return (
+				<SummaryFinal />
 			);
 		}
 	}
