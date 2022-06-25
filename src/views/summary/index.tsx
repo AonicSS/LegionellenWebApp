@@ -173,67 +173,40 @@ const Summary = () => {
 						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
 							<h4 className="tw-font-size-sub-title">Anrede*</h4>
 						</div>
+
 						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
 							<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
 								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
-									<input
-										onClick={() => setGender('Frau')}
-										type="radio"
-										value="Frau"
-										checked={gender === 'Frau'}
-										className={` ${
-											gender === 'Frau'
-												? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-												: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-										} `}
-									/>
-									<label
-										htmlFor="yes"
-										className="rwm-radio__gender-label"
-									>
-										Frau
-									</label>
-								</div>
-								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
-									<input
-										onClick={() => setGender('Herr')}
-										type="radio"
-										value="Herr"
-										checked={gender === 'Herr'}
-										className={` ${
-											gender === 'Herr'
-												? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-												: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-										} `}
-									/>
-									<label
-										htmlFor="yes"
-										className="rwm-radio__gender-label"
-									>
-										Herr
-									</label>
-								</div>
-								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
-									<input
-										onClick={() => setGender('Divers')}
-										type="radio"
-										value="Divers"
-										checked={gender === 'Divers'}
-										className={` ${
-											gender === 'Divers'
-												? 'tw-text-white tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-h-5 tw-w-5'
-												: 'tw-h-5 tw-w-5 tw-text-white tw-border-btnColorDisabled tw-border-1 focus:tw-ring-transparent'
-										}  `}
-									/>
-									<label
-										htmlFor="yes"
-										className="rwm-radio__gender-label"
-									>
-										Divers
-									</label>
+									<div className="round">
+										<select id="gender" name="gender"
+												defaultChecked={contactAgreement}
+												onChange={() => setContact(!contactAgreement)}>
+											<option value="m">Herr</option>
+											<option value="f">Frau</option>
+											<option value="d">Divers</option>
+										</select>
+									</div>
 								</div>
 							</fieldset>
 						</div>
+
+						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+							<div className="round">
+								<input
+									type="checkbox"
+									id="contact"
+									defaultChecked={contactAgreement}
+									onChange={() => setContact(!contactAgreement)}
+								/>
+								<label htmlFor="contact"></label>
+							</div>
+							<div className="rwm-form__input-container-large">
+								<p>
+									Ich bin bereits Kunde
+								</p>
+							</div>
+						</div>
+
 						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 							<h4 className="tw-font-size-sub-title">Name</h4>
 						</div>
