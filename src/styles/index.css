@@ -76,3 +76,7 @@
 		tw-mx-auto;
 	}
 }
+
+input:checked ~ .dot {
+	transform: translateX(100%);
+}

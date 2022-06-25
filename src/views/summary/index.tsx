@@ -19,7 +19,7 @@ import {trackSummary} from '../../utils/tracking';
 import {ReactComponent as CheckInIcon} from '../../icons/check-in.svg';
 import {ReactComponent as CheckCircledIcon} from '../../icons/check-circled.svg';
 import {ReactComponent as MagnifyingGlassIcon} from '../../icons/magnifying-glass.svg';
-import {ReactComponent as TechemRecommendationIcon} from '../../icons/magnifying-glass.svg';
+import {ReactComponent as TechemRecommendationIcon} from '../../icons/techem-recommendation.svg';
 
 const Summary = () => {
 
@@ -85,7 +85,7 @@ const Summary = () => {
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								{appData.pricing}
 							</div>
-							<div className="tw-grid tw-grid-cols-2">
+							<div className="tw-grid tw-grid-cols-3">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
 									{`Gesamtpreis für eine Liegenschaft mit 2 Strängen und 2 Ventilen, einem online Quality Check und einer Legionellenprüfung.`}
 								</div>
@@ -93,6 +93,7 @@ const Summary = () => {
 									{total.toFixed(2).toString().replace('.', ',')}{' '}
 									€
 								</div>
+								<TechemRecommendationIcon />
 							</div>
 						</div>
 					</div>
@@ -151,7 +152,18 @@ const Summary = () => {
 									Mehr Infos
 								</div>
 								<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-									Toggle
+									<div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-mb-12">
+										<label htmlFor="toggleB" className="tw-flex tw-items-center tw-cursor-pointer">
+											<div className="tw-relative">
+												<input type="checkbox" id="toggleB" className="tw-sr-only"/>
+												<div className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
+												<div
+													className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
+											</div>
+											<div className="tw-ml-3 tw-text-gray-700 tw-font-medium">
+											</div>
+										</label>
+									</div>
 								</div>
 							</div>
 							<div
