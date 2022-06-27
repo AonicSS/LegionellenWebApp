@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
+import Button from "../../../Button";
 
 const Pruefpflicht = () => {
 	const dispatch = useDispatch();
@@ -67,17 +68,28 @@ const Pruefpflicht = () => {
 		case 1: {
 			if (currentAppData.questions[0].answers.find((answer) => answer.name === 'choice')!.value === 'yes') {
 				return (
-					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
-						erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
+				<div className="tw-w-full tw-flex tw-justify-center">
+					<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
+						<h1>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten
+							Schritt
+							erfassen wir die wichtigsten Informationen für die Beauftragung.
+						</h1>
+					</section>
+				</div>
 				);
 			}
 			if (currentAppData.questions[0].answers.find((answer) => answer.name === 'choice')!.value === 'no') {
 				return (
-					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können
-						trotzdem
-						jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum
-						Gesundheitsschutz für
-						Ihre Mieter*innen bei.</div>
+					<div className="tw-w-full tw-flex tw-justify-center">
+						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
+							<h1>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können
+								trotzdem
+								jederzeit freiwillig eine Legionellenprüfung durchführen lassen. So tragen Sie zum
+								Gesundheitsschutz für
+								Ihre Mieter*innen bei.
+							</h1>
+						</section>
+					</div>
 				);
 			}
 			return (
