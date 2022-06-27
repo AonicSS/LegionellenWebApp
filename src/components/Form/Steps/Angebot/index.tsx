@@ -150,13 +150,14 @@ const Angebot = () => {
 		case 1: {
 			return (
 				<section className="tw-margin-top">
-					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14">
-						<h1>Unser Angebot für Sie</h1>
+					<div className="tw-flex tw-justify-center tw-mb-14">
+						<h1 className="rwm-form__headline">Unser Angebot für Sie</h1>
 					</div>
-					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14">
-						<h1>Unser Angebot für Sie</h1>
+
+					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14 tw-mx-auto tw-max-w-xl">
+						Für die Liegenschaft Europaplatz 4, 64285 Darmstadt mit 2 Strängen und vorhandenen
+						Probeentnahmeventilen haben wir folgendes Angebot für Sie kalkuliert:
 					</div>
-					Für die Liegenschaft Europaplatz 4, 64285 Darmstadt       mit 2 Strängen       und vorhandenen Probeentnahmeventilen       haben wir folgendes Angebot für Sie kalkuliert:
 					<Pricing/>
 				</section>
 			);

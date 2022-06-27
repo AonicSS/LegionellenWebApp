@@ -31,6 +31,7 @@ module.exports = {
 			btnBgColorDisabled: '#e3e3e3',
 			btnColorDisabled: '#b2b2b1',
 			borderInput: '#c8c8c8',
+			water: '#009BB4',
 		},
 		fontFamily: {
 			headline: ['Univers55'],
@@ -50,7 +51,7 @@ module.exports = {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'font-size-';
 			const md = theme('screens.md');
 
@@ -279,7 +280,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities }) {
+		function ({addUtilities}) {
 			const prefix = 'justify';
 
 			addUtilities({
@@ -297,7 +298,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'container';
 			const lg = theme('screens.lg');
 			const xl = theme('screens.xl');
@@ -420,7 +421,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'rectangle';
 			const md = theme('screens.md');
 			const lg = theme('screens.lg');
@@ -455,7 +456,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'input';
 			const md = theme('screens.md');
 
@@ -481,7 +482,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'overlay-size';
 			const lg = theme('screens.lg');
 			const xl = theme('screens.');
@@ -531,7 +532,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities }) {
+		function ({addUtilities}) {
 			const prefix = 'btn-size';
 
 			addUtilities({
@@ -546,7 +547,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities }) {
+		function ({addUtilities}) {
 			const prefix = 'btn-border';
 
 			addUtilities({
@@ -558,7 +559,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities }) {
+		function ({addUtilities}) {
 			const prefix = 'btn-font';
 
 			addUtilities({
@@ -586,7 +587,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'margin';
 			const md = theme('screens.md');
 
@@ -599,7 +600,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'padding';
 			const md = theme('screens.md');
 
@@ -612,7 +613,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({ addUtilities, theme }) {
+		function ({addUtilities, theme}) {
 			const prefix = 'icon';
 			const md = theme('screens.md');
 

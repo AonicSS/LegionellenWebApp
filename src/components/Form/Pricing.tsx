@@ -35,6 +35,7 @@ const pricing = [
 		text: 'Angebot sichern',
 		type: 'standard',
 		recommended: false,
+		importantRemark: 'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.'
 	},
 	{
 		name: 'Legionellenprüfung + Quality Check Online',
@@ -186,6 +187,20 @@ const Pricing = ({modal}: PricingProps) => {
 									</div>
 								</div>
 							</div>
+							{
+								p.importantRemark &&
+								<div className={"tw-container-pricing-list tw-text-water"}>
+									<div className="tw-flex tw-justify-center tw-mb-2">
+										<h4> Wichtiger Hinweis</h4>
+									</div>
+									<div className={"tw-text-justify"}>Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist
+										eine
+										Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch,
+										einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus
+										entstehende Mehrkosten bestmöglich zu vermeiden.
+									</div>
+								</div>
+							}
 						</div>
 					);
 				})}
