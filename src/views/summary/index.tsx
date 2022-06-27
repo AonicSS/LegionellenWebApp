@@ -85,15 +85,17 @@ const Summary = () => {
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								{appData.pricing}
 							</div>
-							<div className="tw-grid tw-grid-cols-3">
+							<div className="tw-flex tw-max-w-4xl tw-items-center">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
-									{`Gesamtpreis für eine Liegenschaft mit 2 Strängen und 2 Ventilen, einem online Quality Check und einer Legionellenprüfung.`}
+									<h1>Legionellenprüfung + Quality Check Online</h1>
+									<div>
+										{`Gesamtpreis für eine Liegenschaft mit 2 Strängen und 2 Ventilen, einem online Quality Check und einer Legionellenprüfung.`}
+									</div>
 								</div>
-								<div className="tw-container-pricing-label tw-font-size-price-large">
-									{total.toFixed(2).toString().replace('.', ',')}{' '}
-									€
+								<div className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
+									{total.toFixed(2).toString().replace('.', ',')}{' '} €
 								</div>
-								<TechemRecommendationIcon />
+								<TechemRecommendationIcon/>
 							</div>
 						</div>
 					</div>
@@ -156,7 +158,8 @@ const Summary = () => {
 										<label htmlFor="toggleB" className="tw-flex tw-items-center tw-cursor-pointer">
 											<div className="tw-relative">
 												<input type="checkbox" id="toggleB" className="tw-sr-only"/>
-												<div className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
+												<div
+													className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
 												<div
 													className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
 											</div>
@@ -182,11 +185,13 @@ const Summary = () => {
 								Kontaktdaten
 							</h1>
 						</label>
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
+						<div
+							className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
 							<h4 className="tw-font-size-sub-title">Anrede*</h4>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
+						<div
+							className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
 							<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
 								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
 									<div className="round">
@@ -202,7 +207,8 @@ const Summary = () => {
 							</fieldset>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+						<div
+							className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 							<div className="round">
 								<input
 									type="checkbox"
@@ -219,10 +225,12 @@ const Summary = () => {
 							</div>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
+						<div
+							className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
 							<h4 className="tw-font-size-sub-title">Name</h4>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div
+							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Vorname*
@@ -249,7 +257,8 @@ const Summary = () => {
 							</div>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div
+							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									E-Mail Adresse*
@@ -279,7 +288,8 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div
+							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Kundennummer*
