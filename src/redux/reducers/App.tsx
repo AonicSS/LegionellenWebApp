@@ -175,7 +175,7 @@ const appData = (
 		case DECREASE_STRANG_AMOUNT:
 			return {
 				...state,
-				strangAmount: state.strangAmount > 0 ? state.strangAmount - 1 : 0,
+				strangAmount: state.strangAmount > 1 ? state.strangAmount - 1 : 1,
 			};
 		case UPDATE_POSTAL_CODE:
 			return {
