@@ -63,6 +63,12 @@ const Radio = ({
 
 	const handleChange = (value: string) => {
 		dispatch({
+			type: SET_CURRENT_QUESTION,
+			payload: {
+				currentQuestion: questionText,
+			},
+		});
+		dispatch({
 			type: SET_ANSWER,
 			payload: {
 				questionName: questionText,
