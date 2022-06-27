@@ -23,7 +23,9 @@ module.exports = {
 			white: '#ffffff',
 			black: '#000000',
 			red: '#e20913',
+			'ting-red': '#E20613',
 			grey: '#f3f3f3',
+			'sharepoint-grey': '#605E5C',
 			beige: '#EDEBE9',
 			'light-grey': '#ECECEC',
 			'lightest-grey': '#F8FAFC',
@@ -226,8 +228,6 @@ module.exports = {
 					fontSize: '20px',
 					lineHeight: '24px',
 					letterSpacing: '0',
-					color: '#099ab4',
-					marginTop: '10px',
 				},
 				[`.${prefix}pricing-sublabel`]: {
 					fontFamily: 'Univers55',

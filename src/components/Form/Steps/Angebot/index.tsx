@@ -8,6 +8,8 @@ import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Pricing from "../../Pricing";
 import Summary from "../../../../views/summary";
 import SummaryFinal from "../../../../views/summary-final";
+import {ReactComponent as HouseAltIcon} from "../../../../icons/house-alt.svg";
+import {ReactComponent as PenEditIcon} from "../../../../icons/pen-edit.svg";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
@@ -155,10 +157,47 @@ const Angebot = () => {
 					</div>
 
 					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14 tw-mx-auto tw-max-w-xl">
-						Für die Liegenschaft Europaplatz 4, 64285 Darmstadt mit 2 Strängen und vorhandenen
-						Probeentnahmeventilen haben wir folgendes Angebot für Sie kalkuliert:
+						<div>
+							Für die Liegenschaft <span className={"tw-text-ting-red"}>Europaplatz 4, 64285 Darmstadt <PenEditIcon className={"tw-inline"}/></span> mit	<span className={"tw-text-ting-red"}>2 Strängen <PenEditIcon className={"tw-inline"}/></span> und <span className={"tw-text-ting-red"}>vorhandenen
+							Probeentnahmeventilen <PenEditIcon className={"tw-inline"}/></span> haben wir folgendes Angebot für Sie kalkuliert:
+						</div>
 					</div>
 					<Pricing/>
+					<section className={"tw-bg-light-grey tw-p-10 tw-mb-12 tw-mt-12"}>
+						<h1>
+							Wie geht es nach der Begehung weiter?
+						</h1>
+						<p>Erklärtext folgt.. Wir ermittelt gemeinsam...</p>
+						<div className={"tw-flex tw-justify-center tw-text-sharepoint-grey tw-mt-12"}>
+							<div className={"tw-border-b tw-border-sharepoint-grey tw-pb-4 tw-mb-4"}>
+								<h4>So sieht eine mögliche Preisindikation der Legionellenprüfung aus</h4>
+							</div>
+						</div>
+						<div className={"tw-flex tw-justify-center tw-text-sharepoint-grey"}>
+							<div className={"tw-flex tw-flex-row tw-items-center"}>
+								<div className={"tw-px-2"}>
+									<HouseAltIcon/>
+								</div>
+								<div className={"tw-px-2"}>
+									Mehrfamilienhaus
+									mit {currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Strängen` : 'einem Strang'}
+								</div>
+								<div className={"tw-px-2"}>
+									+
+								</div>
+								<div className={"tw-px-2"}>
+									2 eingebaute
+									Probeentnahmeventile
+								</div>
+								<div className={"tw-px-2"}>
+									=
+								</div>
+								<div className={"tw-px-2 tw-font-bold tw-font-size tw-font-size-price-small"}>
+									100 €
+								</div>
+							</div>
+						</div>
+					</section>
 				</section>
 			);
 		}
