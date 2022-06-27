@@ -26,7 +26,7 @@ const Summary = () => {
 	const [street, setStreet] = useState('');
 	const [houseNumber, setHouseNumber] = useState('');
 	const [postalCode, setPostalCode] = useState('');
-	const [residence, setResidence] = useState('');
+	const [city, setCity] = useState('');
 
 	const [gender, setGender] = useState('');
 	const [firstName, setFirstName] = useState('');
@@ -362,10 +362,10 @@ const Summary = () => {
 								</label>
 								<input
 									type="text"
-									name="residence"
+									name="city"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={residence}
-									onChange={(e) => setResidence(e.target.value)}
+									value={city}
+									onChange={(e) => setCity(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -425,10 +425,10 @@ const Summary = () => {
 								</label>
 								<input
 									type="text"
-									name="residence"
+									name="city"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={residence}
-									onChange={(e) => setResidence(e.target.value)}
+									value={city}
+									onChange={(e) => setCity(e.target.value)}
 								/>
 							</div>
 						</div>

@@ -18,7 +18,7 @@ const ContactForm = () => {
 	const [street, setStreet] = useState('');
 	const [houseNumber, setHouseNumber] = useState('');
 	const [postalCode, setPostaCode] = useState('');
-	const [residence, setResidence] = useState('');
+	const [city, setCity] = useState('');
 	const [emailAddress, setEmailAddress] = useState('');
 	const [marketingAgreement, setMarketing] = useState(false);
 	const [contactAgreement, setContact] = useState(false);
@@ -40,7 +40,7 @@ const ContactForm = () => {
 			street !== '' &&
 			houseNumber !== '' &&
 			postalCode !== '' &&
-			residence !== '' &&
+			city !== '' &&
 			emailAddress !== '' &&
 			contactAgreement === true
 		) {
@@ -59,7 +59,7 @@ const ContactForm = () => {
 				street,
 				houseNumber,
 				postalCode,
-				residence,
+				city,
 				emailAddress,
 				marketingAgreement: marketingAgreement ? 'Yes' : 'No',
 				contactAgreement: contactAgreement ? 'Yes' : 'No',
@@ -249,10 +249,10 @@ const ContactForm = () => {
 							</label>
 							<input
 								type="text"
-								name="residence"
+								name="city"
 								className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-								value={residence}
-								onChange={(e) => setResidence(e.target.value)}
+								value={city}
+								onChange={(e) => setCity(e.target.value)}
 							/>
 						</div>
 					</div>
