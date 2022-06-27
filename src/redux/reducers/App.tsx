@@ -1,4 +1,4 @@
-import {questions, rooms} from '../../components/Form/Questions';
+import {questions} from '../../components/Form/Questions';
 import {trueTypeOf, validPostalCode} from '../../utils/helpers';
 import {
 	INCREASE_APP_STEP,
@@ -55,9 +55,8 @@ export interface Question {
 export interface Answers {
 	name: string;
 	type: string;
-	amount: number;
 	required: boolean;
-	house: number;
+	value: any;
 }
 
 export interface AppReduxStoreProps {
@@ -207,8 +206,12 @@ const appData = (
 					return q.question === action.payload.questionName
 						? {
 							...q,
-							choice: action.payload.choice,
-							btnActive: action.payload.btnActive,
+							answers: q.answers.map((answer) => {
+								if (answer.name === 'choice') {
+									answer.value = action.payload.value;
+								}
+								return answer;
+							})
 						}
 						: {...q};
 				}),
@@ -252,109 +255,6 @@ const appData = (
 												? 1
 												: 0,
 										required: action.payload.value,
-									};
-								} else {
-									return {...a};
-								}
-							}),
-						};
-					} else {
-						return {...q};
-					}
-				}),
-			};
-		case ADD_HOUSE: {
-			return {
-				...state,
-				questions: state.questions.map((q) => {
-					return q.question === action.payload.questionName
-						? {
-							...q,
-							answers: [
-								...q.answers,
-								...rooms.map((r) => {
-									if (r.name === 'common') {
-										return {
-											...r,
-											amount:
-												state.postalCode.area ===
-												'Berlin' ||
-												state.postalCode.area ===
-												'Brandenburg'
-													? 1
-													: 0,
-											required:
-												state.postalCode.area ===
-												'Berlin' ||
-												state.postalCode.area ===
-												'Brandenburg'
-													? true
-													: false,
-											house: state.rentings,
-										};
-									} else {
-										return {
-											...r,
-											house: state.rentings,
-										};
-									}
-								}),
-							],
-						}
-						: {...q};
-				}),
-			};
-		}
-		case INCREASE_ROOMS:
-			return {
-				...state,
-				questions: state.questions.map((q) => {
-					if (q.question === action.payload.questionName) {
-						return {
-							...q,
-							answers: q.answers.map((a) => {
-								if (
-									a.name === action.payload.roomName &&
-									action.payload.index === a.house
-								) {
-									return {
-										...a,
-										// @ts-ignore
-										amount: parseInt(a.amount) + 1,
-									};
-								} else {
-									return {...a};
-								}
-							}),
-						};
-					} else {
-						return {...q};
-					}
-				}),
-			};
-		case DECREASE_ROOMS:
-			return {
-				...state,
-				questions: state.questions.map((q) => {
-					if (q.question === action.payload.questionName) {
-						return {
-							...q,
-							answers: q.answers.map((a) => {
-								if (
-									a.name === action.payload.roomName &&
-									action.payload.index === a.house
-								) {
-									return {
-										...a,
-										amount:
-											getAlarmNumberForHouse(
-												state,
-												action.payload.index
-											) > 1
-												? a.amount > 0
-													? a.amount - 1
-													: a.amount
-												: a.amount,
 									};
 								} else {
 									return {...a};

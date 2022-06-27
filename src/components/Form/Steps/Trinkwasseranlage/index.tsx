@@ -49,20 +49,20 @@ const Trinkwasseranlage = () => {
 	switch (currentSubStep) {
 		default:
 		case 0: {
-			let currentAnswer = (currentAppData.questions.find((x) => x.question === questionText));
+			let currentAnswer = (currentAppData.questions.find((x) => x.question === questionText)!.answers.find((answer) => (answer.name === 'choice')));
 			return (<div>
 				<Radio>
 				</Radio>
 				<div className="tw-flex tw-justify-center tw-mt-28">
 					<StrangschemaIcon height={300}/>
 				</div>
-				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'yes') &&
+				{(currentAnswer && currentAnswer.value && currentAnswer.value === 'yes') &&
 					<>
 						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
 						<NumericInput/>
 					</>
 				}
-				{(currentAnswer && currentAnswer.choice && currentAnswer.choice === 'no') &&
+				{(currentAnswer && currentAnswer.value && currentAnswer.value === 'no') &&
 					<>
 						<Radio questionTextOverride={"Konnten Sie das Strangschema ermitteln?"} showTitle={false}
 							   orientation={"vertical"} answersOverride={{

@@ -178,6 +178,8 @@ const Button = ({
 		case 'NEXT':
 			const active = getActiveButton(questions);
 			const question = questions.find((q) => q.question === currentQuestion);
+			const answers = question ? question.answers :  [];
+			const allAnswered = !(answers.some((answer) => ((answer.value === undefined) && answer.required)));
 			const choice = question ? question.choice : undefined;
 
 			return (
@@ -188,7 +190,7 @@ const Button = ({
 						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
-							(choice !== undefined) && ((active &&
+							(allAnswered) && ((active &&
 									currentAppStep === 1) ||
 								active)
 								? 'active'
