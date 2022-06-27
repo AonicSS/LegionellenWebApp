@@ -135,7 +135,7 @@ const Pricing = ({modal}: PricingProps) => {
 									pricing={p.name}
 								/>
 							</div>
-							<div>
+							<div className={"tw-container-pricing-list"}>
 								<div>
 									Angebot per E-Mail zusenden
 								</div>
