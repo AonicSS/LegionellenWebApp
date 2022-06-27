@@ -4,7 +4,7 @@ import Button from '../Button';
 import {useSelector} from 'react-redux';
 import './Pricing.css';
 import {AppReduxStoreProps} from '../../redux/reducers/App';
-import {getRentingPrice, getServicePrice} from '../../utils/helpers';
+import {getBasePrice, getServicePrice} from '../../utils/helpers';
 import {ReactComponent as CheckInIcon} from "../../icons/check-in.svg";
 import {ReactComponent as CheckCircledIcon} from "../../icons/check-circled.svg";
 import {ReactComponent as CheckQualityIcon} from "../../icons/check-quality.svg";
@@ -91,7 +91,7 @@ const Pricing = ({modal}: PricingProps) => {
 			<div
 				className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-[52px] xl:tw-gap-[50px]">
 				{pricing.map((p) => {
-					const rentingPrice = getRentingPrice(appData);
+					const rentingPrice = getBasePrice(appData);
 					const servicePrice = getServicePrice(p.type, appData);
 
 					const total = rentingPrice + servicePrice;

@@ -20,8 +20,6 @@ import {
 	SET_REGION,
 } from '../actions/App';
 
-import {getAlarmNumberForHouse} from '../../utils/helpers';
-
 const initialState = {
 	step: 1,
 	subStep: 0,

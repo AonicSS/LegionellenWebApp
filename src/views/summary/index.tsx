@@ -8,8 +8,8 @@ import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import {
-	getAlarmNumber,
-	getRentingPrice,
+	getStrangNumber,
+	getBasePrice,
 	getServicePrice,
 } from '../../utils/helpers';
 import {ReactComponent as Info} from '../../icons/Info.svg';
@@ -55,7 +55,7 @@ const Summary = () => {
 		trackSummary('summary', pricing);
 	}, []);
 
-	const rentingPrice = getRentingPrice(appData);
+	const rentingPrice = getBasePrice(appData);
 	const servicePrice = getServicePrice(
 		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
 		appData

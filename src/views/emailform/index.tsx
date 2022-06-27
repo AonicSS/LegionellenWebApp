@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import {
-	getAlarmNumber,
-	getRentingPrice,
+	getStrangNumber,
+	getBasePrice,
 	getServicePrice,
 } from '../../utils/helpers';
 
@@ -16,7 +16,7 @@ const EmailForm = () => {
 	const [success, setSucccess] = useState(false);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	const rentingPrice = getRentingPrice(appData);
+	const rentingPrice = getBasePrice(appData);
 	const servicePrice = getServicePrice(
 		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
 		appData
@@ -31,7 +31,7 @@ const EmailForm = () => {
 			},
 			formData: {
 				price: total.toFixed(2),
-				alarms: getAlarmNumber(appData),
+				alarms: getStrangNumber(appData),
 				houses: appData.rentings,
 				years: appData.years,
 				code: appData.postalCode.code,

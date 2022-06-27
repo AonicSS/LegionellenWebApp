@@ -32,99 +32,17 @@ export const trueTypeOf = (obj: any) => {
 	return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 };
 
-export const getAlarmNumber = (data) => {
-	let alarms = 0;
-
-	data.questions['2'].answers.forEach((element) => {
-		if (element.house <= data.strangAmount) {
-			alarms = alarms + element.amount;
-		}
-	});
-
-	return alarms;
+export const getStrangNumber = (data) => {
+	return data.strangAmount;
 };
 
-export const getAlarmNumberForHouse = (data, house) => {
-	let alarms = 0;
 
-	data.questions['2'].answers.forEach((element) => {
-		if (element.house === house) {
-			alarms = alarms + element.amount;
-		}
-	});
+export const getBasePrice = (data: any) => {
+	const strangCount = getStrangNumber(data);
 
-	return alarms;
-};
-
-//return price for previous user
-export const rentingCostUser = (alarms: number, years: number) => {
-	const total = (alarms * price[years] * years) / years / alarms;
-
-	return total;
-};
-
-//return price for non user
-export const rentingCostNonUser = (
-	alarms: number,
-	years: number,
-	rentings: number
-) => {
-	const total =
-		(alarms * price[years] * years +
-			alarms * nonUserServices.registration +
-			nonUserServices.instalation +
-			nonUserServices.radio * rentings) /
-		years /
-		alarms;
-
-	return total;
-};
-
-//return price for non user
-export const serviceCostNonUser = (
-	alarms: number,
-	years: number,
-	service: string
-) => {
-	const total =
-		(alarms * nonUserServices[service] * years +
-			nonUserServices.grundpreis +
-			(service === 'plus' ? nonUserServices.smart : 0)) /
-		years /
-		alarms;
-	return total;
-};
-
-//return price for users
-export const serviceCostUser = (
-	alarms: number,
-	years: number,
-	service: string
-) => {
-	const total =
-		(alarms * userServices[service] * years +
-			(service === 'plus' ? nonUserServices.smart : 0)) /
-		years /
-		alarms;
-	return total;
-};
-
-export const getRentingPrice = (data: any) => {
-	if (!data.questions[3].choice) {
-		return rentingCostNonUser(
-			getAlarmNumber(data),
-			data.years,
-			data.rentings
-		);
-	} else {
-		return rentingCostUser(getAlarmNumber(data), data.years);
-	}
+	return 49.00 + strangCount * 61.00;
 };
 
 export const getServicePrice = (type: string, data: any) => {
-	if (!data.questions[3].choice) {
-		return serviceCostNonUser(getAlarmNumber(data), data.years, type);
-	} else {
-		return serviceCostUser(getAlarmNumber(data), data.years, type);
-	}
+		return 0;
 };
