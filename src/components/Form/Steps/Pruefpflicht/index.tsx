@@ -35,6 +35,7 @@ const Pruefpflicht = () => {
 			state.appData.questions[currentAppStep - 1].choice
 	);
 
+
 	useEffect(() => {
 		scroller.scrollTo('myScrollToElement', {
 			duration: 1500,
@@ -64,13 +65,13 @@ const Pruefpflicht = () => {
 			return <Radio answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>;
 		}
 		case 1: {
-			if (currentAppData.questions[0].choice === 'yes') {
+			if (currentAppData.questions[0].answers.find((answer) => answer.name === 'choice')!.value === 'yes') {
 				return (
 					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
 						erfassen wir die wichtigsten Informationen für die Beauftragung.</div>
 				);
 			}
-			if (currentAppData.questions[0].choice === 'no') {
+			if (currentAppData.questions[0].answers.find((answer) => answer.name === 'choice')!.value === 'no') {
 				return (
 					<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben keine Prüfpflicht. Sie können
 						trotzdem

@@ -28,7 +28,7 @@ const initialState = {
 	maxSubSteps: 10,
 	maxSteps: 3,
 	rentings: 1,
-	maxRentings: 1,
+	strangAmount: 1,
 	showModal: false,
 	acceptContact: false,
 	acceptMarketing: false,
@@ -67,7 +67,7 @@ export interface AppReduxStoreProps {
 		step: number;
 		rentings: number;
 		maxSteps: number;
-		maxRentings: number;
+		strangAmount: number;
 		years: number;
 		showModal: boolean;
 		postalCode: PostalCode;
@@ -83,9 +83,9 @@ function getStateRules(state: any): any {
 		...state,
 	};
 	if (state.step === 1) {
-		if (state.questions[0].choice !== "unsure") {
+		if (state.questions[0].answers.find((answer: Answers) => answer.name === 'choice')!.value !== "unsure") {
 			newState.maxSubSteps = 1;
-		} else if (state.questions[0].choice === "unsure") {
+		} else if (state.questions[0].answers.find((answer: Answers) => answer.name === 'choice')!.value === "unsure") {
 			newState.maxSubSteps = 4;
 		}
 	}
@@ -164,20 +164,20 @@ const appData = (
 		case INCREASE_STRANG_AMOUNT:
 			return {
 				...state,
-				maxRentings: state.maxRentings + 1,
+				strangAmount: state.strangAmount + 1,
 			};
 		case INCREASE_RENTINGS_STEP:
 			return {
 				...state,
 				rentings:
-					state.rentings < state.maxRentings
+					state.rentings < state.strangAmount
 						? state.rentings + 1
-						: state.maxRentings,
+						: state.strangAmount,
 			};
 		case DECREASE_STRANG_AMOUNT:
 			return {
 				...state,
-				maxRentings: state.maxRentings > 0 ? state.maxRentings - 1 : 0,
+				strangAmount: state.strangAmount > 0 ? state.strangAmount - 1 : 0,
 			};
 		case UPDATE_POSTAL_CODE:
 			return {

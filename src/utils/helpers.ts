@@ -36,7 +36,7 @@ export const getAlarmNumber = (data) => {
 	let alarms = 0;
 
 	data.questions['2'].answers.forEach((element) => {
-		if (element.house <= data.maxRentings) {
+		if (element.house <= data.strangAmount) {
 			alarms = alarms + element.amount;
 		}
 	});

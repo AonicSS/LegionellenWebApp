@@ -67,7 +67,7 @@ const ContactForm = () => {
 			formData: {
 				price: total.toFixed(2),
 				alarms: getAlarmNumber(appData),
-				houses: appData.maxRentings,
+				houses: appData.strangAmount,
 				years: appData.years,
 				code: appData.postalCode.code,
 				servicePricing: appData.pricing,

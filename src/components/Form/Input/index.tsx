@@ -36,7 +36,7 @@ export const NumericInput = () => {
 	)}`;
 
 	const currentRentings = useSelector(
-		(state: AppReduxStoreProps) => state.appData.maxRentings
+		(state: AppReduxStoreProps) => state.appData.strangAmount
 	);
 
 	return (
@@ -206,8 +206,8 @@ export const RoomsInput = () => {
 		(state: AppReduxStoreProps) => state.appData.step
 	);
 
-	const maxRentings = useSelector(
-		(state: AppReduxStoreProps) => state.appData.maxRentings
+	const strangAmount = useSelector(
+		(state: AppReduxStoreProps) => state.appData.strangAmount
 	);
 
 	const currentRentingsStep = useSelector(
@@ -257,7 +257,7 @@ export const RoomsInput = () => {
 					return null;
 				})}
 			</div>
-			{maxRentings > 1 && currentRentingsStep < maxRentings ? (
+			{strangAmount > 1 && currentRentingsStep < strangAmount ? (
 				<button onClick={nextRenting}>
 					<div className="tw-flex tw-font-size-rooms-continue-label">
 						Weiter zur {currentRentingsStep + 1}. Wohnung{' '}

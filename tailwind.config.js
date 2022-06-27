@@ -26,6 +26,7 @@ module.exports = {
 			grey: '#f3f3f3',
 			beige: '#EDEBE9',
 			'light-grey': '#ECECEC',
+			'lightest-grey': '#F8FAFC',
 			btnBgColorActive: '#e20613',
 			btnBgColorDisabled: '#e3e3e3',
 			btnColorDisabled: '#b2b2b1',
