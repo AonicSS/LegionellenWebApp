@@ -4,6 +4,7 @@ import {
 	INCREASE_APP_STEP,
 	DECREASE_APP_STEP,
 	SET_APP_STEP,
+	SET_CURRENT_QUESTION,
 	INCREASE_RENTINGS_STEP,
 	INCREASE_STRANG_AMOUNT,
 	DECREASE_STRANG_AMOUNT,
@@ -61,6 +62,7 @@ export interface Answers {
 
 export interface AppReduxStoreProps {
 	appData: {
+		currentQuestion: string;
 		subStep: number;
 		maxSubSteps: number;
 		step: number;
@@ -150,6 +152,13 @@ const appData = (
 			if (state.step !== action.payload.step) {
 				newState.subStep = 1;
 				newState.maxSubSteps = 1;
+			}
+			return newState;
+		}
+		case SET_CURRENT_QUESTION: {
+			let newState = {
+				...state,
+				...(action.payload.currentQuestion !== undefined && {currentQuestion: action.payload.currentQuestion}),
 			}
 			return newState;
 		}

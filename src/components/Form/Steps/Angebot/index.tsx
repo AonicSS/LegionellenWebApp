@@ -3,19 +3,14 @@ import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../../utils/translate';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
+import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
-import Radio from "../../Radio";
-import classNames from "classnames";
 import Pricing from "../../Pricing";
-import {ReactComponent as StrangschemaIcon} from "../../../../icons/strangschema.svg";
-import Button from "../../../Button";
 import Summary from "../../../../views/summary";
 import SummaryFinal from "../../../../views/summary-final";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
-
 	const [street, setStreet] = useState('');
 	const [houseNumber, setHouseNumber] = useState('');
 	const [postalCode, setPostalCode] = useState('');
@@ -32,6 +27,10 @@ const Angebot = () => {
 		(state: AppReduxStoreProps) => state.appData.subStep
 	);
 
+	const currentQuestion = useSelector(
+		(state: AppReduxStoreProps) => state.appData.currentQuestion
+	);
+
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
@@ -46,12 +45,20 @@ const Angebot = () => {
 			state.appData.questions[currentAppStep - 1].choice
 	);
 
+
 	useEffect(() => {
 		scroller.scrollTo('myScrollToElement', {
 			duration: 1500,
 			delay: 100,
 			smooth: true,
 			offset: -50,
+		});
+
+		dispatch({
+			type: SET_CURRENT_QUESTION,
+			payload: {
+				currentQuestion: 'Wo befindet sich die zu prüfende Liegenschaft?',
+			},
 		});
 	}, []);
 
@@ -152,12 +159,12 @@ const Angebot = () => {
 		}
 		case 2: {
 			return (
-				<Summary />
+				<Summary/>
 			);
 		}
 		case 3: {
 			return (
-				<SummaryFinal />
+				<SummaryFinal/>
 			);
 		}
 	}

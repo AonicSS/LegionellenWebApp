@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useIntl } from 'react-intl';
-import { ReactComponent as Close } from '../../icons/times.svg';
-import { ReactComponent as Plus } from '../../icons/plus.svg';
-import { ReactComponent as Minus } from '../../icons/minus.svg';
+import React, {useCallback} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useIntl} from 'react-intl';
+import {ReactComponent as Close} from '../../icons/times.svg';
+import {ReactComponent as Plus} from '../../icons/plus.svg';
+import {ReactComponent as Minus} from '../../icons/minus.svg';
 
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {
 	INCREASE_APP_STEP,
 	DECREASE_APP_STEP,
@@ -18,8 +18,8 @@ import Translate from '../../utils/translate';
 import classnames from 'classnames';
 
 import './Button.css';
-import { AppReduxStoreProps, Question } from '../../redux/reducers/App';
-import { BaseComponentProps } from '../../shared/interfaces/components';
+import {AppReduxStoreProps, Question} from '../../redux/reducers/App';
+import {BaseComponentProps} from '../../shared/interfaces/components';
 
 interface ButtonProps extends BaseComponentProps {
 	type?: string;
@@ -34,27 +34,32 @@ interface ButtonProps extends BaseComponentProps {
 }
 
 const Button = ({
-	style,
-	question,
-	type,
-	modifierClass,
-	room,
-	house,
-	text,
-	pricing,
-	link,
-}: ButtonProps) => {
+					style,
+					question,
+					type,
+					modifierClass,
+					room,
+					house,
+					text,
+					pricing,
+					link,
+				}: ButtonProps) => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
 
-	const increaseAppStep = () => dispatch({ type: INCREASE_APP_STEP });
-	const decreaseAppStep = () => dispatch({ type: DECREASE_APP_STEP });
+	const increaseAppStep = () => dispatch({type: INCREASE_APP_STEP});
+	const decreaseAppStep = () => dispatch({type: DECREASE_APP_STEP});
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
 	);
 
 	const questions = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions
+	);
+
+
+	const currentQuestion = useSelector(
+		(state: AppReduxStoreProps) => state.appData.currentQuestion
 	);
 
 	const questionText = `${Translate(
@@ -91,7 +96,7 @@ const Button = ({
 		() =>
 			dispatch({
 				type: SET_MODAL,
-				payload: { showModal: true },
+				payload: {showModal: true},
 			}),
 		[]
 	);
@@ -99,7 +104,7 @@ const Button = ({
 	const closeModalAndContinue = useCallback(() => {
 		dispatch({
 			type: SET_MODAL,
-			payload: { showModal: false },
+			payload: {showModal: false},
 		});
 	}, []);
 
@@ -107,14 +112,14 @@ const Button = ({
 		() =>
 			dispatch({
 				type: SET_MODAL,
-				payload: { showModal: false },
+				payload: {showModal: false},
 			}),
 		[]
 	);
 
 	const increaseRentings = () => {
 		if (currentRentings > 4 && currentAppStep === 1) {
-			dispatch({ type: SET_MODAL, payload: { showModal: true } });
+			dispatch({type: SET_MODAL, payload: {showModal: true}});
 		} else {
 			dispatch({
 				type: type,
@@ -163,7 +168,7 @@ const Button = ({
 	const setPricing = (value: any) => {
 		dispatch({
 			type: SET_PRICING,
-			payload: { pricing: value },
+			payload: {pricing: value},
 		});
 		closeModal();
 		navigate('/summary');
@@ -172,6 +177,9 @@ const Button = ({
 	switch (style) {
 		case 'NEXT':
 			const active = getActiveButton(questions);
+			const question = questions.find((q) => q.question === currentQuestion);
+			const choice = question ? question.choice : undefined;
+
 			return (
 				<button
 					onClick={increaseAppStep}
@@ -180,9 +188,9 @@ const Button = ({
 						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
-							(active &&
-								currentAppStep === 1) ||
-							active
+							(choice !== undefined) && ((active &&
+									currentAppStep === 1) ||
+								active)
 								? 'active'
 								: 'disabled'
 						}`
@@ -258,7 +266,7 @@ const Button = ({
 		case 'CLOSE':
 			return (
 				<button onClick={closeModal} className="rwm-btn__container">
-					<Close className="rwm-btn-close" />
+					<Close className="rwm-btn-close"/>
 				</button>
 			);
 		case 'INCREASE_STRANG_AMOUNT':
@@ -270,7 +278,7 @@ const Button = ({
 					)}
 					onClick={increaseRentings}
 				>
-					<Plus width={16} height={16} />
+					<Plus width={16} height={16}/>
 				</button>
 			);
 		case 'DECREASE_STRANG_AMOUNT':
@@ -279,7 +287,7 @@ const Button = ({
 					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"
 					onClick={decreaseRentings}
 				>
-					<Minus width={16} height={16} />
+					<Minus width={16} height={16}/>
 				</button>
 			);
 		case 'DECREASE_ROOMS':
@@ -288,7 +296,7 @@ const Button = ({
 					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"
 					onClick={decreaseRooms}
 				>
-					<Minus width={16} height={16} />
+					<Minus width={16} height={16}/>
 				</button>
 			);
 		case 'INCREASE_ROOMS':
@@ -300,7 +308,7 @@ const Button = ({
 					)}
 					onClick={increaseRooms}
 				>
-					<Plus width={16} height={16} />
+					<Plus width={16} height={16}/>
 				</button>
 			);
 		case 'LINK':

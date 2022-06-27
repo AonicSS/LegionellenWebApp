@@ -3,7 +3,7 @@ import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../utils/translate';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP} from '../../../redux/actions/App';
+import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION} from '../../../redux/actions/App';
 import {ReactComponent as Check} from '../../../icons/check.svg';
 import {ReactComponent as Decline} from '../../../icons/times.svg';
 
@@ -20,40 +20,41 @@ const Radio = ({
 				   orientation = 'horizontal'
 			   }: any) => {
 	const dispatch = useDispatch();
-
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
 
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
 	);
-
 	const currentSubStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.subStep
 	);
-
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
-
 	const questionText = questionTextOverride ?? `${Translate(
 		intl,
 		`questions.${currentAppStep - 1}.question`
 	)}`;
-
 	const currentChoice = useSelector(
 		(state: AppReduxStoreProps) =>
 			state.appData.questions.find((x) => x.question === questionText)!.choice
 	);
 
 	useEffect(() => {
+		dispatch({
+			type: SET_CURRENT_QUESTION,
+			payload: {
+				currentQuestion: questionText,
+			},
+		});
 		scroller.scrollTo('myScrollToElement', {
 			duration: 1500,
 			delay: 100,
 			smooth: true,
 			offset: -50,
 		});
-	}, []);
+	}, [currentSubStep]);
 
 	const handleChange = (value: string) => {
 		dispatch({

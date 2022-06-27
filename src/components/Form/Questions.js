@@ -1,7 +1,7 @@
 export const questions = [
 	{
 		question: 'Besteht für Ihre Liegenschaft eine Prüfpflicht?',
-		choice: '1',
+		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -16,7 +16,7 @@ export const questions = [
 	},
 	{
 		question: 'Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?',
-		choice: '1',
+		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -31,7 +31,7 @@ export const questions = [
 	},
 	{
 		question: 'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?',
-		choice: '',
+		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -46,7 +46,7 @@ export const questions = [
 	},
 	{
 		question: 'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?',
-		choice: '',
+		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
