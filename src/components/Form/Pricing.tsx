@@ -7,7 +7,12 @@ import {AppReduxStoreProps} from '../../redux/reducers/App';
 import {getRentingPrice, getServicePrice} from '../../utils/helpers';
 import {ReactComponent as CheckInIcon} from "../../icons/check-in.svg";
 import {ReactComponent as CheckCircledIcon} from "../../icons/check-circled.svg";
+import {ReactComponent as CheckQualityIcon} from "../../icons/check-quality.svg";
 import {ReactComponent as MagnifyingGlassIcon} from "../../icons/magnifying-glass.svg";
+import {ReactComponent as XCircledIcon} from "../../icons/x-circled.svg";
+import {ReactComponent as HouseIcon} from "../../icons/house.svg";
+import {ReactComponent as EmailIcon} from "../../icons/email.svg";
+import {ReactComponent as BellIcon} from "../../icons/bell.svg";
 
 const pricing = [
 	{
@@ -15,7 +20,7 @@ const pricing = [
 		position: 'tw-container-pricing-1',
 		serviceFeatures: {
 			'Quality Check': {
-				icon: <CheckInIcon/>,
+				icon: <CheckQualityIcon/>,
 				active: false,
 				subtitle: 'Wird empfohlen',
 			},
@@ -36,8 +41,8 @@ const pricing = [
 		serviceFeatures: {
 			'Quality Check': {
 				icon: <CheckInIcon/>,
-				active: false,
-				subtitle: 'Wird empfohlen',
+				active: true,
+				subtitle: 'Flexibel und Digital',
 			},
 			'Legionellenprüfung': {
 				icon: <MagnifyingGlassIcon/>,
@@ -54,10 +59,10 @@ const pricing = [
 		name: 'Legionellenprüfung + Quality Check Klassisch',
 		position: 'tw-container-pricing-3',
 		serviceFeatures: {
-			'Quality Check': {
-				icon: <CheckInIcon/>,
-				active: false,
-				subtitle: 'Wird empfohlen',
+			'Quality Check Klassisch': {
+				icon: <HouseIcon/>,
+				active: true,
+				subtitle: 'Persönlich und vor Ort',
 			},
 			'Legionellenprüfung': {
 				icon: <MagnifyingGlassIcon/>,
@@ -107,7 +112,8 @@ const Pricing = ({modal}: PricingProps) => {
 							</div>
 							{Object.entries(p.serviceFeatures).map(([featureName, feature]) => {
 								return (
-									<div className="tw-flex tw-flex-row tw-items-center" key={featureName}>
+									<div className="tw-container-pricing-list tw-flex tw-flex-row tw-items-center"
+										 key={featureName}>
 										<div className="tw-mr-4">
 											{(p.serviceFeatures as any)[featureName].icon}
 										</div>
@@ -117,7 +123,8 @@ const Pricing = ({modal}: PricingProps) => {
 											<p>{(p.serviceFeatures as any)[featureName].subtitle}</p>
 										</div>
 										<div className="">
-											<CheckCircledIcon/>
+											{(p.serviceFeatures as any)[featureName].active ? <CheckCircledIcon/> :
+												<XCircledIcon/>}
 										</div>
 									</div>
 								);
@@ -154,12 +161,22 @@ const Pricing = ({modal}: PricingProps) => {
 								/>
 							</div>
 							<div className={"tw-container-pricing-list"}>
-								<div>
-									Angebot per E-Mail zusenden
+								<div className={"tw-flex tw-flex-row tw-items-center"}>
+									<div className={"tw-px-2 tw-py-1"}>
+										<EmailIcon/>
+									</div>
+									<div className={"tw-px-2 tw-py-1"}>
+										Angebot per E-Mail zusenden
+									</div>
 								</div>
 
-								<div>
-									Erinnerung zusenden
+								<div className={"tw-flex tw-flex-row tw-items-center"}>
+									<div className={"tw-px-2 tw-py-1"}>
+										<BellIcon/>
+									</div>
+									<div className={"tw-px-2 tw-py-1"}>
+										Erinnerung zusenden
+									</div>
 								</div>
 							</div>
 						</div>
