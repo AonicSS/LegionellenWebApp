@@ -8,6 +8,7 @@ import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema.svg';
 import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/probeentnahmeventile.svg';
+import StrangSchemaAnleitung from '../../../../img/strangschema_anleitung.png';
 import {NumericInput} from "../../Input";
 
 const Trinkwasseranlage = () => {
@@ -73,7 +74,8 @@ const Trinkwasseranlage = () => {
 						{
 							((currentAppData.questions.find((x) => x.question === "Konnten Sie das Strangschema ermitteln?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'yes') &&
 							<>
-								<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
+								<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?
+								</div>
 								<NumericInput/>
 							</>
 						}
@@ -81,7 +83,8 @@ const Trinkwasseranlage = () => {
 							((currentAppData.questions.find((x) => x.question === "Konnten Sie das Strangschema ermitteln?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'no') &&
 							<>
 								<div className={"tw-p-6 tw-bg-lightest-grey"}>
-									Kein Problem. Das Strangschema können wir bei der Begehung der Liegenschaft ermitteln.
+									Kein Problem. Das Strangschema können wir bei der Begehung der Liegenschaft
+									ermitteln.
 
 								</div>
 							</>
@@ -98,35 +101,51 @@ const Trinkwasseranlage = () => {
 					<Radio questionTextOverride={"Sind Probeentnahmeventile verbaut?"}
 						   answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>
 
-					<div className="tw-flex tw-justify-center tw-mt-28">
-						<ProbeenthahmeventileIcon height={300}/>
-					</div>
+					{((currentAppData.questions.find((x) => x.question === "Sind Probeentnahmeventile verbaut?")!.answers.find((answer) => (answer.name === 'choice')))!.value !== 'unsure') &&
+						<div className="tw-flex tw-justify-center tw-mt-28">
+							<ProbeenthahmeventileIcon height={300}/>
+						</div>
+					}
 					{((currentAppData.questions.find((x) => x.question === "Sind Probeentnahmeventile verbaut?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'no') &&
 						<div className={"tw-p-6 tw-bg-lightest-grey"}>
-							Falls noch nicht vorhanden, müssen die Probeentnahmeventile von einer Fachkraft angebracht werden. Erfahren Sie hier mehr
+							Falls noch nicht vorhanden, müssen die Probeentnahmeventile von einer Fachkraft angebracht
+							werden. Erfahren Sie hier mehr
 						</div>
 					}
 					{((currentAppData.questions.find((x) => x.question === "Sind Probeentnahmeventile verbaut?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'yes') &&
 						<div className={"tw-p-6"}>
-							Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme Ihrer Liegenschaft zu erleichtern.
+							Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme Ihrer
+							Liegenschaft zu erleichtern.
 						</div>
 					}
 					{((currentAppData.questions.find((x) => x.question === "Sind Probeentnahmeventile verbaut?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'unsure') &&
 						<>
-							<Radio questionTextOverride={"Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?"} showTitle={false}
-								   orientation={"vertical"} answersOverride={{
+							<div className={"tw-flex tw-justify-center tw-my-6"}>
+								<img src={StrangSchemaAnleitung} className={"tw-max-w-lg"}/>
+							</div>
+							<Radio
+								questionTextOverride={"Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?"}
+								showTitle={false}
+								orientation={"vertical"} answersOverride={{
 								'yes': 'Diese Information war hilfreich. Ich weiß jetzt, ob Probeentnahmeventile verbaut sind.',
 								'no': 'Ich weiß nicht, ob Probeentnahmeventile verbaut sind und benötige Unterstützung.'
 							}}>
 							</Radio>
 							{((currentAppData.questions.find((x) => x.question === "Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'yes') &&
-								<div className={"tw-p-6"}>
-									Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme Ihrer Liegenschaft zu erleichtern.
+								<div className={"tw-flex tw-justify-center tw-my-6"}>
+									<div className={"tw-max-w-lg tw-p-6"}>
+										Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme
+										Ihrer
+										Liegenschaft zu erleichtern.
+									</div>
 								</div>
 							}
 							{((currentAppData.questions.find((x) => x.question === "Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?")!.answers.find((answer) => (answer.name === 'choice')))!.value === 'no') &&
-								<div className={"tw-p-6 tw-bg-lightest-grey"}>
-									Falls noch nicht vorhanden, müssen die Probeentnahmeventile von einer Fachkraft angebracht werden. Erfahren Sie hier mehr
+								<div className={"tw-flex tw-justify-center tw-my-6"}>
+									<div className={"tw-max-w-lg tw-p-6 tw-bg-lightest-grey"}>
+										Falls noch nicht vorhanden, müssen die Probeentnahmeventile von einer Fachkraft
+										angebracht werden. Erfahren Sie hier mehr
+									</div>
 								</div>
 							}
 						</>

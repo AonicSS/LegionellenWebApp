@@ -101,10 +101,10 @@ const Summary = () => {
 					</div>
 				</div>
 			</section>
-			<div className={"tw-bg-grey"}>
-				<section className="rwm-forms__page-section tw-margin-top">
+			<div className={"tw-bg-grey tw-py-6"}>
+				<section className="rwm-forms__page-section">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline">
+						<label className="rwm-form__headline tw-mb-4">
 							<h1 className="rwm-form__headline">
 								Im Komplettpreis enthalten:
 							</h1>
@@ -142,7 +142,7 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline">
+						<label className="rwm-form__headline tw-mb-4">
 							<h1 className="rwm-form__headline">
 								Optional Zusatzleistung:
 							</h1>
@@ -180,7 +180,7 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline">
+						<label className="rwm-form__headline tw-mb-4">
 							<h1 className="rwm-form__headline">
 								Kontaktdaten
 							</h1>
