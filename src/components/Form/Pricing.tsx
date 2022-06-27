@@ -5,6 +5,9 @@ import {useSelector} from 'react-redux';
 import './Pricing.css';
 import {AppReduxStoreProps} from '../../redux/reducers/App';
 import {getRentingPrice, getServicePrice} from '../../utils/helpers';
+import {ReactComponent as CheckInIcon} from "../../icons/check-in.svg";
+import {ReactComponent as CheckCircledIcon} from "../../icons/check-circled.svg";
+import {ReactComponent as MagnifyingGlassIcon} from "../../icons/magnifying-glass.svg";
 
 const pricing = [
 	{
@@ -12,12 +15,12 @@ const pricing = [
 		position: 'tw-container-pricing-1',
 		serviceFeatures: {
 			'Quality Check': {
-				icon: '',
+				icon: <CheckInIcon/>,
 				active: false,
 				subtitle: 'Wird empfohlen',
 			},
 			'Legionellenprüfung': {
-				icon: '',
+				icon: <MagnifyingGlassIcon/>,
 				active: true,
 				subtitle: 'Probeentnahme und Laborcheck',
 			},
@@ -32,12 +35,12 @@ const pricing = [
 		position: 'tw-container-pricing-3',
 		serviceFeatures: {
 			'Quality Check': {
-				icon: '',
+				icon: <CheckInIcon/>,
 				active: false,
 				subtitle: 'Wird empfohlen',
 			},
 			'Legionellenprüfung': {
-				icon: '',
+				icon: <MagnifyingGlassIcon/>,
 				active: true,
 				subtitle: 'Probeentnahme und Laborcheck',
 			},
@@ -52,12 +55,12 @@ const pricing = [
 		position: 'tw-container-pricing-3',
 		serviceFeatures: {
 			'Quality Check': {
-				icon: '',
+				icon: <CheckInIcon/>,
 				active: false,
 				subtitle: 'Wird empfohlen',
 			},
 			'Legionellenprüfung': {
-				icon: '',
+				icon: <MagnifyingGlassIcon/>,
 				active: true,
 				subtitle: 'Probeentnahme und Laborcheck',
 			},
@@ -103,6 +106,21 @@ const Pricing = ({modal}: PricingProps) => {
 								{p.name}
 							</div>
 							{Object.entries(p.serviceFeatures).map(([featureName, feature]) => {
+								return (
+									<div className="tw-flex tw-flex-row tw-items-center" key={featureName}>
+										<div className="tw-mr-4">
+											{(p.serviceFeatures as any)[featureName].icon}
+										</div>
+										<div
+											className="tw-flex-grow">
+											<p className={"tw-font-bold"}>{featureName}</p>
+											<p>{(p.serviceFeatures as any)[featureName].subtitle}</p>
+										</div>
+										<div className="">
+											<CheckCircledIcon/>
+										</div>
+									</div>
+								);
 								// if (isModalVisible || index < 3) {
 								return (
 									<ul
@@ -128,7 +146,7 @@ const Pricing = ({modal}: PricingProps) => {
 									€
 								</div>
 							</div>
-							<div className="tw-flex tw-justify-center">
+							<div className="tw-flex tw-justify-center tw-mb-6">
 								<Button
 									text={p.text}
 									style={p.buttonStyle}
