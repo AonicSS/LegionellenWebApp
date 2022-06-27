@@ -13,6 +13,7 @@ import {ReactComponent as XCircledIcon} from "../../icons/x-circled.svg";
 import {ReactComponent as HouseIcon} from "../../icons/house.svg";
 import {ReactComponent as EmailIcon} from "../../icons/email.svg";
 import {ReactComponent as BellIcon} from "../../icons/bell.svg";
+import {ReactComponent as InfoSmallIcon} from "../../icons/info-small.svg";
 
 const pricing = [
 	{
@@ -168,6 +169,9 @@ const Pricing = ({modal}: PricingProps) => {
 									<div className={"tw-px-2 tw-py-1"}>
 										Angebot per E-Mail zusenden
 									</div>
+									<div className={"tw-px-2 tw-py-1"}>
+										<InfoSmallIcon/>
+									</div>
 								</div>
 
 								<div className={"tw-flex tw-flex-row tw-items-center"}>
@@ -176,6 +180,9 @@ const Pricing = ({modal}: PricingProps) => {
 									</div>
 									<div className={"tw-px-2 tw-py-1"}>
 										Erinnerung zusenden
+									</div>
+									<div className={"tw-px-2 tw-py-1"}>
+										<InfoSmallIcon/>
 									</div>
 								</div>
 							</div>
