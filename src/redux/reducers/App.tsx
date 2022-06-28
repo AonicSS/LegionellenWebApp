@@ -17,7 +17,7 @@ import {
 	SET_ROOMS,
 	ADD_HOUSE,
 	SET_PRICING,
-	SET_REGION,
+	SET_REGION, SET_UPLOAD,
 } from '../actions/App';
 
 const initialState = {
@@ -34,6 +34,7 @@ const initialState = {
 	postalCode: {code: '', valid: false, area: ''},
 	questions: questions,
 	pricing: '',
+	uploads: {},
 };
 
 export interface PostalCode {
@@ -77,6 +78,7 @@ export interface AppReduxStoreProps {
 		acceptMarketing: boolean;
 		questions: Questions;
 		pricing: string;
+		uploads: any;
 	};
 }
 
@@ -201,7 +203,7 @@ const appData = (
 				...state,
 				pricing: action.payload.pricing,
 			};
-		case SET_ANSWER:
+		case SET_ANSWER: {
 			let currentQuestion = (state.questions as any) [action.payload.questionName];
 			let returnState = {
 				...state
@@ -213,6 +215,14 @@ const appData = (
 				return answer;
 			});
 			return returnState;
+		}
+		case SET_UPLOAD: {
+			debugger;
+			return {
+				...state,
+				uploads: action.payload.uploads
+			};
+		}
 		default:
 			return state;
 	}

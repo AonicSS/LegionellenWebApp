@@ -1,4 +1,4 @@
-export const trackStepper = (step: number) => {
+export const trackStepper = (step: number, subStep: number) => {
 	let pageIdentifier;
 
 	switch (step) {

@@ -2,14 +2,11 @@ import React, {useEffect} from 'react';
 import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../../utils/translate';
-import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
+import { useSelector} from 'react-redux';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
-import Button from "../../../Button";
 
 const Pruefpflicht = () => {
-	const dispatch = useDispatch();
 
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
@@ -31,6 +28,8 @@ const Pruefpflicht = () => {
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 
+
+	const [test, setTest] = React.useState<string>('');
 
 	useEffect(() => {
 		scroller.scrollTo('myScrollToElement', {

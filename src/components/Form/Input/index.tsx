@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import * as Scroll from 'react-scroll';
 import {useIntl} from 'react-intl';
 import Translate from '../../../utils/translate';

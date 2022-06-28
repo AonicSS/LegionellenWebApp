@@ -1,24 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
-import Translate from '../../../../utils/translate';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
+import {SET_ANSWER, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Pricing from "../../Pricing";
-import Summary from "../../../../views/summary";
-import SummaryFinal from "../../../../views/summary-final";
+import Summary from "../../../summary";
+import SummaryFinal from "../../../summary-final";
 import {ReactComponent as HouseAltIcon} from "../../../../icons/house-alt.svg";
 import {ReactComponent as PenEditIcon} from "../../../../icons/pen-edit.svg";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
-	const intl = useIntl();
 	const scroller = Scroll.scroller;
-
-	const currentAppStep = useSelector(
-		(state: AppReduxStoreProps) => state.appData.step
-	);
 
 	const currentSubStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.subStep

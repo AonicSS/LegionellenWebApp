@@ -3,7 +3,7 @@ import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../utils/translate';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION} from '../../redux/actions/App';
+import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION, SET_UPLOAD} from '../../redux/actions/App';
 import {ReactComponent as Check} from '../../../icons/check.svg';
 import {ReactComponent as Decline} from '../../../icons/times.svg';
 
@@ -13,17 +13,18 @@ import filesize from "filesize";
 
 import {AppReduxStoreProps} from '../../redux/reducers/App';
 import {ReactComponent as XCircleInvertedIcon} from "../../icons/x-circled-inverted.svg";
+import {BaseComponentProps} from "../../shared/interfaces/components";
 
 const Uploader = ({
 					  uploadId,
-				  }: any) => {
+				  }: { uploadId: string }) => {
 	const dispatch = useDispatch();
 
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
 
-	const [strangFiles, setStrangFiles] = React.useState([]);
+	const uploads = currentAppData.uploads;
 	const maxNumber = 69;
 
 	const onChange = (
@@ -32,7 +33,15 @@ const Uploader = ({
 	) => {
 		// data for submit
 		console.log(imageList, addUpdateIndex);
-		setStrangFiles(imageList as never[]);
+		dispatch({
+			type: SET_UPLOAD,
+			payload: {
+				uploads: {
+					...uploads,
+					[uploadId]: (imageList)
+				}
+			},
+		});
 	};
 
 
@@ -41,12 +50,12 @@ const Uploader = ({
 			<div>
 				<ImageUploading
 					multiple
-					value={strangFiles}
+					value={(uploads as any)[uploadId]}
 					onChange={onChange}
 					maxNumber={maxNumber}
 					dataURLKey="data_url"
 					maxFileSize={20000000}
-					acceptType={['jpg', 'gif', 'png', 'pdf']}
+					acceptType={['jpg', 'pdf']}
 				>
 					{({
 						  imageList,
@@ -59,7 +68,6 @@ const Uploader = ({
 					  }) => (
 						// write your building UI
 						<div className="upload__image-wrapper">
-
 							<div
 								className={"tw-border tw-border-dark-grey tw-flex tw-items-center"} {...dragProps}>
 								<button

@@ -9,6 +9,7 @@ import Pruefpflicht from "./Steps/Pruefpflicht";
 import Trinkwasseranlage from "./Steps/Trinkwasseranlage";
 import Angebot from "./Steps/Angebot";
 
+
 const Form = () => {
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
@@ -19,14 +20,16 @@ const Form = () => {
 	);
 
 	useEffect(() => {
-		trackStepper(currentAppStep);
-	}, [currentAppStep]);
+		trackStepper(currentAppStep, currentSubStep);
+	}, [currentAppStep, currentSubStep]);
+
 
 	return (
 		<>
 			{currentAppStep === 1 && <Pruefpflicht/>}
 			{currentAppStep === 2 && <Trinkwasseranlage/>}
 			{currentAppStep === 3 && <Angebot/>}
+
 		</>
 	);
 };

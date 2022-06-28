@@ -2,12 +2,11 @@ import React, {useEffect} from 'react';
 import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../../utils/translate';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema.svg';
 import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/probeentnahmeventile.svg';
-import {ReactComponent as XCircleInvertedIcon} from '../../../../icons/x-circled-inverted.svg';
 import StrangSchemaAnleitung from '../../../../img/strangschema_anleitung.png';
 import {NumericInput} from "../../Input";
 import Uploader from "../../../Uploader";
@@ -75,7 +74,7 @@ const Trinkwasseranlage = () => {
 								<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?
 								</div>
 								<NumericInput/>
-								<input type="file" accept="image/*" multiple={false}/>
+								<Uploader uploadId={"strang"}/>
 							</>
 						}
 						{
@@ -112,10 +111,16 @@ const Trinkwasseranlage = () => {
 						</div>
 					}
 					{((currentAppData.questions["Sind Probeentnahmeventile verbaut?"]!.answers.find((answer) => (answer.name === 'choice')))!.value === 'yes') &&
-						<div className={"tw-p-6"}>
-							Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme Ihrer
-							Liegenschaft zu erleichtern.
-						</div>
+						<>
+							<div className={"tw-flex tw-justify-center tw-my-6"}>
+								<div className={"tw-max-w-lg tw-p-6"}>
+									Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme
+									Ihrer
+									Liegenschaft zu erleichtern.
+								</div>
+							</div>
+							<Uploader uploadId={"valves"}/>
+						</>
 					}
 					{((currentAppData.questions["Sind Probeentnahmeventile verbaut?"]!.answers.find((answer) => (answer.name === 'choice')))!.value === 'unsure') &&
 						<>
@@ -131,13 +136,18 @@ const Trinkwasseranlage = () => {
 							}}>
 							</Radio>
 							{((currentAppData.questions["Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?"]!.answers.find((answer) => (answer.name === 'choice')))!.value === 'yes') &&
-								<div className={"tw-flex tw-justify-center tw-my-6"}>
-									<div className={"tw-max-w-lg tw-p-6"}>
-										Sie können hier eine Abbildung ihres Strangschemas hochladen, um die Aufnahme
-										Ihrer
-										Liegenschaft zu erleichtern.
+								<>
+									<div className={"tw-flex tw-justify-center tw-my-6"}>
+										<div className={"tw-max-w-lg tw-p-6"}>
+											Sie können hier eine Abbildung ihres Strangschemas hochladen, um die
+											Aufnahme
+											Ihrer
+											Liegenschaft zu erleichtern.
+										</div>
 									</div>
-								</div>
+									<Uploader uploadId={"valves"}/>
+								</>
+
 							}
 							{((currentAppData.questions["Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?"]!.answers.find((answer) => (answer.name === 'choice')))!.value === 'no') &&
 								<div className={"tw-flex tw-justify-center tw-my-6"}>
