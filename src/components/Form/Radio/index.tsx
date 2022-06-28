@@ -119,8 +119,10 @@ const Radio = ({
 					{
 						showTitle && <label className="rwm-form__headline">{questionText}</label>
 					}
+
+					<div className={"lg:tw-grid-cols-1 lg:tw-grid-cols-2 lg:tw-grid-cols-3 md:tw-grid-cols-1 tw-hidden"}></div>
 					<fieldset
-						className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 tw-grid-cols-${Object.keys(answersOverride).length}`}>
+						className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 lg:tw-grid-cols-${Object.keys(answersOverride).length}`}>
 						{Object.keys(answersOverride).map((answer: string) => {
 							return (<div
 								key={answer}

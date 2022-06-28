@@ -291,10 +291,10 @@ const SummaryFinal = () => {
 			</section>
 			<section>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
-					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"}></Button>
+					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"} onClick={() => {alert('test')}}></Button>
 				</div>
 				<div className="tw-flex tw-justify-center tw-pt-1 tw-pb-28">
-					<Button style={"SECONDARY"} text={"Angebot per E-Mail zusenden"}></Button>
+					<Button style={"SECONDARY"} text={"Angebot per E-Mail zusenden"} onClick={() => {alert('test')}}></Button>
 				</div>
 			</section>
 		</Layout>

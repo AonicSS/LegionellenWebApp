@@ -133,6 +133,8 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 
 	return (
 		<div className="tw-pb-12">
+
+			<div className={"lg:tw-grid-cols-1 lg:tw-grid-cols-2 lg:tw-grid-cols-3 md:tw-grid-cols-1 tw-hidden"}></div>
 			<div
 				className={`tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-${pricing.length} xl:tw-grid-cols-${pricing.length} tw-gap-[52px] xl:tw-gap-[50px]`}>
 				{pricing.map((p) => {

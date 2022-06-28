@@ -32,6 +32,7 @@ interface ButtonProps extends BaseComponentProps {
 	link?: string;
 	children?: string;
 	alwaysActive?: boolean;
+	onClick?: any;
 }
 
 const Button = ({
@@ -44,7 +45,8 @@ const Button = ({
 					text,
 					pricing,
 					link,
-					alwaysActive
+					alwaysActive,
+					onClick
 				}: ButtonProps) => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
@@ -223,7 +225,7 @@ const Button = ({
 		case 'PRIMARY':
 			return (
 				<button
-					onClick={increaseAppStep}
+					onClick={onClick ?? increaseAppStep}
 					className={classnames(
 						'rwn-btn-continue',
 						'rwm-button--primary'
@@ -235,7 +237,7 @@ const Button = ({
 		case 'SECONDARY':
 			return (
 				<button
-					onClick={increaseAppStep}
+					onClick={onClick ?? increaseAppStep}
 					className={classnames(
 						'rwn-btn-continue',
 						'rwm-button--secondary'
