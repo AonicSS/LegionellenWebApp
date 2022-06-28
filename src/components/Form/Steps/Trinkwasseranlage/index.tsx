@@ -8,10 +8,12 @@ import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema.svg';
 import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/probeentnahmeventile.svg';
+import {ReactComponent as XCircleInvertedIcon} from '../../../../icons/x-circled-inverted.svg';
 import StrangSchemaAnleitung from '../../../../img/strangschema_anleitung.png';
 import {NumericInput} from "../../Input";
 import ImageUploading, {ImageListType} from "react-images-uploading";
 import classnames from "classnames";
+import filesize from "filesize";
 
 const Trinkwasseranlage = () => {
 	const intl = useIntl();
@@ -75,7 +77,7 @@ const Trinkwasseranlage = () => {
 					<>
 						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
 						<NumericInput/>
-						<div className={"tw-border tw-border-dark-grey"}>
+						<div>
 							<ImageUploading
 								multiple
 								value={strangImages}
@@ -94,32 +96,35 @@ const Trinkwasseranlage = () => {
 								  }) => (
 									// write your building UI
 									<div className="upload__image-wrapper">
-										<button
-											style={isDragging ? {color: 'red'} : undefined}
-											className={classnames(
-												'rwn-btn-continue',
-												'rwm-button--primary'
-											)}
-											onClick={onImageUpload}
-											{...dragProps}
-										>
-											Upload
-										</button>
-										&nbsp;
-										<button onClick={onImageRemoveAll}
-												className={classnames(
-													'rwn-btn-continue',
-													'rwm-button--secondary'
-												)}>Remove all images</button>
-										{imageList.map((image, index) => (
-											<div key={index} className="image-item">
-												{image['data_url']}
-												<div className="image-item__btn-wrapper">
-													<button onClick={() => onImageUpdate(index)}>Update</button>
-													<button onClick={() => onImageRemove(index)}>Remove</button>
-												</div>
+
+										<div
+											className={"tw-border tw-border-dark-grey tw-flex tw-items-center"} {...dragProps}>
+											<button
+												style={isDragging ? {color: 'red'} : undefined}
+												className={"tw-bg-red tw-text-white tw-uppercase tw-spacing tw-tracking-wider tw-p-2 tw-m-2"}
+												onClick={onImageUpload}
+											>
+												Upload
+											</button>
+											<div className={"tw-flex-grow tw-text-right tw-m-2"}>
+												JPG oder PDF hier hochladen | max. 20 MB
 											</div>
-										))}
+										</div>
+										<div className={"tw-p-2"}>
+											{imageList.map((image, index) => (
+												<div key={index} className={"tw-my-6 image-item tw-flex tw-items-center"}>
+													<div className={"tw-flex-grow tw-pr-2"}>
+														{image!.file!.name}
+													</div>
+													<div className={"tw-p-2x"}>
+														{filesize(image!.file!.size)}
+													</div>
+													<div className="image-item__btn-wrapper tw-pl-2">
+														<button onClick={() => onImageRemove(index)}><XCircleInvertedIcon/></button>
+													</div>
+												</div>
+											))}
+										</div>
 									</div>
 								)}
 							</ImageUploading>
