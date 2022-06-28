@@ -1,6 +1,5 @@
-export const questions = [
-	{
-		question: 'Besteht für Ihre Liegenschaft eine Prüfpflicht?',
+export const questions = {
+	'Besteht für Ihre Liegenschaft eine Prüfpflicht?': {
 		choice: undefined,
 		type: 'input',
 		btnActive: true,
@@ -13,8 +12,7 @@ export const questions = [
 			},
 		],
 	},
-	{
-		question: 'Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?',
+	'Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?': {
 		choice: undefined,
 		type: 'input',
 		btnActive: true,
@@ -27,8 +25,7 @@ export const questions = [
 			},
 		],
 	},
-	{
-		question: 'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?',
+	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?': {
 		choice: undefined,
 		type: 'input',
 		btnActive: true,
@@ -41,8 +38,7 @@ export const questions = [
 			},
 		],
 	},
-	{
-		question: 'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?',
+	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?': {
 		choice: undefined,
 		type: 'input',
 		btnActive: true,
@@ -55,8 +51,7 @@ export const questions = [
 			},
 		],
 	},
-	{
-		question: 'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
+	'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?': {
 		choice: undefined,
 		type: 'input',
 		btnActive: true,
@@ -69,8 +64,7 @@ export const questions = [
 			},
 		],
 	},
-	{
-		question: 'Konnten Sie das Strangschema ermitteln?',
+	'Konnten Sie das Strangschema ermitteln?': {
 		choice: '',
 		type: 'input',
 		btnActive: true,
@@ -83,8 +77,7 @@ export const questions = [
 			},
 		],
 	},
-	{
-		question: 'Sind Probeentnahmeventile verbaut?',
+	'Sind Probeentnahmeventile verbaut?': {
 		choice: '',
 		type: 'input',
 		btnActive: true,
@@ -97,18 +90,49 @@ export const questions = [
 			},
 		],
 	},
-	{
+	'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?': {
+		choice: '',
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: 'choice',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+		],
+	},
+	'Wo befindet sich die zu prüfende Liegenschaft?': {
 		question: 'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?',
 		choice: '',
 		type: 'input',
 		btnActive: true,
 		answers: [
 			{
-				name: 'choice',
+				name: 'streetName',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'houseNumber',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'postalCode',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'city',
 				type: 'string',
 				required: true,
 				value: undefined
 			},
 		],
-	},
-];
+	}
+};

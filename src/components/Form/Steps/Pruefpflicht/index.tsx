@@ -31,11 +31,6 @@ const Pruefpflicht = () => {
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 
-	const currentChoice = useSelector(
-		(state: AppReduxStoreProps) =>
-			state.appData.questions[currentAppStep - 1].choice
-	);
-
 
 	useEffect(() => {
 		scroller.scrollTo('myScrollToElement', {
@@ -50,6 +45,7 @@ const Pruefpflicht = () => {
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
+				answerName: 'choice',
 				questionName: questionText,
 				choice: value,
 				btnActive: true,
@@ -66,7 +62,7 @@ const Pruefpflicht = () => {
 			return <Radio answersOverride={{'yes': 'Ja', 'no': 'Nein', 'unsure': 'Ich weiß nicht'}}></Radio>;
 		}
 		case 1: {
-			if (currentAppData.questions[0].answers.find((answer) => answer.name === 'choice')!.value === 'yes') {
+			if (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'yes') {
 				return (
 				<div className="tw-w-full tw-flex tw-justify-center">
 					<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
@@ -78,7 +74,7 @@ const Pruefpflicht = () => {
 				</div>
 				);
 			}
-			if (currentAppData.questions[0].answers.find((answer) => answer.name === 'choice')!.value === 'no') {
+			if (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'no') {
 				return (
 					<div className="tw-w-full tw-flex tw-justify-center">
 						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">

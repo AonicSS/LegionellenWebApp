@@ -15,81 +15,132 @@ import {ReactComponent as EmailIcon} from "../../icons/email.svg";
 import {ReactComponent as BellIcon} from "../../icons/bell.svg";
 import {ReactComponent as InfoSmallIcon} from "../../icons/info-small.svg";
 
-const pricing = [
-	{
-		name: 'Legionellenprüfung ohne Quality Check',
-		position: 'tw-container-pricing-1',
-		serviceFeatures: {
-			'Quality Check': {
-				icon: <CheckQualityIcon/>,
-				active: false,
-				subtitle: 'Wird empfohlen',
+
+let informationComplete = function () {
+};
+
+const pricingOptions = {
+	'noSurveyRequired': [
+		{
+			name: 'Legionellenprüfung ohne Quality Check',
+			position: 'tw-container-pricing-1',
+			serviceFeatures: {
+				'Quality Check': {
+					icon: <CheckQualityIcon/>,
+					active: false,
+					subtitle: 'Wird empfohlen',
+				},
+				'Legionellenprüfung': {
+					icon: <MagnifyingGlassIcon/>,
+					active: true,
+					subtitle: 'Probeentnahme und Laborcheck',
+				},
 			},
-			'Legionellenprüfung': {
-				icon: <MagnifyingGlassIcon/>,
-				active: true,
-				subtitle: 'Probeentnahme und Laborcheck',
-			},
+			buttonStyle: 'SECONDARY',
+			text: 'Angebot sichern',
+			type: 'standard',
+			recommended: false,
+			importantRemark: 'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.'
 		},
-		buttonStyle: 'SECONDARY',
-		text: 'Angebot sichern',
-		type: 'standard',
-		recommended: false,
-		importantRemark: 'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.'
-	},
-	{
-		name: 'Legionellenprüfung + Quality Check Online',
-		position: 'tw-container-pricing-3',
-		serviceFeatures: {
-			'Quality Check': {
-				icon: <CheckInIcon/>,
-				active: true,
-				subtitle: 'Flexibel und Digital',
+		{
+			name: 'Legionellenprüfung + Quality Check Online',
+			position: 'tw-container-pricing-3',
+			serviceFeatures: {
+				'Quality Check': {
+					icon: <CheckInIcon/>,
+					active: true,
+					subtitle: 'Flexibel und Digital',
+				},
+				'Legionellenprüfung': {
+					icon: <MagnifyingGlassIcon/>,
+					active: true,
+					subtitle: 'Probeentnahme und Laborcheck',
+				},
 			},
-			'Legionellenprüfung': {
-				icon: <MagnifyingGlassIcon/>,
-				active: true,
-				subtitle: 'Probeentnahme und Laborcheck',
-			},
+			buttonStyle: 'PRIMARY',
+			text: 'Angebot sichern',
+			type: 'plus',
+			recommended: true,
 		},
-		buttonStyle: 'PRIMARY',
-		text: 'Angebot sichern',
-		type: 'plus',
-		recommended: true,
-	},
-	{
-		name: 'Legionellenprüfung + Quality Check Klassisch',
-		position: 'tw-container-pricing-3',
-		serviceFeatures: {
-			'Quality Check Klassisch': {
-				icon: <HouseIcon/>,
-				active: true,
-				subtitle: 'Persönlich und vor Ort',
+		{
+			name: 'Legionellenprüfung + Quality Check Klassisch',
+			position: 'tw-container-pricing-3',
+			serviceFeatures: {
+				'Quality Check Klassisch': {
+					icon: <HouseIcon/>,
+					active: true,
+					subtitle: 'Persönlich und vor Ort',
+				},
+				'Legionellenprüfung': {
+					icon: <MagnifyingGlassIcon/>,
+					active: true,
+					subtitle: 'Probeentnahme und Laborcheck',
+				},
 			},
-			'Legionellenprüfung': {
-				icon: <MagnifyingGlassIcon/>,
-				active: true,
-				subtitle: 'Probeentnahme und Laborcheck',
-			},
+			buttonStyle: 'SECONDARY',
+			text: 'Angebot sichern',
+			type: 'plus',
+			recommended: false,
 		},
-		buttonStyle: 'SECONDARY',
-		text: 'Angebot sichern',
-		type: 'plus',
-		recommended: false,
-	},
-];
+	],
+	'surveyRequired': [
+		{
+			name: 'Legionellenprüfung ohne Quality Check',
+			position: 'tw-container-pricing-1',
+			serviceFeatures: {
+				'Quality Check': {
+					icon: <CheckQualityIcon/>,
+					active: false,
+					subtitle: 'Wird empfohlen',
+				},
+				'Legionellenprüfung': {
+					icon: <MagnifyingGlassIcon/>,
+					active: true,
+					subtitle: 'Probeentnahme und Laborcheck',
+				},
+			},
+			buttonStyle: 'SECONDARY',
+			text: 'Angebot sichern',
+			type: 'standard',
+			recommended: false,
+			importantRemark: 'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.'
+		},
+		{
+			name: 'Legionellenprüfung + Quality Check Online',
+			position: 'tw-container-pricing-3',
+			serviceFeatures: {
+				'Quality Check': {
+					icon: <CheckInIcon/>,
+					active: true,
+					subtitle: 'Flexibel und Digital',
+				},
+				'Legionellenprüfung': {
+					icon: <MagnifyingGlassIcon/>,
+					active: true,
+					subtitle: 'Probeentnahme und Laborcheck',
+				},
+			},
+			buttonStyle: 'PRIMARY',
+			text: 'Angebot sichern',
+			type: 'plus',
+			recommended: true,
+		},
+	]
+};
 
 export interface PricingProps extends React.HTMLProps<HTMLDivElement> {
 	modal?: boolean;
+	surveyRequired?: boolean;
 }
 
-const Pricing = ({modal}: PricingProps) => {
+const Pricing = ({modal, surveyRequired}: PricingProps) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const pricing = surveyRequired? pricingOptions['surveyRequired']: pricingOptions['noSurveyRequired'];
 
 	return (
 		<div className="tw-pb-12">
 			<div
-				className="tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-3 xl:tw-grid-cols-3 tw-gap-[52px] xl:tw-gap-[50px]">
+				className={`tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-${pricing.length} xl:tw-grid-cols-${pricing.length} tw-gap-[52px] xl:tw-gap-[50px]`}>
 				{pricing.map((p) => {
 					const rentingPrice = getBasePrice(appData);
 					const servicePrice = getServicePrice(p.type, appData);
@@ -193,7 +244,8 @@ const Pricing = ({modal}: PricingProps) => {
 									<div className="tw-flex tw-justify-center tw-mb-2">
 										<h4> Wichtiger Hinweis</h4>
 									</div>
-									<div className={"tw-text-justify"}>Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist
+									<div className={"tw-text-justify"}>Da Sie alle geforderten Angaben zur
+										Trinkwasseranlage ausgefüllt haben, ist
 										eine
 										Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch,
 										einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus

@@ -50,6 +50,10 @@ export interface Question {
 	answers: Answers[];
 }
 
+export interface Questions {
+	[question: string]: Question
+}
+
 export interface Answers {
 	name: string;
 	type: string;
@@ -71,7 +75,7 @@ export interface AppReduxStoreProps {
 		postalCode: PostalCode;
 		acceptContact: boolean;
 		acceptMarketing: boolean;
-		questions: Question[];
+		questions: Questions;
 		pricing: string;
 	};
 }
@@ -81,9 +85,9 @@ function getStateRules(state: any): any {
 		...state,
 	};
 	if (state.step === 1) {
-		if (state.questions[0].answers.find((answer: Answers) => answer.name === 'choice')!.value !== "unsure") {
+		if (state.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer: Answers) => answer.name === 'choice')!.value !== "unsure") {
 			newState.maxSubSteps = 1;
-		} else if (state.questions[0].answers.find((answer: Answers) => answer.name === 'choice')!.value === "unsure") {
+		} else if (state.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer: Answers) => answer.name === 'choice')!.value === "unsure") {
 			newState.maxSubSteps = 4;
 		}
 	}
@@ -198,72 +202,17 @@ const appData = (
 				pricing: action.payload.pricing,
 			};
 		case SET_ANSWER:
-			return {
-				...state,
-				questions: state.questions.map((q, i) => {
-					return q.question === action.payload.questionName
-						? {
-							...q,
-							answers: q.answers.map((answer) => {
-								if (answer.name === 'choice') {
-									answer.value = action.payload.value;
-								}
-								return answer;
-							})
-						}
-						: {...q};
-				}),
+			let currentQuestion = (state.questions as any) [action.payload.questionName];
+			let returnState = {
+				...state
 			};
-		case SET_ROOMS: {
-			return {
-				...state,
-				questions: state.questions.map((q) => {
-					return q.question === action.payload.questionName
-						? {
-							...q,
-							answers: q.answers.map((a) => {
-								return a.name === action.payload.roomName
-									? {
-										...a,
-										amount: action.payload.amount,
-									}
-									: {...a};
-							}),
-						}
-						: {...q};
-				}),
-			};
-		}
-		case SET_REGION:
-			return {
-				...state,
-				questions: state.questions.map((q) => {
-					if (q.question === action.payload.questionName) {
-						return {
-							...q,
-							answers: q.answers.map((a) => {
-								if (a.name === 'common') {
-									return {
-										...a,
-										amount:
-											state.postalCode.area ===
-											'Berlin' ||
-											state.postalCode.area ===
-											'Brandenburg'
-												? 1
-												: 0,
-										required: action.payload.value,
-									};
-								} else {
-									return {...a};
-								}
-							}),
-						};
-					} else {
-						return {...q};
-					}
-				}),
-			};
+			(returnState.questions as any)[action.payload.questionName].answers = (returnState.questions as any)[action.payload.questionName].answers.map((answer: Answers) => {
+				if (answer.name === action.payload.answerName) {
+					answer.value = action.payload.value;
+				}
+				return answer;
+			});
+			return returnState;
 		default:
 			return state;
 	}

@@ -18,7 +18,7 @@ import Translate from '../../utils/translate';
 import classnames from 'classnames';
 
 import './Button.css';
-import {AppReduxStoreProps, Question} from '../../redux/reducers/App';
+import {Answers, AppReduxStoreProps, Question, Questions} from '../../redux/reducers/App';
 import {BaseComponentProps} from '../../shared/interfaces/components';
 
 interface ButtonProps extends BaseComponentProps {
@@ -31,6 +31,7 @@ interface ButtonProps extends BaseComponentProps {
 	pricing?: string;
 	link?: string;
 	children?: string;
+	alwaysActive?: boolean;
 }
 
 const Button = ({
@@ -43,6 +44,7 @@ const Button = ({
 					text,
 					pricing,
 					link,
+					alwaysActive
 				}: ButtonProps) => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
@@ -51,6 +53,11 @@ const Button = ({
 	const decreaseAppStep = () => dispatch({type: DECREASE_APP_STEP});
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
+	);
+
+
+	const currentAppData = useSelector(
+		(state: AppReduxStoreProps) => state.appData
 	);
 
 	const questions = useSelector(
@@ -69,25 +76,20 @@ const Button = ({
 
 	const getIsRentingZero = useCallback((questionText: string) => {
 		const question = useSelector((state: AppReduxStoreProps) =>
-			state.appData.questions.find((q) => q.question === questionText)
+			state.appData.questions[questionText]
 		);
 		return question?.choice === 0 && question?.choice.length > 0;
 	}, []);
 
 	const getCurrentRentings = useCallback((questionText: string) => {
 		const question = useSelector((state: AppReduxStoreProps) =>
-			state.appData.questions.find((q) => q.question === questionText)
+			state.appData.questions[questionText]
 		);
 		return question?.choice;
 	}, []);
 
-	const getActiveButton = useCallback((questions: Question[]) => {
-		const index = useSelector(
-			(state: AppReduxStoreProps) => state.appData.step - 1
-		);
-		for (const [k, v] of Object.entries(questions)) {
-			if (parseInt(k) === index) return v.btnActive;
-		}
+	const getActiveButton = useCallback((questions: Questions, question: string) => {
+		return questions[question] ? questions[question].btnActive : false;
 	}, []);
 
 	const currentRentings = getCurrentRentings(questionText);
@@ -176,12 +178,10 @@ const Button = ({
 
 	switch (style) {
 		case 'NEXT':
-			const active = getActiveButton(questions);
-			const question = questions.find((q) => q.question === currentQuestion);
-			const answers = question ? question.answers :  [];
-			const allAnswered = !(answers.some((answer) => ((answer.value === undefined) && answer.required)));
-			const choice = question ? question.choice : undefined;
-
+			const active = getActiveButton(questions, currentQuestion);
+			const question = questions[currentQuestion];
+			const answers = question ? question.answers : [];
+			const allAnswered = !(answers.some((answer: Answers) => ((answer.value === undefined) && answer.required)));
 			return (
 				<button
 					onClick={increaseAppStep}
@@ -190,9 +190,9 @@ const Button = ({
 						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
-							(allAnswered) && ((active &&
+							((allAnswered) && ((active &&
 									currentAppStep === 1) ||
-								active)
+								active) || alwaysActive)
 								? 'active'
 								: 'disabled'
 						}`

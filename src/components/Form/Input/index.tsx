@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import * as Scroll from 'react-scroll';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Translate from '../../../utils/translate';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
 	SET_ANSWER,
 	UPDATE_POSTAL_CODE,
@@ -14,11 +14,11 @@ import {
 	INCREASE_RENTINGS_STEP,
 	SET_REGION,
 } from '../../../redux/actions/App';
-import { validPostalCode, getFederalState } from '../../../utils/helpers';
-import { AppReduxStoreProps } from '../../../redux/reducers/App';
+import {validPostalCode, getFederalState} from '../../../utils/helpers';
+import {AppReduxStoreProps} from '../../../redux/reducers/App';
 import Button from '../../Button';
-import { ReactComponent as Info } from '../../../icons/Info.svg';
-import { ReactComponent as Chevron } from '../../../icons/chevron-left.svg';
+import {ReactComponent as Info} from '../../../icons/Info.svg';
+import {ReactComponent as Chevron} from '../../../icons/chevron-left.svg';
 
 import './Input.css';
 import classNames from 'classnames';
@@ -92,7 +92,7 @@ export const PostalCodeInput = () => {
 
 	const getCurrentPostalCode = useCallback((questionText: string) => {
 		const question = useSelector((state: AppReduxStoreProps) =>
-			state.appData.questions.find((q) => q.question === questionText)
+			state.appData.questions[questionText]
 		);
 		return question?.choice;
 	}, []);
@@ -136,6 +136,7 @@ export const PostalCodeInput = () => {
 			type: SET_REGION,
 			payload: {
 				questionName: roomStepText,
+				answerName: 'choice',
 				value:
 					bundesland === 'Berlin' || bundesland === 'Brandenburg'
 						? true
@@ -153,7 +154,7 @@ export const PostalCodeInput = () => {
 				<h2 className="tw-font-size-info tw-text-center tw-mt-5">
 					Die gesetzlichen Bestimmungen zur Ausstattung mit
 					Rauchwarnmeldern unterscheiden sich je nach Bundesland.{' '}
-					<br /> Um die genaue Anzahl ermitteln zu können, ist daher
+					<br/> Um die genaue Anzahl ermitteln zu können, ist daher
 					die Angabe der Postleitzahl nötig.
 				</h2>
 			</label>
@@ -180,7 +181,7 @@ export const PostalCodeInput = () => {
 				<p className="tw-mt-12 tw-font-size-input-error">
 					Leider konnten wir die angegebene Postleitzahl nicht
 					zuordnen.
-					<br />
+					<br/>
 					Bitte beachten Sie, dass eine Postleitzahl aus 5 Ziffern
 					bestehen muss.
 				</p>
@@ -244,7 +245,7 @@ export const RoomsInput = () => {
 	};
 
 	const question = useSelector((state: AppReduxStoreProps) =>
-		state.appData.questions.find((q) => q.question === questionText)
+		state.appData.questions[questionText]
 	);
 
 	return (
@@ -253,7 +254,7 @@ export const RoomsInput = () => {
 				<h1 className="tw-font-size-headline">{questionText}</h1>
 			</label>
 			<div className="tw-container-room">
-				{question?.answers?.map((r, i) => {
+				{question?.answers?.map((r: any, i: any) => {
 					return null;
 				})}
 			</div>
@@ -261,7 +262,7 @@ export const RoomsInput = () => {
 				<button onClick={nextRenting}>
 					<div className="tw-flex tw-font-size-rooms-continue-label">
 						Weiter zur {currentRentingsStep + 1}. Wohnung{' '}
-						<Chevron className="rwm-btn-next-room" />
+						<Chevron className="rwm-btn-next-room"/>
 					</div>
 				</button>
 			) : null}

@@ -37,13 +37,14 @@ const Radio = ({
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 	const currentChoice = useSelector(
-		(state: AppReduxStoreProps) =>
-			(state.appData.questions.find((x) => x.question === questionText)!.answers.find((x) => x.name === 'choice'))!.value
+		(state: AppReduxStoreProps) => {
+			return (state.appData.questions[questionText]!.answers.find((x: any) => x.name === 'choice'))!.value;
+		}
 	);
 
 	const currentAnswer = useSelector(
 		(state: AppReduxStoreProps) =>
-			(state.appData.questions.find((x) => x.question === questionText)!.answers.find((x) => x.name === 'choice'))
+			(state.appData.questions[questionText]!.answers.find((x: any) => x.name === 'choice'))
 	);
 
 	useEffect(() => {
@@ -72,6 +73,7 @@ const Radio = ({
 			type: SET_ANSWER,
 			payload: {
 				questionName: questionText,
+				answerName: 'choice',
 				value: value,
 			},
 		});

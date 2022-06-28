@@ -13,11 +13,6 @@ import {ReactComponent as PenEditIcon} from "../../../../icons/pen-edit.svg";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
-	const [street, setStreet] = useState('');
-	const [houseNumber, setHouseNumber] = useState('');
-	const [postalCode, setPostalCode] = useState('');
-	const [city, setCity] = useState('');
-
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
 
@@ -29,22 +24,16 @@ const Angebot = () => {
 		(state: AppReduxStoreProps) => state.appData.subStep
 	);
 
-	const currentQuestion = useSelector(
-		(state: AppReduxStoreProps) => state.appData.currentQuestion
-	);
-
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
 
-	const questionText = `${Translate(
-		intl,
-		`questions.${currentAppStep - 1}.question`
-	)}`;
+	const questionText = useSelector(
+		(state: AppReduxStoreProps) => state.appData.currentQuestion
+	);
 
-	const currentChoice = useSelector(
-		(state: AppReduxStoreProps) =>
-			state.appData.questions[currentAppStep - 1].choice
+	const currentQuestion = useSelector(
+		(state: AppReduxStoreProps) => state.appData.questions[state.appData.currentQuestion]
 	);
 
 
@@ -64,18 +53,16 @@ const Angebot = () => {
 		});
 	}, []);
 
-	const handleChange = (value: string) => {
+	const handleChange = (value: string, answerName: string) => {
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
 				questionName: questionText,
-				choice: value,
+				answerName: answerName,
+				value: value,
 				btnActive: true,
 			},
 		});
-		// if (val && currentAppStep === 2) {
-		// 	dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		// }
 	};
 
 	switch (currentSubStep) {
@@ -100,8 +87,8 @@ const Angebot = () => {
 										type="text"
 										name="streetName"
 										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={street}
-										onChange={(e) => setStreet(e.target.value)}
+										value={currentQuestion.answers.find((answer) => answer.name === 'streetName') ? currentQuestion.answers.find((answer) => answer.name === 'streetName')!.value : ''}
+										onChange={(e) => handleChange(e.target.value, e.target.name)}
 									/>
 								</div>
 								<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -112,8 +99,8 @@ const Angebot = () => {
 										type="text"
 										name="houseNumber"
 										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={houseNumber}
-										onChange={(e) => setHouseNumber(e.target.value)}
+										value={currentQuestion.answers.find((answer) => answer.name === 'houseNumber') ? currentQuestion.answers.find((answer) => answer.name === 'houseNumber')!.value : ''}
+										onChange={(e) => handleChange(e.target.value, e.target.name)}
 									/>
 								</div>
 							</div>
@@ -127,8 +114,8 @@ const Angebot = () => {
 										type="number"
 										name="postalCode"
 										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={postalCode}
-										onChange={(e) => setPostalCode(e.target.value)}
+										value={currentQuestion.answers.find((answer) => answer.name === 'postalCode') ? currentQuestion.answers.find((answer) => answer.name === 'postalCode')!.value : ''}
+										onChange={(e) => handleChange(e.target.value, e.target.name)}
 									/>
 								</div>
 								<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -139,8 +126,8 @@ const Angebot = () => {
 										type="text"
 										name="city"
 										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={city}
-										onChange={(e) => setCity(e.target.value)}
+										value={currentQuestion.answers.find((answer) => answer.name === 'city') ? currentQuestion.answers.find((answer) => answer.name === 'city')!.value : ''}
+										onChange={(e) => handleChange(e.target.value, e.target.name)}
 									/>
 								</div>
 							</div>
@@ -150,6 +137,15 @@ const Angebot = () => {
 			);
 		}
 		case 1: {
+			let streetName = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'streetName')!.value;
+			let houseNumber = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'houseNumber')!.value;
+			let postalCode = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'postalCode')!.value;
+			let city = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'city')!.value;
+			let measurementValvesInstalled = (currentAppData.questions['Sind Probeentnahmeventile verbaut?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes');
+			let strangAmountKnown = ((currentAppData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes')) || ((currentAppData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'no') && (currentAppData.questions['Konnten Sie das Strangschema ermitteln?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes'));
+
+
+
 			return (
 				<section className="tw-margin-top">
 					<div className="tw-flex tw-justify-center tw-mb-14">
@@ -158,11 +154,15 @@ const Angebot = () => {
 
 					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14 tw-mx-auto tw-max-w-xl">
 						<div>
-							Für die Liegenschaft <span className={"tw-text-ting-red"}>{street} {houseNumber}, {postalCode} {city} <PenEditIcon className={"tw-inline"}/></span> mit <span className={"tw-text-ting-red"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Strängen` : 'einem Strang'} <PenEditIcon className={"tw-inline"}/></span> und <span className={"tw-text-ting-red"}>vorhandenen
-							Probeentnahmeventilen <PenEditIcon className={"tw-inline"}/></span> haben wir folgendes Angebot für Sie kalkuliert:
+							Für die Liegenschaft <span
+							className={"tw-text-ting-red"}>{streetName} {houseNumber}, {postalCode} {city} <PenEditIcon
+							className={"tw-inline"}/></span> mit <span
+							className={"tw-text-ting-red"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Strängen` : 'einem Strang'}
+							<PenEditIcon className={"tw-inline"}/></span> und <span className={"tw-text-ting-red"}>{measurementValvesInstalled ? 'vorhandenen Probeentnahmeventilen': 'nicht vorhandenen Probeentnahmeventilen'} <PenEditIcon className={"tw-inline"}/></span> haben wir folgendes
+							Angebot für Sie kalkuliert:
 						</div>
 					</div>
-					<Pricing/>
+					<Pricing surveyRequired={!strangAmountKnown}/>
 					<section className={"tw-bg-light-grey tw-p-10 tw-mb-12 tw-mt-12"}>
 						<h1>
 							Wie geht es nach der Begehung weiter?
