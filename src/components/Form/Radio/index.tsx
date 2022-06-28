@@ -83,7 +83,6 @@ const Radio = ({
 		<>
 			{
 				(orientation === 'vertical') &&
-
 				<div className="tw-flex">
 					{
 						showTitle && <label className="rwm-form__headline">{questionText}</label>
@@ -121,7 +120,7 @@ const Radio = ({
 						showTitle && <label className="rwm-form__headline">{questionText}</label>
 					}
 					<fieldset
-						className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 lg:tw-grid-cols-${Object.keys(answersOverride).length}`}>
+						className={`rwm-radio__container lg:tw-mt-16 xl:tw-mt-16 tw-grid-cols-${Object.keys(answersOverride).length}`}>
 						{Object.keys(answersOverride).map((answer: string) => {
 							return (<div
 								key={answer}
