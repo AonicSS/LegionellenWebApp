@@ -39,31 +39,6 @@ const Pruefpflicht = () => {
 			smooth: true,
 			offset: -50,
 		});
-
-		if (currentSubStep === 4) {
-			dispatch({
-				type: SET_CURRENT_QUESTION,
-				payload: {
-					currentQuestion: 'NO_QUESTION',
-				},
-			});
-		}
-		if(currentSubStep === 1 && (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'yes')){
-			dispatch({
-				type: SET_CURRENT_QUESTION,
-				payload: {
-					currentQuestion: 'NO_QUESTION',
-				},
-			});
-		}
-		if(currentSubStep === 1 && (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'no')){
-			dispatch({
-				type: SET_CURRENT_QUESTION,
-				payload: {
-					currentQuestion: 'NO_QUESTION',
-				},
-			});
-		}
 	}, [currentSubStep]);
 
 	switch (currentSubStep) {
@@ -73,6 +48,7 @@ const Pruefpflicht = () => {
 		}
 		case 1: {
 			if (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'yes') {
+				currentAppData.currentQuestion = "NO_QUESTION"
 				return (
 					<div className="tw-w-full tw-flex tw-justify-center">
 						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
@@ -85,6 +61,7 @@ const Pruefpflicht = () => {
 				);
 			}
 			if (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'no') {
+				currentAppData.currentQuestion = "NO_QUESTION"
 				return (
 					<div className="tw-w-full tw-flex tw-justify-center">
 						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
@@ -119,6 +96,7 @@ const Pruefpflicht = () => {
 		}
 
 		case 4: {
+			currentAppData.currentQuestion = "NO_QUESTION"
 			return (
 				<div>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten Schritt
 					erfassen wir die wichtigsten Informationen für die Beauftragung.</div>

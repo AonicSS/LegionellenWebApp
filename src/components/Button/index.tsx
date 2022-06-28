@@ -57,7 +57,6 @@ const Button = ({
 		(state: AppReduxStoreProps) => state.appData.step
 	);
 
-
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
