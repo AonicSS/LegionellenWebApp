@@ -247,7 +247,7 @@ const SummaryFinal = () => {
 							id="consent-consulting"
 							checked={consentConsulting}
 							onChange={() => setConsentConsulting(!consentConsulting)}
-						/>s
+						/>
 						<label htmlFor="consent-consulting"></label>
 					</div>
 					<div className="rwm-form__input-container-large">
