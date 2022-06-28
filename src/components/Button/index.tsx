@@ -180,7 +180,6 @@ const Button = ({
 
 	switch (style) {
 		case 'NEXT':
-			const active = getActiveButton(questions, currentQuestion);
 			const question = questions[currentQuestion];
 			const answers = question ? question.answers : [];
 			const allAnswered = !(answers.some((answer: Answers) => ((answer.value === undefined) && answer.required)));
@@ -192,9 +191,7 @@ const Button = ({
 						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
-							((allAnswered) && ((active &&
-									currentAppStep === 1) ||
-								active) || alwaysActive)
+							((allAnswered) || alwaysActive || currentAppStep === 1)
 								? 'active'
 								: 'disabled'
 						}`

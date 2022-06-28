@@ -1,7 +1,5 @@
 export const questions = {
 	'Besteht für Ihre Liegenschaft eine Prüfpflicht?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -12,8 +10,6 @@ export const questions = {
 		],
 	},
 	'Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -24,8 +20,6 @@ export const questions = {
 		],
 	},
 	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -36,8 +30,6 @@ export const questions = {
 		],
 	},
 	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -48,8 +40,6 @@ export const questions = {
 		],
 	},
 	'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -60,8 +50,6 @@ export const questions = {
 		],
 	},
 	'Konnten Sie das Strangschema ermitteln?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -72,8 +60,6 @@ export const questions = {
 		],
 	},
 	'Sind Probeentnahmeventile verbaut?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -84,8 +70,6 @@ export const questions = {
 		],
 	},
 	'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'choice',
@@ -96,8 +80,6 @@ export const questions = {
 		],
 	},
 	'Wo befindet sich die zu prüfende Liegenschaft?': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'streetName',
@@ -126,8 +108,6 @@ export const questions = {
 		],
 	},
 	'Anschrift': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'streetName',
@@ -156,8 +136,6 @@ export const questions = {
 		],
 	},
 	'Anrede': {
-		type: 'input',
-		btnActive: true,
 		answers: [
 			{
 				name: 'honorificPrefix',
