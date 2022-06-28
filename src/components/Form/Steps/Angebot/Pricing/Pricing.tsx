@@ -1,24 +1,20 @@
 import classNames from 'classnames';
 import React from 'react';
-import Button from '../Button';
+import Button from '../../../../Button';
 import {useSelector} from 'react-redux';
 import './Pricing.css';
-import {AppReduxStoreProps} from '../../redux/reducers/App';
-import {getBasePrice, getServicePrice} from '../../utils/helpers';
-import {ReactComponent as CheckInIcon} from "../../icons/check-in.svg";
-import {ReactComponent as CheckCircledIcon} from "../../icons/check-circled.svg";
-import {ReactComponent as CheckQualityIcon} from "../../icons/check-quality.svg";
-import {ReactComponent as MagnifyingGlassIcon} from "../../icons/magnifying-glass.svg";
-import {ReactComponent as XCircledIcon} from "../../icons/x-circled.svg";
-import {ReactComponent as HouseIcon} from "../../icons/house.svg";
-import {ReactComponent as EmailIcon} from "../../icons/email.svg";
-import {ReactComponent as BellIcon} from "../../icons/bell.svg";
-import {ReactComponent as InfoSmallIcon} from "../../icons/info-small.svg";
-import {ReactComponent as CheckCircledFull} from "../../icons/check-circled-full.svg";
-
-
-let informationComplete = function () {
-};
+import {AppReduxStoreProps} from '../../../../../redux/reducers/App';
+import {getBasePrice, getServicePrice} from '../../../../../utils/helpers';
+import {ReactComponent as CheckInIcon} from "../../../../../icons/check-in.svg";
+import {ReactComponent as CheckCircledIcon} from "../../../../../icons/check-circled.svg";
+import {ReactComponent as CheckQualityIcon} from "../../../../../icons/check-quality.svg";
+import {ReactComponent as MagnifyingGlassIcon} from "../../../../../icons/magnifying-glass.svg";
+import {ReactComponent as XCircledIcon} from "../../../../../icons/x-circled.svg";
+import {ReactComponent as HouseIcon} from "../../../../../icons/house.svg";
+import {ReactComponent as EmailIcon} from "../../../../../icons/email.svg";
+import {ReactComponent as BellIcon} from "../../../../../icons/bell.svg";
+import {ReactComponent as InfoSmallIcon} from "../../../../../icons/info-small.svg";
+import {ReactComponent as CheckCircledFull} from "../../../../../icons/check-circled-full.svg";
 
 const pricingOptions = {
 	'noSurveyRequired': [

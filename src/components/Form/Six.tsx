@@ -4,7 +4,7 @@ import Translate from '../../utils/translate';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_YEARS } from '../../redux/actions/App';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
-import Pricing from './Pricing';
+import Pricing from './Steps/Angebot/Pricing/Pricing';
 
 const Six = () => {
 	const dispatch = useDispatch();

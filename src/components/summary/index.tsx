@@ -89,7 +89,6 @@ const Summary = () => {
 							</div>
 							<div className="tw-flex tw-max-w-4xl tw-items-center">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
-									<h1>Legionellenprüfung + Quality Check Online</h1>
 									<div>
 										{`Gesamtpreis für eine Liegenschaft mit 2 Strängen und 2 Ventilen, einem online Quality Check und einer Legionellenprüfung.`}
 									</div>

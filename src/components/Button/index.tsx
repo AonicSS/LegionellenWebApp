@@ -18,7 +18,7 @@ import Translate from '../../utils/translate';
 import classnames from 'classnames';
 
 import './Button.css';
-import {Answers, AppReduxStoreProps, Question, Questions} from '../../redux/reducers/App';
+import appData, {Answers, AppReduxStoreProps, Question, Questions} from '../../redux/reducers/App';
 import {BaseComponentProps} from '../../shared/interfaces/components';
 
 interface ButtonProps extends BaseComponentProps {
@@ -168,15 +168,6 @@ const Button = ({
 
 	const navigate = useNavigate();
 
-	const setPricing = (value: any) => {
-		dispatch({
-			type: SET_PRICING,
-			payload: {pricing: value},
-		});
-		closeModal();
-		navigate('/summary');
-	};
-
 	switch (style) {
 		case 'NEXT':
 			const question = questions[currentQuestion];
@@ -221,7 +212,12 @@ const Button = ({
 		case 'PRIMARY':
 			return (
 				<button
-					onClick={onClick ?? increaseAppStep}
+					onClick={() => {
+						if (pricing) {
+							currentAppData.pricing = pricing;
+						}
+						return onClick ? onClick(): increaseAppStep();
+					}}
 					className={classnames(
 						'rwn-btn-continue',
 						'rwm-button--primary'
@@ -233,7 +229,13 @@ const Button = ({
 		case 'SECONDARY':
 			return (
 				<button
-					onClick={onClick ?? increaseAppStep}
+					onClick={() => {
+						debugger;
+						if (pricing) {
+							currentAppData.pricing = pricing;
+						}
+						return onClick ? onClick(): increaseAppStep();
+					}}
 					className={classnames(
 						'rwn-btn-continue',
 						'rwm-button--secondary'

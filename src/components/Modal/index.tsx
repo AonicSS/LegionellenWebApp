@@ -7,7 +7,7 @@ import { AppReduxStoreProps } from '../../redux/reducers/App';
 import Translate from '../../utils/translate';
 
 import Button from '../Button';
-import Pricing from '../Form/Pricing';
+import Pricing from '../Form/Steps/Angebot/Pricing/Pricing';
 import './Modal.css';
 
 const Modal = () => {

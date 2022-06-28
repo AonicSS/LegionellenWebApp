@@ -4,7 +4,7 @@ import * as Scroll from 'react-scroll';
 import {useDispatch, useSelector} from 'react-redux';
 import {SET_ANSWER, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
-import Pricing from "../../Pricing";
+import Pricing from "./Pricing/Pricing";
 import Summary from "../../../summary";
 import SummaryFinal from "../../../summary-final";
 import {ReactComponent as HouseAltIcon} from "../../../../icons/house-alt.svg";
