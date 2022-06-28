@@ -14,6 +14,7 @@ import {ReactComponent as HouseIcon} from "../../icons/house.svg";
 import {ReactComponent as EmailIcon} from "../../icons/email.svg";
 import {ReactComponent as BellIcon} from "../../icons/bell.svg";
 import {ReactComponent as InfoSmallIcon} from "../../icons/info-small.svg";
+import {ReactComponent as CheckCircledFull} from "../../icons/check-circled-full.svg";
 
 
 let informationComplete = function () {
@@ -61,6 +62,7 @@ const pricingOptions = {
 			text: 'Angebot sichern',
 			type: 'plus',
 			recommended: true,
+			importantRemark: undefined,
 		},
 		{
 			name: 'Legionellenprüfung + Quality Check Klassisch',
@@ -81,49 +83,41 @@ const pricingOptions = {
 			text: 'Angebot sichern',
 			type: 'plus',
 			recommended: false,
+			importantRemark: undefined,
 		},
 	],
 	'surveyRequired': [
 		{
-			name: 'Legionellenprüfung ohne Quality Check',
+			name: 'Klassische Begehung',
 			position: 'tw-container-pricing-1',
 			serviceFeatures: {
-				'Quality Check': {
-					icon: <CheckQualityIcon/>,
-					active: false,
-					subtitle: 'Wird empfohlen',
-				},
-				'Legionellenprüfung': {
-					icon: <MagnifyingGlassIcon/>,
+				'Persönlich und vor Ort': {
+					icon: <HouseIcon/>,
 					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'Wir ermitteln vor Ort alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung.',
 				},
 			},
 			buttonStyle: 'SECONDARY',
 			text: 'Angebot sichern',
 			type: 'standard',
 			recommended: false,
-			importantRemark: 'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.'
+			importantRemark: undefined,
 		},
 		{
-			name: 'Legionellenprüfung + Quality Check Online',
+			name: 'Online Begehung',
 			position: 'tw-container-pricing-3',
 			serviceFeatures: {
-				'Quality Check': {
+				'Flexibel und Digital': {
 					icon: <CheckInIcon/>,
 					active: true,
-					subtitle: 'Flexibel und Digital',
-				},
-				'Legionellenprüfung': {
-					icon: <MagnifyingGlassIcon/>,
-					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'In einem Videocall ermitteln wir alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung. Ganz ohne lange Wartezeiten.',
 				},
 			},
 			buttonStyle: 'PRIMARY',
 			text: 'Angebot sichern',
 			type: 'plus',
 			recommended: true,
+			importantRemark: undefined,
 		},
 	]
 };
@@ -135,7 +129,7 @@ export interface PricingProps extends React.HTMLProps<HTMLDivElement> {
 
 const Pricing = ({modal, surveyRequired}: PricingProps) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	const pricing = surveyRequired? pricingOptions['surveyRequired']: pricingOptions['noSurveyRequired'];
+	const pricing = surveyRequired ? pricingOptions['surveyRequired'] : pricingOptions['noSurveyRequired'];
 
 	return (
 		<div className="tw-pb-12">
@@ -244,12 +238,8 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 									<div className="tw-flex tw-justify-center tw-mb-2">
 										<h4> Wichtiger Hinweis</h4>
 									</div>
-									<div className={"tw-text-justify"}>Da Sie alle geforderten Angaben zur
-										Trinkwasseranlage ausgefüllt haben, ist
-										eine
-										Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch,
-										einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus
-										entstehende Mehrkosten bestmöglich zu vermeiden.
+									<div className={"tw-text-justify"}>
+										{p.importantRemark}
 									</div>
 								</div>
 							}
