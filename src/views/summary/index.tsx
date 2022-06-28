@@ -22,18 +22,9 @@ import {ReactComponent as MagnifyingGlassIcon} from '../../icons/magnifying-glas
 import {ReactComponent as TechemRecommendationIcon} from '../../icons/techem-recommendation.svg';
 
 const Summary = () => {
-	const [gender, setGender] = useState('');
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [emailAddress, setEmailAddress] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState('');
-	const [customerNumber, setCustomerNumber] = useState('');
-	const [marketingAgreement, setMarketing] = useState(false);
-	const [contactAgreement, setContact] = useState(false);
-
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const [contactAgreement, setContact] = useState(false);
+	const dispatch = useDispatch();
 	const scroller = Scroll.scroller;
 	const Element = Scroll.Element;
 	useEffect(() => {
@@ -56,7 +47,6 @@ const Summary = () => {
 	);
 	const total = rentingPrice + servicePrice;
 
-
 	const liegenschaftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Wo befindet sich die zu prüfende Liegenschaft?']);
 	const anredeQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anrede']);
 	const anschriftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anschrift']);
@@ -72,7 +62,6 @@ const Summary = () => {
 			},
 		});
 	};
-
 
 
 	return (
@@ -105,7 +94,8 @@ const Summary = () => {
 										{`Gesamtpreis für eine Liegenschaft mit 2 Strängen und 2 Ventilen, einem online Quality Check und einer Legionellenprüfung.`}
 									</div>
 								</div>
-								<div className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
+								<div
+									className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
 									{total.toFixed(2).toString().replace('.', ',')}{' '} €
 								</div>
 								<TechemRecommendationIcon/>

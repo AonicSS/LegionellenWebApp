@@ -26,6 +26,13 @@ const SummaryFinal = () => {
 	const [consentTerms, setConsentTerms] = useState(false);
 	const [consentMarketing, setConsentMarketing] = useState(false);
 
+	const currentAppData = useSelector(
+		(state: AppReduxStoreProps) => state.appData
+	);
+	const liegenschaftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Wo befindet sich die zu prüfende Liegenschaft?']);
+	const anredeQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anrede']);
+	const anschriftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anschrift']);
+
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	const scroller = Scroll.scroller;
 	const Element = Scroll.Element;
@@ -71,7 +78,7 @@ const SummaryFinal = () => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Anzahl der Stränge</div>
-									<div className={"tw-font-bold"}>2 Stränge</div>
+									<div className={"tw-font-bold"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Stränge` : '1 Strang'}</div>
 								</div>
 							</div>
 							<div className={"tw-w-3"}>
@@ -82,8 +89,8 @@ const SummaryFinal = () => {
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
-									<div>Anzahl der Stränge</div>
-									<div className={"tw-font-bold"}>2 Stränge</div>
+									<div>Anzahl der Ventile</div>
+									<div className={"tw-font-bold"}>2 Ventile</div>
 								</div>
 							</div>
 							<div className={"tw-w-3"}>
@@ -97,9 +104,9 @@ const SummaryFinal = () => {
 									<div>Ihre Kontaktdaten</div>
 									<div className={"tw-font-bold"}>
 										Frau<br/>
-										Sofia Coppola<br/>
-										+491626277170<br/>
-										sofia.coppola@email.de
+										{anredeQuestion.answers.find((answer)=> answer.name === 'givenName')!.value} {anredeQuestion.answers.find((answer)=> answer.name === 'familyName')!.value}<br/>
+										{anredeQuestion.answers.find((answer)=> answer.name === 'phone')!.value}<br/>
+										{anredeQuestion.answers.find((answer)=> answer.name === 'email')!.value}
 									</div>
 								</div>
 							</div>
@@ -113,8 +120,8 @@ const SummaryFinal = () => {
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ihre Anschrift</div>
 									<div className={"tw-font-bold"}>
-										Europaplatz 12<br/>
-										64285, Darmstadt
+										{anschriftQuestion.answers.find((answer)=> answer.name === 'streetName')!.value} {anschriftQuestion.answers.find((answer)=> answer.name === 'houseNumber')!.value}<br/>
+										{anschriftQuestion.answers.find((answer)=> answer.name === 'postalCode')!.value}, {anschriftQuestion.answers.find((answer)=> answer.name === 'city')!.value}
 									</div>
 								</div>
 							</div>
@@ -130,8 +137,8 @@ const SummaryFinal = () => {
 										Liegenschaft
 									</div>
 									<div className={"tw-font-bold"}>
-										Europaplatz 12<br/>
-										64285, Darmstadt
+										{liegenschaftQuestion.answers.find((answer)=> answer.name === 'streetName')!.value} {liegenschaftQuestion.answers.find((answer)=> answer.name === 'houseNumber')!.value}<br/>
+										{liegenschaftQuestion.answers.find((answer)=> answer.name === 'postalCode')!.value}, {liegenschaftQuestion.answers.find((answer)=> answer.name === 'city')!.value}
 									</div>
 								</div>
 							</div>
