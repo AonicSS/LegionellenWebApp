@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {AppReduxStoreProps} from '../../redux/reducers/App';
 import {useNavigate} from 'react-router-dom';
 import classNames from 'classnames';
-import {SET_MODAL} from '../../redux/actions/App';
+import {SET_ANSWER, SET_MODAL} from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -22,12 +22,6 @@ import {ReactComponent as MagnifyingGlassIcon} from '../../icons/magnifying-glas
 import {ReactComponent as TechemRecommendationIcon} from '../../icons/techem-recommendation.svg';
 
 const Summary = () => {
-
-	const [street, setStreet] = useState('');
-	const [houseNumber, setHouseNumber] = useState('');
-	const [postalCode, setPostalCode] = useState('');
-	const [city, setCity] = useState('');
-
 	const [gender, setGender] = useState('');
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -61,6 +55,25 @@ const Summary = () => {
 		appData
 	);
 	const total = rentingPrice + servicePrice;
+
+
+	const liegenschaftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Wo befindet sich die zu prüfende Liegenschaft?']);
+	const anredeQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anrede']);
+	const anschriftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anschrift']);
+
+	const handleChange = (value: string, answerName: string, questionText: string) => {
+		dispatch({
+			type: SET_ANSWER,
+			payload: {
+				questionName: questionText,
+				answerName: answerName,
+				value: value,
+				btnActive: true,
+			},
+		});
+	};
+
+
 
 	return (
 		<Layout>
@@ -237,10 +250,10 @@ const Summary = () => {
 								</label>
 								<input
 									type="text"
-									name="firstName"
+									name="givenName"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={firstName}
-									onChange={(e) => setFirstName(e.target.value)}
+									value={anredeQuestion.answers.find((answer) => answer.name === 'givenName')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anrede')}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -249,10 +262,10 @@ const Summary = () => {
 								</label>
 								<input
 									type="text"
-									name="lastName"
+									name="familyName"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={lastName}
-									onChange={(e) => setLastName(e.target.value)}
+									value={anredeQuestion.answers.find((answer) => answer.name === 'familyName')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anrede')}
 								/>
 							</div>
 						</div>
@@ -265,12 +278,10 @@ const Summary = () => {
 								</label>
 								<input
 									type="email"
-									name="emailAddress"
+									name="email"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={emailAddress}
-									onChange={(e) =>
-										setEmailAddress(e.target.value)
-									}
+									value={anredeQuestion.answers.find((answer) => answer.name === 'email')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anrede')}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -279,12 +290,10 @@ const Summary = () => {
 								</label>
 								<input
 									type="phone"
-									name="phoneNumber"
+									name="phone"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={phoneNumber}
-									onChange={(e) =>
-										setPhoneNumber(e.target.value)
-									}
+									value={anredeQuestion.answers.find((answer) => answer.name === 'phone')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anrede')}
 								/>
 							</div>
 						</div>
@@ -298,10 +307,8 @@ const Summary = () => {
 									type="text"
 									name="customerNumber"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={customerNumber}
-									onChange={(e) =>
-										setCustomerNumber(e.target.value)
-									}
+									value={anredeQuestion.answers.find((answer) => answer.name === 'customerNumber')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anrede')}
 								/>
 							</div>
 						</div>
@@ -325,8 +332,8 @@ const Summary = () => {
 									type="text"
 									name="streetName"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={street}
-									onChange={(e) => setStreet(e.target.value)}
+									value={anschriftQuestion.answers.find((answer) => answer.name === 'streetName')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anschrift')}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -337,8 +344,8 @@ const Summary = () => {
 									type="text"
 									name="houseNumber"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={houseNumber}
-									onChange={(e) => setHouseNumber(e.target.value)}
+									value={anschriftQuestion.answers.find((answer) => answer.name === 'houseNumber')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anschrift')}
 								/>
 							</div>
 						</div>
@@ -352,8 +359,8 @@ const Summary = () => {
 									type="number"
 									name="postalCode"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={postalCode}
-									onChange={(e) => setPostalCode(e.target.value)}
+									value={anschriftQuestion.answers.find((answer) => answer.name === 'postalCode')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anschrift')}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -364,8 +371,8 @@ const Summary = () => {
 									type="text"
 									name="city"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={city}
-									onChange={(e) => setCity(e.target.value)}
+									value={anschriftQuestion.answers.find((answer) => answer.name === 'city')!.value}
+									onChange={(e) => handleChange(e.target.value, e.target.name, 'Anschrift')}
 								/>
 							</div>
 						</div>
@@ -388,8 +395,8 @@ const Summary = () => {
 									type="text"
 									name="streetName"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={street}
-									onChange={(e) => setStreet(e.target.value)}
+									value={liegenschaftQuestion.answers.find((answer) => answer.name === 'streetName')!.value}
+									disabled
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -400,8 +407,8 @@ const Summary = () => {
 									type="text"
 									name="houseNumber"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={houseNumber}
-									onChange={(e) => setHouseNumber(e.target.value)}
+									value={liegenschaftQuestion.answers.find((answer) => answer.name === 'houseNumber')!.value}
+									disabled
 								/>
 							</div>
 						</div>
@@ -415,8 +422,8 @@ const Summary = () => {
 									type="number"
 									name="postalCode"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={postalCode}
-									onChange={(e) => setPostalCode(e.target.value)}
+									value={liegenschaftQuestion.answers.find((answer) => answer.name === 'postalCode')!.value}
+									disabled
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -427,8 +434,8 @@ const Summary = () => {
 									type="text"
 									name="city"
 									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-									value={city}
-									onChange={(e) => setCity(e.target.value)}
+									value={liegenschaftQuestion.answers.find((answer) => answer.name === 'city')!.value}
+									disabled
 								/>
 							</div>
 						</div>

@@ -1,6 +1,5 @@
 export const questions = {
 	'Besteht für Ihre Liegenschaft eine Prüfpflicht?': {
-		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -13,7 +12,6 @@ export const questions = {
 		],
 	},
 	'Hat die Liegenschaft eine zentrale Warmwasser-Erwärmung?': {
-		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -26,7 +24,6 @@ export const questions = {
 		],
 	},
 	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?': {
-		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -39,7 +36,6 @@ export const questions = {
 		],
 	},
 	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?': {
-		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -52,7 +48,6 @@ export const questions = {
 		],
 	},
 	'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?': {
-		choice: undefined,
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -65,7 +60,6 @@ export const questions = {
 		],
 	},
 	'Konnten Sie das Strangschema ermitteln?': {
-		choice: '',
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -78,7 +72,6 @@ export const questions = {
 		],
 	},
 	'Sind Probeentnahmeventile verbaut?': {
-		choice: '',
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -91,7 +84,6 @@ export const questions = {
 		],
 	},
 	'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?': {
-		choice: '',
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -104,8 +96,6 @@ export const questions = {
 		],
 	},
 	'Wo befindet sich die zu prüfende Liegenschaft?': {
-		question: 'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?',
-		choice: '',
 		type: 'input',
 		btnActive: true,
 		answers: [
@@ -129,6 +119,78 @@ export const questions = {
 			},
 			{
 				name: 'city',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+		],
+	},
+	'Anschrift': {
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: 'streetName',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'houseNumber',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'postalCode',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'city',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+		],
+	},
+	'Anrede': {
+		type: 'input',
+		btnActive: true,
+		answers: [
+			{
+				name: 'honorificPrefix',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'givenName',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'familyName',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'email',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'phone',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'customerNumber',
 				type: 'string',
 				required: true,
 				value: undefined
