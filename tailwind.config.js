@@ -34,6 +34,7 @@ module.exports = {
 			btnColorDisabled: '#b2b2b1',
 			borderInput: '#c8c8c8',
 			water: '#009BB4',
+			'dark-grey': '#C6C6C6'
 		},
 		fontFamily: {
 			headline: ['Univers55'],

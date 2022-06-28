@@ -10,6 +10,8 @@ import {ReactComponent as StrangschemaIcon} from '../../../../icons/strangschema
 import {ReactComponent as ProbeenthahmeventileIcon} from '../../../../icons/probeentnahmeventile.svg';
 import StrangSchemaAnleitung from '../../../../img/strangschema_anleitung.png';
 import {NumericInput} from "../../Input";
+import ImageUploading, {ImageListType} from "react-images-uploading";
+import classnames from "classnames";
 
 const Trinkwasseranlage = () => {
 	const intl = useIntl();
@@ -36,6 +38,19 @@ const Trinkwasseranlage = () => {
 		(state: AppReduxStoreProps) => state.appData.currentQuestion
 	);
 
+	const [strangImages, setstrangImages] = React.useState([]);
+	const maxNumber = 69;
+
+	const onChange = (
+		imageList: ImageListType,
+		addUpdateIndex: number[] | undefined
+	) => {
+		// data for submit
+		console.log(imageList, addUpdateIndex);
+		setstrangImages(imageList as never[]);
+	};
+
+
 	useEffect(() => {
 		scroller.scrollTo('myScrollToElement', {
 			duration: 1500,
@@ -60,6 +75,55 @@ const Trinkwasseranlage = () => {
 					<>
 						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
 						<NumericInput/>
+						<div className={"tw-border tw-border-dark-grey"}>
+							<ImageUploading
+								multiple
+								value={strangImages}
+								onChange={onChange}
+								maxNumber={maxNumber}
+								dataURLKey="data_url"
+							>
+								{({
+									  imageList,
+									  onImageUpload,
+									  onImageRemoveAll,
+									  onImageUpdate,
+									  onImageRemove,
+									  isDragging,
+									  dragProps,
+								  }) => (
+									// write your building UI
+									<div className="upload__image-wrapper">
+										<button
+											style={isDragging ? {color: 'red'} : undefined}
+											className={classnames(
+												'rwn-btn-continue',
+												'rwm-button--primary'
+											)}
+											onClick={onImageUpload}
+											{...dragProps}
+										>
+											Upload
+										</button>
+										&nbsp;
+										<button onClick={onImageRemoveAll}
+												className={classnames(
+													'rwn-btn-continue',
+													'rwm-button--secondary'
+												)}>Remove all images</button>
+										{imageList.map((image, index) => (
+											<div key={index} className="image-item">
+												{image['data_url']}
+												<div className="image-item__btn-wrapper">
+													<button onClick={() => onImageUpdate(index)}>Update</button>
+													<button onClick={() => onImageRemove(index)}>Remove</button>
+												</div>
+											</div>
+										))}
+									</div>
+								)}
+							</ImageUploading>
+						</div>
 					</>
 				}
 				{(currentAnswer && currentAnswer.value && currentAnswer.value === 'no') &&
@@ -76,6 +140,7 @@ const Trinkwasseranlage = () => {
 								<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?
 								</div>
 								<NumericInput/>
+								<input type="file" accept="image/*" multiple={false}/>
 							</>
 						}
 						{
