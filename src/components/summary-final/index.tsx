@@ -44,14 +44,12 @@ const SummaryFinal = () => {
 			offset: -100,
 		});
 
-		const pricing =
-			appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard';
-		trackSummary('summary', pricing);
+		trackSummary('summary', 'test');
 	}, []);
 
 	const rentingPrice = getBasePrice(appData);
 	const servicePrice = getServicePrice(
-		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
+		appData.selectedPricing.name,
 		appData
 	);
 	const total = rentingPrice + servicePrice;
@@ -78,7 +76,8 @@ const SummaryFinal = () => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Anzahl der Stränge</div>
-									<div className={"tw-font-bold"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Stränge` : '1 Strang'}</div>
+									<div
+										className={"tw-font-bold"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Stränge` : '1 Strang'}</div>
 								</div>
 							</div>
 							<div className={"tw-w-3"}>
@@ -104,9 +103,9 @@ const SummaryFinal = () => {
 									<div>Ihre Kontaktdaten</div>
 									<div className={"tw-font-bold"}>
 										Frau<br/>
-										{anredeQuestion.answers.find((answer)=> answer.name === 'givenName')!.value} {anredeQuestion.answers.find((answer)=> answer.name === 'familyName')!.value}<br/>
-										{anredeQuestion.answers.find((answer)=> answer.name === 'phone')!.value}<br/>
-										{anredeQuestion.answers.find((answer)=> answer.name === 'email')!.value}
+										{anredeQuestion.answers.find((answer) => answer.name === 'givenName')!.value} {anredeQuestion.answers.find((answer) => answer.name === 'familyName')!.value}<br/>
+										{anredeQuestion.answers.find((answer) => answer.name === 'phone')!.value}<br/>
+										{anredeQuestion.answers.find((answer) => answer.name === 'email')!.value}
 									</div>
 								</div>
 							</div>
@@ -120,8 +119,8 @@ const SummaryFinal = () => {
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ihre Anschrift</div>
 									<div className={"tw-font-bold"}>
-										{anschriftQuestion.answers.find((answer)=> answer.name === 'streetName')!.value} {anschriftQuestion.answers.find((answer)=> answer.name === 'houseNumber')!.value}<br/>
-										{anschriftQuestion.answers.find((answer)=> answer.name === 'postalCode')!.value}, {anschriftQuestion.answers.find((answer)=> answer.name === 'city')!.value}
+										{anschriftQuestion.answers.find((answer) => answer.name === 'streetName')!.value} {anschriftQuestion.answers.find((answer) => answer.name === 'houseNumber')!.value}<br/>
+										{anschriftQuestion.answers.find((answer) => answer.name === 'postalCode')!.value}, {anschriftQuestion.answers.find((answer) => answer.name === 'city')!.value}
 									</div>
 								</div>
 							</div>
@@ -137,8 +136,8 @@ const SummaryFinal = () => {
 										Liegenschaft
 									</div>
 									<div className={"tw-font-bold"}>
-										{liegenschaftQuestion.answers.find((answer)=> answer.name === 'streetName')!.value} {liegenschaftQuestion.answers.find((answer)=> answer.name === 'houseNumber')!.value}<br/>
-										{liegenschaftQuestion.answers.find((answer)=> answer.name === 'postalCode')!.value}, {liegenschaftQuestion.answers.find((answer)=> answer.name === 'city')!.value}
+										{liegenschaftQuestion.answers.find((answer) => answer.name === 'streetName')!.value} {liegenschaftQuestion.answers.find((answer) => answer.name === 'houseNumber')!.value}<br/>
+										{liegenschaftQuestion.answers.find((answer) => answer.name === 'postalCode')!.value}, {liegenschaftQuestion.answers.find((answer) => answer.name === 'city')!.value}
 									</div>
 								</div>
 							</div>
@@ -158,32 +157,25 @@ const SummaryFinal = () => {
 					</label>
 
 					<div className={"tw-bg-white tw-p-8"}>
-						<div className="tw-flex tw-flex-row tw-items-center">
-							<div className="tw-mr-4">
-								<CheckInIcon/>
-							</div>
-							<div
-								className="tw-flex-grow">
-								<p className={"tw-font-bold"}>Quality Check Online</p>
-								<p>Flexibel und Digital</p>
-							</div>
-							<div className="">
-								<CheckCircledIcon/>
-							</div>
-						</div>
-						<div className="tw-flex tw-flex-row tw-mt-4 tw-items-center">
-							<div className="tw-mr-4">
-								<MagnifyingGlassIcon/>
-							</div>
-							<div
-								className="tw-flex-grow">
-								<p className={"tw-font-bold"}>Legionellenprüfung</p>
-								<p>Probenentnahme und Laborcheck</p>
-							</div>
-							<div className="">
-								<CheckCircledIcon/>
-							</div>
-						</div>
+						{
+							Object.keys(appData.selectedPricing.serviceFeatures).filter((x) => appData.selectedPricing.serviceFeatures[x].active).map((serviceFeatureName: string) => {
+								let serviceFeature = appData.selectedPricing.serviceFeatures[serviceFeatureName];
+
+								return (<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+									<div className="tw-mr-4">
+										{serviceFeature.icon}
+									</div>
+									<div
+										className="tw-flex-grow">
+										<p className={"tw-font-bold"}>{serviceFeatureName}</p>
+										<p>{serviceFeature.subtitle}</p>
+									</div>
+									<div className="">
+										<CheckCircledIcon/>
+									</div>
+								</div>);
+							})
+						}
 					</div>
 				</div>
 			</section>
@@ -240,7 +232,8 @@ const SummaryFinal = () => {
 					folgt...</p>
 			</section>
 			<section>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -256,7 +249,8 @@ const SummaryFinal = () => {
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -272,7 +266,8 @@ const SummaryFinal = () => {
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -291,10 +286,14 @@ const SummaryFinal = () => {
 			</section>
 			<section>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
-					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"} onClick={() => {alert(JSON.stringify(currentAppData.questions))}}></Button>
+					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"} onClick={() => {
+						alert(JSON.stringify(currentAppData.questions))
+					}}></Button>
 				</div>
 				<div className="tw-flex tw-justify-center tw-pt-1 tw-pb-28">
-					<Button style={"SECONDARY"} text={"Angebot per E-Mail zusenden"} onClick={() => {alert(JSON.stringify(currentAppData.questions))}}></Button>
+					<Button style={"SECONDARY"} text={"Angebot per E-Mail zusenden"} onClick={() => {
+						alert(JSON.stringify(currentAppData.questions))
+					}}></Button>
 				</div>
 			</section>
 		</Layout>

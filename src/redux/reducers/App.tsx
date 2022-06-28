@@ -33,7 +33,7 @@ const initialState = {
 	years: 10,
 	postalCode: {code: '', valid: false, area: ''},
 	questions: questions,
-	pricing: '',
+	selectedPricing: {},
 	uploads: {},
 };
 
@@ -77,7 +77,7 @@ export interface AppReduxStoreProps {
 		acceptContact: boolean;
 		acceptMarketing: boolean;
 		questions: Questions;
-		pricing: string;
+		selectedPricing: any;
 		uploads: any;
 	};
 }
@@ -201,7 +201,7 @@ const appData = (
 		case SET_PRICING:
 			return {
 				...state,
-				pricing: action.payload.pricing,
+				selectedPricing: action.payload.selectedPricing,
 			};
 		case SET_ANSWER: {
 			let currentQuestion = (state.questions as any) [action.payload.questionName];

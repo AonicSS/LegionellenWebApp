@@ -35,14 +35,12 @@ const Summary = () => {
 			offset: -100,
 		});
 
-		const pricing =
-			appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard';
-		trackSummary('summary', pricing);
+		trackSummary('summary', 'test');
 	}, []);
 
 	const rentingPrice = getBasePrice(appData);
 	const servicePrice = getServicePrice(
-		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
+		appData.selectedPricing.name,
 		appData
 	);
 	const total = rentingPrice + servicePrice;
@@ -85,7 +83,7 @@ const Summary = () => {
 							)}
 						>
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
-								{appData.pricing}
+								{appData.selectedPricing.name}
 							</div>
 							<div className="tw-flex tw-max-w-4xl tw-items-center">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
@@ -113,32 +111,25 @@ const Summary = () => {
 						</label>
 
 						<div className={"tw-bg-white tw-rounded-tl-3xl tw-rounded-br-3xl tw-p-8"}>
-							<div className="tw-flex tw-flex-row tw-items-center">
-								<div className="tw-mr-4">
-									<CheckInIcon/>
-								</div>
-								<div
-									className="tw-flex-grow">
-									<p className={"tw-font-bold"}>Quality Check Online</p>
-									<p>Flexibel und Digital</p>
-								</div>
-								<div className="">
-									<CheckCircledIcon/>
-								</div>
-							</div>
-							<div className="tw-flex tw-flex-row tw-mt-4 tw-items-center">
-								<div className="tw-mr-4">
-									<MagnifyingGlassIcon/>
-								</div>
-								<div
-									className="tw-flex-grow">
-									<p className={"tw-font-bold"}>Legionellenprüfung</p>
-									<p>Probenentnahme und Laborcheck</p>
-								</div>
-								<div className="">
-									<CheckCircledIcon/>
-								</div>
-							</div>
+							{
+								Object.keys(appData.selectedPricing.serviceFeatures).filter((x) => appData.selectedPricing.serviceFeatures[x].active).map((serviceFeatureName: string) => {
+									let serviceFeature = appData.selectedPricing.serviceFeatures[serviceFeatureName];
+
+									return (<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+										<div className="tw-mr-4">
+											{serviceFeature.icon}
+										</div>
+										<div
+											className="tw-flex-grow">
+											<p className={"tw-font-bold"}>{serviceFeatureName}</p>
+											<p>{serviceFeature.subtitle}</p>
+										</div>
+										<div className="">
+											<CheckCircledIcon/>
+										</div>
+									</div>);
+								})
+							}
 						</div>
 					</div>
 				</section>

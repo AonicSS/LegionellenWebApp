@@ -18,7 +18,7 @@ const EmailForm = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	const rentingPrice = getBasePrice(appData);
 	const servicePrice = getServicePrice(
-		appData.pricing === 'Standard 360 Adv' ? 'plus' : 'standard',
+		appData.selectedPricing === 'Standard 360 Adv' ? 'plus' : 'standard',
 		appData
 	);
 	const total = rentingPrice + servicePrice;
@@ -35,7 +35,7 @@ const EmailForm = () => {
 				houses: appData.rentings,
 				years: appData.years,
 				code: appData.postalCode.code,
-				servicePricing: appData.pricing,
+				servicePricing: appData.selectedPricing,
 				heatingCustomer: appData.questions[3].choice ? 'Yes' : 'No',
 				smokeAlarmCustomer: appData.questions[1].choice ? 'Yes' : 'No',
 			},

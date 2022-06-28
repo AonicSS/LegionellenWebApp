@@ -28,7 +28,7 @@ interface ButtonProps extends BaseComponentProps {
 	room?: string;
 	house?: number;
 	text?: string;
-	pricing?: string;
+	pricing?: any;
 	link?: string;
 	children?: string;
 	alwaysActive?: boolean;
@@ -214,7 +214,7 @@ const Button = ({
 				<button
 					onClick={() => {
 						if (pricing) {
-							currentAppData.pricing = pricing;
+							currentAppData.selectedPricing = pricing;
 						}
 						return onClick ? onClick(): increaseAppStep();
 					}}
@@ -230,9 +230,8 @@ const Button = ({
 			return (
 				<button
 					onClick={() => {
-						debugger;
 						if (pricing) {
-							currentAppData.pricing = pricing;
+							currentAppData.selectedPricing = pricing;
 						}
 						return onClick ? onClick(): increaseAppStep();
 					}}

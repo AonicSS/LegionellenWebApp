@@ -202,7 +202,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 								<Button
 									text={p.text}
 									style={p.buttonStyle}
-									pricing={p.name}
+									pricing={p}
 								/>
 							</div>
 							<div className={"tw-container-pricing-list"}>
