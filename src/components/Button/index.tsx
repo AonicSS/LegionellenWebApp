@@ -191,7 +191,7 @@ const Button = ({
 						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
-							((allAnswered) || alwaysActive || currentAppStep === 1)
+							((allAnswered) || alwaysActive)
 								? 'active'
 								: 'disabled'
 						}`

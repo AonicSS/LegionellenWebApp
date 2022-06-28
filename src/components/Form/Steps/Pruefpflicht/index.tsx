@@ -3,7 +3,7 @@ import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import Translate from '../../../../utils/translate';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP} from '../../../../redux/actions/App';
+import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Radio from "../../Radio";
 import Button from "../../../Button";
@@ -39,22 +39,32 @@ const Pruefpflicht = () => {
 			smooth: true,
 			offset: -50,
 		});
-	}, []);
 
-	const handleChange = (value: string) => {
-		dispatch({
-			type: SET_ANSWER,
-			payload: {
-				answerName: 'choice',
-				questionName: questionText,
-				choice: value,
-				btnActive: true,
-			},
-		});
-		// if (val && currentAppStep === 2) {
-		// 	dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		// }
-	};
+		if (currentSubStep === 4) {
+			dispatch({
+				type: SET_CURRENT_QUESTION,
+				payload: {
+					currentQuestion: 'NO_QUESTION',
+				},
+			});
+		}
+		if(currentSubStep === 1 && (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'yes')){
+			dispatch({
+				type: SET_CURRENT_QUESTION,
+				payload: {
+					currentQuestion: 'NO_QUESTION',
+				},
+			});
+		}
+		if(currentSubStep === 1 && (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'no')){
+			dispatch({
+				type: SET_CURRENT_QUESTION,
+				payload: {
+					currentQuestion: 'NO_QUESTION',
+				},
+			});
+		}
+	}, [currentSubStep]);
 
 	switch (currentSubStep) {
 		default:
@@ -64,14 +74,14 @@ const Pruefpflicht = () => {
 		case 1: {
 			if (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'yes') {
 				return (
-				<div className="tw-w-full tw-flex tw-justify-center">
-					<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
-						<h1>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten
-							Schritt
-							erfassen wir die wichtigsten Informationen für die Beauftragung.
-						</h1>
-					</section>
-				</div>
+					<div className="tw-w-full tw-flex tw-justify-center">
+						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-xl">
+							<h1>Für Ihre Liegenschaft besteht basierend auf Ihren Angaben eine Prüfpflicht. Im nächsten
+								Schritt
+								erfassen wir die wichtigsten Informationen für die Beauftragung.
+							</h1>
+						</section>
+					</div>
 				);
 			}
 			if (currentAppData.questions['Besteht für Ihre Liegenschaft eine Prüfpflicht?'].answers.find((answer) => answer.name === 'choice')!.value === 'no') {

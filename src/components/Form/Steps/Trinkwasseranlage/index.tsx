@@ -58,7 +58,7 @@ const Trinkwasseranlage = () => {
 					<>
 						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
 						<NumericInput/>
-						<Uploader/>
+						<Uploader uploadId={"strang"}/>
 					</>
 				}
 				{(currentAnswer && currentAnswer.value && currentAnswer.value === 'no') &&
