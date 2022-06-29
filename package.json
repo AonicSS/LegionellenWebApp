@@ -59,6 +59,7 @@
 		"@typescript-eslint/parser": "^5.30.0",
 		"autoprefixer": "^10.4.7",
 		"chalk": "^4.1.2",
+		"eslint": "^8.18.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-config-react": "^1.1.7",
 		"eslint-plugin-import": "^2.25.4",
