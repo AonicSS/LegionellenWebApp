@@ -47,10 +47,9 @@ const Stepper = () => {
 				.map((_, key) => (
 					<div key={key}>
 						<div style={{
-							width: "150px",
+							width: "180px",
 							height: "3px",
 							backgroundColor: currentAppStep === key + 1 ? '#E3E3E3' : currentAppStep >= key + 1 ? '#e20913' : '#E3E3E3',
-							marginRight: '15px'
 						}}
 							 key={key}
 							 onClick={() => setAppStep(key + 1)}>
@@ -59,7 +58,7 @@ const Stepper = () => {
 								<div
 									style={{
 										height: "3px",
-										width: `${100 * currentSubStep / maxSubSteps}%`,
+										width: "180px",
 										backgroundColor: '#e20913'
 									}}
 								></div>

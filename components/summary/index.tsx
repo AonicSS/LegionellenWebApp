@@ -98,7 +98,7 @@ const Summary = () => {
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
 								{appData.selectedPricing.name}
 							</div>
-							<div className="tw-flex tw-max-w-4xl tw-items-center">
+							<div className="tw-flex tw-max-w-4xl tw-items-center tw-m-auto">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
 									<div>
 										{`Gesamtpreis für eine Liegenschaft mit ${appData.strangAmount > 1 ? `${appData.strangAmount} Strängen` : 'einem Strang'} und ${getMeasurementValvesInstalled(appData) ? 'vorhandenen Probeentnahmeventilen' : 'nicht vorhandenen Probeentnahmeventilen'}.`}
@@ -108,7 +108,11 @@ const Summary = () => {
 									className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
 									{total.toFixed(2).toString().replace('.', ',')}{' '} €
 								</div>
-								<TechemRecommendationIcon/>
+								<div className="tw-w-15%">
+								<TechemRecommendationIcon
+								/>
+								</div>
+
 							</div>
 						</div>
 					</div>
