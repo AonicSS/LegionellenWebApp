@@ -217,7 +217,6 @@ const appData = (
 			return returnState;
 		}
 		case SET_UPLOAD: {
-			debugger;
 			return {
 				...state,
 				uploads: action.payload.uploads

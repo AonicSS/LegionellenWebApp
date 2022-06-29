@@ -314,15 +314,13 @@ const SummaryFinal = () => {
 			<section>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"} onClick={async () => {
-						const res = await fetch('/api/submit', {
-							body: JSON.stringify(currentAppData),
-							headers: {
-								'Content-Type': 'application/json'
-							},
-							method: 'POST'
+						const body = new FormData();
+						body.append("appData", JSON.stringify(currentAppData));
+						const response = await fetch("/api/submit", {
+							method: "POST",
+							body
 						});
-
-						const result = await res.json();
+						const result = await response.json();
 						alert(JSON.stringify(result));
 					}}></Button>
 				</div>
