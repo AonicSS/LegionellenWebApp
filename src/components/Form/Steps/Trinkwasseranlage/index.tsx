@@ -50,14 +50,16 @@ const Trinkwasseranlage = () => {
 			return (<div>
 				<Radio>
 				</Radio>
-				<div className="tw-flex tw-justify-center tw-mt-28">
+				<div className="tw-flex tw-justify-center tw-mt-24 tw-mb-24">
 					<StrangschemaIcon height={300}/>
 				</div>
 				{(currentAnswer && currentAnswer.value && currentAnswer.value === 'yes') &&
 					<>
 						<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?</div>
 						<NumericInput/>
-						<Uploader uploadId={"strang"}/>
+						<div className={"tw-mt-12"}>
+							<Uploader uploadId={"strang"}/>
+						</div>
 					</>
 				}
 				{(currentAnswer && currentAnswer.value && currentAnswer.value === 'no') &&
@@ -74,7 +76,9 @@ const Trinkwasseranlage = () => {
 								<div className="tw-flex tw-justify-center tw-mt-28">Wie viele Stränge sind verbaut?
 								</div>
 								<NumericInput/>
-								<Uploader uploadId={"strang"}/>
+								<div className={"tw-mt-12"}>
+									<Uploader uploadId={"strang"}/>
+								</div>
 							</>
 						}
 						{

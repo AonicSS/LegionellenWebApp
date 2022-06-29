@@ -139,7 +139,6 @@ const Angebot = () => {
 			let strangAmountKnown = ((currentAppData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes')) || ((currentAppData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'no') && (currentAppData.questions['Konnten Sie das Strangschema ermitteln?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes'));
 
 
-
 			return (
 				<section className="tw-margin-top">
 					<div className="tw-flex tw-justify-center tw-mb-14">
@@ -147,14 +146,30 @@ const Angebot = () => {
 					</div>
 
 					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14 tw-mx-auto tw-max-w-xl">
-						<div>
-							Für die Liegenschaft <span
-							className={"tw-text-ting-red"}>{streetName} {houseNumber}, {postalCode} {city} <PenEditIcon
-							className={"tw-inline"}/></span> mit <span
-							className={"tw-text-ting-red"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Strängen` : 'einem Strang'}
-							<PenEditIcon className={"tw-inline"}/></span> und <span className={"tw-text-ting-red"}>{measurementValvesInstalled ? 'vorhandenen Probeentnahmeventilen': 'nicht vorhandenen Probeentnahmeventilen'} <PenEditIcon className={"tw-inline"}/></span> haben wir folgendes
-							Angebot für Sie kalkuliert:
-						</div>
+						{(strangAmountKnown && measurementValvesInstalled) &&
+							<div>
+								Für die Liegenschaft <span
+								className={"tw-text-ting-red"}>{streetName} {houseNumber}, {postalCode} {city}
+								<PenEditIcon
+									className={"tw-inline"}/></span> mit <span
+								className={"tw-text-ting-red"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Strängen` : 'einem Strang'}
+								<PenEditIcon className={"tw-inline"}/></span> und <span
+								className={"tw-text-ting-red"}>{measurementValvesInstalled ? 'vorhandenen Probeentnahmeventilen' : 'nicht vorhandenen Probeentnahmeventilen'}
+								<PenEditIcon className={"tw-inline"}/></span> haben wir folgendes
+								Angebot für Sie kalkuliert:
+							</div>
+						}
+						{!(strangAmountKnown && measurementValvesInstalled) &&
+							<div>
+								Um einen verbindlichen Preis für eine Legionellenprüfung in Ihrer Liegenschaft zu ermitteln, benötigen wir noch Angaben zu <span
+								className={"tw-text-ting-red"}>Strangschema
+								<PenEditIcon
+									className={"tw-inline"}/></span> und <span
+								className={"tw-text-ting-red"}>Probeentnahmeventilen
+								<PenEditIcon
+									className={"tw-inline"}/></span>. Diese ermitteln wir bei der Begehung, die Sie nun direkt online beauftragen können.
+							</div>
+						}
 					</div>
 					<Pricing surveyRequired={!strangAmountKnown}/>
 					<section className={"tw-bg-light-grey tw-p-10 tw-mb-12 tw-mt-12"}>
