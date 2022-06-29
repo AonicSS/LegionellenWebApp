@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {AppReduxStoreProps} from '../../redux/reducers/App';
+import {AppData, AppReduxStoreProps} from '../../redux/reducers/App';
 import {useNavigate} from 'react-router-dom';
 import classNames from 'classnames';
-import {SET_ANSWER, SET_MODAL} from '../../redux/actions/App';
+import {SET_ANSWER, SET_CURRENT_QUESTION, SET_MODAL, SET_PRICING} from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -52,6 +52,24 @@ const Summary = () => {
 				answerName: answerName,
 				value: value,
 				btnActive: true,
+			},
+		});
+	};
+
+	const handleExtraServiceChange = (value: boolean, extraServiceName: string) => {
+		dispatch({
+			type: SET_PRICING,
+			payload: {
+				selectedPricing: {
+					...appData.selectedPricing,
+					extraServices: {
+						...appData.selectedPricing.extraServices,
+						[extraServiceName]: {
+							...appData.selectedPricing.extraServices[extraServiceName],
+							selected: value
+						}
+					}
+				},
 			},
 		});
 	};
@@ -140,39 +158,49 @@ const Summary = () => {
 								Object.keys(appData.selectedPricing.extraServices).map((extraServiceName: string) => {
 									let extraService = appData.selectedPricing.extraServices[extraServiceName];
 
-									return (<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
-										<div
-											className="tw-flex-grow">
-											<p className={"tw-font-bold"}>{extraServiceName}</p>
-											<p>{extraService.subtitle}</p>
-										</div>
-										<div
-											className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
-											{extraService.price(appData)}{' '} €
-										</div>
-									</div>);
+									return (<>
+											<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+												<div
+													className="tw-flex-grow">
+													<p className={"tw-font-bold"}>{extraServiceName}</p>
+													<p>{extraService.subtitle}</p>
+												</div>
+												<div
+													className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
+													{extraService.price(appData)}{' '} €
+												</div>
+											</div>
+											<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+												<div className="tw-flex-grow tw-text-red tw-font-bold">
+													Mehr Infos
+												</div>
+												<div className="tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+													<div
+														className="tw-flex tw-items-center tw-justify-center tw-w-full">
+														<label htmlFor="toggleB"
+															   className="tw-flex tw-items-center tw-cursor-pointer">
+															<div className="tw-relative">
+																<input type="checkbox" id="toggleB"
+																	   className="tw-sr-only"
+																	   checked={extraService.selected}
+																	   onChange={(e) => handleExtraServiceChange(e.target.checked, extraServiceName)}/>
+																<div
+																	className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
+																<div
+																	className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
+															</div>
+															<div className="tw-ml-3 tw-text-gray-700 tw-font-medium">
+															</div>
+														</label>
+													</div>
+												</div>
+											</div>
+										</>
+									);
+
 								})
 							}
-							<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
-								<div className="tw-flex-grow tw-text-red tw-font-bold">
-									Mehr Infos
-								</div>
-								<div className="tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-									<div className="tw-flex tw-items-center tw-justify-center tw-w-full">
-										<label htmlFor="toggleB" className="tw-flex tw-items-center tw-cursor-pointer">
-											<div className="tw-relative">
-												<input type="checkbox" id="toggleB" className="tw-sr-only"/>
-												<div
-													className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
-												<div
-													className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
-											</div>
-											<div className="tw-ml-3 tw-text-gray-700 tw-font-medium">
-											</div>
-										</label>
-									</div>
-								</div>
-							</div>
+
 							<div className="tw-mt-2">
 								<div className="tw-font-bold">
 									Coupon-Code einlösen?

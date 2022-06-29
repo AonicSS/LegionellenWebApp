@@ -47,7 +47,12 @@ const SummaryFinal = () => {
 		trackSummary('summary', 'test');
 	}, []);
 
-	const total = appData.selectedPricing.price(appData);
+	const totalExtras = Object.keys(appData.selectedPricing.extraServices).filter((x) => appData.selectedPricing.extraServices[x].selected).map((extraServiceName: string) => {
+		let extraService = appData.selectedPricing.extraServices[extraServiceName];
+		return extraService.price(appData);
+	}).reduce((x, y) => x + y);
+	const total = appData.selectedPricing.price(appData) + totalExtras;
+
 
 	return (
 		<Layout>
@@ -84,7 +89,8 @@ const SummaryFinal = () => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ventile</div>
-									<div className={"tw-font-bold"}>{getMeasurementValvesInstalled(currentAppData) ? 'vorhanden' : 'nicht vorhandenen'}</div>
+									<div
+										className={"tw-font-bold"}>{getMeasurementValvesInstalled(currentAppData) ? 'vorhanden' : 'nicht vorhandenen'}</div>
 								</div>
 							</div>
 							<div className={"tw-w-3"}>
@@ -199,19 +205,28 @@ const SummaryFinal = () => {
 						</h1>
 					</label>
 
-					<div className={"tw-bg-white tw-p-8"}>
-						<div className="tw-flex tw-flex-row tw-items-center">
-							<div
-								className="tw-flex-grow">
-								<p className={"tw-font-bold"}>Quality Check Online</p>
-								<p>Informationen für Ihre Mieter und einen Haus-Aushang als PDF</p>
-							</div>
-							<div className="tw-container-pricing-label tw-font-size-price-small">
-								+ {total.toFixed(2).toString().replace('.', ',')}{' '}
-								€
-							</div>
-						</div>
-					</div>
+					{
+						Object.keys(appData.selectedPricing.extraServices).filter((x) => appData.selectedPricing.extraServices[x].selected).map((extraServiceName: string) => {
+							let extraService = appData.selectedPricing.extraServices[extraServiceName];
+
+							return (
+								<div className={"tw-bg-white tw-p-8"}>
+									<div className="tw-flex tw-flex-row tw-items-center">
+										<div
+											className="tw-flex-grow">
+											<p className={"tw-font-bold"}>{extraServiceName}</p>
+											<p>{extraService.subtitle}</p>
+										</div>
+										<div
+											className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+											+ {extraService.price(appData).toFixed(2).toString().replace('.', ',')}{' '}
+											€
+										</div>
+									</div>
+								</div>
+							);
+						})
+					}
 				</div>
 			</section>
 			<section className="rwm-forms__page-section tw-margin-top">
