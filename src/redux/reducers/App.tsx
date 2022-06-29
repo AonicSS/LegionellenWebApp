@@ -61,25 +61,25 @@ export interface Answers {
 	required: boolean;
 	value: any;
 }
-
+export interface AppData {
+	currentQuestion: string;
+	subStep: number;
+	maxSubSteps: number;
+	step: number;
+	rentings: number;
+	maxSteps: number;
+	strangAmount: number;
+	years: number;
+	showModal: boolean;
+	postalCode: PostalCode;
+	acceptContact: boolean;
+	acceptMarketing: boolean;
+	questions: Questions;
+	selectedPricing: any;
+	uploads: any;
+};
 export interface AppReduxStoreProps {
-	appData: {
-		currentQuestion: string;
-		subStep: number;
-		maxSubSteps: number;
-		step: number;
-		rentings: number;
-		maxSteps: number;
-		strangAmount: number;
-		years: number;
-		showModal: boolean;
-		postalCode: PostalCode;
-		acceptContact: boolean;
-		acceptMarketing: boolean;
-		questions: Questions;
-		selectedPricing: any;
-		uploads: any;
-	};
+	appData: AppData;
 }
 
 function getStateRules(state: any): any {

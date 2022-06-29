@@ -9,6 +9,10 @@ import Summary from "../../../summary";
 import SummaryFinal from "../../../summary-final";
 import {ReactComponent as HouseAltIcon} from "../../../../icons/house-alt.svg";
 import {ReactComponent as PenEditIcon} from "../../../../icons/pen-edit.svg";
+import {
+	getMeasurementValvesInstalled,
+	getStrangAmountKnown,
+} from "../../../../utils/helpers";
 
 const Angebot = () => {
 	const dispatch = useDispatch();
@@ -135,8 +139,8 @@ const Angebot = () => {
 			let houseNumber = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'houseNumber')!.value;
 			let postalCode = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'postalCode')!.value;
 			let city = currentAppData.questions['Wo befindet sich die zu prüfende Liegenschaft?']!.answers.find((answer) => answer.name === 'city')!.value;
-			let measurementValvesInstalled = (currentAppData.questions['Sind Probeentnahmeventile verbaut?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes');
-			let strangAmountKnown = ((currentAppData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes')) || ((currentAppData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'no') && (currentAppData.questions['Konnten Sie das Strangschema ermitteln?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes'));
+			let measurementValvesInstalled = getMeasurementValvesInstalled(currentAppData);
+			let strangAmountKnown = getStrangAmountKnown(currentAppData);
 
 
 			return (
@@ -161,13 +165,15 @@ const Angebot = () => {
 						}
 						{!(strangAmountKnown && measurementValvesInstalled) &&
 							<div>
-								Um einen verbindlichen Preis für eine Legionellenprüfung in Ihrer Liegenschaft zu ermitteln, benötigen wir noch Angaben zu <span
+								Um einen verbindlichen Preis für eine Legionellenprüfung in Ihrer Liegenschaft zu
+								ermitteln, benötigen wir noch Angaben zu <span
 								className={"tw-text-ting-red"}>Strangschema
 								<PenEditIcon
 									className={"tw-inline"}/></span> und <span
 								className={"tw-text-ting-red"}>Probeentnahmeventilen
 								<PenEditIcon
-									className={"tw-inline"}/></span>. Diese ermitteln wir bei der Begehung, die Sie nun direkt online beauftragen können.
+									className={"tw-inline"}/></span>. Diese ermitteln wir bei der Begehung, die Sie nun
+								direkt online beauftragen können.
 							</div>
 						}
 					</div>

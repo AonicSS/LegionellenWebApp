@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../../../../Button';
 import {useSelector} from 'react-redux';
 import './Pricing.css';
-import {AppReduxStoreProps} from '../../../../../redux/reducers/App';
+import {AppData, AppReduxStoreProps} from '../../../../../redux/reducers/App';
 import {getBasePrice, getServicePrice} from '../../../../../utils/helpers';
 import {ReactComponent as CheckInIcon} from "../../../../../icons/check-in.svg";
 import {ReactComponent as CheckCircledIcon} from "../../../../../icons/check-circled.svg";
@@ -21,17 +21,35 @@ const pricingOptions = {
 		{
 			name: 'Legionellenprüfung ohne Quality Check',
 			position: 'tw-container-pricing-1',
+			price: (appData: AppData) => {
+				return 49.00 + appData.strangAmount * 61.00;
+			},
 			serviceFeatures: {
 				'Quality Check': {
 					icon: <CheckQualityIcon/>,
 					active: false,
 					subtitle: 'Wird empfohlen',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
 				'Legionellenprüfung': {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
 					subtitle: 'Probeentnahme und Laborcheck',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
+			},
+			extraServices: {
+				'Infoservice': {
+					selected: true,
+					subtitle: 'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+					price: (appData: AppData) => {
+						return 5.0;
+					},
+				}
 			},
 			buttonStyle: 'SECONDARY',
 			text: 'Angebot sichern',
@@ -42,17 +60,35 @@ const pricingOptions = {
 		{
 			name: 'Legionellenprüfung + Quality Check Online',
 			position: 'tw-container-pricing-3',
+			price: (appData: AppData) => {
+				return 99.00 + 49.00 + appData.strangAmount * 61.00;
+			},
 			serviceFeatures: {
 				'Quality Check': {
 					icon: <CheckInIcon/>,
 					active: true,
 					subtitle: 'Flexibel und Digital',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
 				'Legionellenprüfung': {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
 					subtitle: 'Probeentnahme und Laborcheck',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
+			},
+			extraServices: {
+				'Infoservice': {
+					selected: true,
+					subtitle: 'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+					price: (appData: AppData) => {
+						return 5.0;
+					},
+				}
 			},
 			buttonStyle: 'PRIMARY',
 			text: 'Angebot sichern',
@@ -63,17 +99,34 @@ const pricingOptions = {
 		{
 			name: 'Legionellenprüfung + Quality Check Klassisch',
 			position: 'tw-container-pricing-3',
+			price: (appData: AppData) => {
+				return 199.00 + 49.00 + appData.strangAmount * 61.00;
+			},
 			serviceFeatures: {
 				'Quality Check Klassisch': {
 					icon: <HouseIcon/>,
 					active: true,
 					subtitle: 'Persönlich und vor Ort',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
 				'Legionellenprüfung': {
 					icon: <MagnifyingGlassIcon/>,
-					active: true,
 					subtitle: 'Probeentnahme und Laborcheck',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
+			},
+			extraServices: {
+				'Infoservice': {
+					selected: true,
+					subtitle: 'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+					price: (appData: AppData) => {
+						return 5.0;
+					},
+				}
 			},
 			buttonStyle: 'SECONDARY',
 			text: 'Angebot sichern',
@@ -86,12 +139,27 @@ const pricingOptions = {
 		{
 			name: 'Klassische Begehung',
 			position: 'tw-container-pricing-1',
+			price: (appData: AppData) => {
+				return 199.0;
+			},
 			serviceFeatures: {
 				'Persönlich und vor Ort': {
 					icon: <HouseIcon/>,
 					active: true,
 					subtitle: 'Wir ermitteln vor Ort alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung.',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
+			},
+			extraServices: {
+				'Infoservice': {
+					selected: true,
+					subtitle: 'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+					price: (appData: AppData) => {
+						return 5.0;
+					},
+				}
 			},
 			buttonStyle: 'SECONDARY',
 			text: 'Angebot sichern',
@@ -102,11 +170,26 @@ const pricingOptions = {
 		{
 			name: 'Online Begehung',
 			position: 'tw-container-pricing-3',
+			price: (appData: AppData) => {
+				return 99.0;
+			},
+			extraServices: {
+				'Infoservice': {
+					selected: true,
+					subtitle: 'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+					price: (appData: AppData) => {
+						return 5.0;
+					},
+				}
+			},
 			serviceFeatures: {
 				'Flexibel und Digital': {
 					icon: <CheckInIcon/>,
 					active: true,
 					subtitle: 'In einem Videocall ermitteln wir alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung. Ganz ohne lange Wartezeiten.',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
 				},
 			},
 			buttonStyle: 'PRIMARY',
@@ -123,8 +206,12 @@ export interface PricingProps extends React.HTMLProps<HTMLDivElement> {
 	surveyRequired?: boolean;
 }
 
+
+
 const Pricing = ({modal, surveyRequired}: PricingProps) => {
-	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
+	const currentAppData = useSelector(
+		(state: AppReduxStoreProps) => state.appData
+	);
 	const pricing = surveyRequired ? pricingOptions['surveyRequired'] : pricingOptions['noSurveyRequired'];
 
 	return (
@@ -134,10 +221,10 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 			<div
 				className={`tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-${pricing.length} xl:tw-grid-cols-${pricing.length} tw-gap-[52px] xl:tw-gap-[50px]`}>
 				{pricing.map((p) => {
-					const rentingPrice = getBasePrice(appData);
-					const servicePrice = getServicePrice(p.type, appData);
-
-					const total = rentingPrice + servicePrice;
+					//const rentingPrice = getBasePrice(appData);
+					//const servicePrice = getServicePrice(p.type, appData);
+					//const total = rentingPrice + servicePrice;
+					const total = p.price(currentAppData);
 
 					return (
 						<div

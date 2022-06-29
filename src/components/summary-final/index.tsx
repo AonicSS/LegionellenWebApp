@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 import {
 	getStrangNumber,
 	getBasePrice,
-	getServicePrice,
+	getServicePrice, getMeasurementValvesInstalled,
 } from '../../utils/helpers';
 import {ReactComponent as Info} from '../../icons/Info.svg';
 import * as Scroll from 'react-scroll';
@@ -47,12 +47,7 @@ const SummaryFinal = () => {
 		trackSummary('summary', 'test');
 	}, []);
 
-	const rentingPrice = getBasePrice(appData);
-	const servicePrice = getServicePrice(
-		appData.selectedPricing.name,
-		appData
-	);
-	const total = rentingPrice + servicePrice;
+	const total = appData.selectedPricing.price(appData);
 
 	return (
 		<Layout>
@@ -88,14 +83,31 @@ const SummaryFinal = () => {
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
-									<div>Anzahl der Ventile</div>
-									<div className={"tw-font-bold"}>2 Ventile</div>
+									<div>Ventile</div>
+									<div className={"tw-font-bold"}>{getMeasurementValvesInstalled(currentAppData) ? 'vorhanden' : 'nicht vorhandenen'}</div>
 								</div>
 							</div>
 							<div className={"tw-w-3"}>
 
 							</div>
 						</div>
+
+						{anredeQuestion.answers.find((answer) => answer.name === 'customerNumber') &&
+							<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
+								<div className="tw-flex-grow">
+									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
+										<div>Ihre Kundennummer</div>
+										<div className={"tw-font-bold"}>
+											{anredeQuestion.answers.find((answer) => answer.name === 'customerNumber')!.value}
+										</div>
+									</div>
+								</div>
+								<div className="tw-w-3">
+									<PenIcon/>
+								</div>
+							</div>
+						}
+
 
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
 							<div className="tw-flex-grow">

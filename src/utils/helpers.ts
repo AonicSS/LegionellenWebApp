@@ -46,3 +46,7 @@ export const getBasePrice = (data: any) => {
 export const getServicePrice = (type: string, data: any) => {
 		return 0;
 };
+
+
+export const getMeasurementValvesInstalled = (appData) => (appData.questions['Sind Probeentnahmeventile verbaut?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes');
+export const getStrangAmountKnown = (appData) => ((appData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes')) || ((appData.questions['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?']!.answers.find((answer) => answer.name === 'choice')!.value === 'no') && (appData.questions['Konnten Sie das Strangschema ermitteln?']!.answers.find((answer) => answer.name === 'choice')!.value === 'yes'));

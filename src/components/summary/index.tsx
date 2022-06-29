@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 import {
 	getStrangNumber,
 	getBasePrice,
-	getServicePrice,
+	getServicePrice, getMeasurementValvesInstalled,
 } from '../../utils/helpers';
 import {ReactComponent as Info} from '../../icons/Info.svg';
 import * as Scroll from 'react-scroll';
@@ -38,12 +38,7 @@ const Summary = () => {
 		trackSummary('summary', 'test');
 	}, []);
 
-	const rentingPrice = getBasePrice(appData);
-	const servicePrice = getServicePrice(
-		appData.selectedPricing.name,
-		appData
-	);
-	const total = rentingPrice + servicePrice;
+	const total = appData.selectedPricing.price(appData);
 
 	const liegenschaftQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Wo befindet sich die zu prüfende Liegenschaft?']);
 	const anredeQuestion = useSelector((state: AppReduxStoreProps) => state.appData.questions['Anrede']);
@@ -88,7 +83,7 @@ const Summary = () => {
 							<div className="tw-flex tw-max-w-4xl tw-items-center">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
 									<div>
-										{`Gesamtpreis für eine Liegenschaft mit 2 Strängen und 2 Ventilen, einem online Quality Check und einer Legionellenprüfung.`}
+										{`Gesamtpreis für eine Liegenschaft mit ${appData.strangAmount > 1 ? `${appData.strangAmount} Strängen` : 'einem Strang'} und ${getMeasurementValvesInstalled(appData) ? 'vorhandenen Probeentnahmeventilen' : 'nicht vorhandenen Probeentnahmeventilen'}.`}
 									</div>
 								</div>
 								<div
@@ -141,13 +136,29 @@ const Summary = () => {
 							</h1>
 						</label>
 						<div className={"tw-bg-white tw-rounded-tl-3xl tw-rounded-br-3xl tw-p-8"}>
-							<div
-								className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
-								<div className="rwm-form__input-container tw-text-red tw-font-bold">
+							{
+								Object.keys(appData.selectedPricing.extraServices).map((extraServiceName: string) => {
+									let extraService = appData.selectedPricing.extraServices[extraServiceName];
+
+									return (<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+										<div
+											className="tw-flex-grow">
+											<p className={"tw-font-bold"}>{extraServiceName}</p>
+											<p>{extraService.subtitle}</p>
+										</div>
+										<div
+											className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
+											{extraService.price(appData)}{' '} €
+										</div>
+									</div>);
+								})
+							}
+							<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+								<div className="tw-flex-grow tw-text-red tw-font-bold">
 									Mehr Infos
 								</div>
-								<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-									<div className="tw-flex tw-items-center tw-justify-center tw-w-full tw-mb-12">
+								<div className="tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+									<div className="tw-flex tw-items-center tw-justify-center tw-w-full">
 										<label htmlFor="toggleB" className="tw-flex tw-items-center tw-cursor-pointer">
 											<div className="tw-relative">
 												<input type="checkbox" id="toggleB" className="tw-sr-only"/>
@@ -162,9 +173,8 @@ const Summary = () => {
 									</div>
 								</div>
 							</div>
-							<div
-								className="rwm-form__input-container-large tw-mt-2">
-								<div className="rwm-form__input-container tw-font-bold">
+							<div className="tw-mt-2">
+								<div className="tw-font-bold">
 									Coupon-Code einlösen?
 								</div>
 							</div>
