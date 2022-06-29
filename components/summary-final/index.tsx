@@ -313,13 +313,31 @@ const SummaryFinal = () => {
 			</section>
 			<section>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
-					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"} onClick={() => {
-						alert(JSON.stringify(currentAppData.questions))
+					<Button style={"PRIMARY"} text={"Jetzt kostenpflichtig bestellen"} onClick={async () => {
+						const res = await fetch('/api/submit', {
+							body: JSON.stringify(currentAppData),
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							method: 'POST'
+						});
+
+						const result = await res.json();
+						alert(JSON.stringify(result));
 					}}></Button>
 				</div>
 				<div className="tw-flex tw-justify-center tw-pt-1 tw-pb-28">
-					<Button style={"SECONDARY"} text={"Angebot per E-Mail zusenden"} onClick={() => {
-						alert(JSON.stringify(currentAppData.questions))
+					<Button style={"SECONDARY"} text={"Angebot per E-Mail zusenden"} onClick={async () => {
+						const res = await fetch('/api/submit', {
+							body: JSON.stringify(currentAppData),
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							method: 'POST'
+						});
+
+						const result = await res.json();
+						alert(JSON.stringify(result));
 					}}></Button>
 				</div>
 			</section>
