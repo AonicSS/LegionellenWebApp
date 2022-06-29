@@ -50,7 +50,7 @@ const SummaryFinal = () => {
 	const totalExtras = Object.keys(appData.selectedPricing.extraServices).filter((x) => appData.selectedPricing.extraServices[x].selected).map((extraServiceName: string) => {
 		let extraService = appData.selectedPricing.extraServices[extraServiceName];
 		return extraService.price(appData);
-	}).reduce((x, y) => x + y);
+	}).reduce((x, y) => x + y, 0.0);
 	const total = appData.selectedPricing.price(appData) + totalExtras;
 
 
