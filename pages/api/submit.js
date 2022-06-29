@@ -1,16 +1,23 @@
 import formidable from "formidable";
 
+export const config = {
+	api: {
+		bodyParser: false,
+	},
+};
 
-export default (req, res) => {
+export default async (req, res) => {
 	console.log('new request');
 	const form = formidable({multiples: true});
-	form.parse(req, (err, fields, files) => {
+	form.parse(req, async (err, fields, files) => {
+		debugger;
 		if (err) {
 			res.writeHead(err.httpCode || 400, {'Content-Type': 'text/plain'});
 			res.end(String(err));
 			return;
 		}
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		res.end(JSON.stringify({fields, files}, null, 2));
+		res.json({
+			message: 'success'
+		});
 	});
 }
