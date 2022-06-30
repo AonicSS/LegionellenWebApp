@@ -191,16 +191,16 @@ input:checked ~ .dot {
 }
 
 .rwm-icon {
-	@apply tw-h-6
+	@apply tw-h-9
 	tw-w-6
 	tw-p-1;
 }
 
-.rwm-icon--hidden {
+/* .rwm-icon--hidden {
 	@apply tw-h-6
 	tw-w-6
 	tw-p-1;
-}
+} */
 
 .rwm-arrow {
 	width: 17px;
@@ -479,16 +479,9 @@ li span {
 }
 
 .rwm-best-price {
-	@apply tw-font-size-label-best-price;
 	position: absolute;
-	top: 0;
-	right: 0;
-	margin: -15px -10px 0 0;
-	width: 120px;
-	height: 28px;
-	background-color: #e20913;
-	border-radius: 5px 0 5px 0;
-	padding-left: 6px;
+	top: -25px;
+	right: -13px;
 }
 
 .rwm-overlay {
@@ -560,8 +553,9 @@ li span {
 
 .rwm-stepper {
 	@apply tw-flex
-	tw-items-center;
-	margin-left: -20px;
+	tw-items-center
+	tw-w-2/4
+	tw-justify-between;
 }
 
 .rwm-stepper__rectangle {
