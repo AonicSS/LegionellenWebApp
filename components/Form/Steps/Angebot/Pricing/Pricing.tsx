@@ -13,7 +13,7 @@ import HouseIcon from '../../../../../public/icons/house.svg';
 import EmailIcon from '../../../../../public/icons/email.svg';
 import BellIcon from '../../../../../public/icons/bell.svg';
 import InfoSmallIcon from '../../../../../public/icons/info-small.svg';
-import CheckCircledFull from '../../../../../public/icons/check-circled-full.svg';
+// import CheckCircledFull from '../../../../../public/icons/check-circled-full.svg';
 import Techem from '../../../../../public/img/techem.png';
 
 const pricingOptions = {
