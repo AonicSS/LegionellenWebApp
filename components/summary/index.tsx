@@ -151,7 +151,7 @@ const Summary = () => {
 					</div>
 				</div>
 			</section>
-			<div className={'tw-bg-grey tw-py-6'}>
+			<div className={'tw-bg-grey tw-py-6 tw-px-48'}>
 				<section className="rwm-forms__page-section">
 					<div className="tw-flex tw-flex-col">
 						<label className="rwm-form__headline tw-mb-4">
