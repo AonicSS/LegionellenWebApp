@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useIntl} from 'react-intl';
 import * as Scroll from 'react-scroll';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
+import {DECREASE_APP_STEP, SET_ANSWER, SET_CURRENT_QUESTION} from '../../../../redux/actions/App';
 import {AppReduxStoreProps} from '../../../../redux/reducers/App';
 import Pricing from "./Pricing/Pricing";
 import Summary from "../../../summary";
@@ -52,6 +52,8 @@ const Angebot = () => {
 	}, []);
 
 	const handleChange = (value: string, answerName: string) => {
+		console.log(value, answerName);
+
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
@@ -152,8 +154,10 @@ const Angebot = () => {
 					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14 tw-mx-auto tw-max-w-xl">
 						{(strangAmountKnown && measurementValvesInstalled) &&
 							<div>
-								Für die Liegenschaft <span
-								className={"tw-text-ting-red"}>{streetName} {houseNumber}, {postalCode} {city}
+								Für die Liegenschaft <span onClick={() => {
+									dispatch({type: DECREASE_APP_STEP});
+								}}
+								className={"tw-text-ting-red tw-cursor-pointer hover:tw-underline"}>{streetName} {houseNumber}, {postalCode} {city}
 								<PenEditIcon
 									className={"tw-inline"}/></span> mit <span
 								className={"tw-text-ting-red"}>{currentAppData.strangAmount > 1 ? `${currentAppData.strangAmount} Strängen` : 'einem Strang'}
