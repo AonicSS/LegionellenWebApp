@@ -242,6 +242,7 @@ const Angebot = () => {
 										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
 									}
 								>
+									
 									{streetName} {houseNumber}, {postalCode}{' '}
 									{city}
 									<PenEditIcon className={'tw-inline'} />
