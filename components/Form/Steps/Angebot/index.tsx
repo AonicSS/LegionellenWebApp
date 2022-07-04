@@ -276,7 +276,10 @@ const Angebot = () => {
 								und{' '}
 								<span
 									onClick={() => {
-										dispatch({ type: SET_APP_STEP, payload: { step: 2 } });
+										dispatch({
+											type: SET_APP_STEP,
+											payload: { step: 2 },
+										});
 									}}
 									className={
 										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
@@ -296,6 +299,12 @@ const Angebot = () => {
 								Legionellenprüfung in Ihrer Liegenschaft zu
 								ermitteln, benötigen wir noch Angaben zu{' '}
 								<span
+								onClick={() => {
+									dispatch({
+										type: SET_APP_STEP,
+										payload: { step: 2 },
+									});
+								}}
 									className={
 										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
 									}
@@ -305,6 +314,12 @@ const Angebot = () => {
 								</span>{' '}
 								und{' '}
 								<span
+									onClick={() => {
+										dispatch({
+											type: SET_APP_STEP,
+											payload: { step: 2 },
+										});
+									}}
 									className={
 										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
 									}
