@@ -242,7 +242,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 						<div
 							key={p.name}
 							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6',
+								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
 								`${p.position}`
 							)}
 						>

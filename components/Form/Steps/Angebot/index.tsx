@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	DECREASE_APP_STEP,
 	SET_ANSWER,
+	SET_APP_STEP,
 	SET_CURRENT_QUESTION,
 } from '../../../../redux/actions/App';
 import { AppReduxStoreProps } from '../../../../redux/reducers/App';
@@ -17,9 +18,11 @@ import {
 	getMeasurementValvesInstalled,
 	getStrangAmountKnown,
 } from '../../../../utils/helpers';
+import Translate from '../../../../utils/translate';
 
 const Angebot = () => {
 	const dispatch = useDispatch();
+	const intl = useIntl();
 	const scroller = Scroll.scroller;
 
 	const currentSubStep = useSelector(
@@ -57,8 +60,6 @@ const Angebot = () => {
 	}, []);
 
 	const handleChange = (value: string, answerName: string) => {
-		console.log(value, answerName);
-
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
@@ -242,20 +243,45 @@ const Angebot = () => {
 										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
 									}
 								>
-									
 									{streetName} {houseNumber}, {postalCode}{' '}
 									{city}
 									<PenEditIcon className={'tw-inline'} />
 								</span>{' '}
 								mit{' '}
-								<span className={'tw-text-ting-red'}>
+								<span
+									onClick={() => {
+										dispatch({
+											type: SET_ANSWER,
+											payload: {
+												questionName:
+													'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
+												answerName: 'choice',
+												value: 'yes',
+											},
+										});
+										dispatch({
+											type: SET_APP_STEP,
+											payload: { step: 2, subStep: 0 },
+										});
+									}}
+									className={
+										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
+									}
+								>
 									{currentAppData.strangAmount > 1
 										? `${currentAppData.strangAmount} Strängen`
 										: 'einem Strang'}
 									<PenEditIcon className={'tw-inline'} />
 								</span>{' '}
 								und{' '}
-								<span className={'tw-text-ting-red'}>
+								<span
+									onClick={() => {
+										dispatch({ type: SET_APP_STEP, payload: { step: 2 } });
+									}}
+									className={
+										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
+									}
+								>
 									{measurementValvesInstalled
 										? 'vorhandenen Probeentnahmeventilen'
 										: 'nicht vorhandenen Probeentnahmeventilen'}
@@ -269,12 +295,20 @@ const Angebot = () => {
 								Um einen verbindlichen Preis für eine
 								Legionellenprüfung in Ihrer Liegenschaft zu
 								ermitteln, benötigen wir noch Angaben zu{' '}
-								<span className={'tw-text-ting-red'}>
+								<span
+									className={
+										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
+									}
+								>
 									Strangschema
 									<PenEditIcon className={'tw-inline'} />
 								</span>{' '}
 								und{' '}
-								<span className={'tw-text-ting-red'}>
+								<span
+									className={
+										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
+									}
+								>
 									Probeentnahmeventilen
 									<PenEditIcon className={'tw-inline'} />
 								</span>

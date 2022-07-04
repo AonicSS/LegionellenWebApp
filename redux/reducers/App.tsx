@@ -152,10 +152,10 @@ const appData = (
 				...(action.payload.subStep !== undefined && {subStep: action.payload.subStep}),
 				...(action.payload.maxSubSteps !== undefined && {maxSubSteps: action.payload.maxSubSteps}),
 			}
-			if (state.step !== action.payload.step) {
-				newState.subStep = 1;
-				newState.maxSubSteps = 1;
-			}
+			// if (state.step !== action.payload.step) {
+			// 	newState.subStep = 1;
+			// 	newState.maxSubSteps = 1;
+			// }
 			return newState;
 		}
 		case SET_CURRENT_QUESTION: {

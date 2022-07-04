@@ -413,15 +413,15 @@ module.exports = {
 				[`.${prefix}-pricing-list`]: {
 					padding: '0px 19px 10px 21px',
 				},
-				[`.${prefix}-pricing-1`]: {
-					borderRadius: '40px 0 0 0',
-				},
+				// [`.${prefix}-pricing-1`]: {
+				// 	borderRadius: '40px 0 0 0',
+				// },
 				[`.${prefix}-pricing-2`]: {
 					borderRadius: '0 0 0 0',
 				},
-				[`.${prefix}-pricing-3`]: {
-					borderRadius: '0 0 40px 0',
-				},
+				// [`.${prefix}-pricing-3`]: {
+				// 	borderRadius: '0 0 40px 0',
+				// },
 			});
 		},
 		function ({addUtilities, theme}) {

@@ -103,7 +103,8 @@ input:checked ~ .dot {
 }
 
 .rwm-button--primary {
-	@apply tw-bg-btnBgColorActive
+	@apply
+	tw-bg-btnBgColorActive
 	tw-text-white
 	tw-btn-border-active;
 	width: fit-content;
