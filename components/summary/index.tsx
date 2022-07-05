@@ -116,16 +116,6 @@ const Summary = () => {
 			},
 		});
 	};
-  
-  const checkCoupon = () => {
-		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
-		if (checkedCoupon) {
-			setCouponStatus(checkedCoupon.description);
-		} else setCouponStatus("Coupon doesn't exist");
-
-		setCoupon('');
-	};
-
 
 	const checkCoupon = () => {
 		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
