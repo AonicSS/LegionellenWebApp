@@ -20,6 +20,7 @@ import {
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
+
 import classnames from 'classnames';
 
 import Info from '../../public/icons/Info.svg';
@@ -146,7 +147,7 @@ const Summary = () => {
 								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
 							)}
 						>
-							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
+							<div className="tw-container-pricing-headline tw-font-size-pricing-headline tw-max-w-[53.5rem] tw-m-auto">
 								{appData.selectedPricing.name}
 							</div>
 							<div className="tw-flex tw-max-w-4xl tw-items-center tw-m-auto">
@@ -180,7 +181,7 @@ const Summary = () => {
 					</div>
 				</div>
 			</section>
-			<div className={'tw-bg-grey tw-py-6'}>
+			<div className={'tw-bg-grey tw-py-6 tw-px-48'}>
 				<section className="rwm-forms__page-section">
 					<div className="tw-flex tw-flex-col">
 						<label className="rwm-form__headline tw-mb-4">
@@ -566,7 +567,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -658,7 +659,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*

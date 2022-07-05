@@ -67,8 +67,8 @@
 	}
 
 	.rwm-forms__page-section {
-		@apply tw-container
-		tw-mx-auto;
+		@apply tw-container;
+		/* tw-mx-auto; */
 		max-width: 660px;
 	}
 
@@ -103,7 +103,8 @@ input:checked ~ .dot {
 }
 
 .rwm-button--primary {
-	@apply tw-bg-btnBgColorActive
+	@apply
+	tw-bg-btnBgColorActive
 	tw-text-white
 	tw-btn-border-active;
 	width: fit-content;
@@ -274,10 +275,7 @@ input:checked ~ .dot {
 	margin: auto;
 }
 
-.rwm-form__headline {
-	@apply tw-font-size-headline;
-	@apply tw-text-left;
-}
+
 
 .rwm-form__label {
 	@apply tw-block
