@@ -21,18 +21,39 @@ import {
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
 
+import classnames from 'classnames';
+
 import Info from '../../public/icons/Info.svg';
 import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import TechemRecommendationIcon from '../../public/icons/techem-recommendation.svg';
 
+const demoCoupons = [
+	{
+		code: '10off',
+		discount: 10,
+		description:
+			'Congratulations! You have been awarded a 10% discount on your first order',
+	},
+	{
+		code: '20off',
+		discount: 20,
+		description:
+			'Congratulations! You have been awarded a 20% discount on your first order',
+	},
+];
+
 const Summary = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	const [contactAgreement, setContact] = useState(false);
+	const [isCouponToggled, setCouponToggled] = useState(false);
+	const [coupon, setCoupon] = useState('');
+	const [couponStatus, setCouponStatus] = useState('');
 	const dispatch = useDispatch();
 	const scroller = Scroll.scroller;
 	const Element = Scroll.Element;
+
 	useEffect(() => {
 		scroller.scrollTo('myScrollToElement', {
 			duration: 1500,
@@ -96,6 +117,15 @@ const Summary = () => {
 				},
 			},
 		});
+	};
+
+	const checkCoupon = () => {
+		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
+		if (checkedCoupon) {
+			setCouponStatus(checkedCoupon.description);
+		} else setCouponStatus("Coupon doesn't exist");
+
+		setCoupon('');
 	};
 
 	return (
@@ -272,9 +302,40 @@ const Summary = () => {
 							})}
 
 							<div className="tw-mt-2">
-								<div className="tw-font-bold">
+								<button
+									onClick={() =>
+										setCouponToggled(!isCouponToggled)
+									}
+									className="tw-font-bold tw-underline"
+								>
 									Coupon-Code einlösen?
-								</div>
+								</button>
+								{isCouponToggled && (
+									<div className="tw-pt-5 tw-flex tw-items-center tw-justify-between tw-gap-x-20">
+										<input
+											value={coupon}
+											onChange={(e) =>
+												setCoupon(e.target.value)
+											}
+											placeholder="Hier Coupon-Code eingeben"
+											type="text"
+											name="coupon"
+											className="rwm-form__input-custom tw-border-2 focus:tw-ring-transparent"
+										/>
+										<button
+											onClick={() => checkCoupon()}
+											className={classnames(
+												'rwn-btn-continue',
+												'rwm-button--secondary tw-mt-0'
+											)}
+										>
+											Einlösen
+										</button>
+									</div>
+								)}
+								<p className="tw-mt-2 tw-font-semibold">
+									{couponStatus}
+								</p>
 							</div>
 						</div>
 					</div>
