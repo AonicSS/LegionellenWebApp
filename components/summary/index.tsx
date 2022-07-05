@@ -20,9 +20,7 @@ import {
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
-
 import classnames from 'classnames';
-
 import Info from '../../public/icons/Info.svg';
 import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
@@ -118,6 +116,16 @@ const Summary = () => {
 			},
 		});
 	};
+  
+  const checkCoupon = () => {
+		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
+		if (checkedCoupon) {
+			setCouponStatus(checkedCoupon.description);
+		} else setCouponStatus("Coupon doesn't exist");
+
+		setCoupon('');
+	};
+
 
 	const checkCoupon = () => {
 		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
@@ -567,7 +575,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -659,7 +667,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
