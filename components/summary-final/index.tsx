@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { SET_MODAL } from '../../redux/actions/App';
+import { DECREASE_APP_STEP, SET_MODAL } from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -22,6 +22,7 @@ import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
 const SummaryFinal = () => {
+	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
 	const [consentMarketing, setConsentMarketing] = useState(false);
@@ -115,7 +116,7 @@ const SummaryFinal = () => {
 						{anredeQuestion.answers.find(
 							(answer) => answer.name === 'customerNumber'
 						) && (
-							<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
+							<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer">
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>
@@ -130,7 +131,12 @@ const SummaryFinal = () => {
 										</div>
 									</div>
 								</div>
-								<div className="tw-w-3">
+								<div
+									onClick={() => {
+										dispatch({ type: DECREASE_APP_STEP });
+									}}
+									className="tw-w-3 tw-cursor-pointer"
+								>
 									<PenIcon />
 								</div>
 							</div>
@@ -172,7 +178,12 @@ const SummaryFinal = () => {
 									</div>
 								</div>
 							</div>
-							<div className="tw-w-3">
+							<div
+								onClick={() => {
+									dispatch({ type: DECREASE_APP_STEP });
+								}}
+								className="tw-w-3 tw-cursor-pointer"
+							>
 								<PenIcon />
 							</div>
 						</div>
@@ -212,7 +223,12 @@ const SummaryFinal = () => {
 									</div>
 								</div>
 							</div>
-							<div className="tw-w-3">
+							<div
+								onClick={() => {
+									dispatch({ type: DECREASE_APP_STEP });
+								}}
+								className="tw-w-3 tw-cursor-pointer"
+							>
 								<PenIcon />
 							</div>
 						</div>
@@ -254,7 +270,12 @@ const SummaryFinal = () => {
 									</div>
 								</div>
 							</div>
-							<div className="">
+							<div
+								onClick={() => {
+									dispatch({ type: DECREASE_APP_STEP });
+								}}
+								className="tw-cursor-pointer"
+							>
 								<PenIcon />
 							</div>
 						</div>

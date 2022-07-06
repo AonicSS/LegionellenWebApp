@@ -234,7 +234,7 @@ const Angebot = () => {
 					<div className="tw-flex tw-justify-center tw-mt-14 tw-mb-14 tw-mx-auto tw-max-w-xl">
 						{strangAmountKnown && measurementValvesInstalled && (
 							<div>
-								Für die Liegenschaft{' '}
+								Für die Liegenschaft {' '}
 								<span
 									onClick={() => {
 										dispatch({ type: DECREASE_APP_STEP });
@@ -299,12 +299,12 @@ const Angebot = () => {
 								Legionellenprüfung in Ihrer Liegenschaft zu
 								ermitteln, benötigen wir noch Angaben zu{' '}
 								<span
-								onClick={() => {
-									dispatch({
-										type: SET_APP_STEP,
-										payload: { step: 2 },
-									});
-								}}
+									onClick={() => {
+										dispatch({
+											type: SET_APP_STEP,
+											payload: { step: 2 },
+										});
+									}}
 									className={
 										'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
 									}
