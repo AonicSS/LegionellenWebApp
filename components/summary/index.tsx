@@ -4,8 +4,8 @@ import { AppData, AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import {
+	DECREASE_APP_STEP,
 	SET_ANSWER,
-	SET_CURRENT_QUESTION,
 	SET_MODAL,
 	SET_PRICING,
 } from '../../redux/actions/App';
@@ -28,6 +28,7 @@ import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import TechemRecommendationIcon from '../../public/icons/techem-recommendation.svg';
+import PenEditIcon from '../../public/icons/pen-edit.svg';
 
 const demoCoupons = [
 	{
@@ -629,10 +630,20 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white tw-flex tw-justify-between">
 							<h1 className="rwm-form__headline">
 								Liegenschaftsadresse
 							</h1>
+							<span
+								onClick={() => {
+									dispatch({
+										type: DECREASE_APP_STEP
+									});
+								}}
+								className="tw-cursor-pointer"
+							>
+								<PenEditIcon className={'tw-inline'} />
+							</span>
 						</label>
 						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8">
 							<div className="rwm-form__input-container">
