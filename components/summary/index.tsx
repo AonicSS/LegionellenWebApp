@@ -497,7 +497,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div className={contactAgreement ? "rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2" : "input-kundennum"} >
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Kundennummer*

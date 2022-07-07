@@ -87,6 +87,13 @@ input:checked ~ .lable-check {
 	background: red !important;
 }
 
+.input-kundennum {
+	display: none !important;
+}
+
+input:checked ~ .input-kundennum {
+	display: block !important;
+}
 
 
 .rwm-btn {
