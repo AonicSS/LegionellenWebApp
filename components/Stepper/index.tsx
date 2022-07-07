@@ -49,7 +49,7 @@ const Stepper = () => {
 						<div style={{
 							width: "180px",
 							height: "3px",
-							backgroundColor: currentAppStep === key + 1 ? '#E3E3E3' : currentAppStep >= key + 1 ? '#e20913' : '#E3E3E3',
+							backgroundColor: currentAppStep === key + 1 ? '#E3E3E3' : currentAppStep >= key + 1 ? '#e20613' : '#E3E3E3',
 						}}
 							 key={key}
 							 onClick={() => setAppStep(key + 1)}>
