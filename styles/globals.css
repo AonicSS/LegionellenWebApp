@@ -83,6 +83,11 @@ input:checked ~ .dot {
 	transform: translateX(100%);
 }
 
+input:checked ~ .lable-check {
+	background: red !important;
+}
+
+
 
 .rwm-btn {
 	@apply tw-btn-size
@@ -583,3 +588,4 @@ div[name="myScrollToElement"] {
 	letter-spacing: 0.165em;
 	color: #000000;
 }
+

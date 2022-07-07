@@ -290,7 +290,7 @@ const Summary = () => {
 																	)
 																}
 															/>
-															<div className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
+															<div className="lable-check tw-block tw-bg-[#C6C6C6] tw-w-14 tw-h-8 tw-rounded-full"></div>
 															<div className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
 														</div>
 														<div className="tw-ml-3 tw-text-gray-700 tw-font-medium"></div>
