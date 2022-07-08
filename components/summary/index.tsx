@@ -4,8 +4,8 @@ import { AppData, AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import {
+	DECREASE_APP_STEP,
 	SET_ANSWER,
-	SET_CURRENT_QUESTION,
 	SET_MODAL,
 	SET_PRICING,
 } from '../../redux/actions/App';
@@ -26,6 +26,7 @@ import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import TechemRecommendationIcon from '../../public/icons/techem-recommendation.svg';
+import PenEditIcon from '../../public/icons/pen-edit.svg';
 
 const demoCoupons = [
 	{
@@ -287,7 +288,7 @@ const Summary = () => {
 																	)
 																}
 															/>
-															<div className="tw-block tw-bg-red tw-w-14 tw-h-8 tw-rounded-full"></div>
+															<div className="lable-check tw-block tw-bg-[#C6C6C6] tw-w-14 tw-h-8 tw-rounded-full"></div>
 															<div className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
 														</div>
 														<div className="tw-ml-3 tw-text-gray-700 tw-font-medium"></div>
@@ -340,54 +341,65 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline tw-mb-4">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
 							<h1 className="rwm-form__headline">Kontaktdaten</h1>
 						</label>
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-16">
-							<h4 className="tw-font-size-sub-title">Anrede*</h4>
-						</div>
-
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
-							<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
-								<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
+						<div className="tw-mt-8">
+							<div className=" tw-flex tw-flex-row tw-items-start">
+								<h4 className="tw-font-size-label">Anrede*</h4>
+							</div>
+							<div className="tw-flex tw-items-center">
+								<div className="tw-w-3/12 ">
+									<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
+										<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
+											<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
+												<div className="round">
+													<select
+														id="gender"
+														name="gender"
+														defaultChecked={
+															contactAgreement
+														}
+														onChange={() =>
+															setContact(
+																!contactAgreement
+															)
+														}
+													>
+														<option value="m">
+															Herr
+														</option>
+														<option value="f">
+															Frau
+														</option>
+														<option value="d">
+															Divers
+														</option>
+													</select>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+								<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-center tw-w-9/12">
 									<div className="round">
-										<select
-											id="gender"
-											name="gender"
+										<input
+											type="checkbox"
+											id="contact"
 											defaultChecked={contactAgreement}
 											onChange={() =>
 												setContact(!contactAgreement)
 											}
-										>
-											<option value="m">Herr</option>
-											<option value="f">Frau</option>
-											<option value="d">Divers</option>
-										</select>
+										/>
+										<label htmlFor="contact"></label>
+									</div>
+									<div className="rwm-form__input-container-large tw-pt-[5px]">
+										<p>Ich bin bereits Kunde</p>
 									</div>
 								</div>
-							</fieldset>
-						</div>
-
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
-							<div className="round">
-								<input
-									type="checkbox"
-									id="contact"
-									defaultChecked={contactAgreement}
-									onChange={() =>
-										setContact(!contactAgreement)
-									}
-								/>
-								<label htmlFor="contact"></label>
-							</div>
-							<div className="rwm-form__input-container-large">
-								<p>Ich bin bereits Kunde</p>
 							</div>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start tw-mt-12">
-							<h4 className="tw-font-size-sub-title">Name</h4>
-						</div>
 						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
@@ -414,7 +426,7 @@ const Summary = () => {
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 								<label className="tw-flex tw-font-size-label tw-font">
-									Name*
+									Nachname*
 								</label>
 								<input
 									type="text"
@@ -483,7 +495,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div className={contactAgreement ? "rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2" : "input-kundennum"} >
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Kundennummer*
@@ -512,12 +524,12 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
 							<h1 className="rwm-form__headline">
 								Ihre Anschrift
 							</h1>
 						</label>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Straße*
@@ -616,12 +628,22 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label className="rwm-form__headline">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white tw-flex tw-justify-between">
 							<h1 className="rwm-form__headline">
 								Liegenschaftsadresse
 							</h1>
+							<span
+								onClick={() => {
+									dispatch({
+										type: DECREASE_APP_STEP
+									});
+								}}
+								className="tw-cursor-pointer"
+							>
+								<PenEditIcon className={'tw-inline'} />
+							</span>
 						</label>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Straße*

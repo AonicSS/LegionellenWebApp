@@ -5,7 +5,7 @@ import Translate from '../../../../utils/translate';
 import { useSelector } from 'react-redux';
 import { AppReduxStoreProps } from '../../../../redux/reducers/App';
 import Radio from '../../Radio';
-import Check from '../../../../public/img/Vector.png';
+import Check from '../../../../public/icons/check-red.svg';
 import CheckGray from '../../../../public/img/Vector_gray.png';
 
 const Pruefpflicht = () => {
@@ -51,13 +51,10 @@ const Pruefpflicht = () => {
 				return (
 					<div className="tw-w-full tw-flex tw-justify-center tw-items-center">
 						<div className="tw-w-[38px] tw-h-[38px] tw-mr-[27px]">
-							<img
-								src={Check.src}
-								className="tw-w-[38px] tw-h-[38px]"
-							/>
+						<Check width={38} height={38} />
 						</div>
 						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-lg">
-							<h1>
+							<h1 className='tw-text-2xl tw-font-bold tw-text-[#0F172A]'>
 								Für Ihre Liegenschaft besteht basierend auf
 								Ihren Angaben eine
 								<span className="tw-text-[#E20613]">
