@@ -122,6 +122,8 @@ input:checked ~ .input-kundennum {
 	width: fit-content;
 	border-radius: 30px;
 	margin-top: 10px;
+	font-size: 14px;
+	line-height: 17px;
 }
 
 .rwm-button--primary:hover {
