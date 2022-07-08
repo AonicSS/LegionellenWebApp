@@ -366,7 +366,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 									<div className="tw-flex tw-justify-center tw-mb-2 tw-pt-5">
 										<h4> Wichtiger Hinweis</h4>
 									</div>
-									<div className={'tw-text-justify'}>
+									<div className={'tw-font-normal tw-text-[13px] tw-leading-6 tw-text-left tw-text-headline'}>
 										{p.importantRemark}
 									</div>
 								</div>
