@@ -220,7 +220,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-icon {
-	@apply tw-h-9
+	@apply tw-h-11
 	tw-w-6
 	tw-p-1;
 }
@@ -610,6 +610,7 @@ div[name="myScrollToElement"] {
 	line-height: 16px;
 	letter-spacing: 0.165em;
 	color: #000000;
+	padding-top: 10px;
 }
 
 .text-title
