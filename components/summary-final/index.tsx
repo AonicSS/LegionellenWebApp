@@ -21,7 +21,7 @@ import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
-const SummaryFinal = () => {
+const SummaryFinal = ({contactAgreement}) => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -116,7 +116,7 @@ const SummaryFinal = () => {
 						{anredeQuestion.answers.find(
 							(answer) => answer.name === 'customerNumber'
 						) && (
-							<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer">
+							<div className={contactAgreement ? "tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer" : 'input-kundennum'} >
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>

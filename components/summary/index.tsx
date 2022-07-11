@@ -47,9 +47,9 @@ const demoCoupons = [
 
 
 
-const Summary = () => {
+const Summary = ({contactAgreement, setContact}) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	const [contactAgreement, setContact] = useState(false);
+	// const [contactAgreement, setContact] = useState(false);
 	const [isCouponToggled, setCouponToggled] = useState(false);
 	const [coupon, setCoupon] = useState('');
 	const [couponStatus, setCouponStatus] = useState('');
