@@ -1,10 +1,10 @@
-import React, {useCallback} from 'react';
-import {useIntl} from 'react-intl';
+import React, { useCallback } from 'react';
+import { useIntl } from 'react-intl';
 import Close from '../../public/icons/times.svg';
 import Plus from '../../public/icons/plus.svg';
 import Minus from '../../public/icons/minus.svg';
 
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
 	INCREASE_APP_STEP,
 	DECREASE_APP_STEP,
@@ -15,8 +15,13 @@ import {
 } from '../../redux/actions/App';
 import Translate from '../../utils/translate';
 import classnames from 'classnames';
-import appData, {Answers, AppReduxStoreProps, Question, Questions} from '../../redux/reducers/App';
-import {BaseComponentProps} from '../../shared/interfaces/components';
+import appData, {
+	Answers,
+	AppReduxStoreProps,
+	Question,
+	Questions,
+} from '../../redux/reducers/App';
+import { BaseComponentProps } from '../../shared/interfaces/components';
 
 interface ButtonProps extends BaseComponentProps {
 	type?: string;
@@ -33,23 +38,23 @@ interface ButtonProps extends BaseComponentProps {
 }
 
 const Button = ({
-					style,
-					question,
-					type,
-					modifierClass,
-					room,
-					house,
-					text,
-					pricing,
-					link,
-					alwaysActive,
-					onClick
-				}: ButtonProps) => {
+	style,
+	question,
+	type,
+	modifierClass,
+	room,
+	house,
+	text,
+	pricing,
+	link,
+	alwaysActive,
+	onClick,
+}: ButtonProps) => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
 
-	const increaseAppStep = () => dispatch({type: INCREASE_APP_STEP});
-	const decreaseAppStep = () => dispatch({type: DECREASE_APP_STEP});
+	const increaseAppStep = () => dispatch({ type: INCREASE_APP_STEP });
+	const decreaseAppStep = () => dispatch({ type: DECREASE_APP_STEP });
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
 	);
@@ -62,7 +67,6 @@ const Button = ({
 		(state: AppReduxStoreProps) => state.appData.questions
 	);
 
-
 	const currentQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.currentQuestion
 	);
@@ -73,22 +77,25 @@ const Button = ({
 	)}`;
 
 	const getIsRentingZero = useCallback((questionText: string) => {
-		const question = useSelector((state: AppReduxStoreProps) =>
-			state.appData.questions[questionText]
+		const question = useSelector(
+			(state: AppReduxStoreProps) => state.appData.questions[questionText]
 		);
 		return question?.choice === 0 && question?.choice.length > 0;
 	}, []);
 
 	const getCurrentRentings = useCallback((questionText: string) => {
-		const question = useSelector((state: AppReduxStoreProps) =>
-			state.appData.questions[questionText]
+		const question = useSelector(
+			(state: AppReduxStoreProps) => state.appData.questions[questionText]
 		);
 		return question?.choice;
 	}, []);
 
-	const getActiveButton = useCallback((questions: Questions, question: string) => {
-		return questions[question] ? questions[question].btnActive : false;
-	}, []);
+	const getActiveButton = useCallback(
+		(questions: Questions, question: string) => {
+			return questions[question] ? questions[question].btnActive : false;
+		},
+		[]
+	);
 
 	const currentRentings = getCurrentRentings(questionText);
 
@@ -96,7 +103,7 @@ const Button = ({
 		() =>
 			dispatch({
 				type: SET_MODAL,
-				payload: {showModal: true},
+				payload: { showModal: true },
 			}),
 		[]
 	);
@@ -104,7 +111,7 @@ const Button = ({
 	const closeModalAndContinue = useCallback(() => {
 		dispatch({
 			type: SET_MODAL,
-			payload: {showModal: false},
+			payload: { showModal: false },
 		});
 	}, []);
 
@@ -112,14 +119,14 @@ const Button = ({
 		() =>
 			dispatch({
 				type: SET_MODAL,
-				payload: {showModal: false},
+				payload: { showModal: false },
 			}),
 		[]
 	);
 
 	const increaseRentings = () => {
 		if (currentRentings > 4 && currentAppStep === 1) {
-			dispatch({type: SET_MODAL, payload: {showModal: true}});
+			dispatch({ type: SET_MODAL, payload: { showModal: true } });
 		} else {
 			dispatch({
 				type: type,
@@ -167,7 +174,10 @@ const Button = ({
 		case 'NEXT':
 			const question = questions[currentQuestion];
 			const answers = question ? question.answers : [];
-			const allAnswered = !(answers.some((answer: Answers) => ((answer.value === undefined) && answer.required)));
+			const allAnswered = !answers.some(
+				(answer: Answers) =>
+					answer.value === undefined && answer.required
+			);
 			return (
 				<button
 					onClick={increaseAppStep}
@@ -176,9 +186,7 @@ const Button = ({
 						'rwm-button--primary',
 						'rwm-btn',
 						`rwm-button--${
-							((allAnswered) || alwaysActive)
-								? 'active'
-								: 'disabled'
+							allAnswered || alwaysActive ? 'active' : 'disabled'
 						}`
 					)}
 				>
@@ -211,7 +219,7 @@ const Button = ({
 						if (pricing) {
 							currentAppData.selectedPricing = pricing;
 						}
-						return onClick ? onClick(): increaseAppStep();
+						return onClick ? onClick() : increaseAppStep();
 					}}
 					className={classnames(
 						'rwn-btn-continue',
@@ -228,7 +236,7 @@ const Button = ({
 						if (pricing) {
 							currentAppData.selectedPricing = pricing;
 						}
-						return onClick ? onClick(): increaseAppStep();
+						return onClick ? onClick() : increaseAppStep();
 					}}
 					className={classnames(
 						'rwn-btn-continue',
@@ -241,7 +249,7 @@ const Button = ({
 		case 'CLOSE':
 			return (
 				<button onClick={closeModal} className="rwm-btn__container">
-					<Close className="rwm-btn-close"/>
+					<Close className="rwm-btn-close" />
 				</button>
 			);
 		case 'INCREASE_STRANG_AMOUNT':
@@ -253,7 +261,7 @@ const Button = ({
 					)}
 					onClick={increaseRentings}
 				>
-					<Plus width={16} height={16}/>
+					<Plus width={16} height={16} />
 				</button>
 			);
 		case 'DECREASE_STRANG_AMOUNT':
@@ -262,7 +270,7 @@ const Button = ({
 					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"
 					onClick={decreaseRentings}
 				>
-					<Minus width={16} height={16}/>
+					<Minus width={16} height={16} />
 				</button>
 			);
 		case 'DECREASE_ROOMS':
@@ -271,7 +279,7 @@ const Button = ({
 					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"
 					onClick={decreaseRooms}
 				>
-					<Minus width={16} height={16}/>
+					<Minus width={16} height={16} />
 				</button>
 			);
 		case 'INCREASE_ROOMS':
@@ -283,7 +291,7 @@ const Button = ({
 					)}
 					onClick={increaseRooms}
 				>
-					<Plus width={16} height={16}/>
+					<Plus width={16} height={16} />
 				</button>
 			);
 		case 'LINK':
@@ -291,6 +299,25 @@ const Button = ({
 				<button
 					onClick={openModal}
 					className={classnames('rwm-button--link')}
+				>
+					{text}
+				</button>
+			);
+
+		case 'DISACTIVE':
+			return (
+				<button
+					onClick={() => {
+						if (pricing) {
+							currentAppData.selectedPricing = pricing;
+						}
+						return onClick ? onClick() : increaseAppStep();
+					}}
+					className={classnames(
+						'rwn-btn-continue',
+						'rwm-button--disactive',
+
+					)}
 				>
 					{text}
 				</button>

@@ -463,7 +463,7 @@ const SummaryFinal = () => {
 			<section className='tw-flex tw-justify-around'>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
-						style={'PRIMARY'}
+						style={consentConsulting && consentTerms ? 'PRIMARY' : 'DISACTIVE'}
 						text={'Jetzt kostenpflichtig bestellen'}
 						onClick={async () => {
 							const body = new FormData();
@@ -482,7 +482,7 @@ const SummaryFinal = () => {
 				</div>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-28">
 					<Button
-						style={'SECONDARY'}
+						style={consentConsulting && consentTerms ? 'SECONDARY' : 'DISACTIVE'}
 						text={'Angebot per E-Mail zusenden'}
 						onClick={async () => {
 							const res = await fetch('/api/submit', {

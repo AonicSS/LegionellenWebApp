@@ -205,6 +205,20 @@ input:checked ~ .input-kundennum {
 	pointer-events: none;
 }
 
+.rwm-button--disactive {
+	@apply tw-bg-btnBgColorActive;
+	width: fit-content;
+	line-height: 17px;
+	background-color: #ffffff;
+	color: #d9d1d1;
+	font-size: 14px;
+	border-radius: 30px;
+	margin-top: 10px;
+	pointer-events: none;
+	border: 1px solid #d9d1d1;
+
+}
+
 .rwm-icon {
 	@apply tw-h-9
 	tw-w-6
