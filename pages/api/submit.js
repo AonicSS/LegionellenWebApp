@@ -1,4 +1,6 @@
 import formidable from "formidable";
+import fetch from 'node-fetch';
+
 
 export const config = {
 	api: {
