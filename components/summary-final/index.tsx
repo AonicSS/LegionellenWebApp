@@ -191,7 +191,7 @@ const SummaryFinal = () => {
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
-									<div>Ihre Anschrift</div>
+									<div>Rechnungsadresse</div>
 									<div className={'tw-font-bold'}>
 										{
 											anschriftQuestion.answers.find(
