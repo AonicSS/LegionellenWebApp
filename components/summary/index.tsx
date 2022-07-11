@@ -324,7 +324,7 @@ const Summary = () => {
 											placeholder="Hier Coupon-Code eingeben"
 											type="text"
 											name="coupon"
-											className="rwm-form__input-custom tw-border-2 focus:tw-ring-transparent"
+											className="rwm-form__input-custom tw-border-2 focus:tw-ring-transparent focus:tw-bg-transparent"
 										/>
 										<button
 											onClick={() => checkCoupon()}
