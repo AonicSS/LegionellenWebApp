@@ -114,7 +114,7 @@ const Radio = ({
 				(orientation === 'horizontal') &&
 				<div className="rwm-radio">
 					{
-						showTitle && <label className="rwm-form__headline">{questionText}</label>
+						showTitle && <label className="rwm-form__headline ques-title tw-font-bold !tw-text-[22px] tw-leading-[136%]">{questionText}</label>
 					}
 
 					<div className={"lg:tw-grid-cols-1 lg:tw-grid-cols-2 lg:tw-grid-cols-3 md:tw-grid-cols-1 tw-hidden"}></div>
@@ -126,9 +126,6 @@ const Radio = ({
 								className="rwm-radio__container-select tw-container-radio"
 								onClick={() => handleChange(answer)}
 							>
-								<label htmlFor={answersOverride[answer]} className="rwm-radio__label tw-mb-1">
-									{answersOverride[answer]}
-								</label>
 								<div className="rwm-form__container-input">
 									<input
 										onChange={() => handleChange(answer)}
@@ -139,6 +136,9 @@ const Radio = ({
 										className="tw-border-1 tw-border-btnColorDisabled focus:tw-ring-transparent tw-text-white tw-h-5 tw-w-5"
 									/>
 								</div>
+								<label htmlFor={answersOverride[answer]} className="rwm-radio__label tw-mb-1">
+									{answersOverride[answer]}
+								</label>
 							</div>);
 						})}
 					</fieldset>

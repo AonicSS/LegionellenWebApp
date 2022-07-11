@@ -24,7 +24,7 @@ const Calculator = () => {
 				<Stepper/>
 			</section>
 			<div className={"tw-mb-12"}>
-				<section className="rwm-calculator__page-section tw-mt-8">
+				<section className="rwm-calculator__page-section tw-mt-16">
 					<Form/>
 				</section>
 				{(currentAppStep !== 3) &&

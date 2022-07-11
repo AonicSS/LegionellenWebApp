@@ -448,7 +448,7 @@ input[type='number'] {
 }
 
 .rwm-radio__container {
-	@apply tw-grid tw-grid-rows-none tw-justify-center tw-items-center lg:tw-gap-10;
+	@apply tw-grid tw-grid-rows-none tw-justify-center tw-items-center ;
 }
 
 .rwm-radio__container-years {
@@ -621,3 +621,8 @@ div[name="myScrollToElement"] {
  {
 	 font-size: 10px;
  }
+
+
+.ques-title {
+	font-size: 22px;
+}
