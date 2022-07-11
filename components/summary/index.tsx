@@ -526,7 +526,7 @@ const Summary = () => {
 					<div className="tw-flex tw-flex-col">
 						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
 							<h1 className="rwm-form__headline">
-								Ihre Anschrift
+								Rechnungsadresse
 							</h1>
 						</label>
 						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
