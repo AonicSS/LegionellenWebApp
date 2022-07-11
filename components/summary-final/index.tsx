@@ -460,7 +460,7 @@ const SummaryFinal = () => {
 					</div>
 				</div>
 			</section>
-			<section>
+			<section className='tw-flex tw-justify-around'>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
 						style={'PRIMARY'}
@@ -480,7 +480,7 @@ const SummaryFinal = () => {
 						}}
 					></Button>
 				</div>
-				<div className="tw-flex tw-justify-center tw-pt-1 tw-pb-28">
+				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-28">
 					<Button
 						style={'SECONDARY'}
 						text={'Angebot per E-Mail zusenden'}
