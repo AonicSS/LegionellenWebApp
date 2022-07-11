@@ -14,7 +14,7 @@ import EmailIcon from '../../../../../public/icons/email.svg';
 import BellIcon from '../../../../../public/icons/bell.svg';
 import InfoSmallIcon from '../../../../../public/icons/info-small.svg';
 // import CheckCircledFull from '../../../../../public/icons/check-circled-full.svg';
-import Techem from '../../../../../public/img/techem.png';
+import Techem from '../../../../../public/icons/Techem.svg';
 
 const pricingOptions = {
 	noSurveyRequired: [
@@ -248,7 +248,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 						>
 							{p.recommended && (
 								<div className="rwm-best-price">
-									<img src={Techem.src} />
+									<Techem />
 								</div>
 							)}
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
@@ -366,7 +366,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 									<div className="tw-flex tw-justify-center tw-mb-2 tw-pt-5">
 										<h4> Wichtiger Hinweis</h4>
 									</div>
-									<div className={'tw-text-justify'}>
+									<div className={'tw-font-normal tw-text-[13px] tw-leading-6 tw-text-left tw-text-headline'}>
 										{p.importantRemark}
 									</div>
 								</div>

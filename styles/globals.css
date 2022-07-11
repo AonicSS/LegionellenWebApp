@@ -122,6 +122,8 @@ input:checked ~ .input-kundennum {
 	width: fit-content;
 	border-radius: 30px;
 	margin-top: 10px;
+	font-size: 14px;
+	line-height: 17px;
 }
 
 .rwm-button--primary:hover {
@@ -321,7 +323,7 @@ input:checked ~ .input-kundennum {
 	@apply tw-w-[330px]
 	md:tw-w-[259px]
 	lg:tw-w-[259px]
-	xl:tw-w-[259px]
+	xl:tw-w-[340px]
 	tw-justify-items-center;
 }
 
@@ -344,7 +346,7 @@ input:checked ~ .input-kundennum {
 	box-sizing: border-box;
 	height: 48px !important;
 	padding: 0 10px 0 10px !important;
-	border: solid 2px #c8c8c8 !important;
+	border: solid 0.5px #A19F9D !important;
 	box-shadow: #fff !important;
 }
 
@@ -596,3 +598,7 @@ div[name="myScrollToElement"] {
 	color: #000000;
 }
 
+.text-title
+ {
+	 font-size: 24px;
+ }

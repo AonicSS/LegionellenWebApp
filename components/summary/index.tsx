@@ -400,7 +400,7 @@ const Summary = () => {
 							</div>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Vorname*
@@ -449,7 +449,7 @@ const Summary = () => {
 							</div>
 						</div>
 
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									E-Mail Adresse*
@@ -529,7 +529,7 @@ const Summary = () => {
 								Ihre Anschrift
 							</h1>
 						</label>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Straße*
@@ -577,7 +577,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -643,7 +643,7 @@ const Summary = () => {
 								<PenEditIcon className={'tw-inline'} />
 							</span>
 						</label>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Straße*
@@ -679,7 +679,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
