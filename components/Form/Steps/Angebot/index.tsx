@@ -71,6 +71,8 @@ const Angebot = () => {
 		});
 	};
 
+	const [contactAgreement, setContact] = React.useState(false);
+
 	switch (currentSubStep) {
 		default:
 		case 0: {
@@ -392,10 +394,10 @@ const Angebot = () => {
 			);
 		}
 		case 2: {
-			return <Summary />;
+			return <Summary contactAgreement={contactAgreement} setContact={setContact} />;
 		}
 		case 3: {
-			return <SummaryFinal />;
+			return <SummaryFinal contactAgreement={contactAgreement} />;
 		}
 	}
 };

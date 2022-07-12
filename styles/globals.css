@@ -205,8 +205,22 @@ input:checked ~ .input-kundennum {
 	pointer-events: none;
 }
 
+.rwm-button--disactive {
+	@apply tw-bg-btnBgColorActive;
+	width: fit-content;
+	line-height: 17px;
+	background-color: #ffffff;
+	color: #d9d1d1;
+	font-size: 14px;
+	border-radius: 30px;
+	margin-top: 10px;
+	pointer-events: none;
+	border: 1px solid #d9d1d1;
+
+}
+
 .rwm-icon {
-	@apply tw-h-9
+	@apply tw-h-11
 	tw-w-6
 	tw-p-1;
 }
@@ -434,7 +448,7 @@ input[type='number'] {
 }
 
 .rwm-radio__container {
-	@apply tw-grid tw-grid-rows-none tw-justify-center tw-items-center lg:tw-gap-10;
+	@apply tw-grid tw-grid-rows-none tw-justify-center tw-items-center ;
 }
 
 .rwm-radio__container-years {
@@ -596,9 +610,20 @@ div[name="myScrollToElement"] {
 	line-height: 16px;
 	letter-spacing: 0.165em;
 	color: #000000;
+	padding-top: 10px;
 }
 
 .text-title
  {
 	 font-size: 24px;
  }
+
+ .cupon-status
+ {
+	 font-size: 10px;
+ }
+
+
+.ques-title {
+	font-size: 22px;
+}

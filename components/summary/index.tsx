@@ -43,9 +43,11 @@ const demoCoupons = [
 	},
 ];
 
-const Summary = () => {
+
+
+const Summary = ({contactAgreement, setContact}) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	const [contactAgreement, setContact] = useState(false);
+	// const [contactAgreement, setContact] = useState(false);
 	const [isCouponToggled, setCouponToggled] = useState(false);
 	const [coupon, setCoupon] = useState('');
 	const [couponStatus, setCouponStatus] = useState('');
@@ -122,10 +124,11 @@ const Summary = () => {
 		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
 		if (checkedCoupon) {
 			setCouponStatus(checkedCoupon.description);
-		} else setCouponStatus("Coupon doesn't exist");
+		} else setCouponStatus('Dieser Coupon-Code ist leider ungültig');
 
 		setCoupon('');
 	};
+
 
 	return (
 		<Layout>
@@ -319,7 +322,7 @@ const Summary = () => {
 											placeholder="Hier Coupon-Code eingeben"
 											type="text"
 											name="coupon"
-											className="rwm-form__input-custom tw-border-2 focus:tw-ring-transparent"
+											className="rwm-form__input-custom tw-border-2 focus:tw-ring-transparent focus:tw-bg-transparent"
 										/>
 										<button
 											onClick={() => checkCoupon()}
@@ -332,7 +335,7 @@ const Summary = () => {
 										</button>
 									</div>
 								)}
-								<p className="tw-mt-2 tw-font-semibold">
+								<p className="cupon-status tw-mt-2 tw-text-red">
 									{couponStatus}
 								</p>
 							</div>
@@ -495,7 +498,13 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div className={contactAgreement ? "rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2" : "input-kundennum"} >
+						<div
+							className={
+								contactAgreement
+									? 'rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2'
+									: 'input-kundennum'
+							}
+						>
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Kundennummer*
@@ -635,7 +644,7 @@ const Summary = () => {
 							<span
 								onClick={() => {
 									dispatch({
-										type: DECREASE_APP_STEP
+										type: DECREASE_APP_STEP,
 									});
 								}}
 								className="tw-cursor-pointer"
@@ -716,14 +725,14 @@ const Summary = () => {
 						</div>
 					</div>
 				</section>
-				<section>
+				<section className='tw-flex tw-justify-around'>
 					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 						<Button
 							style={'PRIMARY'}
 							text={'Preis sichern, direkt abschließen'}
 						></Button>
 					</div>
-					<div className="tw-flex tw-justify-center tw-pt-1 tw-pb-28">
+					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-28">
 						<Button
 							style={'SECONDARY'}
 							text={'Angebot per E-Mail zusenden'}

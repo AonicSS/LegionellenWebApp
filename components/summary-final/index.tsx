@@ -21,7 +21,7 @@ import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
-const SummaryFinal = () => {
+const SummaryFinal = ({contactAgreement}) => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -116,7 +116,7 @@ const SummaryFinal = () => {
 						{anredeQuestion.answers.find(
 							(answer) => answer.name === 'customerNumber'
 						) && (
-							<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer">
+							<div className={contactAgreement ? "tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer" : 'input-kundennum'} >
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>
@@ -191,7 +191,7 @@ const SummaryFinal = () => {
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
-									<div>Ihre Anschrift</div>
+									<div>Rechnungsadresse</div>
 									<div className={'tw-font-bold'}>
 										{
 											anschriftQuestion.answers.find(
@@ -460,10 +460,10 @@ const SummaryFinal = () => {
 					</div>
 				</div>
 			</section>
-			<section>
+			<section className='tw-flex tw-justify-around'>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
-						style={'PRIMARY'}
+						style={consentConsulting && consentTerms ? 'PRIMARY' : 'DISACTIVE'}
 						text={'Jetzt kostenpflichtig bestellen'}
 						onClick={async () => {
 							const body = new FormData();
@@ -480,9 +480,9 @@ const SummaryFinal = () => {
 						}}
 					></Button>
 				</div>
-				<div className="tw-flex tw-justify-center tw-pt-1 tw-pb-28">
+				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-28">
 					<Button
-						style={'SECONDARY'}
+						style={consentConsulting && consentTerms ? 'SECONDARY' : 'DISACTIVE'}
 						text={'Angebot per E-Mail zusenden'}
 						onClick={async () => {
 							const res = await fetch('/api/submit', {
