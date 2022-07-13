@@ -30,7 +30,6 @@ const initialState = {
 	showModal: false,
 	acceptContact: false,
 	acceptMarketing: false,
-	years: 10,
 	postalCode: {code: '', valid: false, area: ''},
 	questions: questions,
 	selectedPricing: {},

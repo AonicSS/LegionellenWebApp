@@ -20,9 +20,7 @@ import {
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
-
 import classnames from 'classnames';
-
 import Info from '../../public/icons/Info.svg';
 import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
@@ -215,7 +213,7 @@ const Summary = ({contactAgreement, setContact}) => {
 										];
 
 									return (
-										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0" key={serviceFeatureName}>
 											<div className="tw-mr-4">
 												{serviceFeature.icon}
 											</div>

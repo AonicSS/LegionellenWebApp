@@ -344,7 +344,7 @@ const SummaryFinal = ({contactAgreement}) => {
 								];
 
 							return (
-								<div className={'tw-bg-white tw-pt-8'}>
+								<div className={'tw-bg-white tw-pt-8'} key={extraServiceName}>
 									<div className="tw-flex tw-flex-row tw-items-center">
 										<div className="tw-flex-grow">
 											<p className={'tw-font-bold'}>
@@ -467,9 +467,15 @@ const SummaryFinal = ({contactAgreement}) => {
 						text={'Jetzt kostenpflichtig bestellen'}
 						onClick={async () => {
 							const body = new FormData();
+
+							const json = JSON.stringify(currentAppData);
+							const blob = new Blob([json], {
+								type: 'application/json'
+							});
+
 							body.append(
 								'appData',
-								JSON.stringify(currentAppData)
+								blob
 							);
 							const response = await fetch('/api/submit', {
 								method: 'POST',

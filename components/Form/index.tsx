@@ -1,9 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {AppReduxStoreProps} from '../../redux/reducers/App';
-import Radio from './Radio';
-import {PostalCodeInput, RoomsInput} from './Input';
-import Six from './Six';
 import {trackStepper} from '../../utils/tracking';
 import Pruefpflicht from "./Steps/Pruefpflicht";
 import Trinkwasseranlage from "./Steps/Trinkwasseranlage";
