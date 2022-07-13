@@ -51,10 +51,10 @@ const Pruefpflicht = () => {
 				return (
 					<div className="tw-w-full tw-flex tw-justify-center tw-items-center">
 						<div className="tw-w-[38px] tw-h-[38px] tw-mr-[27px]">
-						<Check width={38} height={38} />
+							<Check width={38} height={38} />
 						</div>
 						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-lg">
-							<h1 className='tw-text-2xl tw-font-bold tw-text-[#0F172A]'>
+							<h1 className="tw-text-2xl tw-font-bold tw-text-[#0F172A]">
 								Für Ihre Liegenschaft besteht basierend auf
 								Ihren Angaben eine
 								<span className="tw-text-[#E20613]">
@@ -143,12 +143,21 @@ const Pruefpflicht = () => {
 		case 4: {
 			currentAppData.currentQuestion = 'NO_QUESTION';
 			return (
-				<div>
-					Für Ihre Liegenschaft besteht basierend auf Ihren Angaben
-					eine{' '}
-					<span className="tw-text-[#E20613]">&nbsp;Prüfpflicht</span>
-					. Im nächsten Schritt erfassen wir die wichtigsten
-					Informationen für die Beauftragung.
+				<div className="tw-w-full tw-flex tw-justify-center tw-items-center">
+					<div className="tw-w-[38px] tw-h-[38px] tw-mr-[27px]">
+						<Check width={38} height={38} />
+					</div>
+					<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-[34rem]">
+						<h1>
+							Für Ihre Liegenschaft besteht basierend auf Ihren
+							Angaben eine{' '}
+							<span className="tw-text-[#E20613]">
+								&nbsp;Prüfpflicht
+							</span>
+							. Im nächsten Schritt erfassen wir die wichtigsten
+							Informationen für die Beauftragung.
+						</h1>
+					</section>
 				</div>
 			);
 		}
