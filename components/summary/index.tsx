@@ -213,7 +213,7 @@ const Summary = ({contactAgreement, setContact}) => {
 										];
 
 									return (
-										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0" key={serviceFeatureName}>
 											<div className="tw-mr-4">
 												{serviceFeature.icon}
 											</div>
