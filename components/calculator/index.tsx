@@ -20,7 +20,7 @@ const Calculator = () => {
 		<Layout>
 			<Modal/>
 			<Element name="myScrollToElement"></Element>
-			<section className="rwm-calculator__page-section tw-margin-top">
+			<section className="rwm-calculator__page-section tw-margin-top tw-sticky tw-top-0 tw-bg-white tw-z-[100]">
 				<Stepper/>
 			</section>
 			<div className={"tw-mb-12"}>

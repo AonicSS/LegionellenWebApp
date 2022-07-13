@@ -136,9 +136,9 @@ const Summary = ({contactAgreement, setContact}) => {
 		<Layout>
 			<Modal />
 			<Element name="myScrollToElement"></Element>
-			<section className="rwm-calculator__page-section tw-margin-top">
+			<section className="rwm-calculator__page-section tw-margin-top tw-sticky tw-top-0 tw-bg-white tw-z-[100]">
 				<div className="tw-flex tw-flex-col">
-					<div className="rwm-form__headline-mobile lg:tw-mt-[-30px] xl:tw-mt-[-30px]">
+					<div className="rwm-form__headline-mobile lg:tw-mt-[30px] xl:tw-mt-[30px]">
 						<label className="rwm-form__headline tw-text-center">
 							<h1 className="rwm-form__headline">
 								Zusammenfassung zum Angebot
