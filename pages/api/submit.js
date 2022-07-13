@@ -26,6 +26,20 @@ export default async (req, res) => {
 				houseNumber: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'houseNumber').value,
 				postalCode: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'postalCode').value,
 				city: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'city').value,
+			},
+			rechnungsAdresse: {
+				streetName: appData['questions']['Anschrift'].answers.find((x) => x.name === 'streetName').value,
+				houseNumber: appData['questions']['Anschrift'].answers.find((x) => x.name === 'houseNumber').value,
+				postalCode: appData['questions']['Anschrift'].answers.find((x) => x.name === 'postalCode').value,
+				city: appData['questions']['Anschrift'].answers.find((x) => x.name === 'city').value,
+			},
+			kunde: {
+				honorificPrefix: appData['questions']['Anrede'].answers.find((x) => x.name === 'honorificPrefix').value,
+				givenName: appData['questions']['Anrede'].answers.find((x) => x.name === 'givenName').value,
+				familyName: appData['questions']['Anrede'].answers.find((x) => x.name === 'familyName').value,
+				email: appData['questions']['Anrede'].answers.find((x) => x.name === 'email').value,
+				phone: appData['questions']['Anrede'].answers.find((x) => x.name === 'phone').value,
+				customerNumber: appData['questions']['Anrede'].answers.find((x) => x.name === 'customerNumber').value,
 			}
 		};
 

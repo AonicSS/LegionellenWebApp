@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppReduxStoreProps } from '../../redux/reducers/App';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {AppReduxStoreProps} from '../../redux/reducers/App';
+import {useNavigate} from 'react-router-dom';
 import classNames from 'classnames';
-import { DECREASE_APP_STEP, SET_MODAL } from '../../redux/actions/App';
+import {DECREASE_APP_STEP, SET_MODAL} from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -14,7 +14,7 @@ import {
 	getMeasurementValvesInstalled,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
-import { trackSummary } from '../../utils/tracking';
+import {trackSummary} from '../../utils/tracking';
 import Info from '../../public/icons/Info.svg';
 import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
@@ -34,7 +34,7 @@ const SummaryFinal = ({contactAgreement}) => {
 		(state: AppReduxStoreProps) =>
 			state.appData.questions[
 				'Wo befindet sich die zu prüfende Liegenschaft?'
-			]
+				]
 	);
 	const anredeQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anrede']
@@ -69,7 +69,7 @@ const SummaryFinal = ({contactAgreement}) => {
 
 	return (
 		<Layout>
-			<Modal />
+			<Modal/>
 			<Element name="myScrollToElement"></Element>
 			<section>
 				<h1 className="rwm-form__headline tw-text-center">
@@ -116,7 +116,8 @@ const SummaryFinal = ({contactAgreement}) => {
 						{anredeQuestion.answers.find(
 							(answer) => answer.name === 'customerNumber'
 						) && (
-							<div className={contactAgreement ? "tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer" : 'input-kundennum'} >
+							<div
+								className={contactAgreement ? "tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer" : 'input-kundennum'}>
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>
@@ -133,11 +134,11 @@ const SummaryFinal = ({contactAgreement}) => {
 								</div>
 								<div
 									onClick={() => {
-										dispatch({ type: DECREASE_APP_STEP });
+										dispatch({type: DECREASE_APP_STEP});
 									}}
 									className="tw-w-3 tw-cursor-pointer"
 								>
-									<PenIcon />
+									<PenIcon/>
 								</div>
 							</div>
 						)}
@@ -148,7 +149,7 @@ const SummaryFinal = ({contactAgreement}) => {
 									<div>Ihre Kontaktdaten</div>
 									<div className={'tw-font-bold'}>
 										Frau
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -161,14 +162,14 @@ const SummaryFinal = ({contactAgreement}) => {
 													answer.name === 'familyName'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
 													answer.name === 'phone'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -180,11 +181,11 @@ const SummaryFinal = ({contactAgreement}) => {
 							</div>
 							<div
 								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
+									dispatch({type: DECREASE_APP_STEP});
 								}}
 								className="tw-w-3 tw-cursor-pointer"
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 
@@ -206,7 +207,7 @@ const SummaryFinal = ({contactAgreement}) => {
 													'houseNumber'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -225,11 +226,11 @@ const SummaryFinal = ({contactAgreement}) => {
 							</div>
 							<div
 								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
+									dispatch({type: DECREASE_APP_STEP});
 								}}
 								className="tw-w-3 tw-cursor-pointer"
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 
@@ -253,7 +254,7 @@ const SummaryFinal = ({contactAgreement}) => {
 													'houseNumber'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											liegenschaftQuestion.answers.find(
 												(answer) =>
@@ -272,11 +273,11 @@ const SummaryFinal = ({contactAgreement}) => {
 							</div>
 							<div
 								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
+									dispatch({type: DECREASE_APP_STEP});
 								}}
 								className="tw-cursor-pointer"
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 					</div>
@@ -301,7 +302,7 @@ const SummaryFinal = ({contactAgreement}) => {
 								let serviceFeature =
 									appData.selectedPricing.serviceFeatures[
 										serviceFeatureName
-									];
+										];
 
 								return (
 									<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
@@ -315,7 +316,7 @@ const SummaryFinal = ({contactAgreement}) => {
 											<p>{serviceFeature.subtitle}</p>
 										</div>
 										<div className="">
-											<CheckCircledIcon />
+											<CheckCircledIcon/>
 										</div>
 									</div>
 								);
@@ -341,7 +342,7 @@ const SummaryFinal = ({contactAgreement}) => {
 							let extraService =
 								appData.selectedPricing.extraServices[
 									extraServiceName
-								];
+									];
 
 							return (
 								<div className={'tw-bg-white tw-pt-8'} key={extraServiceName}>
@@ -352,7 +353,8 @@ const SummaryFinal = ({contactAgreement}) => {
 											</p>
 											<p>{extraService.subtitle}</p>
 										</div>
-										<div className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+										<div
+											className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
 											+{' '}
 											{extraService
 												.price(appData)
@@ -407,7 +409,8 @@ const SummaryFinal = ({contactAgreement}) => {
 				</div>
 			</section>
 			<section>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -425,7 +428,8 @@ const SummaryFinal = ({contactAgreement}) => {
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -441,7 +445,8 @@ const SummaryFinal = ({contactAgreement}) => {
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -467,8 +472,38 @@ const SummaryFinal = ({contactAgreement}) => {
 						text={'Jetzt kostenpflichtig bestellen'}
 						onClick={async () => {
 							const body = new FormData();
+							const {
+								acceptContact,
+								acceptMarketing,
+								maxSteps,
+								maxSubSteps,
+								step,
+								subStep,
+								showModal,
+								...partialAppData
+							} = currentAppData;
 
-							const json = JSON.stringify(currentAppData);
+							const formattedAppData = {
+								...partialAppData,
+								selectedPricing: {
+									...currentAppData.selectedPricing,
+									price: appData.selectedPricing.price(appData),
+									totalExtras: Object.keys(appData.selectedPricing.extraServices)
+										.filter((x) => appData.selectedPricing.extraServices[x].selected)
+										.map((extraServiceName: string) => {
+											let extraService =
+												appData.selectedPricing.extraServices[extraServiceName];
+											return extraService.price(appData);
+										})
+										.reduce((x, y) => x + y, 0.0),
+									total: appData.selectedPricing.price(appData) + totalExtras,
+								}
+							};
+
+							debugger;
+
+
+							const json = JSON.stringify(formattedAppData);
 							const blob = new Blob([json], {
 								type: 'application/json'
 							});
