@@ -360,7 +360,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 							{p.importantRemark && (
 								<div
 									className={
-										'tw-container-pricing-list tw-text-water tw-border-t-[1px] tw-border-dashed tw-border-[#C6C6C6]'
+										'tw-container-pricing-list tw-text-water tw-border-t-[1px] tw-border-dashed tw-border-dark-grey'
 									}
 								>
 									<div className="tw-flex tw-justify-center tw-mb-2 tw-pt-5">
