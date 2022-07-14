@@ -1,6 +1,7 @@
 import formidable from "formidable";
 import fetch, {FormData, File, fileFrom, Blob} from 'node-fetch'
 import {readFile} from 'fs/promises';
+import app from "../../redux/reducers/App";
 
 const API_URL = "https://prod-174.westeurope.logic.azure.com/workflows/6e30f52072f64fd48e06da4ffc824ba4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6y4UGb_dGJ0UdvccVjC7MO-Gy4d9rFQUQ9Dq4dOirY0";
 
@@ -10,6 +11,46 @@ export const config = {
 	},
 };
 
+function checkProbeEntnahmeVentile(appData) {
+	switch (appData['questions']['Sind Probeentnahmeventile verbaut?'].answers.find((x) => x.name === 'choice').value) {
+		case 'yes':
+			return true;
+		case 'no':
+			return false;
+		case 'unsure':
+			switch (appData['questions']['Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'].answers.find((x) => x.name === 'choice').value) {
+				case 'yes':
+					return true;
+				case 'no':
+					return false;
+				default:
+					return false;
+			}
+		default:
+			return false;
+	}
+}
+
+function checkStrangAmount(appData) {
+	switch (appData['questions']['Kennen Sie das Strangschema Ihrer Trinkwasseranlage?'].answers.find((x) => x.name === 'choice').value) {
+		case 'yes':
+			return appData.strangAmount;
+		case 'no':
+			return undefined;
+		case 'unsure':
+			switch (appData['questions']['Konnten Sie das Strangschema ermitteln?'].answers.find((x) => x.name === 'choice').value) {
+				case 'yes':
+					return appData.strangAmount;
+				case 'no':
+					return undefined;
+				default:
+					return undefined;
+			}
+		default:
+			return undefined;
+	}
+}
+
 export default async (req, res) => {
 	console.log('new request');
 	const form = formidable({});
@@ -17,10 +58,11 @@ export default async (req, res) => {
 	form.parse(req, async (err, fields, files) => {
 		const data = await readFile(files.appData.filepath, "utf8");
 		const appData = JSON.parse(data);
-		debugger;
-		console.log(appData);
+
 
 		let parsedValue = {
+			strangAmount: appData.strangAmount,
+			probeEntnahmeVentileVorhanden: checkProbeEntnahmeVentile(appData),
 			liegenschaftAdresse: {
 				streetName: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'streetName').value,
 				houseNumber: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'houseNumber').value,
@@ -40,8 +82,19 @@ export default async (req, res) => {
 				email: appData['questions']['Anrede'].answers.find((x) => x.name === 'email').value,
 				phone: appData['questions']['Anrede'].answers.find((x) => x.name === 'phone').value,
 				customerNumber: appData['questions']['Anrede'].answers.find((x) => x.name === 'customerNumber').value,
+			},
+			selectedProduct: {
+				name: appData.selectedPricing.name,
+				basePrice: appData.selectedPricing.price,
+				extraServices: Object.keys(appData.selectedPricing.extraServices).filter((extraServiceName) => {
+					return appData.selectedPricing.extraServices[extraServiceName].selected;
+				}),
+				totalExtras: appData.selectedPricing.totalExtras,
+				total: appData.selectedPricing.total,
 			}
 		};
+
+		debugger;
 
 
 		const json = JSON.stringify(parsedValue);

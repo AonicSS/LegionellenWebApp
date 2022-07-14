@@ -15,8 +15,8 @@ import SummaryFinal from '../../../summary-final';
 import HouseAltIcon from '../../../../public/icons/house-alt.svg';
 import PenEditIcon from '../../../../public/icons/pen-edit.svg';
 import {
+	checkStrangAmount,
 	getMeasurementValvesInstalled,
-	getStrangAmountKnown,
 } from '../../../../utils/helpers';
 import Translate from '../../../../utils/translate';
 
@@ -223,7 +223,7 @@ const Angebot = () => {
 			]!.answers.find((answer) => answer.name === 'city')!.value;
 			let measurementValvesInstalled =
 				getMeasurementValvesInstalled(currentAppData);
-			let strangAmountKnown = getStrangAmountKnown(currentAppData);
+			let strangAmountKnown = checkStrangAmount(currentAppData);
 
 			return (
 				<section className="tw-margin-top">

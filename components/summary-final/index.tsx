@@ -11,7 +11,7 @@ import {
 	getStrangNumber,
 	getBasePrice,
 	getServicePrice,
-	getMeasurementValvesInstalled,
+	getMeasurementValvesInstalled, checkStrangAmount,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import {trackSummary} from '../../utils/tracking';
@@ -20,6 +20,7 @@ import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
+
 
 const SummaryFinal = ({contactAgreement}) => {
 	const dispatch = useDispatch();
@@ -88,9 +89,9 @@ const SummaryFinal = ({contactAgreement}) => {
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Anzahl der Stränge</div>
 									<div className={'tw-font-bold'}>
-										{currentAppData.strangAmount > 1
+										{(checkStrangAmount(currentAppData) !== undefined) ? currentAppData.strangAmount > 1
 											? `${currentAppData.strangAmount} Stränge`
-											: '1 Strang'}
+											: '1 Strang' : 'unbekannt'}
 									</div>
 								</div>
 							</div>
@@ -480,11 +481,13 @@ const SummaryFinal = ({contactAgreement}) => {
 								step,
 								subStep,
 								showModal,
+								currentQuestion,
 								...partialAppData
 							} = currentAppData;
 
 							const formattedAppData = {
 								...partialAppData,
+								strangAmount: checkStrangAmount(appData),
 								selectedPricing: {
 									...currentAppData.selectedPricing,
 									price: appData.selectedPricing.price(appData),
@@ -499,9 +502,6 @@ const SummaryFinal = ({contactAgreement}) => {
 									total: appData.selectedPricing.price(appData) + totalExtras,
 								}
 							};
-
-							debugger;
-
 
 							const json = JSON.stringify(formattedAppData);
 							const blob = new Blob([json], {
