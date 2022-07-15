@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import {
 	DECREASE_APP_STEP,
-	SET_ANSWER,
+	SET_ANSWER, SET_APP_STEP,
 	SET_MODAL,
 	SET_PRICING,
 } from '../../redux/actions/App';
@@ -644,7 +644,8 @@ const Summary = ({contactAgreement, setContact}) => {
 							<span
 								onClick={() => {
 									dispatch({
-										type: DECREASE_APP_STEP,
+										type: SET_APP_STEP,
+										payload: { step: 3, subStep: 0 },
 									});
 								}}
 								className="tw-cursor-pointer"
