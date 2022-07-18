@@ -335,61 +335,15 @@ const Angebot = () => {
 						)}
 					</div>
 					<Pricing surveyRequired={!(strangAmountKnown && measurementValvesInstalled)} />
-					<section
-						className={'tw-bg-light-grey tw-p-10 tw-mb-12 tw-mt-12'}
-					>
-						<h1>Wie geht es nach der Begehung weiter?</h1>
-						<p>Erklärtext folgt.. Wir ermittelt gemeinsam...</p>
-						<div
-							className={
-								'tw-flex tw-justify-center tw-text-sharepoint-grey tw-mt-12'
-							}
+					{
+						!(strangAmountKnown && measurementValvesInstalled) &&
+						<section
+							className={'tw-bg-light-grey tw-p-10 tw-mb-12 tw-mt-12 tw-w-2/3 tw-mx-auto'}
 						>
-							<div
-								className={
-									'tw-border-b tw-border-sharepoint-grey tw-pb-4 tw-mb-4'
-								}
-							>
-								<h4>
-									So sieht eine mögliche Preisindikation der
-									Legionellenprüfung aus
-								</h4>
-							</div>
-						</div>
-						<div
-							className={
-								'tw-flex tw-justify-center tw-text-sharepoint-grey'
-							}
-						>
-							<div
-								className={
-									'tw-flex tw-flex-row tw-items-center'
-								}
-							>
-								<div className={'tw-px-2'}>
-									<HouseAltIcon />
-								</div>
-								<div className={'tw-px-2'}>
-									Mehrfamilienhaus mit{' '}
-									{currentAppData.strangAmount > 1
-										? `${currentAppData.strangAmount} Strängen`
-										: 'einem Strang'}
-								</div>
-								<div className={'tw-px-2'}>+</div>
-								<div className={'tw-px-2'}>
-									2 eingebaute Probeentnahmeventile
-								</div>
-								<div className={'tw-px-2'}>=</div>
-								<div
-									className={
-										'tw-px-2 tw-font-bold tw-font-size tw-font-size-price-small'
-									}
-								>
-									100 €
-								</div>
-							</div>
-						</div>
-					</section>
+							<h1>Wie geht es nach der Begehung weiter?</h1>
+							<p>Nach der Ermittlung des Probennahme-Umfangs erstellen wir Ihr persönliches Angebot für eine Legionellenprüfung, die Sie im nächsten Schritt beauftragen können. </p>
+						</section>
+					}
 				</section>
 			);
 		}
