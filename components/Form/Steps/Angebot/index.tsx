@@ -223,7 +223,7 @@ const Angebot = () => {
 			]!.answers.find((answer) => answer.name === 'city')!.value;
 			let measurementValvesInstalled =
 				getMeasurementValvesInstalled(currentAppData);
-			let strangAmountKnown = checkStrangAmount(currentAppData);
+			let strangAmountKnown = !!checkStrangAmount(currentAppData);
 
 			return (
 				<section className="tw-margin-top">
@@ -334,7 +334,7 @@ const Angebot = () => {
 							</div>
 						)}
 					</div>
-					<Pricing surveyRequired={!strangAmountKnown} />
+					<Pricing surveyRequired={!(strangAmountKnown && measurementValvesInstalled)} />
 					<section
 						className={'tw-bg-light-grey tw-p-10 tw-mb-12 tw-mt-12'}
 					>

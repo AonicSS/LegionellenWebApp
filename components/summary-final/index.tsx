@@ -99,7 +99,7 @@ const SummaryFinal = ({contactAgreement}) => {
 											currentAppData
 										)
 											? 'vorhanden'
-											: 'nicht vorhandenen'}
+											: 'nicht vorhanden'}
 									</div>
 								</div>
 							</div>
