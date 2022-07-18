@@ -152,7 +152,7 @@ const Trinkwasseranlage = () => {
 						<div className={'tw-p-6 tw-bg-lightest-grey'}>
 							Falls noch nicht vorhanden, müssen die
 							Probeentnahmeventile von einer Fachkraft angebracht
-							werden. Erfahren Sie hier mehr
+							werden.
 						</div>
 					)}
 					{currentAppData.questions[
@@ -234,8 +234,7 @@ const Trinkwasseranlage = () => {
 									>
 										Falls noch nicht vorhanden, müssen die
 										Probeentnahmeventile von einer Fachkraft
-										angebracht werden. Erfahren Sie hier
-										mehr
+										angebracht werden.
 									</div>
 								</div>
 							)}
