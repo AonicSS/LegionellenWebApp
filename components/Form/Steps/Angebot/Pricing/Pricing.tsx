@@ -19,7 +19,7 @@ import Techem from '../../../../../public/icons/Techem.svg';
 const pricingOptions = {
 	noSurveyRequired: [
 		{
-			name: 'Legionellenprüfung ohne Quality Check',
+			name: 'Legionellenprüfung\nohne Quality Check',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
 				return 49.0 + appData.strangAmount * 61.0;
@@ -60,7 +60,7 @@ const pricingOptions = {
 				'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.',
 		},
 		{
-			name: 'Legionellenprüfung + Quality Check Online',
+			name: 'Legionellenprüfung\n+ Quality Check Online',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 99.0 + 49.0 + appData.strangAmount * 61.0;
@@ -100,7 +100,7 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Legionellenprüfung + Quality Check Klassisch',
+			name: 'Legionellenprüfung\n + Quality Check Klassisch',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 199.0 + 49.0 + appData.strangAmount * 61.0;
@@ -224,7 +224,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 						<div
 							key={p.name}
 							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
+								'tw-p-5 tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
 								`${p.position}`
 							)}
 						>
@@ -233,7 +233,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 									<Techem/>
 								</div>
 							)}
-							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
+							<div className="tw-container-pricing-headline tw-font-size-pricing-headline tw-whitespace-pre-line">
 								{p.name}
 							</div>
 							{Object.entries(p.serviceFeatures).map(
