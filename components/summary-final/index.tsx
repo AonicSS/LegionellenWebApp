@@ -407,6 +407,24 @@ const SummaryFinal = ({contactAgreement}) => {
 					<div className="round">
 						<input
 							type="checkbox"
+							id="consent-terms"
+							checked={consentTerms}
+							onChange={() => setConsentTerms(!consentTerms)}
+						/>
+						<label htmlFor="consent-terms"></label>
+					</div>
+					<div className="rwm-form__input-container-large">
+						<p className="tw-font-size-label tw-pl-6">
+							Ich habe die Allgemeinen Geschäftsbedingungen [Link zu PDF] sowie die Besonderen Geschäftsbedingungen [Link zu PDF] gelesen und akzeptiere diese.*
+							* Pflichtfeld
+						</p>
+					</div>
+				</div>
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+					<div className="round">
+						<input
+							type="checkbox"
 							id="consent-consulting"
 							checked={consentConsulting}
 							onChange={() =>
@@ -417,24 +435,7 @@ const SummaryFinal = ({contactAgreement}) => {
 					</div>
 					<div className="rwm-form__input-container-large">
 						<p className="tw-font-size-label tw-pl-6">
-							Consent Sanierungsberatung - wichtig (Text folgt)
-						</p>
-					</div>
-				</div>
-				<div
-					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
-					<div className="round">
-						<input
-							type="checkbox"
-							id="consent-terms"
-							checked={consentTerms}
-							onChange={() => setConsentTerms(!consentTerms)}
-						/>
-						<label htmlFor="consent-terms"></label>
-					</div>
-					<div className="rwm-form__input-container-large">
-						<p className="tw-font-size-label tw-pl-6">
-							Ich habe die AGB gelesen und akzeptiert*
+							Mit dem Absenden dieses Formulars willige ich darin ein, dass die Techem Energy Services GmbH, sowie eventuell deren Tochtergesellschaften bzw. die mit ihr verbundenen Gesellschaften, die von mir oben eingetragenen Daten zum Zweck der Bearbeitung dieser Anfrage und ggf. für eine erforderliche Kontaktaufnahme verarbeitet. Ich bestätige weiter, dass ich zur Überlassung vorgenannter Kontaktdaten berechtigt bin. Diese Einwilligung erfolgt freiwillig und ist mit Wirkung für die Zukunft jederzeit widerrufbar. Einzelheiten zum Datenschutz bei der Techem Energy Services GmbH entnehmen Sie bitte dem Datenschutzhinweis.
 						</p>
 					</div>
 				</div>
@@ -453,7 +454,7 @@ const SummaryFinal = ({contactAgreement}) => {
 					</div>
 					<div className="rwm-form__input-container-large">
 						<p className="tw-font-size-label tw-pl-6">
-							Consent Marketing (text folgt)
+							Mit dem Absenden dieses Formulars willige ich ein, dass die Techem Energy Services GmbH, sowie deren Tochtergesellschaften und die mit ihr verbundenen Gesellschaften, die von mir oben eingetragenen Daten zum Zweck der Bearbeitung dieser Anfrage, der werblichen Ansprache per E-Mail und der Auswertung zu Marketingzwecken verarbeitet werden. Ich bestätige weiter, dass ich zur Überlassung vorgenannter Kontaktdaten berechtigt bin. Diese Einwilligung erfolgt freiwillig und ist mit Wirkung für die Zukunft jederzeit widerrufbar. Einzelheiten zum Datenschutz bei der Techem Energy Services GmbH entnehmen Sie bitte den Datenschutzbestimmungen.
 						</p>
 					</div>
 				</div>
