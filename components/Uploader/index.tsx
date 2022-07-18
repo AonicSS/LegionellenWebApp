@@ -1,18 +1,10 @@
-import React, {useEffect} from 'react';
-import {useIntl} from 'react-intl';
-import * as Scroll from 'react-scroll';
-import Translate from '../../utils/translate';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {SET_ANSWER, SET_APP_STEP, SET_CURRENT_QUESTION, SET_UPLOAD} from '../../redux/actions/App';
-import Check from '../../public/icons/check.svg';
-import Decline from '../../public/icons/times.svg';
+import {SET_UPLOAD} from '../../redux/actions/App';
 import XCircleInvertedIcon from "../../public/icons/x-circled-inverted.svg";
 import ImageUploading, {ImageListType} from "@gfnork/react-images-uploading";
-import classnames from "classnames";
 import filesize from "filesize";
-
 import {AppReduxStoreProps} from '../../redux/reducers/App';
-import {BaseComponentProps} from "../../shared/interfaces/components";
 
 const Uploader = ({
 					  uploadId,

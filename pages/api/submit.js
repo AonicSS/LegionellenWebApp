@@ -1,5 +1,5 @@
 import formidable from "formidable";
-import fetch, {FormData, File, fileFrom, Blob} from 'node-fetch'
+import fetch, {FormData, File, fileFrom, Blob, blobFromSync, fileFromSync} from 'node-fetch'
 import {readFile} from 'fs/promises';
 import app from "../../redux/reducers/App";
 
@@ -94,19 +94,24 @@ export default async (req, res) => {
 			}
 		};
 
-		debugger;
-
-
 		const json = JSON.stringify(parsedValue);
 		const blob = new Blob([json], {
 			type: 'application/json'
 		});
 
-		const formData = new FormData()
-		const binary = new Uint8Array([97, 98, 99])
-		const abc = new File([binary], 'abc.txt', {type: 'text/plain'})
-		formData.set('message', blob)
-		formData.set('file-upload', abc, 'new name.txt')
+
+		const formData = new FormData();
+		formData.set('message', blob);
+
+		for (let fileName of Object.keys(files)) {
+			if (fileName === 'appData') {
+				continue;
+			}
+			const file = files[fileName];
+			const blob = fileFromSync(file['filepath'], file['mimetype'])
+			formData.append(fileName, blob);
+		}
+
 		const response = await fetch(API_URL, {method: 'POST', body: formData});
 		console.log(response.status);
 

@@ -1,24 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppReduxStoreProps} from '../../redux/reducers/App';
-import {useNavigate} from 'react-router-dom';
-import classNames from 'classnames';
 import {DECREASE_APP_STEP, SET_MODAL} from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import {
-	getStrangNumber,
-	getBasePrice,
-	getServicePrice,
 	getMeasurementValvesInstalled, checkStrangAmount,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import {trackSummary} from '../../utils/tracking';
-import Info from '../../public/icons/Info.svg';
-import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
-import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
 
@@ -482,6 +474,7 @@ const SummaryFinal = ({contactAgreement}) => {
 								subStep,
 								showModal,
 								currentQuestion,
+								uploads,
 								...partialAppData
 							} = currentAppData;
 
@@ -512,6 +505,14 @@ const SummaryFinal = ({contactAgreement}) => {
 								'appData',
 								blob
 							);
+
+							for (const key of Object.keys(currentAppData.uploads)) {
+								for (let [index, upload] of currentAppData.uploads[key].entries()) {
+									let uploadResponse = await fetch(upload['data_url']);
+									body.append(`${key}_${index}_${upload['file'].name}`, await uploadResponse.blob());
+								}
+							}
+
 							const response = await fetch('/api/submit', {
 								method: 'POST',
 								body,
