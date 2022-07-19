@@ -1,9 +1,20 @@
 import formidable from "formidable";
 import fetch, {FormData, File, fileFrom, Blob, blobFromSync, fileFromSync} from 'node-fetch'
 import {readFile} from 'fs/promises';
-import app from "../../redux/reducers/App";
 
 const API_URL = "https://prod-174.westeurope.logic.azure.com/workflows/6e30f52072f64fd48e06da4ffc824ba4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6y4UGb_dGJ0UdvccVjC7MO-Gy4d9rFQUQ9Dq4dOirY0";
+
+const nodemailer = require("nodemailer");
+
+let transporter = nodemailer.createTransport({
+	host: "smtp.office365.com",
+	port: 587,
+	secure: false, // true for 465, false for other ports
+	auth: {
+		user: process.env['SMTP_USER'],
+		pass: process.env['SMTP_PASSWORD'],
+	},
+});
 
 export const config = {
 	api: {
@@ -114,6 +125,29 @@ export default async (req, res) => {
 
 		const response = await fetch(API_URL, {method: 'POST', body: formData});
 		console.log(response.status);
+
+		// send mail with defined transport object
+		let info = await transporter.sendMail({
+			from: `"Ihre Anfrage" <${process.env['SMTP_USER']}>`, // sender address
+			to: "qiong.wu@gfnork.de", // list of receivers
+			subject: "Wir haben Ihren Auftrag erhalten", // Subject line
+			text: "Sehr geehrter Herr Mustermann/Sehr geehrte Frau Mustermann,\n" +
+				"vielen Dank für Ihr Vertrauen. Hiermit bestätigen wir den Eingang Ihres Auftrags.\n" +
+				"Unser Legionellen-Team wird sich in Kürze mit Ihnen in Verbindung setzen, um alle weiteren Details zu\n" +
+				"klären.\n" +
+				"\n" +
+				"Freundliche Grüße\n" +
+				"Techem Energy Services GmbH",
+			attachments: Object.keys(files).filter((fileName) => fileName !== 'appData').map((fileName) => {
+				const file = files[fileName];
+				return {   // filename and content type is derived from path
+					filename: fileName,
+					path: file['filepath']
+				};
+			}),
+		});
+
+		console.log("Message sent: %s", info.messageId);
 
 		if (err) {
 			res.writeHead(err.httpCode || 400, {'Content-Type': 'text/plain'});
