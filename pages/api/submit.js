@@ -171,7 +171,7 @@ export default async (req, res) => {
 				<p>
 					Leistung: {parsedValue.selectedProduct.name}<br/>
 					Anzahl der verbauten Stränge: {parsedValue.strangAmount}<br/>
-					Probeentnahmeventile verbaut? {parsedValue.probeEntnahmeVentileVorhanden}:<br/>
+					Probeentnahmeventile verbaut?: {!!parsedValue.probeEntnahmeVentileVorhanden ? 'Ja' : 'Nein'}<br/>
 					Straße: {parsedValue.liegenschaftAdresse.streetName}<br/>
 					Hausnummer: {parsedValue.liegenschaftAdresse.houseNumber}<br/>
 					Postleitzahl des Gebäudes: {parsedValue.liegenschaftAdresse.postalCode}<br/>
