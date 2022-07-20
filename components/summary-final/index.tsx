@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { DECREASE_APP_STEP, SET_MODAL } from '../../redux/actions/App';
+import {
+	DECREASE_APP_STEP,
+	SET_MODAL,
+	SET_ANSWER,
+} from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -21,11 +25,15 @@ import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
-const SummaryFinal = ({contactAgreement}) => {
+const SummaryFinal = ({ contactAgreement }) => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
 	const [consentMarketing, setConsentMarketing] = useState(false);
+	const [show, setShow] = useState(true);
+	const [showed, setShowed] = useState(true);
+	const [open, setOpen] = useState(true);
+	const [opened, setOpened] = useState(true);
 
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
@@ -41,6 +49,13 @@ const SummaryFinal = ({contactAgreement}) => {
 	);
 	const anschriftQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anschrift']
+	);
+
+	const currentQuestion = useSelector(
+		(state: AppReduxStoreProps) =>
+			state.appData.questions[
+				'Wo befindet sich die zu prüfende Liegenschaft?'
+			]
 	);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
@@ -66,6 +81,61 @@ const SummaryFinal = ({contactAgreement}) => {
 		})
 		.reduce((x, y) => x + y, 0.0);
 	const total = appData.selectedPricing.price(appData) + totalExtras;
+
+	const handleChange = (
+		value: string,
+		answerName: string,
+		questionText: string
+	) => {
+		dispatch({
+			type: SET_ANSWER,
+			payload: {
+				questionName: questionText,
+				answerName: answerName,
+				value: value,
+				btnActive: true,
+			},
+		});
+	};
+
+	const [name, setName] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'givenName')!
+			.value
+	);
+	const [familyName, setFamilyName] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'familyName')!
+			.value
+	);
+	const [email, setEmail] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'email')!.value
+	);
+	const [phone, setPhone] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'phone')!.value
+	);
+	const [streetName, setStreetName] = useState(
+		anschriftQuestion.answers.find(
+			(answer) => answer.name === 'streetName'
+		)!.value
+	);
+	const [houseNumber, setHouseNumber] = useState(
+		anschriftQuestion.answers.find(
+			(answer) => answer.name === 'houseNumber'
+		)!.value
+	);
+	const [postalCode, setPostalCode] = useState(
+		anschriftQuestion.answers.find(
+			(answer) => answer.name === 'postalCode'
+		)!.value
+	);
+	const [city, setCity] = useState(
+		anschriftQuestion.answers.find((answer) => answer.name === 'city')!
+			.value
+	);
+	const [customerNumber, setCustomerNumber] = useState(
+		anredeQuestion.answers.find(
+			(answer) => answer.name === 'customerNumber'
+		)!.value
+	);
 
 	return (
 		<Layout>
@@ -116,11 +186,23 @@ const SummaryFinal = ({contactAgreement}) => {
 						{anredeQuestion.answers.find(
 							(answer) => answer.name === 'customerNumber'
 						) && (
-							<div className={contactAgreement ? "tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer" : 'input-kundennum'} >
+							<div
+								className={
+									contactAgreement
+										? 'tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer'
+										: 'input-kundennum'
+								}
+							>
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>
-										<div className={'tw-font-bold'}>
+										<div
+											className={
+												showed
+													? 'tw-font-bold'
+													: 'tw-font-bold is-show'
+											}
+										>
 											{
 												anredeQuestion.answers.find(
 													(answer) =>
@@ -129,13 +211,64 @@ const SummaryFinal = ({contactAgreement}) => {
 												)!.value
 											}
 										</div>
+										<div
+											className={
+												showed
+													? 'edit-form is-show'
+													: 'edit-form tw-w-full'
+											}
+										>
+											<div className="tw-mt-4 tw-w-full">
+												<div className="rwm-form__input-container">
+													<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+														Kundennummer*
+													</label>
+													<input
+														type="text"
+														name="customerNumber"
+														className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+														value={customerNumber}
+														onChange={(e) =>
+															setCustomerNumber(
+																e.target.value
+															)
+														}
+													/>
+												</div>
+											</div>
+											<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+												<button
+													onClick={() => {
+														handleChange(
+															customerNumber,
+															'customerNumber',
+															'Anrede'
+														);
+														setShowed(true);
+													}}
+													className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+												>
+													Speichem
+												</button>
+												<button
+													onClick={() =>
+														setShowed(true)
+													}
+													className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+												>
+													Verwerfem
+												</button>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div
-									onClick={() => {
-										dispatch({ type: DECREASE_APP_STEP });
-									}}
-									className="tw-w-3 tw-cursor-pointer"
+									onClick={() => setShowed(!showed)}
+									className={
+										!showed
+											? 'is-hide'
+											: 'tw-w-3 tw-cursor-pointer'
+									}
 								>
 									<PenIcon />
 								</div>
@@ -146,7 +279,13 @@ const SummaryFinal = ({contactAgreement}) => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ihre Kontaktdaten</div>
-									<div className={'tw-font-bold'}>
+									<div
+										className={
+											show
+												? 'tw-font-bold'
+												: 'tw-font-bold is-show'
+										}
+									>
 										Frau
 										<br />
 										{
@@ -176,13 +315,122 @@ const SummaryFinal = ({contactAgreement}) => {
 											)!.value
 										}
 									</div>
+									<div
+										className={
+											show
+												? 'edit-form is-show'
+												: 'edit-form tw-w-full'
+										}
+									>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Vorname*
+												</label>
+												<input
+													type="text"
+													name="givenName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={name}
+													onChange={(e) =>
+														setName(e.target.value)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Nachname*
+												</label>
+												<input
+													type="text"
+													name="familyName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={familyName}
+													onChange={(e) =>
+														setFamilyName(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+										</div>
+
+										<div className="tw-mt-2 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													E-Mail Adresse*
+												</label>
+												<input
+													type="email"
+													name="email"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={email}
+													onChange={(e) =>
+														setEmail(e.target.value)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Telefonnummer*
+												</label>
+												<input
+													type="phone"
+													name="phone"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={phone}
+													onChange={(e) =>
+														setPhone(e.target.value)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+											<button
+												onClick={() => {
+													handleChange(
+														name,
+														'givenName',
+														'Anrede'
+													);
+													handleChange(
+														familyName,
+														'familyName',
+														'Anrede'
+													);
+													handleChange(
+														email,
+														'email',
+														'Anrede'
+													);
+													handleChange(
+														phone,
+														'phone',
+														'Anrede'
+													);
+													setShow(true);
+												}}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+											>
+												Speichem
+											</button>
+											<button
+												onClick={() => setShow(true)}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+											>
+												Verwerfem
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
-								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
-								}}
-								className="tw-w-3 tw-cursor-pointer"
+								onClick={() => setShow(!show)}
+								className={
+									!show
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
 							>
 								<PenIcon />
 							</div>
@@ -192,7 +440,13 @@ const SummaryFinal = ({contactAgreement}) => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Rechnungsadresse</div>
-									<div className={'tw-font-bold'}>
+									<div
+										className={
+											open
+												? 'tw-font-bold'
+												: 'tw-font-bold is-show'
+										}
+									>
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -221,13 +475,125 @@ const SummaryFinal = ({contactAgreement}) => {
 											)!.value
 										}
 									</div>
+									<div
+										className={
+											open
+												? 'edit-form is-show'
+												: 'edit-form tw-w-full'
+										}
+									>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Straße*
+												</label>
+												<input
+													type="text"
+													name="streetName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={streetName}
+													onChange={(e) =>
+														setStreetName(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Hausnummer*
+												</label>
+												<input
+													type="text"
+													name="houseNumber"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={houseNumber}
+													onChange={(e) =>
+														setHouseNumber(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Postleitzahl*
+												</label>
+												<input
+													type="number"
+													name="postalCode"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={postalCode}
+													onChange={(e) =>
+														setPostalCode(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Wohnort*
+												</label>
+												<input
+													type="text"
+													name="city"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={city}
+													onChange={(e) =>
+														setCity(e.target.value)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+											<button
+												onClick={() => {
+													handleChange(
+														streetName,
+														'streetName',
+														'Anschrift'
+													);
+													handleChange(
+														houseNumber,
+														'houseNumber',
+														'Anschrift'
+													);
+													handleChange(
+														postalCode,
+														'postalCode',
+														'Anschrift'
+													);
+													handleChange(
+														city,
+														'city',
+														'Anschrift'
+													);
+													setOpen(true);
+												}}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+											>
+												Speichem
+											</button>
+											<button
+												onClick={() => setOpen(true)}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+											>
+												Verwerfem
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
-								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
-								}}
-								className="tw-w-3 tw-cursor-pointer"
+								onClick={() => setOpen(!open)}
+								className={
+									!open
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
 							>
 								<PenIcon />
 							</div>
@@ -239,7 +605,13 @@ const SummaryFinal = ({contactAgreement}) => {
 									<div>
 										Anschrift der zu prüfenden Liegenschaft
 									</div>
-									<div className={'tw-font-bold'}>
+									<div
+										className={
+											opened
+												? 'tw-font-bold'
+												: 'tw-font-bold is-show'
+										}
+									>
 										{
 											liegenschaftQuestion.answers.find(
 												(answer) =>
@@ -268,13 +640,125 @@ const SummaryFinal = ({contactAgreement}) => {
 											)!.value
 										}
 									</div>
+									<div
+										className={
+											opened
+												? 'edit-form is-show'
+												: 'edit-form tw-w-full'
+										}
+									>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Straße*
+												</label>
+												<input
+													type="text"
+													name="streetName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px]  'focus:tw-ring-transparent"
+													value={streetName}
+													onChange={(e) =>
+														setStreetName(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Hausnummer*
+												</label>
+												<input
+													type="text"
+													name="houseNumber"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={houseNumber}
+													onChange={(e) =>
+														setHouseNumber(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Postleitzahl*
+												</label>
+												<input
+													type="number"
+													name="postalCode"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={postalCode}
+													onChange={(e) =>
+														setPostalCode(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Wohnort*
+												</label>
+												<input
+													type="text"
+													name="city"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={city}
+													onChange={(e) =>
+														setCity(e.target.value)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+											<button
+												onClick={() => {
+													handleChange(
+														streetName,
+														'streetName',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													handleChange(
+														houseNumber,
+														'houseNumber',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													handleChange(
+														postalCode,
+														'postalCode',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													handleChange(
+														city,
+														'city',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													setOpened(true);
+												}}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+											>
+												Speichem
+											</button>
+											<button
+												onClick={() => setOpened(true)}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+											>
+												Verwerfem
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
-								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
-								}}
-								className="tw-cursor-pointer"
+								onClick={() => setOpened(!opened)}
+								className={
+									!opened
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
 							>
 								<PenIcon />
 							</div>
@@ -460,10 +944,14 @@ const SummaryFinal = ({contactAgreement}) => {
 					</div>
 				</div>
 			</section>
-			<section className='tw-flex tw-justify-around'>
+			<section className="tw-flex tw-justify-around">
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
-						style={consentConsulting && consentTerms ? 'PRIMARY' : 'DISACTIVE'}
+						style={
+							consentConsulting && consentTerms
+								? 'PRIMARY'
+								: 'DISACTIVE'
+						}
 						text={'Jetzt kostenpflichtig bestellen'}
 						onClick={async () => {
 							const body = new FormData();
@@ -482,7 +970,11 @@ const SummaryFinal = ({contactAgreement}) => {
 				</div>
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-28">
 					<Button
-						style={consentConsulting && consentTerms ? 'SECONDARY' : 'DISACTIVE'}
+						style={
+							consentConsulting && consentTerms
+								? 'SECONDARY'
+								: 'DISACTIVE'
+						}
 						text={'Angebot per E-Mail zusenden'}
 						onClick={async () => {
 							const res = await fetch('/api/submit', {

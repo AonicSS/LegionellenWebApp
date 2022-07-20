@@ -627,3 +627,7 @@ div[name="myScrollToElement"] {
 .ques-title {
 	font-size: 22px;
 }
+
+.is-show, .is-hide {
+	display: none;
+ }

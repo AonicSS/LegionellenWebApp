@@ -45,9 +45,7 @@ const demoCoupons = [
 	},
 ];
 
-
-
-const Summary = ({contactAgreement, setContact}) => {
+const Summary = ({ contactAgreement, setContact }) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	// const [contactAgreement, setContact] = useState(false);
 	const [isCouponToggled, setCouponToggled] = useState(false);
@@ -130,7 +128,6 @@ const Summary = ({contactAgreement, setContact}) => {
 
 		setCoupon('');
 	};
-
 
 	return (
 		<Layout>
@@ -727,7 +724,7 @@ const Summary = ({contactAgreement, setContact}) => {
 						</div>
 					</div>
 				</section>
-				<section className='tw-flex tw-justify-around'>
+				<section className="tw-flex tw-justify-around">
 					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 						<Button
 							style={'PRIMARY'}
