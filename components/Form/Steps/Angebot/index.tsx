@@ -397,7 +397,7 @@ const Angebot = () => {
 			return <Summary contactAgreement={contactAgreement} setContact={setContact} />;
 		}
 		case 3: {
-			return <SummaryFinal contactAgreement={contactAgreement} />;
+			return <SummaryFinal contactAgreement={contactAgreement} setContact={setContact} />;
 		}
 	}
 };

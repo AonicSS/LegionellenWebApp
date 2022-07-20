@@ -5,7 +5,7 @@ export const questions = {
 				name: 'choice',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
@@ -15,37 +15,39 @@ export const questions = {
 				name: 'choice',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
-	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?': {
-		answers: [
-			{
-				name: 'choice',
-				type: 'string',
-				required: true,
-				value: undefined
-			},
-		],
-	},
-	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?': {
-		answers: [
-			{
-				name: 'choice',
-				type: 'string',
-				required: true,
-				value: undefined
-			},
-		],
-	},
+	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?':
+		{
+			answers: [
+				{
+					name: 'choice',
+					type: 'string',
+					required: true,
+					value: undefined,
+				},
+			],
+		},
+	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?':
+		{
+			answers: [
+				{
+					name: 'choice',
+					type: 'string',
+					required: true,
+					value: undefined,
+				},
+			],
+		},
 	'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?': {
 		answers: [
 			{
 				name: 'choice',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
@@ -55,7 +57,7 @@ export const questions = {
 				name: 'choice',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
@@ -65,7 +67,7 @@ export const questions = {
 				name: 'choice',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
@@ -75,7 +77,7 @@ export const questions = {
 				name: 'choice',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
@@ -85,94 +87,94 @@ export const questions = {
 				name: 'streetName',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'houseNumber',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'postalCode',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'city',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
-	'Anschrift': {
+	Anschrift: {
 		answers: [
 			{
 				name: 'streetName',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'houseNumber',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'postalCode',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'city',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
 	},
-	'Anrede': {
+	Anrede: {
 		answers: [
 			{
-				name: 'honorificPrefix',
+				name: 'gender',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'givenName',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'familyName',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'email',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'phone',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'customerNumber',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 		],
-	}
+	},
 };

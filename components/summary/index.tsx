@@ -86,6 +86,8 @@ const Summary = ({ contactAgreement, setContact }) => {
 		answerName: string,
 		questionText: string
 	) => {
+		console.log(value, answerName, questionText);
+
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
@@ -359,22 +361,28 @@ const Summary = ({ contactAgreement, setContact }) => {
 													<select
 														id="gender"
 														name="gender"
-														defaultChecked={
-															contactAgreement
-														}
-														onChange={() =>
+														// defaultChecked={
+														// 	contactAgreement
+														// }
+														onChange={(e) => {
+															handleChange(
+																e.target.value,
+																e.target.name,
+																'Anrede'
+															);
+
 															setContact(
 																!contactAgreement
-															)
-														}
+															);
+														}}
 													>
-														<option value="m">
+														<option value="Herr">
 															Herr
 														</option>
-														<option value="f">
+														<option value="Frau">
 															Frau
 														</option>
-														<option value="d">
+														<option value="Divers">
 															Divers
 														</option>
 													</select>

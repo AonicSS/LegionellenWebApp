@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import {
-	DECREASE_APP_STEP,
-	SET_MODAL,
-	SET_ANSWER,
-} from '../../redux/actions/App';
+import { SET_ANSWER } from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -25,7 +21,7 @@ import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
-const SummaryFinal = ({ contactAgreement }) => {
+const SummaryFinal = ({ contactAgreement, setContact }) => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -286,7 +282,12 @@ const SummaryFinal = ({ contactAgreement }) => {
 												: 'tw-font-bold is-show'
 										}
 									>
-										Frau
+										{
+											anredeQuestion.answers.find(
+												(answer) =>
+													answer.name === 'gender'
+											)!.value
+										}{' '}
 										<br />
 										{
 											anredeQuestion.answers.find(
@@ -323,6 +324,34 @@ const SummaryFinal = ({ contactAgreement }) => {
 										}
 									>
 										<div className="tw-mt-4 tw-w-full">
+											<div className="round">
+												<select
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded focus:tw-ring-transparent"
+													id="gender"
+													name="gender"
+													onChange={(e) => {
+														handleChange(
+															e.target.value,
+															e.target.name,
+															'Anrede'
+														);
+
+														setContact(
+															!contactAgreement
+														);
+													}}
+												>
+													<option value="Herr">
+														Herr
+													</option>
+													<option value="Frau">
+														Frau
+													</option>
+													<option value="Divers">
+														Divers
+													</option>
+												</select>
+											</div>
 											<div className="rwm-form__input-container">
 												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
 													Vorname*
@@ -330,7 +359,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="text"
 													name="givenName"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={name}
 													onChange={(e) =>
 														setName(e.target.value)
@@ -344,7 +373,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="text"
 													name="familyName"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={familyName}
 													onChange={(e) =>
 														setFamilyName(
@@ -363,7 +392,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="email"
 													name="email"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={email}
 													onChange={(e) =>
 														setEmail(e.target.value)
@@ -377,7 +406,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="phone"
 													name="phone"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={phone}
 													onChange={(e) =>
 														setPhone(e.target.value)
@@ -467,7 +496,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 													answer.name === 'postalCode'
 											)!.value
 										}
-										,{' '}
+										{' '}
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -490,7 +519,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="text"
 													name="streetName"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={streetName}
 													onChange={(e) =>
 														setStreetName(
@@ -506,7 +535,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="text"
 													name="houseNumber"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={houseNumber}
 													onChange={(e) =>
 														setHouseNumber(
@@ -524,7 +553,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="number"
 													name="postalCode"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={postalCode}
 													onChange={(e) =>
 														setPostalCode(
@@ -540,7 +569,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												<input
 													type="text"
 													name="city"
-													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
 													value={city}
 													onChange={(e) =>
 														setCity(e.target.value)
