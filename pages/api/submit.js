@@ -149,7 +149,6 @@ export default async (req, res) => {
 				"Techem Energy Services GmbH",
 		});
 
-
 		const internalEmailBody = <>
 			<div>
 				<p>Liebes Legionellen-Team,</p>
@@ -170,6 +169,14 @@ export default async (req, res) => {
 				<h3>{parsedValue.selectedProduct.name}</h3>
 				<p>
 					Leistung: {parsedValue.selectedProduct.name}<br/>
+					Zusatzleistungen: <br/>
+
+					{
+						parsedValue.selectedProduct.extraServices &&
+						parsedValue.selectedProduct.extraServices
+							.map((extraService) => <p>{extraService}</p>)
+					}
+
 					Anzahl der verbauten Stränge: {parsedValue.strangAmount}<br/>
 					Probeentnahmeventile verbaut?: {!!parsedValue.probeEntnahmeVentileVorhanden ? 'Ja' : 'Nein'}<br/>
 					Straße: {parsedValue.liegenschaftAdresse.streetName}<br/>
@@ -177,6 +184,10 @@ export default async (req, res) => {
 					Postleitzahl des Gebäudes: {parsedValue.liegenschaftAdresse.postalCode}<br/>
 					Stadt: {parsedValue.liegenschaftAdresse.city}<br/>
 					Preis: {parsedValue.selectedProduct.total}<br/>
+				</p>
+				<p>
+					Beste Grüße
+					Eure Team Digital Communication
 				</p>
 			</div>
 		</>;
