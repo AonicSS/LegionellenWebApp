@@ -182,7 +182,7 @@ export default async (req, res) => {
 					Hausnummer: {parsedValue.liegenschaftAdresse.houseNumber}<br/>
 					Postleitzahl des Gebäudes: {parsedValue.liegenschaftAdresse.postalCode}<br/>
 					Stadt: {parsedValue.liegenschaftAdresse.city}<br/>
-					Preis: {parsedValue.selectedProduct.total}<br/>
+					Preis: {parsedValue.selectedProduct.total} €<br/>
 				</p>
 				<p>
 					Beste Grüße
