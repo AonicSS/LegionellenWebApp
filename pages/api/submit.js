@@ -1,6 +1,7 @@
 import formidable from "formidable";
 import fetch, {FormData, File, fileFrom, Blob, blobFromSync, fileFromSync} from 'node-fetch'
 import {readFile} from 'fs/promises';
+import * as ReactDOMServer from "react-dom/server";
 
 const API_URL = "https://prod-174.westeurope.logic.azure.com/workflows/6e30f52072f64fd48e06da4ffc824ba4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6y4UGb_dGJ0UdvccVjC7MO-Gy4d9rFQUQ9Dq4dOirY0";
 
@@ -126,11 +127,19 @@ export default async (req, res) => {
 		const response = await fetch(API_URL, {method: 'POST', body: formData});
 		console.log(response.status);
 
+		const customerEmailBody = <>
+			<div>
+				test
+			</div>
+		</>;
+
+
 		// send mail with defined transport object
-		let info = await transporter.sendMail({
+		let customerEmail = await transporter.sendMail({
 			from: `"Ihre Anfrage" <${process.env['SMTP_USER']}>`, // sender address
 			to: "qiong.wu@gfnork.de", // list of receivers
 			subject: "Wir haben Ihren Auftrag erhalten", // Subject line
+			html: ReactDOMServer.renderToStaticMarkup(customerEmailBody),
 			text: "Sehr geehrter Herr Mustermann/Sehr geehrte Frau Mustermann,\n" +
 				"vielen Dank für Ihr Vertrauen. Hiermit bestätigen wir den Eingang Ihres Auftrags.\n" +
 				"Unser Legionellen-Team wird sich in Kürze mit Ihnen in Verbindung setzen, um alle weiteren Details zu\n" +
@@ -138,6 +147,47 @@ export default async (req, res) => {
 				"\n" +
 				"Freundliche Grüße\n" +
 				"Techem Energy Services GmbH",
+		});
+
+
+		const internalEmailBody = <>
+			<div>
+				<p>Liebes Legionellen-Team,</p>
+				<p>
+					der nachfolgende Kunde hat über den Legionellen-Rechner ein Angebot für
+					{parsedValue.selectedProduct.name} angefordert. Bitte sendet dem Kunden ein Angebot zu.
+				</p>
+				<h2>Zusammenfassung</h2>
+				<h3>Die Vertragspartner</h3>
+				<h3>Auftraggeber:</h3>
+				<p>
+					{parsedValue.kunde.givenName} {parsedValue.kunde.familyName}<br/>
+					{parsedValue.rechnungsAdresse.streetName} {parsedValue.rechnungsAdresse.houseNumber}<br/>
+					{parsedValue.rechnungsAdresse.postalCode} {parsedValue.rechnungsAdresse.city}<br/>
+					{parsedValue.kunde.email}<br/>
+					{parsedValue.kunde.phone}<br/>
+				</p>
+				<h3>{parsedValue.selectedProduct.name}</h3>
+				<p>
+					Leistung: {parsedValue.selectedProduct.name}<br/>
+					Anzahl der verbauten Stränge: {parsedValue.strangAmount}<br/>
+					Probeentnahmeventile verbaut? {parsedValue.probeEntnahmeVentileVorhanden}:<br/>
+					Straße: {parsedValue.liegenschaftAdresse.streetName}<br/>
+					Hausnummer: {parsedValue.liegenschaftAdresse.houseNumber}<br/>
+					Postleitzahl des Gebäudes: {parsedValue.liegenschaftAdresse.postalCode}<br/>
+					Stadt: {parsedValue.liegenschaftAdresse.city}<br/>
+					Preis: {parsedValue.selectedProduct.total}<br/>
+				</p>
+			</div>
+		</>;
+
+
+		// send mail with defined transport object
+		let internalEmail = await transporter.sendMail({
+			from: `"Ihre Anfrage" <${process.env['SMTP_USER']}>`, // sender address
+			to: "qiong.wu@gfnork.de", // list of receivers
+			subject: `Betreff: Angebot für ${parsedValue.selectedProduct.name} – Legionellen-Rechner`,
+			html: ReactDOMServer.renderToStaticMarkup(internalEmailBody),
 			attachments: Object.keys(files).filter((fileName) => fileName !== 'appData').map((fileName) => {
 				const file = files[fileName];
 				return {   // filename and content type is derived from path
@@ -147,7 +197,7 @@ export default async (req, res) => {
 			}),
 		});
 
-		console.log("Message sent: %s", info.messageId);
+		console.log("Message sent: %s", customerEmail.messageId);
 
 		if (err) {
 			res.writeHead(err.httpCode || 400, {'Content-Type': 'text/plain'});
