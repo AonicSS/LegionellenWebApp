@@ -65,7 +65,7 @@ const Stepper = () => {
 								<div
 									style={{
 										height: '3px',
-										width: '180px',
+										width: `${100 * currentSubStep / maxSubSteps}%`,
 										borderRadius: '9999px',
 										backgroundColor: '#e20913',
 									}}

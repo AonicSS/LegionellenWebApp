@@ -1,7 +1,7 @@
 module.exports = {
 	content: [
-		"./pages/**/*.{js,ts,jsx,tsx}",
-		"./components/**/*.{js,ts,jsx,tsx}",
+		'./pages/**/*.{js,ts,jsx,tsx}',
+		'./components/**/*.{js,ts,jsx,tsx}',
 		'./src/components/**/*.{js,jsx,ts,tsx}',
 		'./src/views/**/*.{js,jsx,ts,tsx}',
 		'./public/**/*.html',
@@ -36,11 +36,11 @@ module.exports = {
 			btnColorDisabled: '#b2b2b1',
 			borderInput: '#c8c8c8',
 			water: '#009BB4',
-			'dark-grey': '#C6C6C6'
+			'dark-grey': '#C6C6C6',
 		},
 		fontFamily: {
-			headline: ['Univers55'],
-			bold: ['Univers65'],
+			headline: ['Univers'],
+			bold: ['UniversBlack'],
 		},
 		screens: {
 			sm: '0px', // mobile
@@ -56,13 +56,13 @@ module.exports = {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'font-size-';
 			const md = theme('screens.md');
 
 			addUtilities({
 				[`.${prefix}headline`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '26px',
 					lineHeight: '44px',
 					letterSpacing: '-0.11px',
@@ -75,7 +75,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}sub-title`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					letterSpacing: '-0.11px',
 					color: '#222222',
@@ -86,7 +86,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}label`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '18px',
 					letterSpacing: '0px',
 					color: '#222222',
@@ -97,7 +97,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}label-small`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '12px',
 					letterSpacing: '0px',
 					color: '#222222',
@@ -109,14 +109,14 @@ module.exports = {
 					},
 				},
 				[`.${prefix}label-best-price`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '12px',
 					letterSpacing: '0px',
 					lineHeight: '27px',
 					color: '#ffffff',
 				},
 				[`.${prefix}info`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '18px',
 					letterSpacing: '0px',
 					lineHeight: '25px',
@@ -129,7 +129,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}success`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '18px',
 					letterSpacing: '0px',
 					color: '#222222',
@@ -141,7 +141,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}input`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '24px',
 					lineHeight: '34px',
 					letterSpacing: '0px',
@@ -149,7 +149,7 @@ module.exports = {
 					borderRadius: '5px',
 				},
 				[`.${prefix}input-error`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '26px',
 					letterSpacing: '-0.1px',
@@ -157,69 +157,69 @@ module.exports = {
 					textAlign: 'center',
 				},
 				[`.${prefix}overlay-headline`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '20px',
 					letterSpacing: '0px',
 					lineHeight: '30px',
 					color: '#222222',
 				},
 				[`.${prefix}overlay-body`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					letterSpacing: '0px',
 					color: '#4c4c4c',
 				},
 				[`.${prefix}overlay-contact-headline`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '34px',
 					lineHeight: '46px',
 					letterSpacing: '-0.15px',
 					color: '#222222',
 				},
 				[`.${prefix}overlay-contact-body`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '12px',
 					lineHeight: '26px',
 					letterSpacing: '0px',
 					color: '#4c4c4c',
 				},
 				[`.${prefix}rooms-name`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '20px',
 					lineHeight: '28px',
 					letterSpacing: '0.2px',
 					color: '#222222',
 				},
 				[`.${prefix}rooms-label`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '12px',
 					letterSpacing: '-0.1px',
 					color: '#4c4c4c',
 				},
 				[`.${prefix}rooms-continue-label`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '26px',
 					letterSpacing: '-0.1px',
 					color: '#e20613',
 				},
 				[`.${prefix}pricing-headline`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '24px',
 					lineHeight: '34px',
 					letterSpacing: '0.2px',
 					color: '#222222',
 				},
 				[`.${prefix}pricing-label`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '28px',
 					letterSpacing: '0',
 					color: '#222222',
 				},
 				[`.${prefix}price-large`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '30px',
 					lineHeight: '28px',
 					letterSpacing: '0',
@@ -227,13 +227,13 @@ module.exports = {
 					marginTop: '10px',
 				},
 				[`.${prefix}price-small`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '20px',
 					lineHeight: '24px',
 					letterSpacing: '0',
 				},
 				[`.${prefix}pricing-sublabel`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '25px',
 					letterSpacing: '-0.1px',
@@ -245,7 +245,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}price-sublabel`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '25px',
 					letterSpacing: '-0.1px',
@@ -257,7 +257,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}pricing-body`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '25px',
 					letterSpacing: '-0.1px',
@@ -269,7 +269,7 @@ module.exports = {
 					},
 				},
 				[`.${prefix}footer-phone`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '26px',
 					letterSpacing: '0.2px',
@@ -279,11 +279,11 @@ module.exports = {
 					paddingBottom: '50px',
 				},
 				[`.${prefix}bold`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 				},
 			});
 		},
-		function ({addUtilities}) {
+		function ({ addUtilities }) {
 			const prefix = 'justify';
 
 			addUtilities({
@@ -301,7 +301,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'container';
 			const lg = theme('screens.lg');
 			const xl = theme('screens.xl');
@@ -424,7 +424,7 @@ module.exports = {
 				// },
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'rectangle';
 			const md = theme('screens.md');
 			const lg = theme('screens.lg');
@@ -459,7 +459,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'input';
 			const md = theme('screens.md');
 
@@ -485,7 +485,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'overlay-size';
 			const lg = theme('screens.lg');
 			const xl = theme('screens.');
@@ -535,7 +535,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities}) {
+		function ({ addUtilities }) {
 			const prefix = 'btn-size';
 
 			addUtilities({
@@ -550,7 +550,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities}) {
+		function ({ addUtilities }) {
 			const prefix = 'btn-border';
 
 			addUtilities({
@@ -562,19 +562,19 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities}) {
+		function ({ addUtilities }) {
 			const prefix = 'btn-font';
 
 			addUtilities({
 				[`.${prefix}`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '26px',
 					letterSpacing: '0.3px',
 					textAlign: 'center',
 				},
 				[`.${prefix}-disabled`]: {
-					fontFamily: 'Univers65',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '26px',
 					letterSpacing: '0.3px',
@@ -582,7 +582,7 @@ module.exports = {
 					textAlign: 'center',
 				},
 				[`.${prefix}-thin`]: {
-					fontFamily: 'Univers55',
+					fontFamily: 'Univers',
 					fontSize: '16px',
 					lineHeight: '26px',
 					letterSpacing: '0.3px',
@@ -590,7 +590,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'margin';
 			const md = theme('screens.md');
 
@@ -603,7 +603,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'padding';
 			const md = theme('screens.md');
 
@@ -616,7 +616,7 @@ module.exports = {
 				},
 			});
 		},
-		function ({addUtilities, theme}) {
+		function ({ addUtilities, theme }) {
 			const prefix = 'icon';
 			const md = theme('screens.md');
 

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
 import Button from '../../../../Button';
-import { useSelector } from 'react-redux';
-import { AppData, AppReduxStoreProps } from '../../../../../redux/reducers/App';
-import { getBasePrice, getServicePrice } from '../../../../../utils/helpers';
+import {useSelector} from 'react-redux';
+import {AppData, AppReduxStoreProps} from '../../../../../redux/reducers/App';
+import {getBasePrice, getServicePrice} from '../../../../../utils/helpers';
 import CheckInIcon from '../../../../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../../../../public/icons/check-circled.svg';
 import CheckQualityIcon from '../../../../../public/icons/check-quality.svg';
@@ -19,14 +19,14 @@ import Techem from '../../../../../public/icons/Techem.svg';
 const pricingOptions = {
 	noSurveyRequired: [
 		{
-			name: 'Legionellenprüfung ohne Quality Check',
+			name: 'Legionellenprüfung\nohne Quality Check',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
 				return 49.0 + appData.strangAmount * 61.0;
 			},
 			serviceFeatures: {
 				'Quality Check': {
-					icon: <CheckQualityIcon />,
+					icon: <CheckQualityIcon/>,
 					active: false,
 					subtitle: 'Wird empfohlen',
 					price: (appData: AppData) => {
@@ -34,7 +34,7 @@ const pricingOptions = {
 					},
 				},
 				Legionellenprüfung: {
-					icon: <MagnifyingGlassIcon />,
+					icon: <MagnifyingGlassIcon/>,
 					active: true,
 					subtitle: 'Probeentnahme und Laborcheck',
 					price: (appData: AppData) => {
@@ -60,14 +60,14 @@ const pricingOptions = {
 				'Da Sie alle geforderten Angaben zur Trinkwasseranlage ausgefüllt haben, ist eine Begehung in Ihrer Liegenschaft nicht zwingend notwendig. Wir empfehlen dennoch, einen Quality Check mit uns durchzuführen, um Fehler bei der Eingabe und daraus entstehende Mehrkosten bestmöglich zu vermeiden.',
 		},
 		{
-			name: 'Legionellenprüfung + Quality Check Online',
+			name: 'Legionellenprüfung\n+ Quality Check Online',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 99.0 + 49.0 + appData.strangAmount * 61.0;
 			},
 			serviceFeatures: {
 				'Quality Check': {
-					icon: <CheckInIcon />,
+					icon: <CheckInIcon/>,
 					active: true,
 					subtitle: 'Flexibel und Digital',
 					price: (appData: AppData) => {
@@ -75,7 +75,7 @@ const pricingOptions = {
 					},
 				},
 				Legionellenprüfung: {
-					icon: <MagnifyingGlassIcon />,
+					icon: <MagnifyingGlassIcon/>,
 					active: true,
 					subtitle: 'Probeentnahme und Laborcheck',
 					price: (appData: AppData) => {
@@ -100,14 +100,14 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Legionellenprüfung + Quality Check Klassisch',
+			name: 'Legionellenprüfung\n + Quality Check Klassisch',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 199.0 + 49.0 + appData.strangAmount * 61.0;
 			},
 			serviceFeatures: {
 				'Quality Check Klassisch': {
-					icon: <HouseIcon />,
+					icon: <HouseIcon/>,
 					active: true,
 					subtitle: 'Persönlich und vor Ort',
 					price: (appData: AppData) => {
@@ -115,7 +115,7 @@ const pricingOptions = {
 					},
 				},
 				Legionellenprüfung: {
-					icon: <MagnifyingGlassIcon />,
+					icon: <MagnifyingGlassIcon/>,
 					subtitle: 'Probeentnahme und Laborcheck',
 					price: (appData: AppData) => {
 						return 0.0;
@@ -148,7 +148,7 @@ const pricingOptions = {
 			},
 			serviceFeatures: {
 				'Persönlich und vor Ort': {
-					icon: <HouseIcon />,
+					icon: <HouseIcon/>,
 					active: true,
 					subtitle:
 						'Wir ermitteln vor Ort alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung.',
@@ -157,16 +157,7 @@ const pricingOptions = {
 					},
 				},
 			},
-			extraServices: {
-				Infoservice: {
-					selected: true,
-					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
-					price: (appData: AppData) => {
-						return 5.0;
-					},
-				},
-			},
+			extraServices: {},
 			buttonStyle: 'SECONDARY',
 			text: 'Angebot sichern',
 			type: 'standard',
@@ -179,19 +170,10 @@ const pricingOptions = {
 			price: (appData: AppData) => {
 				return 99.0;
 			},
-			extraServices: {
-				Infoservice: {
-					selected: true,
-					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
-					price: (appData: AppData) => {
-						return 5.0;
-					},
-				},
-			},
+			extraServices: {},
 			serviceFeatures: {
 				'Flexibel und Digital': {
-					icon: <CheckInIcon />,
+					icon: <CheckInIcon/>,
 					active: true,
 					subtitle:
 						'In einem Videocall ermitteln wir alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung. Ganz ohne lange Wartezeiten.',
@@ -214,7 +196,7 @@ export interface PricingProps extends React.HTMLProps<HTMLDivElement> {
 	surveyRequired?: boolean;
 }
 
-const Pricing = ({ modal, surveyRequired }: PricingProps) => {
+const Pricing = ({modal, surveyRequired}: PricingProps) => {
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
@@ -242,16 +224,16 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 						<div
 							key={p.name}
 							className={classNames(
-								'tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
+								'tw-p-5 tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
 								`${p.position}`
 							)}
 						>
 							{p.recommended && (
 								<div className="rwm-best-price">
-									<Techem />
+									<Techem/>
 								</div>
 							)}
-							<div className="tw-container-pricing-headline tw-font-size-pricing-headline">
+							<div className="tw-container-pricing-headline tw-font-size-pricing-headline tw-whitespace-pre-line">
 								{p.name}
 							</div>
 							{Object.entries(p.serviceFeatures).map(
@@ -265,7 +247,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 												{
 													(p.serviceFeatures as any)[
 														featureName
-													].icon
+														].icon
 												}
 											</div>
 											<div className="tw-flex-grow">
@@ -283,10 +265,10 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 											<div className="">
 												{(p.serviceFeatures as any)[
 													featureName
-												].active ? (
-													<CheckCircledIcon />
+													].active ? (
+													<CheckCircledIcon/>
 												) : (
-													<XCircledIcon />
+													<XCircledIcon/>
 												)}
 											</div>
 										</div>
@@ -331,13 +313,13 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 									}
 								>
 									<div className={'tw-px-2 tw-py-1'}>
-										<EmailIcon />
+										<EmailIcon/>
 									</div>
 									<div className={'tw-px-2 tw-py-1'}>
 										Angebot per E-Mail zusenden
 									</div>
 									<div className={'tw-px-2 tw-py-1'}>
-										<InfoSmallIcon />
+										<InfoSmallIcon/>
 									</div>
 								</div>
 
@@ -347,13 +329,13 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 									}
 								>
 									<div className={'tw-px-2 tw-py-1'}>
-										<BellIcon />
+										<BellIcon/>
 									</div>
 									<div className={'tw-px-2 tw-py-1'}>
 										Erinnerung zusenden
 									</div>
 									<div className={'tw-px-2 tw-py-1'}>
-										<InfoSmallIcon />
+										<InfoSmallIcon/>
 									</div>
 								</div>
 							</div>
@@ -366,7 +348,8 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 									<div className="tw-flex tw-justify-center tw-mb-2 tw-pt-5">
 										<h4> Wichtiger Hinweis</h4>
 									</div>
-									<div className={'tw-font-normal tw-text-[13px] tw-leading-6 tw-text-left tw-text-headline'}>
+									<div
+										className={'tw-font-normal tw-text-[13px] tw-leading-6 tw-text-left tw-text-headline'}>
 										{p.importantRemark}
 									</div>
 								</div>

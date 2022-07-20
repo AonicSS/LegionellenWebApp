@@ -11,7 +11,7 @@ import {
 	SET_MODAL,
 	INCREASE_ROOMS,
 	DECREASE_ROOMS,
-	SET_PRICING,
+	SET_PRICING, increaseStrangAmount,
 } from '../../redux/actions/App';
 import Translate from '../../utils/translate';
 import classnames from 'classnames';
@@ -124,48 +124,22 @@ const Button = ({
 		[]
 	);
 
-	const increaseRentings = () => {
-		if (currentRentings > 4 && currentAppStep === 1) {
-			dispatch({ type: SET_MODAL, payload: { showModal: true } });
-		} else {
-			dispatch({
-				type: type,
-				payload: {
-					questionName: question,
-					btnActive: true,
-				},
-			});
-		}
+	const increaseStrangAmount = () => {
+		dispatch({
+			type: type,
+			payload: {
+				questionName: question,
+				btnActive: true,
+			},
+		});
 	};
 
-	const decreaseRentings = () => {
+	const decreaseStrangAmount = () => {
 		dispatch({
 			type: type,
 			payload: {
 				questionName: question,
 				btnActive: currentRentings > 1,
-			},
-		});
-	};
-
-	const increaseRooms = () => {
-		dispatch({
-			type: INCREASE_ROOMS,
-			payload: {
-				questionName: question,
-				roomName: room,
-				index: house,
-			},
-		});
-	};
-
-	const decreaseRooms = () => {
-		dispatch({
-			type: DECREASE_ROOMS,
-			payload: {
-				questionName: question,
-				roomName: room,
-				index: house,
 			},
 		});
 	};
@@ -259,7 +233,7 @@ const Button = ({
 						'tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center',
 						modifierClass
 					)}
-					onClick={increaseRentings}
+					onClick={increaseStrangAmount}
 				>
 					<Plus width={16} height={16} />
 				</button>
@@ -268,30 +242,9 @@ const Button = ({
 			return (
 				<button
 					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"
-					onClick={decreaseRentings}
+					onClick={decreaseStrangAmount}
 				>
 					<Minus width={16} height={16} />
-				</button>
-			);
-		case 'DECREASE_ROOMS':
-			return (
-				<button
-					className="tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center"
-					onClick={decreaseRooms}
-				>
-					<Minus width={16} height={16} />
-				</button>
-			);
-		case 'INCREASE_ROOMS':
-			return (
-				<button
-					className={classnames(
-						'tw-border-2 tw-rounded-full tw-h-9 tw-w-9 tw-border-btnColorDisabled tw-flex tw-justify-center tw-items-center',
-						modifierClass
-					)}
-					onClick={increaseRooms}
-				>
-					<Plus width={16} height={16} />
 				</button>
 			);
 		case 'LINK':

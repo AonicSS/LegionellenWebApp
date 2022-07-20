@@ -1,27 +1,25 @@
+
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { SET_ANSWER } from '../../redux/actions/App';
+
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import {
-	getStrangNumber,
-	getBasePrice,
-	getServicePrice,
-	getMeasurementValvesInstalled,
+	getMeasurementValvesInstalled, checkStrangAmount,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
-import { trackSummary } from '../../utils/tracking';
-import Info from '../../public/icons/Info.svg';
-import CheckInIcon from '../../public/icons/check-in.svg';
+import {trackSummary} from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
-import MagnifyingGlassIcon from '../../public/icons/magnifying-glass.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
+
 const SummaryFinal = ({ contactAgreement, setContact }) => {
+
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -38,7 +36,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 		(state: AppReduxStoreProps) =>
 			state.appData.questions[
 				'Wo befindet sich die zu prüfende Liegenschaft?'
-			]
+				]
 	);
 	const anredeQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anrede']
@@ -135,7 +133,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 
 	return (
 		<Layout>
-			<Modal />
+			<Modal/>
 			<Element name="myScrollToElement"></Element>
 			<section>
 				<h1 className="rwm-form__headline tw-text-center">
@@ -154,9 +152,9 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Anzahl der Stränge</div>
 									<div className={'tw-font-bold'}>
-										{currentAppData.strangAmount > 1
+										{(checkStrangAmount(currentAppData) !== undefined) ? currentAppData.strangAmount > 1
 											? `${currentAppData.strangAmount} Stränge`
-											: '1 Strang'}
+											: '1 Strang' : 'unbekannt'}
 									</div>
 								</div>
 							</div>
@@ -172,7 +170,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 											currentAppData
 										)
 											? 'vorhanden'
-											: 'nicht vorhandenen'}
+											: 'nicht vorhanden'}
 									</div>
 								</div>
 							</div>
@@ -183,12 +181,14 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 							(answer) => answer.name === 'customerNumber'
 						) && (
 							<div
+
 								className={
 									contactAgreement
 										? 'tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer'
 										: 'input-kundennum'
 								}
 							>
+
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>
@@ -259,14 +259,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 									</div>
 								</div>
 								<div
+
 									onClick={() => setShowed(!showed)}
 									className={
 										!showed
 											? 'is-hide'
 											: 'tw-w-3 tw-cursor-pointer'
 									}
+
 								>
-									<PenIcon />
+									<PenIcon/>
 								</div>
 							</div>
 						)}
@@ -275,6 +277,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ihre Kontaktdaten</div>
+
 									<div
 										className={
 											show
@@ -289,6 +292,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 											)!.value
 										}{' '}
 										<br />
+
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -301,14 +305,14 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 													answer.name === 'familyName'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
 													answer.name === 'phone'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -454,14 +458,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 								</div>
 							</div>
 							<div
+
 								onClick={() => setShow(!show)}
 								className={
 									!show
 										? 'is-hide'
 										: 'tw-w-3 tw-cursor-pointer'
 								}
+
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 
@@ -489,7 +495,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 													'houseNumber'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -617,14 +623,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 								</div>
 							</div>
 							<div
+
 								onClick={() => setOpen(!open)}
 								className={
 									!open
 										? 'is-hide'
 										: 'tw-w-3 tw-cursor-pointer'
 								}
+
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 
@@ -654,7 +662,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 													'houseNumber'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											liegenschaftQuestion.answers.find(
 												(answer) =>
@@ -782,14 +790,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 								</div>
 							</div>
 							<div
+
 								onClick={() => setOpened(!opened)}
 								className={
 									!opened
 										? 'is-hide'
 										: 'tw-w-3 tw-cursor-pointer'
 								}
+
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 					</div>
@@ -814,7 +824,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 								let serviceFeature =
 									appData.selectedPricing.serviceFeatures[
 										serviceFeatureName
-									];
+										];
 
 								return (
 									<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
@@ -828,7 +838,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 											<p>{serviceFeature.subtitle}</p>
 										</div>
 										<div className="">
-											<CheckCircledIcon />
+											<CheckCircledIcon/>
 										</div>
 									</div>
 								);
@@ -854,10 +864,10 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 							let extraService =
 								appData.selectedPricing.extraServices[
 									extraServiceName
-								];
+									];
 
 							return (
-								<div className={'tw-bg-white tw-pt-8'}>
+								<div className={'tw-bg-white tw-pt-8'} key={extraServiceName}>
 									<div className="tw-flex tw-flex-row tw-items-center">
 										<div className="tw-flex-grow">
 											<p className={'tw-font-bold'}>
@@ -865,7 +875,8 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 											</p>
 											<p>{extraService.subtitle}</p>
 										</div>
-										<div className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+										<div
+											className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
 											+{' '}
 											{extraService
 												.price(appData)
@@ -920,7 +931,26 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 				</div>
 			</section>
 			<section>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+					<div className="round">
+						<input
+							type="checkbox"
+							id="consent-terms"
+							checked={consentTerms}
+							onChange={() => setConsentTerms(!consentTerms)}
+						/>
+						<label htmlFor="consent-terms"></label>
+					</div>
+					<div className="rwm-form__input-container-large tw-cursor-pointer tw-select-none" onClick={() => setConsentTerms(!consentTerms)}>
+						<p className="tw-font-size-label tw-pl-6">
+							Ich habe die Allgemeinen Geschäftsbedingungen [Link zu PDF] sowie die Besonderen Geschäftsbedingungen [Link zu PDF] gelesen und akzeptiere diese.*
+							* Pflichtfeld
+						</p>
+					</div>
+				</div>
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -932,29 +962,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 						/>
 						<label htmlFor="consent-consulting"></label>
 					</div>
-					<div className="rwm-form__input-container-large">
+					<div className="rwm-form__input-container-large tw-cursor-pointer tw-select-none" onClick={() =>
+						setConsentConsulting(!consentConsulting)
+					}>
 						<p className="tw-font-size-label tw-pl-6">
-							Consent Sanierungsberatung - wichtig (Text folgt)
+							Mit dem Absenden dieses Formulars willige ich darin ein, dass die Techem Energy Services GmbH, sowie eventuell deren Tochtergesellschaften bzw. die mit ihr verbundenen Gesellschaften, die von mir oben eingetragenen Daten zum Zweck der Bearbeitung dieser Anfrage und ggf. für eine erforderliche Kontaktaufnahme verarbeitet. Ich bestätige weiter, dass ich zur Überlassung vorgenannter Kontaktdaten berechtigt bin. Diese Einwilligung erfolgt freiwillig und ist mit Wirkung für die Zukunft jederzeit widerrufbar. Einzelheiten zum Datenschutz bei der Techem Energy Services GmbH entnehmen Sie bitte dem Datenschutzhinweis.
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
-					<div className="round">
-						<input
-							type="checkbox"
-							id="consent-terms"
-							checked={consentTerms}
-							onChange={() => setConsentTerms(!consentTerms)}
-						/>
-						<label htmlFor="consent-terms"></label>
-					</div>
-					<div className="rwm-form__input-container-large">
-						<p className="tw-font-size-label tw-pl-6">
-							Ich habe die AGB gelesen und akzeptiert*
-						</p>
-					</div>
-				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -966,9 +983,11 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 						/>
 						<label htmlFor="consent-marketing"></label>
 					</div>
-					<div className="rwm-form__input-container-large">
+					<div className="rwm-form__input-container-large tw-cursor-pointer tw-select-none" onClick={() =>
+						setConsentMarketing(!consentMarketing)
+					}>
 						<p className="tw-font-size-label tw-pl-6">
-							Consent Marketing (text folgt)
+							Mit dem Absenden dieses Formulars willige ich ein, dass die Techem Energy Services GmbH, sowie deren Tochtergesellschaften und die mit ihr verbundenen Gesellschaften, die von mir oben eingetragenen Daten zum Zweck der Bearbeitung dieser Anfrage, der werblichen Ansprache per E-Mail und der Auswertung zu Marketingzwecken verarbeitet werden. Ich bestätige weiter, dass ich zur Überlassung vorgenannter Kontaktdaten berechtigt bin. Diese Einwilligung erfolgt freiwillig und ist mit Wirkung für die Zukunft jederzeit widerrufbar. Einzelheiten zum Datenschutz bei der Techem Energy Services GmbH entnehmen Sie bitte den Datenschutzbestimmungen.
 						</p>
 					</div>
 				</div>
@@ -984,10 +1003,54 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 						text={'Jetzt kostenpflichtig bestellen'}
 						onClick={async () => {
 							const body = new FormData();
+							const {
+								acceptContact,
+								acceptMarketing,
+								maxSteps,
+								maxSubSteps,
+								step,
+								subStep,
+								showModal,
+								currentQuestion,
+								uploads,
+								...partialAppData
+							} = currentAppData;
+
+							const formattedAppData = {
+								...partialAppData,
+								strangAmount: checkStrangAmount(appData),
+								selectedPricing: {
+									...currentAppData.selectedPricing,
+									price: appData.selectedPricing.price(appData),
+									totalExtras: Object.keys(appData.selectedPricing.extraServices)
+										.filter((x) => appData.selectedPricing.extraServices[x].selected)
+										.map((extraServiceName: string) => {
+											let extraService =
+												appData.selectedPricing.extraServices[extraServiceName];
+											return extraService.price(appData);
+										})
+										.reduce((x, y) => x + y, 0.0),
+									total: appData.selectedPricing.price(appData) + totalExtras,
+								}
+							};
+
+							const json = JSON.stringify(formattedAppData);
+							const blob = new Blob([json], {
+								type: 'application/json'
+							});
+
 							body.append(
 								'appData',
-								JSON.stringify(currentAppData)
+								blob
 							);
+
+							for (const key of Object.keys(currentAppData.uploads)) {
+								for (let [index, upload] of currentAppData.uploads[key].entries()) {
+									let uploadResponse = await fetch(upload['data_url']);
+									body.append(`${key}_${index}_${upload['file'].name}`, await uploadResponse.blob());
+								}
+							}
+
 							const response = await fetch('/api/submit', {
 								method: 'POST',
 								body,

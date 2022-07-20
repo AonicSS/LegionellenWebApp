@@ -33,7 +33,7 @@ export const NumericInput = () => {
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 
-	const currentRentings = useSelector(
+	const currentStrangAmount = useSelector(
 		(state: AppReduxStoreProps) => state.appData.strangAmount
 	);
 
@@ -54,7 +54,7 @@ export const NumericInput = () => {
 								type="number"
 								name="rentings"
 								className="tw-input tw-font-size-input focus:tw-ring-transparent"
-								value={currentRentings}
+								value={currentStrangAmount}
 								autoComplete="off"
 							/>
 						</div>

@@ -1,69 +1,30 @@
-@import "./preflight.css";
+@import './preflight.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-@import "./preflight.css";
+	@import './preflight.css';
 
 	@font-face {
-		font-family: 'Univers45Light';
-		src: local('UniversLTW02-45Light'),
-		url('../public/fonts/UniversLTW02-45Light.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-45Light.woff') format('woff');
+		font-family: 'Univers';
+		src: local('Univers'),
+			url('../public/fonts/Univers.otf') format('opentype'),
+			url('../public/fonts/Univers.ttf') format('truetype');
 	}
 
 	@font-face {
-		font-family: 'Univers45LightOblique';
-		src: local('UniversLTW02-45LightOblique'),
-		url('../public/fonts/UniversLTW02-45LightOblique.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-45LightOblique.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: 'Univers55Oblique';
-		src: local('UniversLTW02-55Oblique'),
-		url('../public/fonts/UniversLTW02-55Oblique.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-55Oblique.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: 'Univers55';
-		src: local('UniversLTW02-55Roman'),
-		url('../public/fonts/UniversLTW02-55Roman.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-55Roman.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: 'Univers65';
-		src: local('UniversLTW02-65Bold'),
-		url('../public/fonts/UniversLTW02-65Bold.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-65Bold.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: 'Univers65BoldOblique';
-		src: local('UniversLTW02-65BoldOblique'),
-		url('../public/fonts/UniversLTW02-65BoldOblique.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-65BoldOblique.woff') format('woff');
-	}
-
-	@font-face {
-		font-family: 'Univers67BoldCond';
-		src: local('UniversLTW02-67BoldCond'),
-		url('../public/fonts/UniversLTW02-67BoldCond.woff2') format('woff2'),
-		url('../public/fonts/UniversLTW02-67BoldCond.woff') format('woff');
+		font-family: 'UniversBlack';
+		src: local('UniversBlack'),
+			url('../public/fonts/UniversBlack.otf') format('opentype'),
+			url('../public/fonts/UniversBlack.ttf') format('truetype');
 	}
 }
 
 @layer components {
 	.rwm-calculator__page-section {
-		@apply tw-container
-		tw-max-w-screen-xl
-		tw-mx-auto
-		tw-flex
-		tw-justify-center;
+		@apply tw-container tw-max-w-screen-xl tw-mx-auto tw-flex tw-justify-center;
 	}
 
 	.rwm-forms__page-section {
@@ -73,9 +34,7 @@
 	}
 
 	.rwm-marketo__page-section {
-		@apply tw-container
-		tw-max-w-screen-xl
-		tw-mx-auto;
+		@apply tw-container tw-max-w-screen-xl tw-mx-auto;
 	}
 }
 
@@ -95,30 +54,22 @@ input:checked ~ .input-kundennum {
 	display: block !important;
 }
 
-
 .rwm-btn {
-	@apply tw-btn-size
-	tw-btn-font;
+	@apply tw-btn-size tw-btn-font;
 	border-radius: 30px;
 }
 
 .rwn-btn-continue {
-	@apply tw-btn-size-close
-	tw-btn-font;
+	@apply tw-btn-size-close tw-btn-font;
 	border-radius: 30px;
 }
 
 .rwm-button--active {
-	@apply tw-bg-btnBgColorActive
-	tw-text-white
-	tw-btn-border-active;
+	@apply tw-bg-btnBgColorActive tw-text-white tw-btn-border-active;
 }
 
 .rwm-button--primary {
-	@apply
-	tw-bg-btnBgColorActive
-	tw-text-white
-	tw-btn-border-active;
+	@apply tw-bg-btnBgColorActive tw-text-white tw-btn-border-active;
 	width: fit-content;
 	border-radius: 30px;
 	margin-top: 10px;
@@ -132,8 +83,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-button--secondary {
-	@apply tw-bg-btnBgColorActive
-	tw-btn-border-active;
+	@apply tw-bg-btnBgColorActive tw-btn-border-active;
 	width: fit-content;
 	line-height: 17px;
 	background-color: #ffffff;
@@ -145,8 +95,7 @@ input:checked ~ .input-kundennum {
 
 @media screen and (min-width: 1024px) {
 	.rwm-button--secondary {
-		@apply tw-bg-btnBgColorActive
-		tw-btn-border-active;
+		@apply tw-bg-btnBgColorActive tw-btn-border-active;
 		width: fit-content;
 		line-height: 17px;
 		background-color: #ffffff;
@@ -162,8 +111,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-button--form-link {
-	@apply tw-bg-btnBgColorActive
-	tw-btn-border-active;
+	@apply tw-bg-btnBgColorActive tw-btn-border-active;
 	width: 230px;
 	height: 45px;
 	line-height: 17px;
@@ -176,8 +124,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-button--form-link-primary {
-	@apply tw-bg-btnBgColorActive
-	tw-btn-border-active;
+	@apply tw-bg-btnBgColorActive tw-btn-border-active;
 	width: 230px;
 	height: 52px;
 	line-height: 17px;
@@ -199,9 +146,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-button--disabled {
-	@apply tw-bg-btnBgColorDisabled
-	tw-text-btnColorDisabled
-	tw-btn-border-disabled;
+	@apply tw-bg-btnBgColorDisabled tw-text-btnColorDisabled tw-btn-border-disabled;
 	pointer-events: none;
 }
 
@@ -216,19 +161,14 @@ input:checked ~ .input-kundennum {
 	margin-top: 10px;
 	pointer-events: none;
 	border: 1px solid #d9d1d1;
-
 }
 
 .rwm-icon {
-	@apply tw-h-11
-	tw-w-6
-	tw-p-1;
+	@apply tw-h-11 tw-w-6 tw-p-1;
 }
 
 /* .rwm-icon--hidden {
-	@apply tw-h-6
-	tw-w-6
-	tw-p-1;
+	@apply tw-h-6 tw-w-6 tw-p-1;
 } */
 
 .rwm-arrow {
@@ -241,16 +181,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-btn__container {
-	@apply tw-z-30
-	tw-flex
-	tw-justify-center
-	tw-items-center
-	tw-h-14
-	tw-w-14
-	tw-bg-btnBgColorActive
-	tw-rounded-full
-	tw-py-2
-	tw-px-4;
+	@apply tw-z-30 tw-flex tw-justify-center tw-items-center tw-h-14 tw-w-14 tw-bg-btnBgColorActive tw-rounded-full tw-py-2 tw-px-4;
 }
 
 .rwm-btn-close {
@@ -275,19 +206,11 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-form {
-	@apply tw-flex
-	tw-flex-col
-	md:tw-flex-row
-	tw-justify-center
-	tw-items-center
-	tw-margin-top;
+	@apply tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-items-center tw-margin-top;
 }
 
 .rwm-form__field {
-	@apply tw-flex
-	tw-flex-col
-	tw-items-center
-	tw-justify-center;
+	@apply tw-flex tw-flex-col tw-items-center tw-justify-center;
 	width: 224px;
 }
 
@@ -303,20 +226,12 @@ input:checked ~ .input-kundennum {
 	margin: auto;
 }
 
-
-
 .rwm-form__label {
-	@apply tw-block
-	tw-font-size-label
-	tw-mb-8;
+	@apply tw-block tw-font-size-label tw-mb-8;
 }
 
 .rwm-form__icon-wrapper {
-	@apply tw-flex
-	tw-justify-center
-	tw-items-center
-	tw-h-11
-	tw-mb-8;
+	@apply tw-flex tw-justify-center tw-items-center tw-h-11 tw-mb-8;
 }
 
 .rwm-form__icon g {
@@ -324,13 +239,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-form__input {
-	@apply tw-shadow-none
-	focus:tw-ring-transparent
-	focus:tw-border-borderInput
-	tw-block
-	tw-w-full
-	tw-border-borderInput
-	tw-rounded-md;
+	@apply tw-shadow-none focus:tw-ring-transparent focus:tw-border-borderInput tw-block tw-w-full tw-border-borderInput tw-rounded-md;
 }
 
 .rwm-form__input-container {
@@ -342,8 +251,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-form__input-container-large {
-	@apply
-	tw-w-[330px]
+	@apply tw-w-[330px]
 	md:tw-w-[572px]
 	lg:tw-w-[572px]
 	xl:tw-w-[572px]
@@ -354,13 +262,12 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-form__input-custom {
-	@apply tw-shadow-none
-	focus:tw-ring-transparent;
+	@apply tw-shadow-none focus:tw-ring-transparent;
 	width: 100%;
 	box-sizing: border-box;
 	height: 48px !important;
 	padding: 0 10px 0 10px !important;
-	border: solid 0.5px #A19F9D !important;
+	border: solid 0.5px #a19f9d !important;
 	box-shadow: #fff !important;
 }
 
@@ -377,14 +284,11 @@ input[type='number'] {
 }
 
 .rwm-form__rentings {
-	@apply tw-flex tw-justify-center
-	tw-gap-5;
+	@apply tw-flex tw-justify-center tw-gap-5;
 }
 
 .rwm-form__postalCode {
-	@apply tw-grid
-	tw-grid-cols-1
-	tw-gap-2;
+	@apply tw-grid tw-grid-cols-1 tw-gap-2;
 }
 
 .round {
@@ -431,13 +335,12 @@ input[type='number'] {
 }
 
 .room-input::placeholder {
-	font-family: 'Univers65';
+	font-family: 'Univers';
 	font-size: '24px';
 	line-height: '34px';
 	letter-spacing: '0px';
 	color: '#1d1d1b';
 }
-
 
 .rwm-radio {
 	@apply tw-flex tw-justify-center tw-items-center tw-flex-col;
@@ -448,7 +351,7 @@ input[type='number'] {
 }
 
 .rwm-radio__container {
-	@apply tw-grid tw-grid-rows-none tw-justify-center tw-items-center ;
+	@apply tw-grid tw-grid-rows-none tw-justify-center tw-items-center;
 }
 
 .rwm-radio__container-years {
@@ -511,31 +414,18 @@ li span {
 }
 
 .rwm-overlay {
-	@apply tw-absolute
-	tw-inset-0
-	tw-flex
-	tw-items-center
-	tw-justify-center
-	tw-bg-black
-	tw-bg-opacity-80;
+	@apply tw-absolute tw-inset-0 tw-flex tw-items-center tw-justify-center tw-bg-black tw-bg-opacity-80;
 	z-index: 1000;
 	position: fixed;
 }
 
 .rwm-overlay__container {
-	@apply tw-relative
-	tw-px-5
-	tw-py-7
-	md:tw-px-8
-	md:tw-py-12
-	tw-bg-white;
+	@apply tw-relative tw-px-5 tw-py-7 md:tw-px-8 md:tw-py-12 tw-bg-white;
 	position: fixed;
 }
 
 .rwm-overlay__headline-container {
-	@apply tw-flex
-	tw-items-center
-	tw-justify-start;
+	@apply tw-flex tw-items-center tw-justify-start;
 }
 
 .rwm-overlay__headline {
@@ -569,19 +459,11 @@ li span {
 }
 
 .rwm-overlay__btn-container-continue {
-	@apply tw-flex
-	tw-flex-col
-	tw-justify-center
-	tw-items-center
-	tw-mt-4
-	md:tw-mt-10;
+	@apply tw-flex tw-flex-col tw-justify-center tw-items-center tw-mt-4 md:tw-mt-10;
 }
 
 .rwm-stepper {
-	@apply tw-flex
-	tw-items-center
-	tw-w-2/4
-	tw-justify-between;
+	@apply tw-flex tw-items-center tw-w-2/4 tw-justify-between;
 }
 
 .rwm-stepper__rectangle {
@@ -593,11 +475,10 @@ li span {
 }
 
 .rwm-stepper__rectangle--disabled {
-	@apply tw-cursor-default
-	tw-rectangle-disabled;
+	@apply tw-cursor-default tw-rectangle-disabled;
 }
 
-div[name="myScrollToElement"] {
+div[name='myScrollToElement'] {
 	width: 100%;
 	height: 1px;
 }
@@ -613,21 +494,20 @@ div[name="myScrollToElement"] {
 	padding-top: 10px;
 }
 
-.text-title
- {
-	 font-size: 24px;
- }
+.text-title {
+	font-size: 24px;
+}
 
- .cupon-status
- {
-	 font-size: 10px;
- }
-
+.cupon-status {
+	font-size: 10px;
+}
 
 .ques-title {
 	font-size: 22px;
 }
 
+
 .is-show, .is-hide {
 	display: none;
  }
+

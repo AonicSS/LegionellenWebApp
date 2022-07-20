@@ -5,7 +5,6 @@ import {
 	DECREASE_APP_STEP,
 	SET_APP_STEP,
 	SET_CURRENT_QUESTION,
-	INCREASE_RENTINGS_STEP,
 	INCREASE_STRANG_AMOUNT,
 	DECREASE_STRANG_AMOUNT,
 	UPDATE_POSTAL_CODE,
@@ -25,13 +24,10 @@ const initialState = {
 	subStep: 0,
 	maxSubSteps: 10,
 	maxSteps: 3,
-	rentings: 1,
 	strangAmount: 1,
 	showModal: false,
 	acceptContact: false,
 	acceptMarketing: false,
-	years: 10,
-	postalCode: {code: '', valid: false, area: ''},
 	questions: questions,
 	selectedPricing: {},
 	uploads: {},
@@ -66,12 +62,10 @@ export interface AppData {
 	subStep: number;
 	maxSubSteps: number;
 	step: number;
-	rentings: number;
 	maxSteps: number;
 	strangAmount: number;
 	years: number;
 	showModal: boolean;
-	postalCode: PostalCode;
 	acceptContact: boolean;
 	acceptMarketing: boolean;
 	questions: Questions;
@@ -169,14 +163,6 @@ const appData = (
 			return {
 				...state,
 				strangAmount: state.strangAmount + 1,
-			};
-		case INCREASE_RENTINGS_STEP:
-			return {
-				...state,
-				rentings:
-					state.rentings < state.strangAmount
-						? state.rentings + 1
-						: state.strangAmount,
 			};
 		case DECREASE_STRANG_AMOUNT:
 			return {

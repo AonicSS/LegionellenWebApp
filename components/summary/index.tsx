@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import {
 	DECREASE_APP_STEP,
-	SET_ANSWER,
+	SET_ANSWER, SET_APP_STEP,
 	SET_MODAL,
 	SET_PRICING,
 } from '../../redux/actions/App';
@@ -20,9 +20,7 @@ import {
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
-
 import classnames from 'classnames';
-
 import Info from '../../public/icons/Info.svg';
 import CheckInIcon from '../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
@@ -214,7 +212,7 @@ const Summary = ({ contactAgreement, setContact }) => {
 										];
 
 									return (
-										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0" key={serviceFeatureName}>
 											<div className="tw-mr-4">
 												{serviceFeature.icon}
 											</div>
@@ -651,7 +649,8 @@ const Summary = ({ contactAgreement, setContact }) => {
 							<span
 								onClick={() => {
 									dispatch({
-										type: DECREASE_APP_STEP,
+										type: SET_APP_STEP,
+										payload: { step: 3, subStep: 0 },
 									});
 								}}
 								className="tw-cursor-pointer"
