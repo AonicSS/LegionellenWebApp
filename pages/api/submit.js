@@ -129,7 +129,13 @@ export default async (req, res) => {
 
 		const customerEmailBody = <>
 			<div>
-				test
+				<p>Sehr geehrte/r {parsedValue.kunde.honorificPrefix} {parsedValue.kunde.givenName} {parsedValue.kunde.familyName},</p>
+
+				<p>vielen Dank für Ihr Interesse an der Techem Legionellenprüfung.</p>
+				Hiermit bestätigen wir den Eingang Ihrer Anfrage. Wir senden Ihnen in Kürze Ihr persönliches Angebot zu.
+
+				Freundliche Grüße
+				Techem Energy Services GmbH
 			</div>
 		</>;
 
@@ -137,16 +143,9 @@ export default async (req, res) => {
 		// send mail with defined transport object
 		let customerEmail = await transporter.sendMail({
 			from: `"Ihre Anfrage" <${process.env['SMTP_USER']}>`, // sender address
-			to: "qiong.wu@gfnork.de", // list of receivers
+			to: parsedValue.kunde.email, // list of receivers
 			subject: "Wir haben Ihren Auftrag erhalten", // Subject line
 			html: ReactDOMServer.renderToStaticMarkup(customerEmailBody),
-			text: "Sehr geehrter Herr Mustermann/Sehr geehrte Frau Mustermann,\n" +
-				"vielen Dank für Ihr Vertrauen. Hiermit bestätigen wir den Eingang Ihres Auftrags.\n" +
-				"Unser Legionellen-Team wird sich in Kürze mit Ihnen in Verbindung setzen, um alle weiteren Details zu\n" +
-				"klären.\n" +
-				"\n" +
-				"Freundliche Grüße\n" +
-				"Techem Energy Services GmbH",
 		});
 
 		const internalEmailBody = <>
