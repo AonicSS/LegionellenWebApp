@@ -182,7 +182,9 @@ const Trinkwasseranlage = () => {
 							>
 								<img
 									src={StrangSchemaAnleitung.src}
-									className={'tw-max-w-lg'}
+									className={
+										'tw-w-full tw-h-auto tw-object-contain lg:tw-max-w-lg'
+									}
 								/>
 							</div>
 							<Radio

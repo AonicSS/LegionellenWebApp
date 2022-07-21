@@ -1350,6 +1350,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime-corejs3@npm:^7.10.4":
+  version: 7.18.9
+  resolution: "@babel/runtime-corejs3@npm:7.18.9"
+  dependencies:
+    core-js-pure: ^3.20.2
+    regenerator-runtime: ^0.13.4
+  checksum: 249158b660ac996fa4f4b0d1ab5810db060af40fac4d0bb5da23f55539a151313ae254aa64afc2ab7000d95167824e21a689f74bc24b36fd0f5ca030d522133d
+  languageName: node
+  linkType: hard
+
 "@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.9.2":
   version: 7.18.3
   resolution: "@babel/runtime@npm:7.18.3"
@@ -2927,6 +2937,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js-pure@npm:^3.20.2":
+  version: 3.23.5
+  resolution: "core-js-pure@npm:3.23.5"
+  checksum: a46edce5bdde29eda993c1f31086a08ba85e22fb1b3f77c9422e25ccc9e92fb9a1f3e7de5d13c9b807bdfeb0700b00bd5224375429cf44fd7ed5f46cc7d3e4ac
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^3.6.5":
+  version: 3.23.5
+  resolution: "core-js@npm:3.23.5"
+  checksum: 0277d46b151126c5d90411e8e6b0d338abe2aaa695a132c360203a3772c620f849622c4fab8bfd7a46eec6933d5fe90f32f7167779d419bda699ff7808605757
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:^7.0.1":
   version: 7.0.1
   resolution: "cosmiconfig@npm:7.0.1"
@@ -3850,6 +3874,28 @@ __metadata:
   version: 4.2.0
   resolution: "fraction.js@npm:4.2.0"
   checksum: 8c76a6e21dedea87109d6171a0ac77afa14205794a565d71cb10d2925f629a3922da61bf45ea52dbc30bce4d8636dc0a27213a88cbd600eab047d82f9a3a94c5
+  languageName: node
+  linkType: hard
+
+"friendly-challenge@npm:^0.9.5":
+  version: 0.9.5
+  resolution: "friendly-challenge@npm:0.9.5"
+  dependencies:
+    "@babel/runtime-corejs3": ^7.10.4
+    core-js: ^3.6.5
+    friendly-pow: 0.2.1
+    object-assign-polyfill: ^0.1.0
+    promis: ^1.1.4
+    url-polyfill: ^1.1.10
+    whatwg-fetch: ^3.4.1
+  checksum: b68a598b8f3e32a682005b0f9e6f9c553d87c3aa937fdd33534c6b27e654d76bedd8add11867b03895f5e2f99da60d27da21f5b8706d38cbb890cbd5efca8857
+  languageName: node
+  linkType: hard
+
+"friendly-pow@npm:0.2.1":
+  version: 0.2.1
+  resolution: "friendly-pow@npm:0.2.1"
+  checksum: ade818b94731847be0c1f7b86ac675701e7ddae3940539878847cc23fcd9198259c4b7f8261214e82899e90ecb64bf1456757fb3cdd7e4dafd2a1bdee6aaebca
   languageName: node
   linkType: hard
 
@@ -5217,6 +5263,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"object-assign-polyfill@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "object-assign-polyfill@npm:0.1.0"
+  checksum: 136f9f3d3dcff4c053d5298ea9c23a782fc24fc22cf3eadf4482a60ec5c45055313d648cceb025599e37d25db909cbcb21c1f1610d73003df59d627008845dfb
+  languageName: node
+  linkType: hard
+
 "object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
@@ -5961,6 +6014,13 @@ __metadata:
   version: 1.0.3
   resolution: "pretty-hrtime@npm:1.0.3"
   checksum: bae0e6832fe13c3de43d1a3d43df52bf6090499d74dc65a17f5552cb1a94f1f8019a23284ddf988c3c408a09678d743901e1d8f5b7a71bec31eeeac445bef371
+  languageName: node
+  linkType: hard
+
+"promis@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "promis@npm:1.1.4"
+  checksum: 8a28d97e025929a81e533106855eb992704b95cde08ae8bb01b905f8a9768f08c4f406cefeceaac25ba1c823e92f63235cd888894f5e976eb197e092a2c2fb5f
   languageName: node
   linkType: hard
 
@@ -6912,6 +6972,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.3.0
     filesize: ^9.0.11
     formidable: ^2.0.1
+    friendly-challenge: ^0.9.5
     glob: ^7.2.0
     next: ^12.2.0
     node-fetch: ^3.2.6
@@ -7129,6 +7190,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"url-polyfill@npm:^1.1.10":
+  version: 1.1.12
+  resolution: "url-polyfill@npm:1.1.12"
+  checksum: 3214cc82424c215e921dacadac56b4b099f995d24e14078369bea9ff8aa74d1a4c803ab03021e61e0a275bee7979d212d046092dba3aab73cf232ee6739ddee4
+  languageName: node
+  linkType: hard
+
 "use-sync-external-store@npm:1.1.0":
   version: 1.1.0
   resolution: "use-sync-external-store@npm:1.1.0"
@@ -7180,6 +7248,13 @@ __metadata:
   version: 2.1.4
   resolution: "web-vitals@npm:2.1.4"
   checksum: 03d3f47dbf55c3dce07beb0ff5de8ddd52e2d0a53a8df5c84e7a16dda93543341d67231fa79b1d9772b091419af4ec0fd395b8bcf451a0e26846e3f76b3d0efc
+  languageName: node
+  linkType: hard
+
+"whatwg-fetch@npm:^3.4.1":
+  version: 3.6.2
+  resolution: "whatwg-fetch@npm:3.6.2"
+  checksum: ee976b7249e7791edb0d0a62cd806b29006ad7ec3a3d89145921ad8c00a3a67e4be8f3fb3ec6bc7b58498724fd568d11aeeeea1f7827e7e1e5eae6c8a275afed
   languageName: node
   linkType: hard
 
