@@ -164,7 +164,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-icon {
-	@apply tw-h-11 tw-w-6 tw-p-1;
+	@apply tw-h-10 tw-w-6 tw-p-1;
 }
 
 /* .rwm-icon--hidden {
@@ -251,7 +251,7 @@ input:checked ~ .input-kundennum {
 }
 
 .rwm-form__input-container-large {
-	@apply tw-w-[330px]
+	@apply tw-w-auto
 	md:tw-w-[572px]
 	lg:tw-w-[572px]
 	xl:tw-w-[572px]
@@ -361,7 +361,7 @@ input[type='number'] {
 }
 
 .rwm-radio__container-select {
-	@apply tw-flex tw-flex-row-reverse lg:tw-flex-col tw-justify-end lg:tw-justify-center tw-items-center tw-gap-3 lg:tw-gap-0;
+	@apply tw-flex tw-flex-row lg:tw-flex-col tw-justify-start lg:tw-justify-center tw-items-center tw-gap-3 lg:tw-gap-0;
 }
 
 .rwm-radio__container-icon-check {
@@ -463,7 +463,7 @@ li span {
 }
 
 .rwm-stepper {
-	@apply tw-flex tw-items-center tw-w-2/4 tw-justify-between;
+	@apply tw-flex tw-items-center lg:tw-w-2/4 tw-justify-between;
 }
 
 .rwm-stepper__rectangle {
@@ -484,16 +484,8 @@ div[name='myScrollToElement'] {
 }
 
 .stepper-title {
-	font-family: 'Segoe UI';
-	font-style: normal;
-	font-weight: 700;
 	font-size: 12px;
-	line-height: 16px;
-	letter-spacing: 0.165em;
-	color: #000000;
-	padding-top: 10px;
 }
-
 .text-title {
 	font-size: 24px;
 }
@@ -507,5 +499,14 @@ div[name='myScrollToElement'] {
 }
 
 input[disabled] {
-	@apply tw-bg-transparent
+	@apply tw-bg-transparent;
+}
+
+@media (max-width: 768px) {
+	.stepper-title {
+		font-size: 10px;
+	}
+	.ques-title {
+		font-size: 18px;
+	}
 }

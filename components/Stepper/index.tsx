@@ -45,10 +45,13 @@ const Stepper = () => {
 			{Array(maxSteps)
 				.fill(0)
 				.map((_, key) => (
-					<div key={key}>
+					<div
+						key={key}
+						className="tw-flex tw-flex-col tw-items-center"
+					>
 						<div
+							className="tw-w-[90px] lg:tw-w-[180px] tw-rounded-full tw-h-[3px]"
 							style={{
-								width: '180px',
 								height: '3px',
 								borderRadius: '9999px',
 								backgroundColor:
@@ -65,17 +68,16 @@ const Stepper = () => {
 								<div
 									style={{
 										height: '3px',
-										width: `${100 * currentSubStep / maxSubSteps}%`,
+										width: `${
+											(100 * currentSubStep) / maxSubSteps
+										}%`,
 										borderRadius: '9999px',
 										backgroundColor: '#e20913',
 									}}
 								></div>
 							)}
 						</div>
-						<div
-							className="stepper-title"
-							style={{ textAlign: 'center' }}
-						>
+						<div className="!tw-font-semibold stepper-title tw-pt-[10px] tw-leading-4 tw-text-black tw-text-center">
 							{steps[key].title}
 						</div>
 					</div>

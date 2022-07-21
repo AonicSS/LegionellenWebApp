@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import {
 	DECREASE_APP_STEP,
-	SET_ANSWER, SET_APP_STEP,
+	SET_ANSWER,
+	SET_APP_STEP,
 	SET_MODAL,
 	SET_PRICING,
 } from '../../redux/actions/App';
@@ -43,9 +44,7 @@ const demoCoupons = [
 	},
 ];
 
-
-
-const Summary = ({contactAgreement, setContact}) => {
+const Summary = ({ contactAgreement, setContact }) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	// const [contactAgreement, setContact] = useState(false);
 	const [isCouponToggled, setCouponToggled] = useState(false);
@@ -129,7 +128,6 @@ const Summary = ({contactAgreement, setContact}) => {
 		setCoupon('');
 	};
 
-
 	return (
 		<Layout>
 			<Modal />
@@ -143,16 +141,16 @@ const Summary = ({contactAgreement, setContact}) => {
 							</h1>
 						</label>
 					</div>
-					<div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-1 lg:tw-grid-cols-1 xl:tw-grid-cols-1 tw-gap-10 xl:tw-gap-14 tw-mt-16">
+					<div className="tw-grid tw-grid-cols-1 tw-gap-10 xl:tw-gap-14 tw-mt-16">
 						<div
 							className={classNames(
 								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
 							)}
 						>
-							<div className="tw-container-pricing-headline tw-font-size-pricing-headline tw-max-w-[53.5rem] tw-m-auto">
+							<div className="tw-container-pricing-headline tw-font-size-pricing-headline lg:tw-max-w-[53.5rem] tw-m-auto">
 								{appData.selectedPricing.name}
 							</div>
-							<div className="tw-flex tw-max-w-4xl tw-items-center tw-m-auto">
+							<div className="tw-flex tw-flex-col lg:tw-flex-row tw-max-w-4xl tw-items-center tw-m-auto">
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
 									<div>
 										{`Gesamtpreis für eine Liegenschaft mit ${
@@ -168,22 +166,24 @@ const Summary = ({contactAgreement, setContact}) => {
 										}.`}
 									</div>
 								</div>
-								<div className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
-									{total
-										.toFixed(2)
-										.toString()
-										.replace('.', ',')}{' '}
-									€
-								</div>
-								<div className="tw-w-15%">
-									<TechemRecommendationIcon />
+								<div className="tw-flex tw-items-center">
+									<div className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
+										{total
+											.toFixed(2)
+											.toString()
+											.replace('.', ',')}{' '}
+										€
+									</div>
+									<div className="tw-w-15%">
+										<TechemRecommendationIcon />
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<div className={'tw-bg-grey tw-py-6 tw-px-48'}>
+			<div className={'tw-bg-grey tw-py-6 lg:tw-px-48'}>
 				<section className="rwm-forms__page-section">
 					<div className="tw-flex tw-flex-col">
 						<label className="rwm-form__headline tw-mb-4">
@@ -213,7 +213,10 @@ const Summary = ({contactAgreement, setContact}) => {
 										];
 
 									return (
-										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0" key={serviceFeatureName}>
+										<div
+											className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0"
+											key={serviceFeatureName}
+										>
 											<div className="tw-mr-4">
 												{serviceFeature.icon}
 											</div>
@@ -313,7 +316,7 @@ const Summary = ({contactAgreement, setContact}) => {
 									Coupon-Code einlösen?
 								</button>
 								{isCouponToggled && (
-									<div className="tw-pt-5 tw-flex tw-items-center tw-justify-between tw-gap-x-20">
+									<div className="tw-pt-5 tw-flex tw-flex-col lg:tw-flex-row tw-items-center tw-justify-between tw-gap-y-5 tw-gap-x-20">
 										<input
 											value={coupon}
 											onChange={(e) =>
@@ -351,8 +354,8 @@ const Summary = ({contactAgreement, setContact}) => {
 							<div className=" tw-flex tw-flex-row tw-items-start">
 								<h4 className="tw-font-size-label">Anrede*</h4>
 							</div>
-							<div className="tw-flex tw-items-center">
-								<div className="tw-w-3/12 ">
+							<div className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center">
+								<div className="lg:tw-w-3/12">
 									<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
 										<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
 											<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
@@ -384,7 +387,7 @@ const Summary = ({contactAgreement, setContact}) => {
 										</fieldset>
 									</div>
 								</div>
-								<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-center tw-w-9/12">
+								<div className="rwm-form__input-container-large tw-gap-x-5 tw-flex tw-flex-row tw-justify-start tw-items-center lg:tw-w-9/12">
 									<div className="round">
 										<input
 											type="checkbox"
@@ -586,7 +589,7 @@ const Summary = ({contactAgreement, setContact}) => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -689,7 +692,7 @@ const Summary = ({contactAgreement, setContact}) => {
 								/>
 							</div>
 						</div>
-						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2  tw-mt-6 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -726,14 +729,14 @@ const Summary = ({contactAgreement, setContact}) => {
 						</div>
 					</div>
 				</section>
-				<section className='tw-flex tw-justify-around'>
+				<section className="tw-flex lg:tw-flex-row tw-flex-col tw-justify-around">
 					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 						<Button
 							style={'PRIMARY'}
 							text={'Preis sichern, direkt abschließen'}
 						></Button>
 					</div>
-					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-28">
+					<div className="tw-flex tw-justify-center lg:tw-pt-14 tw-pb-28">
 						<Button
 							style={'SECONDARY'}
 							text={'Angebot per E-Mail zusenden'}
