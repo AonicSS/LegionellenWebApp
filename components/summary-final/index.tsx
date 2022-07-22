@@ -439,9 +439,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 				<div className="tw-p-10">
 					<h1>Wie geht es weiter?</h1>
 					<p>
-						Sie erhalten von uns eine Bestätigungsemail mit
-						Terminvorschlägen für den Online Quality Check. Text
-						folgt...
+						Sie erhalten von uns in Kürze eine Auftragsbestätigung mit Terminvorschlägen für unser gemeinsames Erstgespräch. Darin fragen wir noch weitere Angaben ab, die wir für die Ausführung Ihrer Bestellung benötigen. Mit dieser Checkliste können Sie alle nötigen Informationen bereits vorbereiten. Link zur PDF-Checkliste
 					</p>
 				</div>
 			</section>
