@@ -22,7 +22,7 @@ const pricingOptions = {
 			name: 'Legionellenprüfung\nohne Quality Check',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
-				return 49.0 + appData.strangAmount * 61.0;
+				return 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
 				'Quality Check': {
@@ -63,7 +63,7 @@ const pricingOptions = {
 			name: 'Legionellenprüfung\n+ Quality Check Online',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
-				return 99.0 + 49.0 + appData.strangAmount * 61.0;
+				return 99.0 + 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
 				'Quality Check': {
@@ -103,7 +103,7 @@ const pricingOptions = {
 			name: 'Legionellenprüfung\n + Quality Check Klassisch',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
-				return 199.0 + 49.0 + appData.strangAmount * 61.0;
+				return 199.0 + 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
 				'Quality Check Klassisch': {
