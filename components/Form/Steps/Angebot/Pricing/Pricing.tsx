@@ -46,7 +46,7 @@ const pricingOptions = {
 				Infoservice: {
 					selected: true,
 					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+						'Wir stellen Ihnen ein Informationsschreiben für Ihre Mieterinnen und Mieter sowie einen Hausaushang zur Verfügung, die über das Untersuchungsergebnis informieren.',
 					price: (appData: AppData) => {
 						return 5.0;
 					},
@@ -87,7 +87,7 @@ const pricingOptions = {
 				Infoservice: {
 					selected: true,
 					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+						'Wir stellen Ihnen ein Informationsschreiben für Ihre Mieterinnen und Mieter sowie einen Hausaushang zur Verfügung, die über das Untersuchungsergebnis informieren.',
 					price: (appData: AppData) => {
 						return 5.0;
 					},
@@ -126,7 +126,7 @@ const pricingOptions = {
 				Infoservice: {
 					selected: true,
 					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+						'Wir stellen Ihnen ein Informationsschreiben für Ihre Mieterinnen und Mieter sowie einen Hausaushang zur Verfügung, die über das Untersuchungsergebnis informieren.',
 					price: (appData: AppData) => {
 						return 5.0;
 					},
