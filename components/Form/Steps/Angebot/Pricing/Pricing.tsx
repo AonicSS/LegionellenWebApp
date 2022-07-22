@@ -165,7 +165,7 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Online Begehung',
+			name: 'Online-Begehung',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 99.0;
