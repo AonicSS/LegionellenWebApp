@@ -158,12 +158,10 @@ const Summary = ({ contactAgreement, setContact }) => {
 												? `${appData.strangAmount} Strängen`
 												: 'einem Strang'
 										} und ${
-											getMeasurementValvesInstalled(
-												appData
-											)
+											getMeasurementValvesInstalled(appData)
 												? 'vorhandenen Probeentnahmeventilen'
 												: 'nicht vorhandenen Probeentnahmeventilen'
-										}.`}
+										}. ${!getMeasurementValvesInstalled(appData) ? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)' : ''}`}
 									</div>
 								</div>
 								<div className="tw-flex tw-items-center">
