@@ -17,7 +17,7 @@ import {
 	getStrangNumber,
 	getBasePrice,
 	getServicePrice,
-	getMeasurementValvesInstalled,
+	getMeasurementValvesInstalled, checkStrangAmount,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
@@ -154,9 +154,9 @@ const Summary = ({ contactAgreement, setContact }) => {
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
 									<div>
 										{`Gesamtpreis für eine Liegenschaft mit ${
-											appData.strangAmount > 1
-												? `${appData.strangAmount} Strängen`
-												: 'einem Strang'
+											checkStrangAmount(appData) > 1
+												? `${checkStrangAmount(appData)} Strängen`
+												: checkStrangAmount(appData) === undefined ? 'unbekanntem Strangschema' : 'einem Strang'
 										} und ${
 											getMeasurementValvesInstalled(appData)
 												? 'vorhandenen Probeentnahmeventilen'

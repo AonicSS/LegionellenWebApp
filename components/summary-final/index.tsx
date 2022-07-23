@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { WidgetInstance } from 'friendly-challenge';
+import React, {useEffect, useRef, useState} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {WidgetInstance} from 'friendly-challenge';
 import * as Scroll from 'react-scroll';
 
-import { AppReduxStoreProps } from '../../redux/reducers/App';
-import { DECREASE_APP_STEP, SET_MODAL } from '../../redux/actions/App';
+import {AppReduxStoreProps} from '../../redux/reducers/App';
+import {DECREASE_APP_STEP, SET_MODAL} from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -12,13 +12,13 @@ import {
 	getMeasurementValvesInstalled,
 	checkStrangAmount,
 } from '../../utils/helpers';
-import { trackSummary } from '../../utils/tracking';
+import {trackSummary} from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import PenIcon from '../../public/icons/pen.svg';
 
 const FRIENDLYCAPTCHA_SITEKEY = 'FCMQ78B1KF1RBC3H';
 
-const SummaryFinal = ({ contactAgreement }) => {
+const SummaryFinal = ({contactAgreement}) => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -33,7 +33,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 		(state: AppReduxStoreProps) =>
 			state.appData.questions[
 				'Wo befindet sich die zu prüfende Liegenschaft?'
-			]
+				]
 	);
 	const anredeQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anrede']
@@ -96,7 +96,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 
 	return (
 		<Layout>
-			<Modal />
+			<Modal/>
 			<Element name="myScrollToElement"></Element>
 			<section>
 				<h1 className="rwm-form__headline tw-text-center">
@@ -169,11 +169,11 @@ const SummaryFinal = ({ contactAgreement }) => {
 								</div>
 								<div
 									onClick={() => {
-										dispatch({ type: DECREASE_APP_STEP });
+										dispatch({type: DECREASE_APP_STEP});
 									}}
 									className="tw-w-3 tw-cursor-pointer"
 								>
-									<PenIcon />
+									<PenIcon/>
 								</div>
 							</div>
 						)}
@@ -184,7 +184,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 									<div>Ihre Kontaktdaten</div>
 									<div className={'tw-font-bold'}>
 										Frau
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -197,14 +197,14 @@ const SummaryFinal = ({ contactAgreement }) => {
 													answer.name === 'familyName'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
 													answer.name === 'phone'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -216,11 +216,11 @@ const SummaryFinal = ({ contactAgreement }) => {
 							</div>
 							<div
 								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
+									dispatch({type: DECREASE_APP_STEP});
 								}}
 								className="tw-w-3 tw-cursor-pointer"
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 
@@ -242,7 +242,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 													'houseNumber'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -261,11 +261,11 @@ const SummaryFinal = ({ contactAgreement }) => {
 							</div>
 							<div
 								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
+									dispatch({type: DECREASE_APP_STEP});
 								}}
 								className="tw-w-3 tw-cursor-pointer"
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 
@@ -289,7 +289,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 													'houseNumber'
 											)!.value
 										}
-										<br />
+										<br/>
 										{
 											liegenschaftQuestion.answers.find(
 												(answer) =>
@@ -308,11 +308,11 @@ const SummaryFinal = ({ contactAgreement }) => {
 							</div>
 							<div
 								onClick={() => {
-									dispatch({ type: DECREASE_APP_STEP });
+									dispatch({type: DECREASE_APP_STEP});
 								}}
 								className="tw-cursor-pointer"
 							>
-								<PenIcon />
+								<PenIcon/>
 							</div>
 						</div>
 					</div>
@@ -337,7 +337,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 								let serviceFeature =
 									appData.selectedPricing.serviceFeatures[
 										serviceFeatureName
-									];
+										];
 
 								return (
 									<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
@@ -351,7 +351,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 											<p>{serviceFeature.subtitle}</p>
 										</div>
 										<div className="">
-											<CheckCircledIcon />
+											<CheckCircledIcon/>
 										</div>
 									</div>
 								);
@@ -377,7 +377,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 							let extraService =
 								appData.selectedPricing.extraServices[
 									extraServiceName
-								];
+									];
 
 							return (
 								<div
@@ -391,7 +391,8 @@ const SummaryFinal = ({ contactAgreement }) => {
 											</p>
 											<p>{extraService.subtitle}</p>
 										</div>
-										<div className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+										<div
+											className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
 											+{' '}
 											{extraService
 												.price(appData)
@@ -418,12 +419,19 @@ const SummaryFinal = ({ contactAgreement }) => {
 						<div className="tw-flex tw-flex-row tw-items-center">
 							<div className="tw-flex-grow tw-basis-[78%]">
 								<p className={'tw-font-bold'}>
-									Gesamtpreis für eine Liegenschaft mit 2
-									Strängen und 2 Ventilen, einem online
-									Quality Check und einer Legionellenprüfung.
+									{`Gesamtpreis für eine Liegenschaft mit ${
+										checkStrangAmount(appData) > 1
+											? `${checkStrangAmount(appData)} Strängen`
+											: checkStrangAmount(appData) === undefined ? 'unbekanntem Strangschema' : 'einem Strang'
+									} und ${
+										getMeasurementValvesInstalled(appData)
+											? 'vorhandenen Probeentnahmeventilen'
+											: 'nicht vorhandenen Probeentnahmeventilen'
+									}. ${!getMeasurementValvesInstalled(appData) ? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)' : ''}`}
 								</p>
 							</div>
-							<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
+							<div
+								className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
 								{total.toFixed(2).toString().replace('.', ',')}{' '}
 								€
 							</div>
@@ -439,12 +447,16 @@ const SummaryFinal = ({ contactAgreement }) => {
 				<div className="tw-p-10">
 					<h1>Wie geht es weiter?</h1>
 					<p>
-						Sie erhalten von uns in Kürze eine Auftragsbestätigung mit Terminvorschlägen für unser gemeinsames Erstgespräch. Darin fragen wir noch weitere Angaben ab, die wir für die Ausführung Ihrer Bestellung benötigen. Mit dieser Checkliste können Sie alle nötigen Informationen bereits vorbereiten. Link zur PDF-Checkliste
+						Sie erhalten von uns in Kürze eine Auftragsbestätigung mit Terminvorschlägen für unser
+						gemeinsames Erstgespräch. Darin fragen wir noch weitere Angaben ab, die wir für die Ausführung
+						Ihrer Bestellung benötigen. Mit dieser Checkliste können Sie alle nötigen Informationen bereits
+						vorbereiten. Link zur PDF-Checkliste
 					</p>
 				</div>
 			</section>
 			<section>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -466,7 +478,8 @@ const SummaryFinal = ({ contactAgreement }) => {
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -499,7 +512,8 @@ const SummaryFinal = ({ contactAgreement }) => {
 						</p>
 					</div>
 				</div>
-				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div
+					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -587,7 +601,7 @@ const SummaryFinal = ({ contactAgreement }) => {
 												appData.selectedPricing
 													.extraServices[
 													extraServiceName
-												];
+													];
 											return extraService.price(appData);
 										})
 										.reduce((x, y) => x + y, 0.0),
