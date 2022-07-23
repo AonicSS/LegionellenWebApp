@@ -157,7 +157,7 @@ const Trinkwasseranlage = () => {
 						'Sind Probeentnahmeventile verbaut?'
 						]!.answers.find((answer) => answer.name === 'choice')!
 						.value === 'no' && (
-						<div className={'tw-p-6 tw-bg-lightest-grey'}>
+						<div className={'tw-p-6 tw-bg-lightest-grey tw-mt-12'}>
 							Falls noch nicht vorhanden, müssen die
 							Probeentnahmeventile von einer Fachkraft angebracht
 							werden.
