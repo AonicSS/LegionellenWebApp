@@ -117,6 +117,7 @@ const pricingOptions = {
 				},
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
+					active: true,
 					subtitle: 'Probeentnahme und Laborcheck',
 					price: (appData: AppData) => {
 						return 0.0;
