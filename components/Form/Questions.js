@@ -144,6 +144,12 @@ export const questions = {
 				value: undefined
 			},
 			{
+				name: 'gender',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
 				name: 'givenName',
 				type: 'string',
 				required: true,
@@ -164,6 +170,12 @@ export const questions = {
 			{
 				name: 'phone',
 				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
+				name: 'isCustomer',
+				type: 'boolean',
 				required: true,
 				value: undefined
 			},
