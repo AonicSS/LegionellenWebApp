@@ -569,6 +569,33 @@ const Summary = () => {
 								Rechnungsadresse
 							</h1>
 						</label>
+
+						<div
+							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
+							<div className="rwm-form__input-container">
+								<label className="tw-flex tw-font-size-label tw-font">
+									Unternehmen
+								</label>
+								<input
+									type="text"
+									name="companyName"
+									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+									value={
+										anschriftQuestion.answers.find(
+											(answer) =>
+												answer.name === 'companyName'
+										)!.value
+									}
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Anschrift'
+										)
+									}
+								/>
+							</div>
+						</div>
 						<div
 							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">

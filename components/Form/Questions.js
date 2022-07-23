@@ -110,6 +110,12 @@ export const questions = {
 	'Anschrift': {
 		answers: [
 			{
+				name: 'companyName',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
 				name: 'streetName',
 				type: 'string',
 				required: true,
