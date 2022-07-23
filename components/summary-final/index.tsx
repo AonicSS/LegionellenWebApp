@@ -18,7 +18,7 @@ import PenIcon from '../../public/icons/pen.svg';
 
 const FRIENDLYCAPTCHA_SITEKEY = 'FCMQ78B1KF1RBC3H';
 
-const SummaryFinal = ({contactAgreement}) => {
+const SummaryFinal = () => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -144,11 +144,13 @@ const SummaryFinal = ({contactAgreement}) => {
 						</div>
 
 						{anredeQuestion.answers.find(
-							(answer) => answer.name === 'customerNumber'
-						) && (
+							(answer) => answer.name === 'isCustomer'
+						)!.value && (
 							<div
 								className={
-									contactAgreement
+									anredeQuestion.answers.find(
+										(answer) => answer.name === 'customerNumber'
+									)
 										? 'tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer'
 										: 'input-kundennum'
 								}
@@ -183,7 +185,12 @@ const SummaryFinal = ({contactAgreement}) => {
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ihre Kontaktdaten</div>
 									<div className={'tw-font-bold'}>
-										Frau
+										{
+											anredeQuestion.answers.find(
+											(answer) =>
+											answer.name === 'gender'
+											)!.value
+										}
 										<br/>
 										{
 											anredeQuestion.answers.find(

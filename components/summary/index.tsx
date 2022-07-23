@@ -38,7 +38,7 @@ const demoCoupons = [
 	},
 ];
 
-const Summary = ({contactAgreement, setContact}) => {
+const Summary = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	// const [contactAgreement, setContact] = useState(false);
 
@@ -387,13 +387,13 @@ const Summary = ({contactAgreement, setContact}) => {
 															)
 														}
 													>
-														<option value="m">
+														<option value="Herr">
 															Herr
 														</option>
-														<option value="f">
+														<option value="Frau">
 															Frau
 														</option>
-														<option value="d">
+														<option value="Divers">
 															Divers
 														</option>
 													</select>
