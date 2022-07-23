@@ -336,6 +336,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 										.toString()
 										.replace('.', ',')}{' '}
 									€
+									<span className={"tw-font-size-price-small tw-ml-3"}>netto</span>
 								</div>
 							</div>
 							<div className="tw-flex tw-justify-center tw-mb-6">
