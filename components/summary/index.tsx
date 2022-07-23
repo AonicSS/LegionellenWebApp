@@ -172,9 +172,12 @@ const Summary = ({ contactAgreement, setContact }) => {
 											.replace('.', ',')}{' '}
 										€
 									</div>
-									<div className="tw-w-15%">
-										<TechemRecommendationIcon />
-									</div>
+									{
+										appData.selectedPricing.recommended &&
+										<div className="tw-w-15%">
+											<TechemRecommendationIcon />
+										</div>
+									}
 								</div>
 							</div>
 						</div>
