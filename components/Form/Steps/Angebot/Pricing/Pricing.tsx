@@ -13,6 +13,7 @@ import HouseIcon from '../../../../../public/icons/house.svg';
 import EmailIcon from '../../../../../public/icons/email.svg';
 import BellIcon from '../../../../../public/icons/bell.svg';
 import InfoSmallIcon from '../../../../../public/icons/info-small.svg';
+import PhoneIcon from '../../../../../public/icons/phone.svg';
 // import CheckCircledFull from '../../../../../public/icons/check-circled-full.svg';
 import Techem from '../../../../../public/icons/Techem.svg';
 
@@ -141,17 +142,36 @@ const pricingOptions = {
 	],
 	surveyRequired: [
 		{
-			name: 'Klassische Begehung',
+			name: 'Vor-Ort-Aufnahme \n' +
+				'in Ihrer Liegenschaft',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
-				return 199.0;
+				return 249.0;
 			},
 			serviceFeatures: {
-				'Persönlich und vor Ort': {
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
+					active: true,
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Ermittlung des Probennahme-Umfangs ': {
 					icon: <HouseIcon/>,
 					active: true,
 					subtitle:
-						'Wir ermitteln vor Ort alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung.',
+						'Wir nehmen einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Legionellenprüfung': {
+					icon: <XCircledIcon/>,
+					active: true,
+					subtitle:
+						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der Vor-Ort-Aufnahme ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -165,28 +185,47 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Online-Begehung',
+			name: 'Digitale Aufnahme \n' +
+				'per Videotelefonat',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 99.0;
 			},
 			extraServices: {},
 			serviceFeatures: {
-				'Flexibel und Digital': {
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
+					active: true,
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Ermittlung des Probennahme-Umfangs im Videotelefonat ': {
 					icon: <CheckInIcon/>,
 					active: true,
 					subtitle:
-						'In einem Videocall ermitteln wir alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung. Ganz ohne lange Wartezeiten.',
+						'Wir leiten Sie durch Ihre Liegenschaft und legen die relevanten Probenahme-Stellen fest. (siehe Hinweis unten)',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Legionellenprüfung': {
+					icon: <XCircledIcon/>,
+					active: true,
+					subtitle:
+						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der erfolgreichen digitalen Aufnahme Ihrer Liegenschaft ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
 				},
 			},
+			importantRemark: "Sollten wir im Gespräch feststellen, dass für die korrekte Ermittlung des Probennahme-Umfangs eine Vor-Ort-Aufnahme notwendig ist, können Sie diese gegen einen Aufpreis zubuchen.",
 			buttonStyle: 'PRIMARY',
 			text: 'Angebot sichern',
 			type: 'plus',
 			recommended: true,
-			importantRemark: undefined,
 		},
 	],
 };
