@@ -347,39 +347,43 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 									pricing={p}
 								/>
 							</div>
-							<div className={'tw-container-pricing-list'}>
-								<div
-									className={
-										'tw-flex tw-flex-row tw-items-center'
-									}
-								>
-									<div className={'tw-px-2 tw-py-1'}>
-										<EmailIcon/>
+							{
+								/*
+								<div className={'tw-container-pricing-list'}>
+									<div
+										className={
+											'tw-flex tw-flex-row tw-items-center'
+										}
+									>
+										<div className={'tw-px-2 tw-py-1'}>
+											<EmailIcon/>
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											Angebot per E-Mail zusenden
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											<InfoSmallIcon/>
+										</div>
 									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										Angebot per E-Mail zusenden
-									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										<InfoSmallIcon/>
-									</div>
-								</div>
 
-								<div
-									className={
-										'tw-flex tw-flex-row tw-items-center tw-pb-8'
-									}
-								>
-									<div className={'tw-px-2 tw-py-1'}>
-										<BellIcon/>
-									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										Erinnerung zusenden
-									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										<InfoSmallIcon/>
+									<div
+										className={
+											'tw-flex tw-flex-row tw-items-center tw-pb-8'
+										}
+									>
+										<div className={'tw-px-2 tw-py-1'}>
+											<BellIcon/>
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											Erinnerung zusenden
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											<InfoSmallIcon/>
+										</div>
 									</div>
 								</div>
-							</div>
+								 */
+							}
 							{p.importantRemark && (
 								<div
 									className={
