@@ -77,8 +77,6 @@ export const checkStrangAmount = function (appData) {
 		case 'yes':
 			return appData.strangAmount;
 		case 'no':
-			return undefined;
-		case 'unsure':
 			switch (appData['questions']['Konnten Sie das Strangschema ermitteln?'].answers.find((x) => x.name === 'choice').value) {
 				case 'yes':
 					return appData.strangAmount;
