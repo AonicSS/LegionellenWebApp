@@ -82,6 +82,7 @@ export default async (req, res) => {
 				city: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'city').value,
 			},
 			rechnungsAdresse: {
+				companyName: appData['questions']['Anschrift'].answers.find((x) => x.name === 'companyName').value,
 				streetName: appData['questions']['Anschrift'].answers.find((x) => x.name === 'streetName').value,
 				houseNumber: appData['questions']['Anschrift'].answers.find((x) => x.name === 'houseNumber').value,
 				postalCode: appData['questions']['Anschrift'].answers.find((x) => x.name === 'postalCode').value,
@@ -164,6 +165,7 @@ export default async (req, res) => {
 						<>parsedValue.kunde.customerNumber <br/></>
 					}
 					{parsedValue.kunde.givenName} {parsedValue.kunde.familyName}<br/>
+					{parsedValue.rechnungsAdresse.companyName}<br/>
 					{parsedValue.rechnungsAdresse.streetName} {parsedValue.rechnungsAdresse.houseNumber}<br/>
 					{parsedValue.rechnungsAdresse.postalCode} {parsedValue.rechnungsAdresse.city}<br/>
 					{parsedValue.kunde.email}<br/>
