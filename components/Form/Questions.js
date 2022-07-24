@@ -153,7 +153,7 @@ export const questions = {
 				name: 'gender',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: 'Herr'
 			},
 			{
 				name: 'givenName',
