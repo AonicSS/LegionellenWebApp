@@ -302,7 +302,7 @@ const Angebot = () => {
 									onClick={() => {
 										dispatch({
 											type: SET_APP_STEP,
-											payload: { step: 2 },
+											payload: { step: 2, subStep: 0 },
 										});
 									}}
 									className={
@@ -317,7 +317,7 @@ const Angebot = () => {
 									onClick={() => {
 										dispatch({
 											type: SET_APP_STEP,
-											payload: { step: 2 },
+											payload: { step: 2, subStep: 1 },
 										});
 									}}
 									className={
