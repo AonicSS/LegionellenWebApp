@@ -117,7 +117,7 @@ const Summary = () => {
 	console.log(
 		anredeQuestion.answers
 			.filter((answer) => {
-				return answer.required;
+				return answer.required(appData);
 			})
 			.find((answer) => answer.value === undefined || answer.value === '')
 	);
@@ -820,7 +820,7 @@ const Summary = () => {
 							style={
 								anredeQuestion.answers
 									.filter((answer) => {
-										return answer.required;
+										return answer.required(appData);
 									})
 									.find(
 										(answer) =>
