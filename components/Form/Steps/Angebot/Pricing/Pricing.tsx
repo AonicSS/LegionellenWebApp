@@ -170,7 +170,7 @@ const pricingOptions = {
 				},
 				'Legionellenprüfung': {
 					icon: <XCircledIcon/>,
-					active: true,
+					active: false,
 					subtitle:
 						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der Vor-Ort-Aufnahme ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
 					price: (appData: AppData) => {
@@ -214,7 +214,7 @@ const pricingOptions = {
 				},
 				'Legionellenprüfung': {
 					icon: <XCircledIcon/>,
-					active: true,
+					active: false,
 					subtitle:
 						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der erfolgreichen digitalen Aufnahme Ihrer Liegenschaft ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
 					price: (appData: AppData) => {

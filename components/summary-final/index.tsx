@@ -23,6 +23,7 @@ const SummaryFinal = () => {
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
 	const [consentMarketing, setConsentMarketing] = useState(false);
+	const [consentLegionellenBeratung, setConsentLegionellenBeratung] = useState(false);
 
 	const [captcha, setCaptcha] = useState(false);
 
@@ -73,7 +74,7 @@ const SummaryFinal = () => {
 		setCaptcha(true);
 	};
 
-	const errorCallback = (err) => {
+	const errorCallback = (err: any) => {
 		setCaptcha(false);
 		console.error(err);
 	};
@@ -187,8 +188,8 @@ const SummaryFinal = () => {
 									<div className={'tw-font-bold'}>
 										{
 											anredeQuestion.answers.find(
-											(answer) =>
-											answer.name === 'gender'
+												(answer) =>
+													answer.name === 'gender'
 											)!.value
 										}
 										<br/>
@@ -553,6 +554,36 @@ const SummaryFinal = () => {
 						</p>
 					</div>
 				</div>
+				{appData.selectedPricing.serviceFeatures['Legionellenprüfung'].active &&
+					<div
+						className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+						<div className="round">
+							<input
+								type="checkbox"
+								id="consent-legionellenberatung"
+								checked={consentLegionellenBeratung}
+								onChange={() =>
+									setConsentLegionellenBeratung(!consentLegionellenBeratung)
+								}
+							/>
+							<label htmlFor="consent-legionellenberatung"></label>
+						</div>
+						<div
+							className="rwm-form__input-container-large tw-cursor-pointer tw-select-none"
+							onClick={() => setConsentLegionellenBeratung(!consentLegionellenBeratung)}
+						>
+							<p className="tw-font-size-label tw-pl-6">
+								Ich erkläre mich damit einverstanden, dass ich durch die Techem Energy Services GmbH
+								und mit ihr verbundene Unternehmen per Telefon bzw. E-Mail unter der zuvor genannten
+								Telefonnummer bzw. E-Mailadresse über die notwendigen Maßnahmen und unsere damit
+								verbundenen Angebote und Leistungen im Falle einer Überschreitung des technischen
+								Maßnahmenwertes für Legionellen im Trinkwasser kontaktiert und informiert werde.
+								Diese Einwilligung gilt für alle Liegenschaften, die unter meiner Kundennummer
+								geführt sind und bei denen Untersuchungen auf Legionellen beauftragt wurden.
+							</p>
+						</div>
+					</div>
+				}
 			</section>
 
 			<div className="tw-pt-10 tw-flex tw-items-center tw-justify-center">
@@ -567,7 +598,7 @@ const SummaryFinal = () => {
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
 						style={
-							consentConsulting && consentTerms && captcha
+							consentConsulting && consentTerms && captcha && (!(appData.selectedPricing.serviceFeatures['Legionellenprüfung'].active) || ((appData.selectedPricing.serviceFeatures['Legionellenprüfung'].active) && consentLegionellenBeratung))
 								? 'PRIMARY'
 								: 'DISACTIVE'
 						}
