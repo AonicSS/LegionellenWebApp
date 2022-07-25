@@ -18,6 +18,7 @@ import ModalWrapper from '../shared/ModalWrapper';
 import { NumericInput } from '../Form/Input';
 import Uploader from '../Uploader';
 import VentileForm from '../Form/Steps/Angebot/VentileForm';
+import { SET_ANSWER } from '../../redux/actions/App';
 
 const FRIENDLYCAPTCHA_SITEKEY = 'FCMQ78B1KF1RBC3H';
 
