@@ -26,10 +26,19 @@ const pricingOptions = {
 				return 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
-				'Quality Check': {
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
+					active: true,
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Prüfung Ihrer Angaben': {
 					icon: <CheckQualityIcon/>,
 					active: false,
-					subtitle: 'Wird empfohlen',
+					subtitle: 'Ohne Quality Check (siehe Hinweis unten) ',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -37,7 +46,7 @@ const pricingOptions = {
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -67,10 +76,19 @@ const pricingOptions = {
 				return 49.0 + 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
-				'Quality Check': {
-					icon: <CheckInIcon/>,
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
 					active: true,
-					subtitle: 'Flexibel und Digital',
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Prüfung Ihrer Angaben': {
+					icon: <CheckCircledIcon/>,
+					active: true,
+					subtitle: 'In unserem „Quality Check“ gehen wir gemeinsam mit Ihnen Ihre Angaben im Detail durch und prüfen sie auf Plausibilität. Bei Abweichungen beraten wir Sie zum weiteren Vorgehen. Ihr Vorteil: Flexible Terminvereinbarung, digitale Abwicklung',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -78,7 +96,7 @@ const pricingOptions = {
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -101,16 +119,25 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Legionellenprüfung\n + Quality Check Klassisch',
+			name: 'Legionellenprüfung\n + Quality Check vor Ort',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 249.0 + 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
-				'Quality Check Klassisch': {
-					icon: <HouseIcon/>,
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
 					active: true,
-					subtitle: 'Persönlich und vor Ort',
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Quality Check vor Ort in Ihrer Liegenschaft (249€) ': {
+					icon: <CheckCircledIcon/>,
+					active: true,
+					subtitle: 'Zur Bestätigung des Probenahme-Umfangs nehmen wir einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.  ',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -118,7 +145,7 @@ const pricingOptions = {
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -284,11 +311,15 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 											key={featureName}
 										>
 											<div className="tw-mr-4">
-												{
+												{(p.serviceFeatures as any)[
+													featureName
+													].active ? (
 													(p.serviceFeatures as any)[
 														featureName
 														].icon
-												}
+												) : (
+													<XCircledIcon/>
+												)}
 											</div>
 											<div className="tw-flex-grow">
 												<p className={'tw-font-bold'}>
@@ -301,15 +332,6 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 														)[featureName].subtitle
 													}
 												</p>
-											</div>
-											<div className="">
-												{(p.serviceFeatures as any)[
-													featureName
-													].active ? (
-													<CheckCircledIcon/>
-												) : (
-													<XCircledIcon/>
-												)}
 											</div>
 										</div>
 									);
