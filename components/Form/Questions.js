@@ -4,8 +4,8 @@ export const questions = {
 			{
 				name: 'choice',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
@@ -14,38 +14,40 @@ export const questions = {
 			{
 				name: 'choice',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
-	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?': {
-		answers: [
-			{
-				name: 'choice',
-				type: 'string',
-				required: true,
-				value: undefined
-			},
-		],
-	},
-	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?': {
-		answers: [
-			{
-				name: 'choice',
-				type: 'string',
-				required: true,
-				value: undefined
-			},
-		],
-	},
+	'Sind an die zentrale Warmwasser-Erwärmung drei oder mehr Wohnungen angeschlossen, von denen mindestens eine vermietet ist?':
+		{
+			answers: [
+				{
+					name: 'choice',
+					type: 'string',
+					required: (appData) => true,
+					value: undefined,
+				},
+			],
+		},
+	'Ist die Trinkwasseranlage mit einem Wasserspeicher mit mehr als 400 Litern verbunden oder hat mehr als 3 Liter im Leitungssystem?':
+		{
+			answers: [
+				{
+					name: 'choice',
+					type: 'string',
+					required: (appData) => true,
+					value: undefined,
+				},
+			],
+		},
 	'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?': {
 		answers: [
 			{
 				name: 'choice',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
@@ -54,8 +56,8 @@ export const questions = {
 			{
 				name: 'choice',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
@@ -64,8 +66,8 @@ export const questions = {
 			{
 				name: 'choice',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
@@ -74,8 +76,8 @@ export const questions = {
 			{
 				name: 'choice',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
@@ -84,113 +86,115 @@ export const questions = {
 			{
 				name: 'streetName',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'houseNumber',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'postalCode',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'city',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
-	'Anschrift': {
+	Anschrift: {
 		answers: [
 			{
 				name: 'companyName',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'streetName',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'houseNumber',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'postalCode',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'city',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 		],
 	},
-	'Anrede': {
+	Anrede: {
 		answers: [
 			{
-				name: 'honorificPrefix',
+				name: 'gender',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: 'Herr',
 			},
 			{
 				name: 'gender',
 				type: 'string',
-				required: true,
-				value: 'Herr'
+				required: (appData) => true,
+				value: 'Herr',
 			},
 			{
 				name: 'givenName',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'familyName',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'email',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'phone',
 				type: 'string',
-				required: true,
-				value: undefined
+				required: (appData) => true,
+				value: undefined,
 			},
 			{
 				name: 'isCustomer',
 				type: 'boolean',
-				required: true,
-				value: undefined
+				required: (appData) => false,
+				value: undefined,
 			},
 			{
 				name: 'customerNumber',
 				type: 'string',
-				required: true,
-				value: undefined
+                required: (appData) => {
+                    return appData.questions['Anrede'].answers.find((answer) => answer.name === 'isCustomer').value;
+                },
+				value: undefined,
 			},
 		],
-	}
+	},
 };

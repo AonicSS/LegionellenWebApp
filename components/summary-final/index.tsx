@@ -1,10 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {WidgetInstance} from 'friendly-challenge';
+import React, { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { WidgetInstance } from 'friendly-challenge';
 import * as Scroll from 'react-scroll';
 
-import {AppReduxStoreProps} from '../../redux/reducers/App';
-import {DECREASE_APP_STEP, SET_MODAL} from '../../redux/actions/App';
+import { AppReduxStoreProps } from '../../redux/reducers/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -12,9 +11,13 @@ import {
 	getMeasurementValvesInstalled,
 	checkStrangAmount,
 } from '../../utils/helpers';
-import {trackSummary} from '../../utils/tracking';
+import { trackSummary } from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import PenIcon from '../../public/icons/pen.svg';
+import ModalWrapper from '../shared/ModalWrapper';
+import { NumericInput } from '../Form/Input';
+import Uploader from '../Uploader';
+import VentileForm from '../Form/Steps/Angebot/VentileForm';
 
 const FRIENDLYCAPTCHA_SITEKEY = 'FCMQ78B1KF1RBC3H';
 
@@ -23,9 +26,18 @@ const SummaryFinal = () => {
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
 	const [consentMarketing, setConsentMarketing] = useState(false);
-	const [consentLegionellenBeratung, setConsentLegionellenBeratung] = useState(false);
+	const [show, setShow] = useState(true);
+	const [showed, setShowed] = useState(true);
+	const [open, setOpen] = useState(true);
+	const [opened, setOpened] = useState(true);
+	const [consentLegionellenBeratung, setConsentLegionellenBeratung] =
+		useState(false);
 
 	const [captcha, setCaptcha] = useState(false);
+
+	const [strangschemaModalOpen, setStrangschemaModalOpen] = useState(false);
+	const [probeentnahmeventilenOpen, setProbeentnahmeventilenModalOpen] =
+		useState(false);
 
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
@@ -34,13 +46,20 @@ const SummaryFinal = () => {
 		(state: AppReduxStoreProps) =>
 			state.appData.questions[
 				'Wo befindet sich die zu prüfende Liegenschaft?'
-				]
+			]
 	);
 	const anredeQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anrede']
 	);
 	const anschriftQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anschrift']
+	);
+
+	const currentQuestion = useSelector(
+		(state: AppReduxStoreProps) =>
+			state.appData.questions[
+				'Wo befindet sich die zu prüfende Liegenschaft?'
+			]
 	);
 
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
@@ -66,6 +85,61 @@ const SummaryFinal = () => {
 		})
 		.reduce((x, y) => x + y, 0.0);
 	const total = appData.selectedPricing.price(appData) + totalExtras;
+
+	const handleChange = (
+		value: string,
+		answerName: string,
+		questionText: string
+	) => {
+		dispatch({
+			type: SET_ANSWER,
+			payload: {
+				questionName: questionText,
+				answerName: answerName,
+				value: value,
+				btnActive: true,
+			},
+		});
+	};
+
+	const [name, setName] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'givenName')!
+			.value
+	);
+	const [familyName, setFamilyName] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'familyName')!
+			.value
+	);
+	const [email, setEmail] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'email')!.value
+	);
+	const [phone, setPhone] = useState(
+		anredeQuestion.answers.find((answer) => answer.name === 'phone')!.value
+	);
+	const [streetName, setStreetName] = useState(
+		anschriftQuestion.answers.find(
+			(answer) => answer.name === 'streetName'
+		)!.value
+	);
+	const [houseNumber, setHouseNumber] = useState(
+		anschriftQuestion.answers.find(
+			(answer) => answer.name === 'houseNumber'
+		)!.value
+	);
+	const [postalCode, setPostalCode] = useState(
+		anschriftQuestion.answers.find(
+			(answer) => answer.name === 'postalCode'
+		)!.value
+	);
+	const [city, setCity] = useState(
+		anschriftQuestion.answers.find((answer) => answer.name === 'city')!
+			.value
+	);
+	const [customerNumber, setCustomerNumber] = useState(
+		anredeQuestion.answers.find(
+			(answer) => answer.name === 'customerNumber'
+		)!.value
+	);
 
 	const container = useRef(null);
 	const widget = useRef(null);
@@ -97,7 +171,7 @@ const SummaryFinal = () => {
 
 	return (
 		<Layout>
-			<Modal/>
+			<Modal />
 			<Element name="myScrollToElement"></Element>
 			<section>
 				<h1 className="rwm-form__headline tw-text-center">
@@ -125,7 +199,12 @@ const SummaryFinal = () => {
 									</div>
 								</div>
 							</div>
-							<div className={'tw-w-3'}></div>
+							<div
+								onClick={() => setStrangschemaModalOpen(true)}
+								className={'tw-w-3 tw-cursor-pointer'}
+							>
+								<PenIcon />
+							</div>
 						</div>
 
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
@@ -141,7 +220,14 @@ const SummaryFinal = () => {
 									</div>
 								</div>
 							</div>
-							<div className={'tw-w-3'}></div>
+							<div
+								onClick={() =>
+									setProbeentnahmeventilenModalOpen(true)
+								}
+								className={'tw-w-3 tw-cursor-pointer'}
+							>
+								<PenIcon />
+							</div>
 						</div>
 
 						{anredeQuestion.answers.find(
@@ -150,7 +236,8 @@ const SummaryFinal = () => {
 							<div
 								className={
 									anredeQuestion.answers.find(
-										(answer) => answer.name === 'customerNumber'
+										(answer) =>
+											answer.name === 'customerNumber'
 									)
 										? 'tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer'
 										: 'input-kundennum'
@@ -159,7 +246,13 @@ const SummaryFinal = () => {
 								<div className="tw-flex-grow">
 									<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 										<div>Ihre Kundennummer</div>
-										<div className={'tw-font-bold'}>
+										<div
+											className={
+												showed
+													? 'tw-font-bold'
+													: 'tw-font-bold is-show'
+											}
+										>
 											{
 												anredeQuestion.answers.find(
 													(answer) =>
@@ -168,15 +261,66 @@ const SummaryFinal = () => {
 												)!.value
 											}
 										</div>
+										<div
+											className={
+												showed
+													? 'edit-form is-show'
+													: 'edit-form tw-w-full'
+											}
+										>
+											<div className="tw-mt-4 tw-w-full">
+												<div className="rwm-form__input-container">
+													<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+														Kundennummer*
+													</label>
+													<input
+														type="text"
+														name="customerNumber"
+														className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+														value={customerNumber}
+														onChange={(e) =>
+															setCustomerNumber(
+																e.target.value
+															)
+														}
+													/>
+												</div>
+											</div>
+											<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+												<button
+													onClick={() => {
+														handleChange(
+															customerNumber,
+															'customerNumber',
+															'Anrede'
+														);
+														setShowed(true);
+													}}
+													className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+												>
+													Speichem
+												</button>
+												<button
+													onClick={() =>
+														setShowed(true)
+													}
+													className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+												>
+													Verwerfem
+												</button>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div
-									onClick={() => {
-										dispatch({type: DECREASE_APP_STEP});
-									}}
-									className="tw-w-3 tw-cursor-pointer"
+									onClick={() => setShowed(!showed)}
+									className={
+										!showed
+											? 'is-hide'
+											: 'tw-w-3 tw-cursor-pointer'
+									}
 								>
-									<PenIcon/>
+									<PenIcon />
 								</div>
 							</div>
 						)}
@@ -185,14 +329,20 @@ const SummaryFinal = () => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Ihre Kontaktdaten</div>
-									<div className={'tw-font-bold'}>
+									<div
+										className={
+											show
+												? 'tw-font-bold'
+												: 'tw-font-bold is-show'
+										}
+									>
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
 													answer.name === 'gender'
 											)!.value
-										}
-										<br/>
+										}{' '}
+										<br />
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -205,14 +355,14 @@ const SummaryFinal = () => {
 													answer.name === 'familyName'
 											)!.value
 										}
-										<br/>
+										<br />
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
 													answer.name === 'phone'
 											)!.value
 										}
-										<br/>
+										<br />
 										{
 											anredeQuestion.answers.find(
 												(answer) =>
@@ -220,15 +370,152 @@ const SummaryFinal = () => {
 											)!.value
 										}
 									</div>
+									<div
+										className={
+											show
+												? 'edit-form is-show'
+												: 'edit-form tw-w-full'
+										}
+									>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="round">
+												<select
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded focus:tw-ring-transparent"
+													id="gender"
+													name="gender"
+													onChange={(e) => {
+														handleChange(
+															e.target.value,
+															e.target.name,
+															'Anrede'
+														);
+
+														setContact(
+															!contactAgreement
+														);
+													}}
+												>
+													<option value="Herr">
+														Herr
+													</option>
+													<option value="Frau">
+														Frau
+													</option>
+													<option value="Divers">
+														Divers
+													</option>
+												</select>
+											</div>
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Vorname*
+												</label>
+												<input
+													type="text"
+													name="givenName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={name}
+													onChange={(e) =>
+														setName(e.target.value)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Nachname*
+												</label>
+												<input
+													type="text"
+													name="familyName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={familyName}
+													onChange={(e) =>
+														setFamilyName(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+										</div>
+
+										<div className="tw-mt-2 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													E-Mail Adresse*
+												</label>
+												<input
+													type="email"
+													name="email"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={email}
+													onChange={(e) =>
+														setEmail(e.target.value)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Telefonnummer*
+												</label>
+												<input
+													type="phone"
+													name="phone"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={phone}
+													onChange={(e) =>
+														setPhone(e.target.value)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+											<button
+												onClick={() => {
+													handleChange(
+														name,
+														'givenName',
+														'Anrede'
+													);
+													handleChange(
+														familyName,
+														'familyName',
+														'Anrede'
+													);
+													handleChange(
+														email,
+														'email',
+														'Anrede'
+													);
+													handleChange(
+														phone,
+														'phone',
+														'Anrede'
+													);
+													setShow(true);
+												}}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+											>
+												Speichem
+											</button>
+											<button
+												onClick={() => setShow(true)}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+											>
+												Verwerfem
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
-								onClick={() => {
-									dispatch({type: DECREASE_APP_STEP});
-								}}
-								className="tw-w-3 tw-cursor-pointer"
+								onClick={() => setShow(!show)}
+								className={
+									!show
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
 							>
-								<PenIcon/>
+								<PenIcon />
 							</div>
 						</div>
 
@@ -236,7 +523,13 @@ const SummaryFinal = () => {
 							<div className="tw-flex-grow">
 								<div className="tw-grid tw-grid-cols-2 tw-gap-6">
 									<div>Rechnungsadresse</div>
-									<div className={'tw-font-bold'}>
+									<div
+										className={
+											open
+												? 'tw-font-bold'
+												: 'tw-font-bold is-show'
+										}
+									>
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -250,14 +543,13 @@ const SummaryFinal = () => {
 													'houseNumber'
 											)!.value
 										}
-										<br/>
+										<br />
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
 													answer.name === 'postalCode'
 											)!.value
-										}
-										,{' '}
+										}{' '}
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>
@@ -265,15 +557,127 @@ const SummaryFinal = () => {
 											)!.value
 										}
 									</div>
+									<div
+										className={
+											open
+												? 'edit-form is-show'
+												: 'edit-form tw-w-full'
+										}
+									>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Straße*
+												</label>
+												<input
+													type="text"
+													name="streetName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={streetName}
+													onChange={(e) =>
+														setStreetName(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Hausnummer*
+												</label>
+												<input
+													type="text"
+													name="houseNumber"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={houseNumber}
+													onChange={(e) =>
+														setHouseNumber(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Postleitzahl*
+												</label>
+												<input
+													type="number"
+													name="postalCode"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={postalCode}
+													onChange={(e) =>
+														setPostalCode(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Wohnort*
+												</label>
+												<input
+													type="text"
+													name="city"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] focus:tw-ring-transparent"
+													value={city}
+													onChange={(e) =>
+														setCity(e.target.value)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+											<button
+												onClick={() => {
+													handleChange(
+														streetName,
+														'streetName',
+														'Anschrift'
+													);
+													handleChange(
+														houseNumber,
+														'houseNumber',
+														'Anschrift'
+													);
+													handleChange(
+														postalCode,
+														'postalCode',
+														'Anschrift'
+													);
+													handleChange(
+														city,
+														'city',
+														'Anschrift'
+													);
+													setOpen(true);
+												}}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+											>
+												Speichem
+											</button>
+											<button
+												onClick={() => setOpen(true)}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+											>
+												Verwerfem
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
-								onClick={() => {
-									dispatch({type: DECREASE_APP_STEP});
-								}}
-								className="tw-w-3 tw-cursor-pointer"
+								onClick={() => setOpen(!open)}
+								className={
+									!open
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
 							>
-								<PenIcon/>
+								<PenIcon />
 							</div>
 						</div>
 
@@ -283,7 +687,13 @@ const SummaryFinal = () => {
 									<div>
 										Anschrift der zu prüfenden Liegenschaft
 									</div>
-									<div className={'tw-font-bold'}>
+									<div
+										className={
+											opened
+												? 'tw-font-bold'
+												: 'tw-font-bold is-show'
+										}
+									>
 										{
 											liegenschaftQuestion.answers.find(
 												(answer) =>
@@ -297,7 +707,7 @@ const SummaryFinal = () => {
 													'houseNumber'
 											)!.value
 										}
-										<br/>
+										<br />
 										{
 											liegenschaftQuestion.answers.find(
 												(answer) =>
@@ -312,15 +722,127 @@ const SummaryFinal = () => {
 											)!.value
 										}
 									</div>
+									<div
+										className={
+											opened
+												? 'edit-form is-show'
+												: 'edit-form tw-w-full'
+										}
+									>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Straße*
+												</label>
+												<input
+													type="text"
+													name="streetName"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px]  'focus:tw-ring-transparent"
+													value={streetName}
+													onChange={(e) =>
+														setStreetName(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Hausnummer*
+												</label>
+												<input
+													type="text"
+													name="houseNumber"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={houseNumber}
+													onChange={(e) =>
+														setHouseNumber(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-4 tw-w-full">
+											<div className="rwm-form__input-container">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Postleitzahl*
+												</label>
+												<input
+													type="number"
+													name="postalCode"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={postalCode}
+													onChange={(e) =>
+														setPostalCode(
+															e.target.value
+														)
+													}
+												/>
+											</div>
+											<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
+												<label className="tw-flex tw-text-[16px] tw-leading-7 tw-font tw-mt-4 !tw-text-[#8c8a8c]">
+													Wohnort*
+												</label>
+												<input
+													type="text"
+													name="city"
+													className="tw-border-2 tw-border-[#c3c2c3] tw-rounded tw-w-[80%] tw-py-[12px] tw-pl-[9px] tw-pr-[17px] 'focus:tw-ring-transparent"
+													value={city}
+													onChange={(e) =>
+														setCity(e.target.value)
+													}
+												/>
+											</div>
+										</div>
+										<div className="tw-mt-8 tw-flex tw-flex-col tw-justify-center tw-items-center">
+											<button
+												onClick={() => {
+													handleChange(
+														streetName,
+														'streetName',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													handleChange(
+														houseNumber,
+														'houseNumber',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													handleChange(
+														postalCode,
+														'postalCode',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													handleChange(
+														city,
+														'city',
+														'Wo befindet sich die zu prüfende Liegenschaft?'
+													);
+													setOpened(true);
+												}}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-bg-[#E20613]  tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-white "
+											>
+												Speichem
+											</button>
+											<button
+												onClick={() => setOpened(true)}
+												className="tw-border-[1px] tw-border-solid tw-border-[#E20613] tw-rounded-[131px] tw-py-2 tw-px-[30px] tw-w-[60%] tw-text-[#E20613] tw-mt-4"
+											>
+												Verwerfem
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div
-								onClick={() => {
-									dispatch({type: DECREASE_APP_STEP});
-								}}
-								className="tw-cursor-pointer"
+								onClick={() => setOpened(!opened)}
+								className={
+									!opened
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
 							>
-								<PenIcon/>
+								<PenIcon />
 							</div>
 						</div>
 					</div>
@@ -345,7 +867,7 @@ const SummaryFinal = () => {
 								let serviceFeature =
 									appData.selectedPricing.serviceFeatures[
 										serviceFeatureName
-										];
+									];
 
 								return (
 									<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
@@ -359,7 +881,7 @@ const SummaryFinal = () => {
 											<p>{serviceFeature.subtitle}</p>
 										</div>
 										<div className="">
-											<CheckCircledIcon/>
+											<CheckCircledIcon />
 										</div>
 									</div>
 								);
@@ -385,7 +907,7 @@ const SummaryFinal = () => {
 							let extraService =
 								appData.selectedPricing.extraServices[
 									extraServiceName
-									];
+								];
 
 							return (
 								<div
@@ -399,8 +921,7 @@ const SummaryFinal = () => {
 											</p>
 											<p>{extraService.subtitle}</p>
 										</div>
-										<div
-											className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+										<div className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
 											+{' '}
 											{extraService
 												.price(appData)
@@ -429,17 +950,25 @@ const SummaryFinal = () => {
 								<p className={'tw-font-bold'}>
 									{`Gesamtpreis für eine Liegenschaft mit ${
 										checkStrangAmount(appData) > 1
-											? `${checkStrangAmount(appData)} Strängen`
-											: checkStrangAmount(appData) === undefined ? 'unbekanntem Strangschema' : 'einem Strang'
+											? `${checkStrangAmount(
+													appData
+											  )} Strängen`
+											: checkStrangAmount(appData) ===
+											  undefined
+											? 'unbekanntem Strangschema'
+											: 'einem Strang'
 									} und ${
 										getMeasurementValvesInstalled(appData)
 											? 'vorhandenen Probeentnahmeventilen'
 											: 'nicht vorhandenen Probeentnahmeventilen'
-									}. ${!getMeasurementValvesInstalled(appData) ? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)' : ''}`}
+									}. ${
+										!getMeasurementValvesInstalled(appData)
+											? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)'
+											: ''
+									}`}
 								</p>
 							</div>
-							<div
-								className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
+							<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
 								{total.toFixed(2).toString().replace('.', ',')}{' '}
 								€
 							</div>
@@ -455,16 +984,18 @@ const SummaryFinal = () => {
 				<div className="tw-p-10">
 					<h1>Wie geht es weiter?</h1>
 					<p>
-						Sie erhalten von uns in Kürze eine Auftragsbestätigung mit Terminvorschlägen für unser
-						gemeinsames Erstgespräch. Darin fragen wir noch weitere Angaben ab, die wir für die Ausführung
-						Ihrer Bestellung benötigen. Mit dieser Checkliste können Sie alle nötigen Informationen bereits
-						vorbereiten. Link zur PDF-Checkliste
+						Sie erhalten von uns in Kürze eine Auftragsbestätigung
+						mit Terminvorschlägen für unser gemeinsames
+						Erstgespräch. Darin fragen wir noch weitere Angaben ab,
+						die wir für die Ausführung Ihrer Bestellung benötigen.
+						Mit dieser Checkliste können Sie alle nötigen
+						Informationen bereits vorbereiten. Link zur
+						PDF-Checkliste
 					</p>
 				</div>
 			</section>
 			<section>
-				<div
-					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -486,8 +1017,7 @@ const SummaryFinal = () => {
 						</p>
 					</div>
 				</div>
-				<div
-					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -520,8 +1050,7 @@ const SummaryFinal = () => {
 						</p>
 					</div>
 				</div>
-				<div
-					className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 					<div className="round">
 						<input
 							type="checkbox"
@@ -554,38 +1083,49 @@ const SummaryFinal = () => {
 						</p>
 					</div>
 				</div>
-				{appData.selectedPricing.serviceFeatures['Legionellenprüfung'].active &&
-					<div
-						className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+				{appData.selectedPricing.serviceFeatures['Legionellenprüfung']
+					.active && (
+					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
 						<div className="round">
 							<input
 								type="checkbox"
 								id="consent-legionellenberatung"
 								checked={consentLegionellenBeratung}
 								onChange={() =>
-									setConsentLegionellenBeratung(!consentLegionellenBeratung)
+									setConsentLegionellenBeratung(
+										!consentLegionellenBeratung
+									)
 								}
 							/>
 							<label htmlFor="consent-legionellenberatung"></label>
 						</div>
 						<div
 							className="rwm-form__input-container-large tw-cursor-pointer tw-select-none"
-							onClick={() => setConsentLegionellenBeratung(!consentLegionellenBeratung)}
+							onClick={() =>
+								setConsentLegionellenBeratung(
+									!consentLegionellenBeratung
+								)
+							}
 						>
 							<p className="tw-font-size-label tw-pl-6">
-								Ich erkläre mich damit einverstanden, dass ich durch die Techem Energy Services GmbH
-								und mit ihr verbundene Unternehmen per Telefon bzw. E-Mail unter der zuvor genannten
-								Telefonnummer bzw. E-Mailadresse über die notwendigen Maßnahmen und unsere damit
-								verbundenen Angebote und Leistungen im Falle einer Überschreitung des technischen
-								Maßnahmenwertes für Legionellen im Trinkwasser kontaktiert und informiert werde.
-								Diese Einwilligung gilt für alle Liegenschaften, die unter meiner Kundennummer
-								geführt sind und bei denen Untersuchungen auf Legionellen beauftragt wurden.
+								Ich erkläre mich damit einverstanden, dass ich
+								durch die Techem Energy Services GmbH und mit
+								ihr verbundene Unternehmen per Telefon bzw.
+								E-Mail unter der zuvor genannten Telefonnummer
+								bzw. E-Mailadresse über die notwendigen
+								Maßnahmen und unsere damit verbundenen Angebote
+								und Leistungen im Falle einer Überschreitung des
+								technischen Maßnahmenwertes für Legionellen im
+								Trinkwasser kontaktiert und informiert werde.
+								Diese Einwilligung gilt für alle Liegenschaften,
+								die unter meiner Kundennummer geführt sind und
+								bei denen Untersuchungen auf Legionellen
+								beauftragt wurden.
 							</p>
 						</div>
 					</div>
-				}
+				)}
 			</section>
-
 			<div className="tw-pt-10 tw-flex tw-items-center tw-justify-center">
 				<div
 					className="frc-captcha"
@@ -593,12 +1133,20 @@ const SummaryFinal = () => {
 					data-sitekey={FRIENDLYCAPTCHA_SITEKEY}
 				></div>
 			</div>
-
 			<section className="tw-flex tw-flex-col lg:tw-flex-row tw-justify-around">
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
 						style={
-							consentConsulting && consentTerms && captcha && (!(appData.selectedPricing.serviceFeatures['Legionellenprüfung'].active) || ((appData.selectedPricing.serviceFeatures['Legionellenprüfung'].active) && consentLegionellenBeratung))
+							consentConsulting &&
+							consentTerms &&
+							captcha &&
+							(!appData.selectedPricing.serviceFeatures[
+								'Legionellenprüfung'
+							].active ||
+								(appData.selectedPricing.serviceFeatures[
+									'Legionellenprüfung'
+								].active &&
+									consentLegionellenBeratung))
 								? 'PRIMARY'
 								: 'DISACTIVE'
 						}
@@ -639,7 +1187,7 @@ const SummaryFinal = () => {
 												appData.selectedPricing
 													.extraServices[
 													extraServiceName
-													];
+												];
 											return extraService.price(appData);
 										})
 										.reduce((x, y) => x + y, 0.0),
@@ -705,6 +1253,28 @@ const SummaryFinal = () => {
 					></Button>
 				</div>
 			</section>
+
+			<ModalWrapper
+				isOpen={strangschemaModalOpen}
+				setOpen={setStrangschemaModalOpen}
+			>
+				<>
+					<p className="text-title rwm-form__headline tw-leading-[37px] tw-font-bold">
+						Wie viele Stränge sind verbaut?
+					</p>
+					<NumericInput />
+					<div className={'tw-mt-12'}>
+						<Uploader uploadId={'strang'} />
+					</div>
+				</>
+			</ModalWrapper>
+
+			<ModalWrapper
+				isOpen={probeentnahmeventilenOpen}
+				setOpen={setProbeentnahmeventilenModalOpen}
+			>
+				<VentileForm currentAppData={currentAppData} />
+			</ModalWrapper>
 		</Layout>
 	);
 };

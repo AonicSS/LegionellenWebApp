@@ -1,20 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {AppData, AppReduxStoreProps} from '../../redux/reducers/App';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppData, AppReduxStoreProps } from '../../redux/reducers/App';
 import classNames from 'classnames';
-import {
-	SET_ANSWER,
-	SET_APP_STEP,
-	SET_PRICING,
-} from '../../redux/actions/App';
+import { SET_ANSWER, SET_APP_STEP, SET_PRICING } from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import {
-	getMeasurementValvesInstalled, checkStrangAmount,
+	getMeasurementValvesInstalled,
+	checkStrangAmount,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
-import {trackSummary} from '../../utils/tracking';
+import { trackSummary } from '../../utils/tracking';
 import classnames from 'classnames';
 import Info from '../../public/icons/Info.svg';
 import CheckInIcon from '../../public/icons/check-in.svg';
@@ -40,9 +37,6 @@ const demoCoupons = [
 
 const Summary = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	// const [contactAgreement, setContact] = useState(false);
-
-
 	const [isCouponToggled, setCouponToggled] = useState(false);
 	const [editLiegenschaftMode, seteditLiegenschaftMode] = useState(false);
 	const [coupon, setCoupon] = useState('');
@@ -68,7 +62,7 @@ const Summary = () => {
 		(state: AppReduxStoreProps) =>
 			state.appData.questions[
 				'Wo befindet sich die zu prüfende Liegenschaft?'
-				]
+			]
 	);
 	const anredeQuestion = useSelector(
 		(state: AppReduxStoreProps) => state.appData.questions['Anrede']
@@ -78,8 +72,7 @@ const Summary = () => {
 	);
 
 	const isCustomer = anredeQuestion.answers.find(
-		(answer) =>
-			answer.name === 'isCustomer'
+		(answer) => answer.name === 'isCustomer'
 	)!.value;
 
 	const handleChange = (
@@ -112,7 +105,7 @@ const Summary = () => {
 						[extraServiceName]: {
 							...appData.selectedPricing.extraServices[
 								extraServiceName
-								],
+							],
 							selected: value,
 						},
 					},
@@ -120,6 +113,14 @@ const Summary = () => {
 			},
 		});
 	};
+
+	console.log(
+		anredeQuestion.answers
+			.filter((answer) => {
+				return answer.required(appData);
+			})
+			.find((answer) => answer.value === undefined || answer.value === '')
+	);
 
 	const checkCoupon = () => {
 		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
@@ -132,7 +133,7 @@ const Summary = () => {
 
 	return (
 		<Layout>
-			<Modal/>
+			<Modal />
 			<Element name="myScrollToElement"></Element>
 			<section className="rwm-calculator__page-section tw-margin-top tw-sticky tw-top-0 tw-bg-white tw-z-[100]">
 				<div className="tw-flex tw-flex-col">
@@ -149,8 +150,7 @@ const Summary = () => {
 								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
 							)}
 						>
-							<div
-								className="tw-container-pricing-headline tw-font-size-pricing-headline lg:tw-max-w-[53.5rem] tw-m-auto">
+							<div className="tw-container-pricing-headline tw-font-size-pricing-headline lg:tw-max-w-[53.5rem] tw-m-auto">
 								{appData.selectedPricing.name}
 							</div>
 							<div className="tw-flex tw-flex-col lg:tw-flex-row tw-max-w-4xl tw-items-center tw-m-auto">
@@ -158,30 +158,41 @@ const Summary = () => {
 									<div>
 										{`Gesamtpreis für eine Liegenschaft mit ${
 											checkStrangAmount(appData) > 1
-												? `${checkStrangAmount(appData)} Strängen`
-												: checkStrangAmount(appData) === undefined ? 'unbekanntem Strangschema' : 'einem Strang'
+												? `${checkStrangAmount(
+														appData
+												  )} Strängen`
+												: checkStrangAmount(appData) ===
+												  undefined
+												? 'unbekanntem Strangschema'
+												: 'einem Strang'
 										} und ${
-											getMeasurementValvesInstalled(appData)
+											getMeasurementValvesInstalled(
+												appData
+											)
 												? 'vorhandenen Probeentnahmeventilen'
 												: 'nicht vorhandenen Probeentnahmeventilen'
-										}. ${!getMeasurementValvesInstalled(appData) ? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)' : ''}`}
+										}. ${
+											!getMeasurementValvesInstalled(
+												appData
+											)
+												? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)'
+												: ''
+										}`}
 									</div>
 								</div>
 								<div className="tw-flex tw-items-center">
-									<div
-										className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
+									<div className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
 										{total
 											.toFixed(2)
 											.toString()
 											.replace('.', ',')}{' '}
 										€
 									</div>
-									{
-										appData.selectedPricing.recommended &&
+									{appData.selectedPricing.recommended && (
 										<div className="tw-w-15%">
-											<TechemRecommendationIcon/>
+											<TechemRecommendationIcon />
 										</div>
-									}
+									)}
 								</div>
 							</div>
 						</div>
@@ -209,13 +220,13 @@ const Summary = () => {
 									(x) =>
 										appData.selectedPricing.serviceFeatures[
 											x
-											].active
+										].active
 								)
 								.map((serviceFeatureName: string) => {
 									let serviceFeature =
 										appData.selectedPricing.serviceFeatures[
 											serviceFeatureName
-											];
+										];
 
 									return (
 										<div
@@ -232,7 +243,7 @@ const Summary = () => {
 												<p>{serviceFeature.subtitle}</p>
 											</div>
 											<div className="">
-												<CheckCircledIcon/>
+												<CheckCircledIcon />
 											</div>
 										</div>
 									);
@@ -258,7 +269,7 @@ const Summary = () => {
 								let extraService =
 									appData.selectedPricing.extraServices[
 										extraServiceName
-										];
+									];
 
 								return (
 									<>
@@ -269,8 +280,7 @@ const Summary = () => {
 												</p>
 												<p>{extraService.subtitle}</p>
 											</div>
-											<div
-												className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
+											<div className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
 												{extraService.price(appData)} €
 											</div>
 										</div>
@@ -300,10 +310,8 @@ const Summary = () => {
 																	)
 																}
 															/>
-															<div
-																className="lable-check tw-block tw-bg-[#C6C6C6] tw-w-14 tw-h-8 tw-rounded-full"></div>
-															<div
-																className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
+															<div className="lable-check tw-block tw-bg-[#C6C6C6] tw-w-14 tw-h-8 tw-rounded-full"></div>
+															<div className="dot tw-absolute tw-left-1 tw-top-1 tw-bg-white tw-w-6 tw-h-6 tw-rounded-full tw-transition"></div>
 														</div>
 														<div className="tw-ml-3 tw-text-gray-700 tw-font-medium"></div>
 													</label>
@@ -324,8 +332,7 @@ const Summary = () => {
 									Coupon-Code einlösen?
 								</button>
 								{isCouponToggled && (
-									<div
-										className="tw-pt-5 tw-flex tw-flex-col lg:tw-flex-row tw-items-center tw-justify-between tw-gap-y-5 tw-gap-x-20">
+									<div className="tw-pt-5 tw-flex tw-flex-col lg:tw-flex-row tw-items-center tw-justify-between tw-gap-y-5 tw-gap-x-20">
 										<input
 											value={coupon}
 											onChange={(e) =>
@@ -356,8 +363,7 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label
-							className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
 							<h1 className="rwm-form__headline">Kontaktdaten</h1>
 						</label>
 						<div className="tw-mt-8">
@@ -366,8 +372,7 @@ const Summary = () => {
 							</div>
 							<div className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center">
 								<div className="lg:tw-w-3/12">
-									<div
-										className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
+									<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-between tw-items-start">
 										<fieldset className="tw-grid tw-grid-cols-3 tw-gap-6 tw-mt-2">
 											<div className="tw-flex tw-flex-row tw-justify-center tw-items-center">
 												<div className="round">
@@ -377,16 +382,17 @@ const Summary = () => {
 														value={
 															anredeQuestion.answers.find(
 																(answer) =>
-																	answer.name === 'gender'
+																	answer.name ===
+																	'gender'
 															)!.value
 														}
-														onChange={(e) =>
+														onChange={(e) => {
 															handleChange(
 																e.target.value,
 																e.target.name,
 																'Anrede'
-															)
-														}
+															);
+														}}
 													>
 														<option value="Herr">
 															Herr
@@ -403,8 +409,7 @@ const Summary = () => {
 										</fieldset>
 									</div>
 								</div>
-								<div
-									className="rwm-form__input-container-large tw-gap-x-5 tw-flex tw-flex-row tw-justify-start tw-items-center lg:tw-w-9/12">
+								<div className="rwm-form__input-container-large tw-gap-x-5 tw-flex tw-flex-row tw-justify-start tw-items-center lg:tw-w-9/12">
 									<div className="round">
 										<input
 											type="checkbox"
@@ -413,7 +418,8 @@ const Summary = () => {
 											checked={
 												anredeQuestion.answers.find(
 													(answer) =>
-														answer.name === 'isCustomer'
+														answer.name ===
+														'isCustomer'
 												)!.value
 											}
 											onChange={(e) =>
@@ -432,8 +438,7 @@ const Summary = () => {
 								</div>
 							</div>
 						</div>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Vorname*
@@ -482,8 +487,7 @@ const Summary = () => {
 							</div>
 						</div>
 
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									E-Mail Adresse*
@@ -564,15 +568,13 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label
-							className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white">
 							<h1 className="rwm-form__headline">
 								Rechnungsadresse
 							</h1>
 						</label>
 
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Unternehmen
@@ -597,8 +599,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Straße*
@@ -646,8 +647,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -698,22 +698,22 @@ const Summary = () => {
 				</section>
 				<section className="rwm-forms__page-section tw-margin-top">
 					<div className="tw-flex tw-flex-col">
-						<label
-							className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white tw-flex tw-justify-between">
+						<label className="rwm-form__headline tw-pb-4 tw-border-solid tw-border-b-[1px] tw-border-b-white tw-flex tw-justify-between">
 							<h1 className="rwm-form__headline">
 								Liegenschaftsadresse
 							</h1>
 							<span
 								onClick={() => {
-									seteditLiegenschaftMode(!editLiegenschaftMode);
+									seteditLiegenschaftMode(
+										!editLiegenschaftMode
+									);
 								}}
 								className="tw-cursor-pointer"
 							>
-								<PenEditIcon className={'tw-inline'}/>
+								<PenEditIcon className={'tw-inline'} />
 							</span>
 						</label>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Straße*
@@ -728,7 +728,6 @@ const Summary = () => {
 												answer.name === 'streetName'
 										)!.value
 									}
-
 									onChange={(e) =>
 										handleChange(
 											e.target.value,
@@ -764,8 +763,7 @@ const Summary = () => {
 								/>
 							</div>
 						</div>
-						<div
-							className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
 									Postleitzahl*
@@ -819,7 +817,19 @@ const Summary = () => {
 				<section className="tw-flex lg:tw-flex-row tw-flex-col tw-justify-around">
 					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 						<Button
-							style={'PRIMARY'}
+							style={
+								anredeQuestion.answers
+									.filter((answer) => {
+										return answer.required(appData);
+									})
+									.find(
+										(answer) =>
+											answer.value === undefined ||
+											answer.value === ''
+									)
+									? 'DISACTIVE'
+									: 'PRIMARY'
+							}
 							text={'Preis sichern, direkt abschließen'}
 						></Button>
 					</div>
