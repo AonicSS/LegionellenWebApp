@@ -12,6 +12,7 @@ const Calculator = () => {
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
+	console.log(currentAppData);
 	const currentAppStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.step
 	);
@@ -41,7 +42,20 @@ const Calculator = () => {
 			)}
 			{currentAppStep === 3 && currentSubStep === 0 && (
 				<section className="rwm-calculator__page-section tw-mt-12">
-					<Button style="NEXT" text={'Preis berechnen'} />
+					<Button
+						style={
+							currentAppData.questions[
+								'Wo befindet sich die zu prüfende Liegenschaft?'
+							].answers.find(
+								(answer) =>
+									answer.value === '' ||
+									answer.value === undefined
+							)
+								? `DISACTIVE`
+								: `NEXT`
+						}
+						text={'Preis berechnen'}
+					/>
 				</section>
 			)}
 			{(currentAppStep === 1 &&

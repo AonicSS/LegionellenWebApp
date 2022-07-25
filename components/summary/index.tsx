@@ -46,7 +46,6 @@ const demoCoupons = [
 
 const Summary = ({ contactAgreement, setContact }) => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
-	// const [contactAgreement, setContact] = useState(false);
 	const [isCouponToggled, setCouponToggled] = useState(false);
 	const [coupon, setCoupon] = useState('');
 	const [couponStatus, setCouponStatus] = useState('');
@@ -85,8 +84,6 @@ const Summary = ({ contactAgreement, setContact }) => {
 		answerName: string,
 		questionText: string
 	) => {
-		console.log(value, answerName, questionText);
-
 		dispatch({
 			type: SET_ANSWER,
 			payload: {
@@ -120,6 +117,14 @@ const Summary = ({ contactAgreement, setContact }) => {
 			},
 		});
 	};
+
+	console.log(
+		anredeQuestion.answers
+			.filter((answer) => {
+				return answer.required;
+			})
+			.find((answer) => answer.value === undefined || answer.value === '')
+	);
 
 	const checkCoupon = () => {
 		const checkedCoupon = demoCoupons.find((code) => code.code === coupon);
@@ -373,10 +378,6 @@ const Summary = ({ contactAgreement, setContact }) => {
 																e.target.value,
 																e.target.name,
 																'Anrede'
-															);
-
-															setContact(
-																!contactAgreement
 															);
 														}}
 													>
@@ -740,7 +741,19 @@ const Summary = ({ contactAgreement, setContact }) => {
 				<section className="tw-flex lg:tw-flex-row tw-flex-col tw-justify-around">
 					<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 						<Button
-							style={'PRIMARY'}
+							style={
+								anredeQuestion.answers
+									.filter((answer) => {
+										return answer.required;
+									})
+									.find(
+										(answer) =>
+											answer.value === undefined ||
+											answer.value === ''
+									)
+									? 'DISACTIVE'
+									: 'PRIMARY'
+							}
 							text={'Preis sichern, direkt abschließen'}
 						></Button>
 					</div>

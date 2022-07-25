@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppReduxStoreProps } from '../../redux/reducers/App';
 import { useNavigate } from 'react-router-dom';
@@ -134,7 +133,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 			(answer) => answer.name === 'customerNumber'
 		)!.value
 	);
-  
+
 	const container = useRef(null);
 	const widget = useRef(null);
 
@@ -193,7 +192,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 									</div>
 								</div>
 							</div>
-							<div className={'tw-w-3'}></div>
+							<div
+								onClick={() => setShowed(!showed)}
+								className={
+									!showed
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
+							>
+								<PenIcon />
+							</div>
 						</div>
 
 						<div className="tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige">
@@ -209,7 +217,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 									</div>
 								</div>
 							</div>
-							<div className={'tw-w-3'}></div>
+							<div
+									onClick={() => setShowed(!showed)}
+									className={
+										!showed
+											? 'is-hide'
+											: 'tw-w-3 tw-cursor-pointer'
+									}
+								>
+									<PenIcon />
+								</div>
 						</div>
 
 						{anredeQuestion.answers.find(
@@ -528,8 +545,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 												(answer) =>
 													answer.name === 'postalCode'
 											)!.value
-										}
-										{' '}
+										}{' '}
 										{
 											anschriftQuestion.answers.find(
 												(answer) =>

@@ -143,7 +143,7 @@ export const questions = {
 				name: 'gender',
 				type: 'string',
 				required: true,
-				value: undefined,
+				value: 'Herr',
 			},
 			{
 				name: 'givenName',
@@ -172,7 +172,7 @@ export const questions = {
 			{
 				name: 'customerNumber',
 				type: 'string',
-				required: true,
+				required: false,
 				value: undefined,
 			},
 		],
