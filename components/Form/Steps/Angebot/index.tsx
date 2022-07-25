@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import * as Scroll from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,23 +13,32 @@ import { AppReduxStoreProps } from '../../../../redux/reducers/App';
 import Pricing from './Pricing/Pricing';
 import Summary from '../../../summary';
 import SummaryFinal from '../../../summary-final';
-import HouseAltIcon from '../../../../public/icons/house-alt.svg';
-import PenEditIcon from '../../../../public/icons/pen-edit.svg';
 import {
 	checkStrangAmount,
 	getMeasurementValvesInstalled,
 } from '../../../../utils/helpers';
 import Translate from '../../../../utils/translate';
 import Button from '../../../Button';
-import ModalWrapper from './ModalWrapper';
+import ModalWrapper from '../../../shared/ModalWrapper';
+import { NumericInput } from '../../Input';
+import Uploader from '../../../Uploader';
+import Radio from '../../Radio';
+
+import HouseAltIcon from '../../../../public/icons/house-alt.svg';
+import PenEditIcon from '../../../../public/icons/pen-edit.svg';
+import StrangSchemaAnleitung from '../../../../public/img/strangschema_anleitung.png';
+import ProbeenthahmeventileIcon from '../../../../public/icons/probeentnahmeventile.svg';
+import AddressForm from './AddressForm';
 
 const Angebot = () => {
 	const dispatch = useDispatch();
 	const intl = useIntl();
 	const scroller = Scroll.scroller;
 
-	const [strangschemaModalOpen, setStrangschemaModalOpen] =
-		React.useState(false);
+	const [strangschemaModalOpen, setStrangschemaModalOpen] = useState(false);
+	const [probeentnahmeventilenOpen, setProbeentnahmeventilenModalOpen] =
+		useState(false);
+	const [addressModalOpen, setAddressModalOpen] = useState(false);
 
 	const currentSubStep = useSelector(
 		(state: AppReduxStoreProps) => state.appData.subStep
@@ -85,131 +94,10 @@ const Angebot = () => {
 			return (
 				<>
 					<section className="rwm-forms__page-section tw-margin-top">
-						<div className="tw-flex tw-flex-col">
-							<label className="rwm-form__headline tw-m-auto tw-pb-10">
-								<h1 className="text-title rwm-form__headline tw-leading-[37px] tw-font-bold">
-									Wo befindet sich die zu prüfende
-									Liegenschaft?
-								</h1>
-							</label>
-							<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-2 tw-w-full">
-								<div className="rwm-form__input-container">
-									<label className="tw-flex tw-font-light tw-text-[16px] tw-leading-[149.5%] tw-text-[#605E5C] tw-font">
-										Straße*
-									</label>
-									<input
-										type="text"
-										name="streetName"
-										className="rwm-form__input-custom tw-border-[0.5px]  'focus:tw-ring-transparent"
-										value={
-											currentQuestion.answers.find(
-												(answer) =>
-													answer.name === 'streetName'
-											)
-												? currentQuestion.answers.find(
-														(answer) =>
-															answer.name ===
-															'streetName'
-												  )!.value
-												: ''
-										}
-										onChange={(e) =>
-											handleChange(
-												e.target.value,
-												e.target.name
-											)
-										}
-									/>
-								</div>
-								<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-									<label className="tw-flex tw-font-light tw-text-[16px] tw-leading-[149.5%] tw-text-[#605E5C] tw-font">
-										Hausnummer*
-									</label>
-									<input
-										type="text"
-										name="houseNumber"
-										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={
-											currentQuestion.answers.find(
-												(answer) =>
-													answer.name ===
-													'houseNumber'
-											)
-												? currentQuestion.answers.find(
-														(answer) =>
-															answer.name ===
-															'houseNumber'
-												  )!.value
-												: ''
-										}
-										onChange={(e) =>
-											handleChange(
-												e.target.value,
-												e.target.name
-											)
-										}
-									/>
-								</div>
-							</div>
-							<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-6 tw-w-full">
-								<div className="rwm-form__input-container">
-									<label className="tw-flex tw-font-light tw-text-[16px] tw-leading-[149.5%] tw-text-[#605E5C] tw-font">
-										Postleitzahl*
-									</label>
-									<input
-										type="number"
-										name="postalCode"
-										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={
-											currentQuestion.answers.find(
-												(answer) =>
-													answer.name === 'postalCode'
-											)
-												? currentQuestion.answers.find(
-														(answer) =>
-															answer.name ===
-															'postalCode'
-												  )!.value
-												: ''
-										}
-										onChange={(e) =>
-											handleChange(
-												e.target.value,
-												e.target.name
-											)
-										}
-									/>
-								</div>
-								<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
-									<label className="tw-flex tw-font-light tw-text-[16px] tw-leading-[149.5%] tw-text-[#605E5C] tw-font">
-										Wohnort*
-									</label>
-									<input
-										type="text"
-										name="city"
-										className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
-										value={
-											currentQuestion.answers.find(
-												(answer) =>
-													answer.name === 'city'
-											)
-												? currentQuestion.answers.find(
-														(answer) =>
-															answer.name ===
-															'city'
-												  )!.value
-												: ''
-										}
-										onChange={(e) =>
-											handleChange(
-												e.target.value,
-												e.target.name
-											)
-										}
-									/>
-								</div>
-							</div>
-						</div>
+						<AddressForm
+							currentQuestion={currentQuestion}
+							handleChange={handleChange}
+						/>
 					</section>
 				</>
 			);
@@ -246,9 +134,7 @@ const Angebot = () => {
 									Für die Liegenschaft{' '}
 									<span
 										onClick={() => {
-											dispatch({
-												type: DECREASE_APP_STEP,
-											});
+											setAddressModalOpen(true);
 										}}
 										className={
 											'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
@@ -261,22 +147,7 @@ const Angebot = () => {
 									mit{' '}
 									<span
 										onClick={() => {
-											dispatch({
-												type: SET_ANSWER,
-												payload: {
-													questionName:
-														'Kennen Sie das Strangschema Ihrer Trinkwasseranlage?',
-													answerName: 'choice',
-													value: 'yes',
-												},
-											});
-											dispatch({
-												type: SET_APP_STEP,
-												payload: {
-													step: 2,
-													subStep: 0,
-												},
-											});
+											setStrangschemaModalOpen(true);
 										}}
 										className={
 											'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
@@ -290,10 +161,9 @@ const Angebot = () => {
 									und{' '}
 									<span
 										onClick={() => {
-											dispatch({
-												type: SET_APP_STEP,
-												payload: { step: 2 },
-											});
+											setProbeentnahmeventilenModalOpen(
+												true
+											);
 										}}
 										className={
 											'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
@@ -329,10 +199,9 @@ const Angebot = () => {
 									und{' '}
 									<span
 										onClick={() => {
-											dispatch({
-												type: SET_APP_STEP,
-												payload: { step: 2 },
-											});
+											setProbeentnahmeventilenModalOpen(
+												true
+											);
 										}}
 										className={
 											'tw-text-ting-red tw-cursor-pointer hover:tw-underline'
@@ -372,11 +241,167 @@ const Angebot = () => {
 					</section>
 
 					<ModalWrapper
-						title="Wie viele Stränge sind verbaut?"
 						isOpen={strangschemaModalOpen}
 						setOpen={setStrangschemaModalOpen}
 					>
-						123
+						<>
+							<p className="text-title rwm-form__headline tw-leading-[37px] tw-font-bold">
+								Wie viele Stränge sind verbaut?
+							</p>
+							<NumericInput />
+							<div className={'tw-mt-12'}>
+								<Uploader uploadId={'strang'} />
+							</div>
+						</>
+					</ModalWrapper>
+
+					<ModalWrapper
+						isOpen={addressModalOpen}
+						setOpen={setAddressModalOpen}
+					>
+						<AddressForm
+							currentQuestion={currentQuestion}
+							handleChange={handleChange}
+						/>
+					</ModalWrapper>
+
+					<ModalWrapper
+						isOpen={probeentnahmeventilenOpen}
+						setOpen={setProbeentnahmeventilenModalOpen}
+					>
+						<div>
+							<Radio
+								questionTextOverride={
+									'Sind Probeentnahmeventile verbaut?'
+								}
+								answersOverride={{
+									yes: 'Ja',
+									no: 'Nein',
+									unsure: 'Ich weiß nicht',
+								}}
+							></Radio>
+
+							{currentAppData.questions[
+								'Sind Probeentnahmeventile verbaut?'
+							]!.answers.find(
+								(answer) => answer.name === 'choice'
+							)!.value !== 'unsure' && (
+								<div className="tw-flex tw-justify-center tw-mt-28">
+									<ProbeenthahmeventileIcon height={300} />
+								</div>
+							)}
+							{currentAppData.questions[
+								'Sind Probeentnahmeventile verbaut?'
+							]!.answers.find(
+								(answer) => answer.name === 'choice'
+							)!.value === 'no' && (
+								<div className={'tw-p-6 tw-bg-lightest-grey'}>
+									Falls noch nicht vorhanden, müssen die
+									Probeentnahmeventile von einer Fachkraft
+									angebracht werden.
+								</div>
+							)}
+							{currentAppData.questions[
+								'Sind Probeentnahmeventile verbaut?'
+							]!.answers.find(
+								(answer) => answer.name === 'choice'
+							)!.value === 'yes' && (
+								<>
+									<div
+										className={
+											'tw-flex tw-justify-center tw-my-6'
+										}
+									>
+										<div className={'tw-max-w-lg tw-p-6'}>
+											Sie können hier eine Abbildung ihres
+											Strangschemas hochladen, um die
+											Aufnahme Ihrer Liegenschaft zu
+											erleichtern.
+										</div>
+									</div>
+									<Uploader uploadId={'valves'} />
+								</>
+							)}
+							{currentAppData.questions[
+								'Sind Probeentnahmeventile verbaut?'
+							]!.answers.find(
+								(answer) => answer.name === 'choice'
+							)!.value === 'unsure' && (
+								<>
+									<div
+										className={
+											'tw-flex tw-justify-center tw-my-6'
+										}
+									>
+										<img
+											src={StrangSchemaAnleitung.src}
+											className={
+												'tw-w-full tw-h-auto tw-object-contain lg:tw-max-w-lg'
+											}
+										/>
+									</div>
+									<Radio
+										questionTextOverride={
+											'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'
+										}
+										showTitle={false}
+										orientation={'vertical'}
+										answersOverride={{
+											yes: 'Diese Information war hilfreich. Ich weiß jetzt, ob Probeentnahmeventile verbaut sind.',
+											no: 'Ich weiß nicht, ob Probeentnahmeventile verbaut sind und benötige Unterstützung.',
+										}}
+									></Radio>
+									{currentAppData.questions[
+										'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'
+									]!.answers.find(
+										(answer) => answer.name === 'choice'
+									)!.value === 'yes' && (
+										<>
+											<div
+												className={
+													'tw-flex tw-justify-center tw-my-6'
+												}
+											>
+												<div
+													className={
+														'tw-max-w-lg tw-p-6'
+													}
+												>
+													Sie können hier eine
+													Abbildung ihres
+													Strangschemas hochladen, um
+													die Aufnahme Ihrer
+													Liegenschaft zu erleichtern.
+												</div>
+											</div>
+											<Uploader uploadId={'valves'} />
+										</>
+									)}
+									{currentAppData.questions[
+										'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'
+									]!.answers.find(
+										(answer) => answer.name === 'choice'
+									)!.value === 'no' && (
+										<div
+											className={
+												'tw-flex tw-justify-center tw-my-6'
+											}
+										>
+											<div
+												className={
+													'tw-max-w-lg tw-p-6 tw-bg-lightest-grey'
+												}
+											>
+												Falls noch nicht vorhanden,
+												müssen die Probeentnahmeventile
+												von einer Fachkraft angebracht
+												werden.
+											</div>
+										</div>
+									)}
+								</>
+							)}
+						</div>
 					</ModalWrapper>
 				</>
 			);
