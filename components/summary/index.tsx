@@ -44,6 +44,7 @@ const Summary = () => {
 
 
 	const [isCouponToggled, setCouponToggled] = useState(false);
+	const [editLiegenschaftMode, seteditLiegenschaftMode] = useState(false);
 	const [coupon, setCoupon] = useState('');
 	const [couponStatus, setCouponStatus] = useState('');
 	const dispatch = useDispatch();
@@ -704,10 +705,7 @@ const Summary = () => {
 							</h1>
 							<span
 								onClick={() => {
-									dispatch({
-										type: SET_APP_STEP,
-										payload: {step: 3, subStep: 0},
-									});
+									seteditLiegenschaftMode(!editLiegenschaftMode);
 								}}
 								className="tw-cursor-pointer"
 							>
@@ -730,7 +728,15 @@ const Summary = () => {
 												answer.name === 'streetName'
 										)!.value
 									}
-									disabled
+
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -747,7 +753,14 @@ const Summary = () => {
 												answer.name === 'houseNumber'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 						</div>
@@ -767,7 +780,14 @@ const Summary = () => {
 												answer.name === 'postalCode'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -783,7 +803,14 @@ const Summary = () => {
 											(answer) => answer.name === 'city'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 						</div>
