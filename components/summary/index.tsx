@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppData, AppReduxStoreProps } from '../../redux/reducers/App';
-import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import {
-	DECREASE_APP_STEP,
-	SET_ANSWER,
-	SET_APP_STEP,
-	SET_MODAL,
-	SET_PRICING,
-} from '../../redux/actions/App';
+import { SET_ANSWER, SET_APP_STEP, SET_PRICING } from '../../redux/actions/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import {
-	getStrangNumber,
-	getBasePrice,
-	getServicePrice,
 	getMeasurementValvesInstalled,
+	checkStrangAmount,
 } from '../../utils/helpers';
 import * as Scroll from 'react-scroll';
 import { trackSummary } from '../../utils/tracking';
@@ -44,9 +35,10 @@ const demoCoupons = [
 	},
 ];
 
-const Summary = ({ contactAgreement, setContact }) => {
+const Summary = () => {
 	const appData = useSelector((state: AppReduxStoreProps) => state.appData);
 	const [isCouponToggled, setCouponToggled] = useState(false);
+	const [editLiegenschaftMode, seteditLiegenschaftMode] = useState(false);
 	const [coupon, setCoupon] = useState('');
 	const [couponStatus, setCouponStatus] = useState('');
 	const dispatch = useDispatch();
@@ -79,8 +71,12 @@ const Summary = ({ contactAgreement, setContact }) => {
 		(state: AppReduxStoreProps) => state.appData.questions['Anschrift']
 	);
 
+	const isCustomer = anredeQuestion.answers.find(
+		(answer) => answer.name === 'isCustomer'
+	)!.value;
+
 	const handleChange = (
-		value: string,
+		value: any,
 		answerName: string,
 		questionText: string
 	) => {
@@ -161,8 +157,13 @@ const Summary = ({ contactAgreement, setContact }) => {
 								<div className="tw-container-pricing-label tw-font-size-pricing-label">
 									<div>
 										{`Gesamtpreis für eine Liegenschaft mit ${
-											appData.strangAmount > 1
-												? `${appData.strangAmount} Strängen`
+											checkStrangAmount(appData) > 1
+												? `${checkStrangAmount(
+														appData
+												  )} Strängen`
+												: checkStrangAmount(appData) ===
+												  undefined
+												? 'unbekanntem Strangschema'
 												: 'einem Strang'
 										} und ${
 											getMeasurementValvesInstalled(
@@ -170,7 +171,13 @@ const Summary = ({ contactAgreement, setContact }) => {
 											)
 												? 'vorhandenen Probeentnahmeventilen'
 												: 'nicht vorhandenen Probeentnahmeventilen'
-										}.`}
+										}. ${
+											!getMeasurementValvesInstalled(
+												appData
+											)
+												? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)'
+												: ''
+										}`}
 									</div>
 								</div>
 								<div className="tw-flex tw-items-center">
@@ -181,9 +188,11 @@ const Summary = ({ contactAgreement, setContact }) => {
 											.replace('.', ',')}{' '}
 										€
 									</div>
-									<div className="tw-w-15%">
-										<TechemRecommendationIcon />
-									</div>
+									{appData.selectedPricing.recommended && (
+										<div className="tw-w-15%">
+											<TechemRecommendationIcon />
+										</div>
+									)}
 								</div>
 							</div>
 						</div>
@@ -370,9 +379,13 @@ const Summary = ({ contactAgreement, setContact }) => {
 													<select
 														id="gender"
 														name="gender"
-														// defaultChecked={
-														// 	contactAgreement
-														// }
+														value={
+															anredeQuestion.answers.find(
+																(answer) =>
+																	answer.name ===
+																	'gender'
+															)!.value
+														}
 														onChange={(e) => {
 															handleChange(
 																e.target.value,
@@ -400,13 +413,24 @@ const Summary = ({ contactAgreement, setContact }) => {
 									<div className="round">
 										<input
 											type="checkbox"
-											id="contact"
-											defaultChecked={contactAgreement}
-											onChange={() =>
-												setContact(!contactAgreement)
+											id="isCustomer"
+											name="isCustomer"
+											checked={
+												anredeQuestion.answers.find(
+													(answer) =>
+														answer.name ===
+														'isCustomer'
+												)!.value
+											}
+											onChange={(e) =>
+												handleChange(
+													e.target.checked,
+													e.target.name,
+													'Anrede'
+												)
 											}
 										/>
-										<label htmlFor="contact"></label>
+										<label htmlFor="isCustomer"></label>
 									</div>
 									<div className="rwm-form__input-container-large tw-pt-[5px]">
 										<p>Ich bin bereits Kunde</p>
@@ -414,7 +438,6 @@ const Summary = ({ contactAgreement, setContact }) => {
 								</div>
 							</div>
 						</div>
-
 						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
@@ -512,7 +535,7 @@ const Summary = ({ contactAgreement, setContact }) => {
 						</div>
 						<div
 							className={
-								contactAgreement
+								isCustomer
 									? 'rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-mt-2'
 									: 'input-kundennum'
 							}
@@ -550,6 +573,32 @@ const Summary = ({ contactAgreement, setContact }) => {
 								Rechnungsadresse
 							</h1>
 						</label>
+
+						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
+							<div className="rwm-form__input-container">
+								<label className="tw-flex tw-font-size-label tw-font">
+									Unternehmen
+								</label>
+								<input
+									type="text"
+									name="companyName"
+									className="rwm-form__input-custom tw-border-2 'focus:tw-ring-transparent"
+									value={
+										anschriftQuestion.answers.find(
+											(answer) =>
+												answer.name === 'companyName'
+										)!.value
+									}
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Anschrift'
+										)
+									}
+								/>
+							</div>
+						</div>
 						<div className="rwm-form__input-container-large tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 xl:tw-grid-cols-2 tw-justify-between tw-mt-8 tw-w-full">
 							<div className="rwm-form__input-container">
 								<label className="tw-flex tw-font-size-label tw-font">
@@ -655,10 +704,9 @@ const Summary = ({ contactAgreement, setContact }) => {
 							</h1>
 							<span
 								onClick={() => {
-									dispatch({
-										type: SET_APP_STEP,
-										payload: { step: 3, subStep: 0 },
-									});
+									seteditLiegenschaftMode(
+										!editLiegenschaftMode
+									);
 								}}
 								className="tw-cursor-pointer"
 							>
@@ -680,7 +728,14 @@ const Summary = ({ contactAgreement, setContact }) => {
 												answer.name === 'streetName'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -697,7 +752,14 @@ const Summary = ({ contactAgreement, setContact }) => {
 												answer.name === 'houseNumber'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 						</div>
@@ -716,7 +778,14 @@ const Summary = ({ contactAgreement, setContact }) => {
 												answer.name === 'postalCode'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 							<div className="rwm-form__input-container tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
@@ -732,7 +801,14 @@ const Summary = ({ contactAgreement, setContact }) => {
 											(answer) => answer.name === 'city'
 										)!.value
 									}
-									disabled
+									onChange={(e) =>
+										handleChange(
+											e.target.value,
+											e.target.name,
+											'Wo befindet sich die zu prüfende Liegenschaft?'
+										)
+									}
+									disabled={!editLiegenschaftMode}
 								/>
 							</div>
 						</div>

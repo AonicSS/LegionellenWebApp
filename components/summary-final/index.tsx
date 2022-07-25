@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppReduxStoreProps } from '../../redux/reducers/App';
-import { useNavigate } from 'react-router-dom';
-import classNames from 'classnames';
-import { SET_ANSWER } from '../../redux/actions/App';
 import { WidgetInstance } from 'friendly-challenge';
 import * as Scroll from 'react-scroll';
-import { DECREASE_APP_STEP, SET_MODAL } from '../../redux/actions/App';
+
+import { AppReduxStoreProps } from '../../redux/reducers/App';
 import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -20,7 +17,7 @@ import PenIcon from '../../public/icons/pen.svg';
 
 const FRIENDLYCAPTCHA_SITEKEY = 'FCMQ78B1KF1RBC3H';
 
-const SummaryFinal = ({ contactAgreement, setContact }) => {
+const SummaryFinal = () => {
 	const dispatch = useDispatch();
 	const [consentConsulting, setConsentConsulting] = useState(false);
 	const [consentTerms, setConsentTerms] = useState(false);
@@ -29,6 +26,8 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 	const [showed, setShowed] = useState(true);
 	const [open, setOpen] = useState(true);
 	const [opened, setOpened] = useState(true);
+	const [consentLegionellenBeratung, setConsentLegionellenBeratung] =
+		useState(false);
 
 	const [captcha, setCaptcha] = useState(false);
 
@@ -141,7 +140,7 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 		setCaptcha(true);
 	};
 
-	const errorCallback = (err) => {
+	const errorCallback = (err: any) => {
 		setCaptcha(false);
 		console.error(err);
 	};
@@ -218,23 +217,26 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 								</div>
 							</div>
 							<div
-									onClick={() => setShowed(!showed)}
-									className={
-										!showed
-											? 'is-hide'
-											: 'tw-w-3 tw-cursor-pointer'
-									}
-								>
-									<PenIcon />
-								</div>
+								onClick={() => setShowed(!showed)}
+								className={
+									!showed
+										? 'is-hide'
+										: 'tw-w-3 tw-cursor-pointer'
+								}
+							>
+								<PenIcon />
+							</div>
 						</div>
 
 						{anredeQuestion.answers.find(
-							(answer) => answer.name === 'customerNumber'
-						) && (
+							(answer) => answer.name === 'isCustomer'
+						)!.value && (
 							<div
 								className={
-									contactAgreement
+									anredeQuestion.answers.find(
+										(answer) =>
+											answer.name === 'customerNumber'
+									)
 										? 'tw-flex tw-flex-row tw-items-center tw-py-5 tw-border-y tw-border-beige tw-cursor-pointer'
 										: 'input-kundennum'
 								}
@@ -944,9 +946,24 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 						<div className="tw-flex tw-flex-row tw-items-center">
 							<div className="tw-flex-grow tw-basis-[78%]">
 								<p className={'tw-font-bold'}>
-									Gesamtpreis für eine Liegenschaft mit 2
-									Strängen und 2 Ventilen, einem online
-									Quality Check und einer Legionellenprüfung.
+									{`Gesamtpreis für eine Liegenschaft mit ${
+										checkStrangAmount(appData) > 1
+											? `${checkStrangAmount(
+													appData
+											  )} Strängen`
+											: checkStrangAmount(appData) ===
+											  undefined
+											? 'unbekanntem Strangschema'
+											: 'einem Strang'
+									} und ${
+										getMeasurementValvesInstalled(appData)
+											? 'vorhandenen Probeentnahmeventilen'
+											: 'nicht vorhandenen Probeentnahmeventilen'
+									}. ${
+										!getMeasurementValvesInstalled(appData)
+											? '(Probenentnahmeventile sind nicht im Preisumfang enthalten)'
+											: ''
+									}`}
 								</p>
 							</div>
 							<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
@@ -965,9 +982,13 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 				<div className="tw-p-10">
 					<h1>Wie geht es weiter?</h1>
 					<p>
-						Sie erhalten von uns eine Bestätigungsemail mit
-						Terminvorschlägen für den Online Quality Check. Text
-						folgt...
+						Sie erhalten von uns in Kürze eine Auftragsbestätigung
+						mit Terminvorschlägen für unser gemeinsames
+						Erstgespräch. Darin fragen wir noch weitere Angaben ab,
+						die wir für die Ausführung Ihrer Bestellung benötigen.
+						Mit dieser Checkliste können Sie alle nötigen
+						Informationen bereits vorbereiten. Link zur
+						PDF-Checkliste
 					</p>
 				</div>
 			</section>
@@ -1060,6 +1081,48 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 						</p>
 					</div>
 				</div>
+				{appData.selectedPricing.serviceFeatures['Legionellenprüfung']
+					.active && (
+					<div className="rwm-form__input-container-large tw-flex tw-flex-row tw-justify-start tw-items-start tw-mt-8">
+						<div className="round">
+							<input
+								type="checkbox"
+								id="consent-legionellenberatung"
+								checked={consentLegionellenBeratung}
+								onChange={() =>
+									setConsentLegionellenBeratung(
+										!consentLegionellenBeratung
+									)
+								}
+							/>
+							<label htmlFor="consent-legionellenberatung"></label>
+						</div>
+						<div
+							className="rwm-form__input-container-large tw-cursor-pointer tw-select-none"
+							onClick={() =>
+								setConsentLegionellenBeratung(
+									!consentLegionellenBeratung
+								)
+							}
+						>
+							<p className="tw-font-size-label tw-pl-6">
+								Ich erkläre mich damit einverstanden, dass ich
+								durch die Techem Energy Services GmbH und mit
+								ihr verbundene Unternehmen per Telefon bzw.
+								E-Mail unter der zuvor genannten Telefonnummer
+								bzw. E-Mailadresse über die notwendigen
+								Maßnahmen und unsere damit verbundenen Angebote
+								und Leistungen im Falle einer Überschreitung des
+								technischen Maßnahmenwertes für Legionellen im
+								Trinkwasser kontaktiert und informiert werde.
+								Diese Einwilligung gilt für alle Liegenschaften,
+								die unter meiner Kundennummer geführt sind und
+								bei denen Untersuchungen auf Legionellen
+								beauftragt wurden.
+							</p>
+						</div>
+					</div>
+				)}
 			</section>
 			<div className="tw-pt-10 tw-flex tw-items-center tw-justify-center">
 				<div
@@ -1072,7 +1135,16 @@ const SummaryFinal = ({ contactAgreement, setContact }) => {
 				<div className="tw-flex tw-justify-center tw-pt-14 tw-pb-1">
 					<Button
 						style={
-							consentConsulting && consentTerms && captcha
+							consentConsulting &&
+							consentTerms &&
+							captcha &&
+							(!appData.selectedPricing.serviceFeatures[
+								'Legionellenprüfung'
+							].active ||
+								(appData.selectedPricing.serviceFeatures[
+									'Legionellenprüfung'
+								].active &&
+									consentLegionellenBeratung))
 								? 'PRIMARY'
 								: 'DISACTIVE'
 						}

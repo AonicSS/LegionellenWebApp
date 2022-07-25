@@ -82,18 +82,19 @@ export default async (req, res) => {
 				city: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'city').value,
 			},
 			rechnungsAdresse: {
+				companyName: appData['questions']['Anschrift'].answers.find((x) => x.name === 'companyName').value,
 				streetName: appData['questions']['Anschrift'].answers.find((x) => x.name === 'streetName').value,
 				houseNumber: appData['questions']['Anschrift'].answers.find((x) => x.name === 'houseNumber').value,
 				postalCode: appData['questions']['Anschrift'].answers.find((x) => x.name === 'postalCode').value,
 				city: appData['questions']['Anschrift'].answers.find((x) => x.name === 'city').value,
 			},
 			kunde: {
-				honorificPrefix: appData['questions']['Anrede'].answers.find((x) => x.name === 'honorificPrefix').value,
+				gender: appData['questions']['Anrede'].answers.find((x) => x.name === 'gender').value,
 				givenName: appData['questions']['Anrede'].answers.find((x) => x.name === 'givenName').value,
 				familyName: appData['questions']['Anrede'].answers.find((x) => x.name === 'familyName').value,
 				email: appData['questions']['Anrede'].answers.find((x) => x.name === 'email').value,
 				phone: appData['questions']['Anrede'].answers.find((x) => x.name === 'phone').value,
-				customerNumber: appData['questions']['Anrede'].answers.find((x) => x.name === 'customerNumber').value,
+				customerNumber: appData['questions']['Anrede'].answers.find((x) => x.name === 'isCustomer').value ? appData['questions']['Anrede'].answers.find((x) => x.name === 'customerNumber').value : undefined,
 			},
 			selectedProduct: {
 				name: appData.selectedPricing.name,
@@ -129,7 +130,8 @@ export default async (req, res) => {
 
 		const customerEmailBody = <>
 			<div>
-				<p>Sehr geehrte/r {parsedValue.kunde.honorificPrefix} {parsedValue.kunde.givenName} {parsedValue.kunde.familyName},</p>
+				<p>Sehr
+					geehrte/r {parsedValue.kunde.gender} {parsedValue.kunde.givenName} {parsedValue.kunde.familyName},</p>
 
 				<p>vielen Dank für Ihr Interesse an der Techem Legionellenprüfung.</p>
 				Hiermit bestätigen wir den Eingang Ihrer Anfrage. Wir senden Ihnen in Kürze Ihr persönliches Angebot zu.
@@ -159,7 +161,11 @@ export default async (req, res) => {
 				<h3>Die Vertragspartner</h3>
 				<h3>Auftraggeber:</h3>
 				<p>
+					{parsedValue.kunde.customerNumber &&
+						<>parsedValue.kunde.customerNumber <br/></>
+					}
 					{parsedValue.kunde.givenName} {parsedValue.kunde.familyName}<br/>
+					{parsedValue.rechnungsAdresse.companyName}<br/>
 					{parsedValue.rechnungsAdresse.streetName} {parsedValue.rechnungsAdresse.houseNumber}<br/>
 					{parsedValue.rechnungsAdresse.postalCode} {parsedValue.rechnungsAdresse.city}<br/>
 					{parsedValue.kunde.email}<br/>

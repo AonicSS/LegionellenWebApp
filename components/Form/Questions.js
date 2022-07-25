@@ -112,6 +112,12 @@ export const questions = {
 	Anschrift: {
 		answers: [
 			{
+				name: 'companyName',
+				type: 'string',
+				required: true,
+				value: undefined
+			},
+			{
 				name: 'streetName',
 				type: 'string',
 				required: true,
@@ -146,6 +152,12 @@ export const questions = {
 				value: 'Herr',
 			},
 			{
+				name: 'gender',
+				type: 'string',
+				required: true,
+				value: 'Herr'
+			},
+			{
 				name: 'givenName',
 				type: 'string',
 				required: true,
@@ -168,6 +180,12 @@ export const questions = {
 				type: 'string',
 				required: true,
 				value: undefined,
+			},
+			{
+				name: 'isCustomer',
+				type: 'boolean',
+				required: true,
+				value: undefined
 			},
 			{
 				name: 'customerNumber',

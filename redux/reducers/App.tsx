@@ -57,6 +57,7 @@ export interface Answers {
 	required: boolean;
 	value: any;
 }
+
 export interface AppData {
 	currentQuestion: string;
 	subStep: number;
@@ -72,8 +73,54 @@ export interface AppData {
 	selectedPricing: any;
 	uploads: any;
 };
+
 export interface AppReduxStoreProps {
 	appData: AppData;
+}
+
+declare global {
+	interface Window {
+		siteDataLayer: any;
+	}
+}
+
+interface EventObject {
+	event: string;
+	pageLanguage: string;
+	pageIdentifier: string;
+	pageName: string;
+	pagePath: string;
+	pageURL: string;
+	virtualPagePath: string;
+}
+
+function emitDataLayerEvent(eventObject: EventObject, targetOrigin: string) {
+	window.siteDataLayer = window.siteDataLayer || [];
+	window.siteDataLayer.push(eventObject);
+	postEventToParent(eventObject, targetOrigin);
+
+	function postEventToParent(eventObject: EventObject, targetOrigin: string) {
+		try {
+			if (window.self === window.top) return;
+		} catch (e) {
+		}
+		window!.top!.postMessage(
+			{
+				dataLayerEventData: Object.assign(
+					{
+						_iFrameData: {
+							pageURL: document.location.href,
+							pagePath: document.location.pathname,
+							pageName: document.title,
+							virtualPagePath: document.location.hash,
+						},
+					},
+					eventObject
+				),
+			},
+			targetOrigin
+		);
+	}
 }
 
 function getStateRules(state: any): any {
@@ -96,10 +143,23 @@ function getStateRules(state: any): any {
 	return newState;
 }
 
+
 const appData = (
 	state = initialState,
 	action: { type: any; payload?: any }
 ) => {
+	if (typeof window !== "undefined") {
+		emitDataLayerEvent({
+			"event": action.type,
+			"pageLanguage": "de_DE",
+			"pageIdentifier": "legionellen-rechner",
+			"pageName": "Legionellen Rechner",
+			"pagePath": window.location.pathname,
+			"pageURL": window.location.href,
+			"virtualPagePath": `step: ${state.step.toString()}, substep: ${state.subStep.toString()}`,
+		}, "https://www.techem.com");
+	}
+
 	switch (action.type) {
 		case INCREASE_APP_STEP: {
 			let newState = getStateRules(state);

@@ -13,6 +13,7 @@ import HouseIcon from '../../../../../public/icons/house.svg';
 import EmailIcon from '../../../../../public/icons/email.svg';
 import BellIcon from '../../../../../public/icons/bell.svg';
 import InfoSmallIcon from '../../../../../public/icons/info-small.svg';
+import PhoneIcon from '../../../../../public/icons/phone.svg';
 // import CheckCircledFull from '../../../../../public/icons/check-circled-full.svg';
 import Techem from '../../../../../public/icons/Techem.svg';
 
@@ -22,13 +23,22 @@ const pricingOptions = {
 			name: 'Legionellenprüfung\nohne Quality Check',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
-				return 49.0 + appData.strangAmount * 61.0;
+				return 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
-				'Quality Check': {
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
+					active: true,
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Prüfung Ihrer Angaben': {
 					icon: <CheckQualityIcon/>,
 					active: false,
-					subtitle: 'Wird empfohlen',
+					subtitle: 'Ohne Quality Check (siehe Hinweis unten) ',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -36,7 +46,7 @@ const pricingOptions = {
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -46,7 +56,7 @@ const pricingOptions = {
 				Infoservice: {
 					selected: true,
 					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+						'Wir stellen Ihnen ein Informationsschreiben für Ihre Mieterinnen und Mieter sowie einen Hausaushang zur Verfügung, die über das Untersuchungsergebnis informieren.',
 					price: (appData: AppData) => {
 						return 5.0;
 					},
@@ -63,13 +73,22 @@ const pricingOptions = {
 			name: 'Legionellenprüfung\n+ Quality Check Online',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
-				return 99.0 + 49.0 + appData.strangAmount * 61.0;
+				return 49.0 + 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
-				'Quality Check': {
-					icon: <CheckInIcon/>,
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
 					active: true,
-					subtitle: 'Flexibel und Digital',
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Prüfung Ihrer Angaben': {
+					icon: <CheckCircledIcon/>,
+					active: true,
+					subtitle: 'In unserem „Quality Check“ gehen wir gemeinsam mit Ihnen Ihre Angaben im Detail durch und prüfen sie auf Plausibilität. Bei Abweichungen beraten wir Sie zum weiteren Vorgehen. Ihr Vorteil: Flexible Terminvereinbarung, digitale Abwicklung',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -77,7 +96,7 @@ const pricingOptions = {
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
 					active: true,
-					subtitle: 'Probeentnahme und Laborcheck',
+					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -87,7 +106,7 @@ const pricingOptions = {
 				Infoservice: {
 					selected: true,
 					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+						'Wir stellen Ihnen ein Informationsschreiben für Ihre Mieterinnen und Mieter sowie einen Hausaushang zur Verfügung, die über das Untersuchungsergebnis informieren.',
 					price: (appData: AppData) => {
 						return 5.0;
 					},
@@ -100,23 +119,33 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Legionellenprüfung\n + Quality Check Klassisch',
+			name: 'Legionellenprüfung\n + Quality Check vor Ort',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
-				return 199.0 + 49.0 + appData.strangAmount * 61.0;
+				return 249.0 + 49.0 + (appData.strangAmount + 2) * 61.0;
 			},
 			serviceFeatures: {
-				'Quality Check Klassisch': {
-					icon: <HouseIcon/>,
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
 					active: true,
-					subtitle: 'Persönlich und vor Ort',
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Quality Check vor Ort in Ihrer Liegenschaft (249€) ': {
+					icon: <CheckCircledIcon/>,
+					active: true,
+					subtitle: 'Zur Bestätigung des Probenahme-Umfangs nehmen wir einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.  ',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
 				},
 				Legionellenprüfung: {
 					icon: <MagnifyingGlassIcon/>,
-					subtitle: 'Probeentnahme und Laborcheck',
+					active: true,
+					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -126,7 +155,7 @@ const pricingOptions = {
 				Infoservice: {
 					selected: true,
 					subtitle:
-						'Informationen für Ihre Mieter und einen Haus-Aushang als PDF',
+						'Wir stellen Ihnen ein Informationsschreiben für Ihre Mieterinnen und Mieter sowie einen Hausaushang zur Verfügung, die über das Untersuchungsergebnis informieren.',
 					price: (appData: AppData) => {
 						return 5.0;
 					},
@@ -141,17 +170,36 @@ const pricingOptions = {
 	],
 	surveyRequired: [
 		{
-			name: 'Klassische Begehung',
+			name: 'Vor-Ort-Aufnahme \n' +
+				'in Ihrer Liegenschaft',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
-				return 199.0;
+				return 249.0;
 			},
 			serviceFeatures: {
-				'Persönlich und vor Ort': {
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
+					active: true,
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Ermittlung des Probennahme-Umfangs ': {
 					icon: <HouseIcon/>,
 					active: true,
 					subtitle:
-						'Wir ermitteln vor Ort alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung.',
+						'Wir nehmen einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Legionellenprüfung': {
+					icon: <XCircledIcon/>,
+					active: false,
+					subtitle:
+						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der Vor-Ort-Aufnahme ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -165,28 +213,47 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Online Begehung',
+			name: 'Digitale Aufnahme \n' +
+				'per Videotelefonat',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 99.0;
 			},
 			extraServices: {},
 			serviceFeatures: {
-				'Flexibel und Digital': {
+				'Kostenloses Erstgespräch ': {
+					icon: <PhoneIcon/>,
+					active: true,
+					subtitle:
+						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Ermittlung des Probennahme-Umfangs im Videotelefonat ': {
 					icon: <CheckInIcon/>,
 					active: true,
 					subtitle:
-						'In einem Videocall ermitteln wir alle nötigen Informationen für eine schnelle und effiziente Legionellenprüfung. Ganz ohne lange Wartezeiten.',
+						'Wir leiten Sie durch Ihre Liegenschaft und legen die relevanten Probenahme-Stellen fest. (siehe Hinweis unten)',
+					price: (appData: AppData) => {
+						return 0.0;
+					},
+				},
+				'Legionellenprüfung': {
+					icon: <XCircledIcon/>,
+					active: false,
+					subtitle:
+						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der erfolgreichen digitalen Aufnahme Ihrer Liegenschaft ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
 				},
 			},
+			importantRemark: "Sollten wir im Gespräch feststellen, dass für die korrekte Ermittlung des Probennahme-Umfangs eine Vor-Ort-Aufnahme notwendig ist, können Sie diese gegen einen Aufpreis zubuchen.",
 			buttonStyle: 'PRIMARY',
 			text: 'Angebot sichern',
 			type: 'plus',
 			recommended: true,
-			importantRemark: undefined,
 		},
 	],
 };
@@ -244,11 +311,15 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 											key={featureName}
 										>
 											<div className="tw-mr-4">
-												{
+												{(p.serviceFeatures as any)[
+													featureName
+													].active ? (
 													(p.serviceFeatures as any)[
 														featureName
 														].icon
-												}
+												) : (
+													<XCircledIcon/>
+												)}
 											</div>
 											<div className="tw-flex-grow">
 												<p className={'tw-font-bold'}>
@@ -261,15 +332,6 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 														)[featureName].subtitle
 													}
 												</p>
-											</div>
-											<div className="">
-												{(p.serviceFeatures as any)[
-													featureName
-													].active ? (
-													<CheckCircledIcon/>
-												) : (
-													<XCircledIcon/>
-												)}
 											</div>
 										</div>
 									);
@@ -297,6 +359,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 										.toString()
 										.replace('.', ',')}{' '}
 									€
+									<span className={"tw-font-size-price-small tw-ml-3"}>netto</span>
 								</div>
 							</div>
 							<div className="tw-flex tw-justify-center tw-mb-6">
@@ -306,39 +369,43 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 									pricing={p}
 								/>
 							</div>
-							<div className={'tw-container-pricing-list'}>
-								<div
-									className={
-										'tw-flex tw-flex-row tw-items-center'
-									}
-								>
-									<div className={'tw-px-2 tw-py-1'}>
-										<EmailIcon/>
+							{
+								/*
+								<div className={'tw-container-pricing-list'}>
+									<div
+										className={
+											'tw-flex tw-flex-row tw-items-center'
+										}
+									>
+										<div className={'tw-px-2 tw-py-1'}>
+											<EmailIcon/>
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											Angebot per E-Mail zusenden
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											<InfoSmallIcon/>
+										</div>
 									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										Angebot per E-Mail zusenden
-									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										<InfoSmallIcon/>
-									</div>
-								</div>
 
-								<div
-									className={
-										'tw-flex tw-flex-row tw-items-center tw-pb-8'
-									}
-								>
-									<div className={'tw-px-2 tw-py-1'}>
-										<BellIcon/>
-									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										Erinnerung zusenden
-									</div>
-									<div className={'tw-px-2 tw-py-1'}>
-										<InfoSmallIcon/>
+									<div
+										className={
+											'tw-flex tw-flex-row tw-items-center tw-pb-8'
+										}
+									>
+										<div className={'tw-px-2 tw-py-1'}>
+											<BellIcon/>
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											Erinnerung zusenden
+										</div>
+										<div className={'tw-px-2 tw-py-1'}>
+											<InfoSmallIcon/>
+										</div>
 									</div>
 								</div>
-							</div>
+								 */
+							}
 							{p.importantRemark && (
 								<div
 									className={
