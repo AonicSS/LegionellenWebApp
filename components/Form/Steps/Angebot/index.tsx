@@ -4,9 +4,7 @@ import * as Scroll from 'react-scroll';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-	DECREASE_APP_STEP,
 	SET_ANSWER,
-	SET_APP_STEP,
 	SET_CURRENT_QUESTION,
 } from '../../../../redux/actions/App';
 import { AppReduxStoreProps } from '../../../../redux/reducers/App';
@@ -17,18 +15,13 @@ import {
 	checkStrangAmount,
 	getMeasurementValvesInstalled,
 } from '../../../../utils/helpers';
-import Translate from '../../../../utils/translate';
-import Button from '../../../Button';
 import ModalWrapper from '../../../shared/ModalWrapper';
 import { NumericInput } from '../../Input';
 import Uploader from '../../../Uploader';
-import Radio from '../../Radio';
-
-import HouseAltIcon from '../../../../public/icons/house-alt.svg';
-import PenEditIcon from '../../../../public/icons/pen-edit.svg';
-import StrangSchemaAnleitung from '../../../../public/img/strangschema_anleitung.png';
-import ProbeenthahmeventileIcon from '../../../../public/icons/probeentnahmeventile.svg';
 import AddressForm from './AddressForm';
+import VentileForm from './VentileForm';
+
+import PenEditIcon from '../../../../public/icons/pen-edit.svg';
 
 const Angebot = () => {
 	const dispatch = useDispatch();
@@ -267,139 +260,7 @@ const Angebot = () => {
 						isOpen={probeentnahmeventilenOpen}
 						setOpen={setProbeentnahmeventilenModalOpen}
 					>
-						<div>
-							<Radio
-								questionTextOverride={
-									'Sind Probeentnahmeventile verbaut?'
-								}
-								answersOverride={{
-									yes: 'Ja',
-									no: 'Nein',
-									unsure: 'Ich weiß nicht',
-								}}
-							></Radio>
-
-							{currentAppData.questions[
-								'Sind Probeentnahmeventile verbaut?'
-							]!.answers.find(
-								(answer) => answer.name === 'choice'
-							)!.value !== 'unsure' && (
-								<div className="tw-flex tw-justify-center tw-mt-28">
-									<ProbeenthahmeventileIcon height={300} />
-								</div>
-							)}
-							{currentAppData.questions[
-								'Sind Probeentnahmeventile verbaut?'
-							]!.answers.find(
-								(answer) => answer.name === 'choice'
-							)!.value === 'no' && (
-								<div className={'tw-p-6 tw-bg-lightest-grey'}>
-									Falls noch nicht vorhanden, müssen die
-									Probeentnahmeventile von einer Fachkraft
-									angebracht werden.
-								</div>
-							)}
-							{currentAppData.questions[
-								'Sind Probeentnahmeventile verbaut?'
-							]!.answers.find(
-								(answer) => answer.name === 'choice'
-							)!.value === 'yes' && (
-								<>
-									<div
-										className={
-											'tw-flex tw-justify-center tw-my-6'
-										}
-									>
-										<div className={'tw-max-w-lg tw-p-6'}>
-											Sie können hier eine Abbildung ihres
-											Strangschemas hochladen, um die
-											Aufnahme Ihrer Liegenschaft zu
-											erleichtern.
-										</div>
-									</div>
-									<Uploader uploadId={'valves'} />
-								</>
-							)}
-							{currentAppData.questions[
-								'Sind Probeentnahmeventile verbaut?'
-							]!.answers.find(
-								(answer) => answer.name === 'choice'
-							)!.value === 'unsure' && (
-								<>
-									<div
-										className={
-											'tw-flex tw-justify-center tw-my-6'
-										}
-									>
-										<img
-											src={StrangSchemaAnleitung.src}
-											className={
-												'tw-w-full tw-h-auto tw-object-contain lg:tw-max-w-lg'
-											}
-										/>
-									</div>
-									<Radio
-										questionTextOverride={
-											'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'
-										}
-										showTitle={false}
-										orientation={'vertical'}
-										answersOverride={{
-											yes: 'Diese Information war hilfreich. Ich weiß jetzt, ob Probeentnahmeventile verbaut sind.',
-											no: 'Ich weiß nicht, ob Probeentnahmeventile verbaut sind und benötige Unterstützung.',
-										}}
-									></Radio>
-									{currentAppData.questions[
-										'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'
-									]!.answers.find(
-										(answer) => answer.name === 'choice'
-									)!.value === 'yes' && (
-										<>
-											<div
-												className={
-													'tw-flex tw-justify-center tw-my-6'
-												}
-											>
-												<div
-													className={
-														'tw-max-w-lg tw-p-6'
-													}
-												>
-													Sie können hier eine
-													Abbildung ihres
-													Strangschemas hochladen, um
-													die Aufnahme Ihrer
-													Liegenschaft zu erleichtern.
-												</div>
-											</div>
-											<Uploader uploadId={'valves'} />
-										</>
-									)}
-									{currentAppData.questions[
-										'Wissen Sie nach der Erklärung ob Probeentnahmeventile verbaut sind?'
-									]!.answers.find(
-										(answer) => answer.name === 'choice'
-									)!.value === 'no' && (
-										<div
-											className={
-												'tw-flex tw-justify-center tw-my-6'
-											}
-										>
-											<div
-												className={
-													'tw-max-w-lg tw-p-6 tw-bg-lightest-grey'
-												}
-											>
-												Falls noch nicht vorhanden,
-												müssen die Probeentnahmeventile
-												von einer Fachkraft angebracht
-												werden.
-											</div>
-										</div>
-									)}
-								</>
-							)}
-						</div>
+						<VentileForm currentAppData={currentAppData} />
 					</ModalWrapper>
 				</>
 			);

@@ -14,6 +14,10 @@ import {
 import { trackSummary } from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
 import PenIcon from '../../public/icons/pen.svg';
+import ModalWrapper from '../shared/ModalWrapper';
+import { NumericInput } from '../Form/Input';
+import Uploader from '../Uploader';
+import VentileForm from '../Form/Steps/Angebot/VentileForm';
 
 const FRIENDLYCAPTCHA_SITEKEY = 'FCMQ78B1KF1RBC3H';
 
@@ -30,6 +34,10 @@ const SummaryFinal = () => {
 		useState(false);
 
 	const [captcha, setCaptcha] = useState(false);
+
+	const [strangschemaModalOpen, setStrangschemaModalOpen] = useState(false);
+	const [probeentnahmeventilenOpen, setProbeentnahmeventilenModalOpen] =
+		useState(false);
 
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
@@ -192,12 +200,8 @@ const SummaryFinal = () => {
 								</div>
 							</div>
 							<div
-								onClick={() => setShowed(!showed)}
-								className={
-									!showed
-										? 'is-hide'
-										: 'tw-w-3 tw-cursor-pointer'
-								}
+								onClick={() => setStrangschemaModalOpen(true)}
+								className={'tw-w-3 tw-cursor-pointer'}
 							>
 								<PenIcon />
 							</div>
@@ -217,12 +221,10 @@ const SummaryFinal = () => {
 								</div>
 							</div>
 							<div
-								onClick={() => setShowed(!showed)}
-								className={
-									!showed
-										? 'is-hide'
-										: 'tw-w-3 tw-cursor-pointer'
+								onClick={() =>
+									setProbeentnahmeventilenModalOpen(true)
 								}
+								className={'tw-w-3 tw-cursor-pointer'}
 							>
 								<PenIcon />
 							</div>
@@ -1251,6 +1253,28 @@ const SummaryFinal = () => {
 					></Button>
 				</div>
 			</section>
+
+			<ModalWrapper
+				isOpen={strangschemaModalOpen}
+				setOpen={setStrangschemaModalOpen}
+			>
+				<>
+					<p className="text-title rwm-form__headline tw-leading-[37px] tw-font-bold">
+						Wie viele Stränge sind verbaut?
+					</p>
+					<NumericInput />
+					<div className={'tw-mt-12'}>
+						<Uploader uploadId={'strang'} />
+					</div>
+				</>
+			</ModalWrapper>
+
+			<ModalWrapper
+				isOpen={probeentnahmeventilenOpen}
+				setOpen={setProbeentnahmeventilenModalOpen}
+			>
+				<VentileForm currentAppData={currentAppData} />
+			</ModalWrapper>
 		</Layout>
 	);
 };

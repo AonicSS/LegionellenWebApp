@@ -115,7 +115,7 @@ export const questions = {
 				name: 'companyName',
 				type: 'string',
 				required: true,
-				value: undefined
+				value: undefined,
 			},
 			{
 				name: 'streetName',
@@ -155,7 +155,7 @@ export const questions = {
 				name: 'gender',
 				type: 'string',
 				required: true,
-				value: 'Herr'
+				value: 'Herr',
 			},
 			{
 				name: 'givenName',
@@ -184,8 +184,8 @@ export const questions = {
 			{
 				name: 'isCustomer',
 				type: 'boolean',
-				required: true,
-				value: undefined
+				required: false,
+				value: undefined,
 			},
 			{
 				name: 'customerNumber',
