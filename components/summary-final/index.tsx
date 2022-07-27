@@ -1120,7 +1120,7 @@ const SummaryFinal = () => {
 					</div>
 				)}
 				<p className="tw-font-size-label tw-pl-6 tw-mt-10">
-					*pflichtfeld
+					* Pflichtfeld
 				</p>
 			</section>
 			<div className="tw-pt-10 tw-flex tw-items-center tw-justify-center">
