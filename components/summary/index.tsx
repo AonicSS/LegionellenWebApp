@@ -180,6 +180,7 @@ const Summary = () => {
 											.toString()
 											.replace('.', ',')}{' '}
 										€
+                                        <span className={'tw-font-size-price-small tw-ml-3'}>netto</span>
 									</div>
 									{appData.selectedPricing.recommended && (
 										<div className="tw-w-15%">
@@ -274,7 +275,7 @@ const Summary = () => {
 												<p>{extraService.subtitle}</p>
 											</div>
 											<div className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
-												{extraService.price(appData)} €
+												{extraService.price(appData)} € <span className={'tw-font-size-price-small'}>netto</span>
 											</div>
 										</div>
 										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
