@@ -312,10 +312,10 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 								([featureName, feature]) => {
 									return (
 										<div
-											className="tw-container-pricing-list tw-flex tw-flex-row tw-items-center"
+											className="tw-container-pricing-list tw-mt-5 tw-grid tw-grid-cols-[50px,1fr]"
 											key={featureName}
 										>
-											<div className="tw-mr-4">
+											<div className="tw-self-start">
 												{(p.serviceFeatures as any)[
 													featureName
 												].active ? (
