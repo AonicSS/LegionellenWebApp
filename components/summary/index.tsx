@@ -255,7 +255,7 @@ const Summary = () => {
 					<div className="tw-flex tw-flex-col">
 						<label className="rwm-form__headline tw-mb-4">
 							<h1 className="rwm-form__headline">
-								Optional Zusatzleistung:
+								Optionale Zusatzleistung:
 							</h1>
 						</label>
 						<div
