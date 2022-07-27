@@ -213,7 +213,7 @@ const SummaryFinal = () => {
                         .reduce((x, y) => x + y, 0.0),
                 total:
                         appData.selectedPricing.price(appData) +
-                        totalExtras - totalDiscount,
+                        totalExtras,
             },
         };
 
