@@ -2,7 +2,7 @@ import formidable from "formidable";
 import fetch, {FormData, File, fileFrom, Blob, blobFromSync, fileFromSync} from 'node-fetch'
 import {readFile} from 'fs/promises';
 import * as ReactDOMServer from "react-dom/server";
-
+import {demoCoupons} from "../../utils/helpers";
 const API_URL = "https://prod-174.westeurope.logic.azure.com/workflows/6e30f52072f64fd48e06da4ffc824ba4/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6y4UGb_dGJ0UdvccVjC7MO-Gy4d9rFQUQ9Dq4dOirY0";
 
 const nodemailer = require("nodemailer");
@@ -73,6 +73,8 @@ export default async (req, res) => {
 
 
         let parsedValue = {
+            discount: demoCoupons[appData.couponCode] ? demoCoupons[appData.couponCode].discount(appData): 0.0,
+            couponCode: appData.couponCode,
             strangAmount: appData.strangAmount,
             probeEntnahmeVentileVorhanden: checkProbeEntnahmeVentile(appData),
             liegenschaftAdresse: {
@@ -229,6 +231,9 @@ export default async (req, res) => {
                     Postleitzahl des Gebäudes: {parsedValue.liegenschaftAdresse.postalCode}<br/>
                     Stadt: {parsedValue.liegenschaftAdresse.city}<br/>
                     Preis: {parsedValue.selectedProduct.total} €<br/>
+                    Rabatt: {parsedValue.discount} €<br/>
+                    RabattCode: {parsedValue.couponCode} €<br/>
+                    Preis nach rabatt: {parsedValue.selectedProduct.total - parsedValue.discount} €<br/>
                 </p>
                 <p>
                     Beste Grüße

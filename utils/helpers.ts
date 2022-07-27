@@ -95,7 +95,7 @@ export const demoCoupons = {
     'legionelle_5': {
         description: 'Rabattcode 5% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/einmalig)',
         discount: function (appData: AppData) {
-            if (checkStrangAmount(appData)) {
+            if (getMeasurementValvesInstalled(appData) && checkStrangAmount(appData)) {
                 return 2.45 * 3.05 * appData.strangAmount;
             } else {
                 return 0;
@@ -105,7 +105,7 @@ export const demoCoupons = {
     '10legionelle22': {
         description: 'Rabattcode 10% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/Probe)',
         discount: function (appData: AppData) {
-            if (checkStrangAmount(appData)) {
+            if (getMeasurementValvesInstalled(appData) && checkStrangAmount(appData)) {
                 return 4.90 + 6.10 * appData.strangAmount;
             } else {
                 return 0;
@@ -116,7 +116,7 @@ export const demoCoupons = {
     'techem15leg': {
         description: 'Rabattcode 15% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/Probe)',
         discount: function (appData: AppData) {
-            if (checkStrangAmount(appData)) {
+            if (getMeasurementValvesInstalled(appData) && checkStrangAmount(appData)) {
                 return 7.35 + 9.15 * appData.strangAmount;
             } else {
                 return 0;
