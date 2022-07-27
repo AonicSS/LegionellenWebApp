@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import Close from '../../public/icons/times.svg';
 import Button from '../Button';
 
-const ModalWrapper = ({ isOpen, setOpen, children }) => {
+const ModalWrapper = ({ isOpen, setOpen, children, btnText = null }) => {
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
 			<Dialog
@@ -47,7 +47,7 @@ const ModalWrapper = ({ isOpen, setOpen, children }) => {
 								</div>
 								<div className="tw-bg-light-grey tw-px-10 tw-pt-5 tw-pb-6 tw-flex tw-items-center tw-justify-end">
 									<Button
-										text="Speichern"
+										text={btnText ? btnText : 'Speichern'}
 										style={'PRIMARY'}
 										onClick={() => setOpen(false)}
 									/>
