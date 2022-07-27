@@ -45,6 +45,94 @@ const Summary = () => {
 	const scroller = Scroll.scroller;
 	const Element = Scroll.Element;
 
+    const totalExtras = Object.keys(appData.selectedPricing.extraServices)
+            .filter((x) => appData.selectedPricing.extraServices[x].selected)
+            .map((extraServiceName: string) => {
+                let extraService =
+                        appData.selectedPricing.extraServices[extraServiceName];
+                return extraService.price(appData);
+            })
+            .reduce((x, y) => x + y, 0.0);
+
+    const sendRequest = async (type: string) => {
+        const body = new FormData();
+        const {
+            acceptContact,
+            acceptMarketing,
+            maxSteps,
+            maxSubSteps,
+            step,
+            subStep,
+            showModal,
+            currentQuestion,
+            uploads,
+            ...partialAppData
+        } = appData;
+
+        const formattedAppData = {
+            ...partialAppData,
+            type: type,
+            strangAmount: checkStrangAmount(appData),
+            selectedPricing: {
+                ...appData.selectedPricing,
+                price: appData.selectedPricing.price(
+                        appData
+                ),
+                totalExtras: Object.keys(
+                        appData.selectedPricing.extraServices
+                )
+                        .filter(
+                                (x) =>
+                                        appData.selectedPricing
+                                                .extraServices[x].selected
+                        )
+                        .map((extraServiceName: string) => {
+                            let extraService =
+                                    appData.selectedPricing
+                                            .extraServices[
+                                            extraServiceName
+                                            ];
+                            return extraService.price(appData);
+                        })
+                        .reduce((x, y) => x + y, 0.0),
+                total:
+                        appData.selectedPricing.price(appData) +
+                        totalExtras,
+            },
+        };
+
+        const json = JSON.stringify(formattedAppData);
+        const blob = new Blob([json], {
+            type: 'application/json',
+        });
+
+        body.append('appData', blob);
+
+        for (const key of Object.keys(
+                appData.uploads
+        )) {
+            for (let [
+                index,
+                upload,
+            ] of appData.uploads[key].entries()) {
+                let uploadResponse = await fetch(
+                        upload['data_url']
+                );
+                body.append(
+                        `${key}_${index}_${upload['file'].name}`,
+                        await uploadResponse.blob()
+                );
+            }
+        }
+
+        const response = await fetch('/api/submit', {
+            method: 'POST',
+            body,
+        });
+        const result = await response.json();
+        window.location.href = "https://www.techem.com/de/de/immobilienservices/legionellenpruefung/vielen-dank";
+    };
+
 	useEffect(() => {
 		trackSummary('summary', 'test');
 	}, []);
@@ -831,6 +919,7 @@ const Summary = () => {
 						<Button
 							style={'SECONDARY'}
 							text={'Angebot per E-Mail zusenden'}
+                            onClick={() => sendRequest('angebot')}
 						></Button>
 					</div>
 				</section>
