@@ -197,4 +197,14 @@ export const questions = {
 			},
 		],
 	},
+    Coupon: {
+        answers: [
+            {
+                name: 'couponCode',
+                type: 'string',
+                required: (appData) => false,
+                value: undefined,
+            },
+        ],
+    }
 };

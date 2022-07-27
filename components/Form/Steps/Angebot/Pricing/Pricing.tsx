@@ -138,7 +138,7 @@ const pricingOptions = {
 						return 0.0;
 					},
 				},
-				'Quality Check vor Ort in Ihrer Liegenschaft (249€) ': {
+				'Quality Check vor Ort in Ihrer Liegenschaft (249€)': {
 					icon: <CheckCircledIcon />,
 					active: true,
 					subtitle:
