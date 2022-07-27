@@ -51,11 +51,24 @@ const Trinkwasseranlage = () => {
 			let currentAnswer = currentAppData.questions[
 				questionText
 			]!.answers.find((answer) => answer.name === 'choice');
+			console.log(currentAnswer);
 			return (
 				<div>
 					<Radio></Radio>
 					<div className="tw-flex tw-justify-center tw-mt-24 tw-mb-24">
-						<StrangschemaIcon height={300} />
+						{currentAnswer?.value === 'yes' ? (
+							<StrangschemaIcon height={300} />
+						) : (
+							<iframe
+								width="560"
+								height="315"
+								src="https://www.youtube-nocookie.com/embed/Mn5CkUgLzMU?controls=0"
+								title="YouTube video player"
+								frameBorder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen
+							></iframe>
+						)}
 					</div>
 					{currentAnswer &&
 						currentAnswer.value &&
