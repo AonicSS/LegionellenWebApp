@@ -230,19 +230,19 @@ const Summary = () => {
 
 									return (
 										<div
-											className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0"
+											className="tw-grid tw-grid-cols-[50px,1fr,50px] tw-mb-4 last:tw-mb-0 tw-gap-x-4"
 											key={serviceFeatureName}
 										>
-											<div className="tw-mr-4">
+											<div className="tw-flex  tw-justify-center">
 												{serviceFeature.icon}
 											</div>
-											<div className="tw-flex-grow">
+											<div>
 												<p className={'tw-font-bold'}>
 													{serviceFeatureName}
 												</p>
 												<p>{serviceFeature.subtitle}</p>
 											</div>
-											<div className="">
+											<div className="tw-self-center tw-flex tw-items-center tw-justify-center">
 												<CheckCircledIcon />
 											</div>
 										</div>
