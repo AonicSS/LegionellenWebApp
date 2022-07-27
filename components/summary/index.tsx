@@ -233,7 +233,7 @@ const Summary = () => {
 											className="tw-grid tw-grid-cols-[50px,1fr,50px] tw-mb-4 last:tw-mb-0 tw-gap-x-4"
 											key={serviceFeatureName}
 										>
-											<div className="tw-flex  tw-justify-center">
+											<div className="tw-flex tw-justify-center">
 												{serviceFeature.icon}
 											</div>
 											<div>
@@ -284,10 +284,10 @@ const Summary = () => {
 												{extraService.price(appData)} €
 											</div>
 										</div>
-										<div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
-											<div className="tw-flex-grow tw-text-red tw-font-bold">
+										<div className="tw-flex tw-flex-row tw-items-center tw-justify-end tw-mb-4 last:tw-mb-0">
+											{/* <div className="tw-flex-grow tw-text-red tw-font-bold">
 												Mehr Infos
-											</div>
+											</div> */}
 											<div className="tw-mt-4 md:tw-mt-0 lg:tw-mt-0 xl:tw-mt-0">
 												<div className="tw-flex tw-items-center tw-justify-center tw-w-full">
 													<label
