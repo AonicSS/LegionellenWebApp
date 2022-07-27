@@ -40,12 +40,12 @@ const Calculator = () => {
 				<Form />
 			</section>
 			{currentAppStep !== 3 && (
-				<section className="rwm-calculator__page-section tw-mt-12">
+				<section className="rwm-calculator__page-section tw-my-12">
 					<Button style="NEXT" />
 				</section>
 			)}
 			{currentAppStep === 3 && currentSubStep === 0 && (
-				<section className="rwm-calculator__page-section tw-mt-12">
+				<section className="rwm-calculator__page-section tw-my-12">
 					<Button
 						style={
 							currentAppData.questions[
