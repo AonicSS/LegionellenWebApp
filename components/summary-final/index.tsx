@@ -67,13 +67,6 @@ const SummaryFinal = () => {
 	const scroller = Scroll.scroller;
 	const Element = Scroll.Element;
 	useEffect(() => {
-		scroller.scrollTo('myScrollToElement', {
-			duration: 1500,
-			delay: 100,
-			smooth: true,
-			offset: -100,
-		});
-
 		trackSummary('summary', 'test');
 	}, []);
 

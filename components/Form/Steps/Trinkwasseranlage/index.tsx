@@ -34,15 +34,6 @@ const Trinkwasseranlage = () => {
 		`questions.${currentAppStep - 1}.question`
 	)}`;
 
-	useEffect(() => {
-		scroller.scrollTo('myScrollToElement', {
-			duration: 1500,
-			delay: 100,
-			smooth: true,
-			offset: -50,
-		});
-	}, []);
-
 	console.log(currentAppData);
 
 	switch (currentSubStep) {

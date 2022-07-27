@@ -18,15 +18,6 @@ const Pruefpflicht = () => {
 		(state: AppReduxStoreProps) => state.appData
 	);
 
-	useEffect(() => {
-		scroller.scrollTo('myScrollToElement', {
-			duration: 1500,
-			delay: 100,
-			smooth: true,
-			offset: -50,
-		});
-	}, [currentSubStep]);
-
 	switch (currentSubStep) {
 		default:
 		case 0: {
