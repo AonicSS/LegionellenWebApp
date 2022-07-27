@@ -150,6 +150,8 @@ export default async (req, res) => {
 			html: ReactDOMServer.renderToStaticMarkup(customerEmailBody),
 		});
 
+        console.log("Message sent: %s", customerEmail.messageId);
+
 		const internalEmailBody = <>
 			<div>
 				<p>Liebes Legionellen-Team,</p>
@@ -213,7 +215,7 @@ export default async (req, res) => {
 			}),
 		});
 
-		console.log("Message sent: %s", customerEmail.messageId);
+		console.log("Message sent: %s", internalEmail.messageId);
 
 		if (err) {
 			res.writeHead(err.httpCode || 400, {'Content-Type': 'text/plain'});
