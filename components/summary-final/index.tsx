@@ -1012,8 +1012,7 @@ const SummaryFinal = () => {
 						<p className="tw-font-size-label tw-pl-6">
 							Ich habe die Allgemeinen Geschäftsbedingungen [Link
 							zu PDF] sowie die Besonderen Geschäftsbedingungen
-							[Link zu PDF] gelesen und akzeptiere diese.* *
-							Pflichtfeld
+							[Link zu PDF] gelesen und akzeptiere diese.*
 						</p>
 					</div>
 				</div>
@@ -1046,7 +1045,7 @@ const SummaryFinal = () => {
 							freiwillig und ist mit Wirkung für die Zukunft
 							jederzeit widerrufbar. Einzelheiten zum Datenschutz
 							bei der Techem Energy Services GmbH entnehmen Sie
-							bitte dem Datenschutzhinweis.
+							bitte dem Datenschutzhinweis.*
 						</p>
 					</div>
 				</div>
@@ -1125,6 +1124,9 @@ const SummaryFinal = () => {
 						</div>
 					</div>
 				)}
+				<p className="tw-font-size-label tw-pl-6 tw-mt-10">
+					*pflichtfeld
+				</p>
 			</section>
 			<div className="tw-pt-10 tw-flex tw-items-center tw-justify-center">
 				<div
@@ -1143,10 +1145,9 @@ const SummaryFinal = () => {
 							(!appData.selectedPricing.serviceFeatures[
 								'Legionellenprüfung'
 							].active ||
-								(appData.selectedPricing.serviceFeatures[
+								appData.selectedPricing.serviceFeatures[
 									'Legionellenprüfung'
-								].active &&
-									consentLegionellenBeratung))
+								].active)
 								? 'PRIMARY'
 								: 'DISACTIVE'
 						}
