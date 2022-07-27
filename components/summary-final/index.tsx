@@ -13,6 +13,7 @@ import {
 } from '../../utils/helpers';
 import { trackSummary } from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
+import CheckIcon from '../../public/icons/check.svg';
 import PenIcon from '../../public/icons/pen.svg';
 import ModalWrapper from '../shared/ModalWrapper';
 import { NumericInput } from '../Form/Input';
@@ -915,7 +916,7 @@ const SummaryFinal = () => {
 											</p>
 											<p>{extraService.subtitle}</p>
 										</div>
-										<div className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+										<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-small tw-text-water">
 											+{' '}
 											{extraService
 												.price(appData)
@@ -1006,8 +1007,7 @@ const SummaryFinal = () => {
 						<p className="tw-font-size-label tw-pl-6">
 							Ich habe die Allgemeinen Geschäftsbedingungen [Link
 							zu PDF] sowie die Besonderen Geschäftsbedingungen
-							[Link zu PDF] gelesen und akzeptiere diese.* *
-							Pflichtfeld
+							[Link zu PDF] gelesen und akzeptiere diese.*
 						</p>
 					</div>
 				</div>
@@ -1040,7 +1040,7 @@ const SummaryFinal = () => {
 							freiwillig und ist mit Wirkung für die Zukunft
 							jederzeit widerrufbar. Einzelheiten zum Datenschutz
 							bei der Techem Energy Services GmbH entnehmen Sie
-							bitte dem Datenschutzhinweis.
+							bitte dem Datenschutzhinweis.*
 						</p>
 					</div>
 				</div>
@@ -1119,6 +1119,9 @@ const SummaryFinal = () => {
 						</div>
 					</div>
 				)}
+				<p className="tw-font-size-label tw-pl-6 tw-mt-10">
+					*pflichtfeld
+				</p>
 			</section>
 			<div className="tw-pt-10 tw-flex tw-items-center tw-justify-center">
 				<div
@@ -1137,10 +1140,9 @@ const SummaryFinal = () => {
 							(!appData.selectedPricing.serviceFeatures[
 								'Legionellenprüfung'
 							].active ||
-								(appData.selectedPricing.serviceFeatures[
+								appData.selectedPricing.serviceFeatures[
 									'Legionellenprüfung'
-								].active &&
-									consentLegionellenBeratung))
+								].active)
 								? 'PRIMARY'
 								: 'DISACTIVE'
 						}

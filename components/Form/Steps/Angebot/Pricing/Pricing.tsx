@@ -1,11 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
 import Button from '../../../../Button';
-import {useSelector} from 'react-redux';
-import {AppData, AppReduxStoreProps} from '../../../../../redux/reducers/App';
-import {getBasePrice, getServicePrice} from '../../../../../utils/helpers';
+import { useSelector } from 'react-redux';
+import { AppData, AppReduxStoreProps } from '../../../../../redux/reducers/App';
+import { getBasePrice, getServicePrice } from '../../../../../utils/helpers';
 import CheckInIcon from '../../../../../public/icons/check-in.svg';
 import CheckCircledIcon from '../../../../../public/icons/check-circled.svg';
+import CheckIcon from '../../../../../public/icons/check.svg';
 import CheckQualityIcon from '../../../../../public/icons/check-quality.svg';
 import MagnifyingGlassIcon from '../../../../../public/icons/magnifying-glass.svg';
 import XCircledIcon from '../../../../../public/icons/x-circled.svg';
@@ -27,7 +28,7 @@ const pricingOptions = {
 			},
 			serviceFeatures: {
 				'Kostenloses Erstgespräch ': {
-					icon: <PhoneIcon/>,
+					icon: <PhoneIcon />,
 					active: true,
 					subtitle:
 						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
@@ -36,7 +37,7 @@ const pricingOptions = {
 					},
 				},
 				'Prüfung Ihrer Angaben': {
-					icon: <CheckQualityIcon/>,
+					icon: <CheckQualityIcon />,
 					active: false,
 					subtitle: 'Ohne Quality Check (siehe Hinweis unten) ',
 					price: (appData: AppData) => {
@@ -44,9 +45,10 @@ const pricingOptions = {
 					},
 				},
 				Legionellenprüfung: {
-					icon: <MagnifyingGlassIcon/>,
+					icon: <MagnifyingGlassIcon />,
 					active: true,
-					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
+					subtitle:
+						'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -77,7 +79,7 @@ const pricingOptions = {
 			},
 			serviceFeatures: {
 				'Kostenloses Erstgespräch ': {
-					icon: <PhoneIcon/>,
+					icon: <PhoneIcon />,
 					active: true,
 					subtitle:
 						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
@@ -86,17 +88,19 @@ const pricingOptions = {
 					},
 				},
 				'Prüfung Ihrer Angaben': {
-					icon: <CheckCircledIcon/>,
+					icon: <CheckIcon />,
 					active: true,
-					subtitle: 'In unserem „Quality Check“ gehen wir gemeinsam mit Ihnen Ihre Angaben im Detail durch und prüfen sie auf Plausibilität. Bei Abweichungen beraten wir Sie zum weiteren Vorgehen. Ihr Vorteil: Flexible Terminvereinbarung, digitale Abwicklung',
+					subtitle:
+						'In unserem „Quality Check“ gehen wir gemeinsam mit Ihnen Ihre Angaben im Detail durch und prüfen sie auf Plausibilität. Bei Abweichungen beraten wir Sie zum weiteren Vorgehen. Ihr Vorteil: Flexible Terminvereinbarung, digitale Abwicklung',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
 				},
 				Legionellenprüfung: {
-					icon: <MagnifyingGlassIcon/>,
+					icon: <MagnifyingGlassIcon />,
 					active: true,
-					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
+					subtitle:
+						'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -126,7 +130,7 @@ const pricingOptions = {
 			},
 			serviceFeatures: {
 				'Kostenloses Erstgespräch ': {
-					icon: <PhoneIcon/>,
+					icon: <PhoneIcon />,
 					active: true,
 					subtitle:
 						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
@@ -135,17 +139,19 @@ const pricingOptions = {
 					},
 				},
 				'Quality Check vor Ort in Ihrer Liegenschaft (249€) ': {
-					icon: <CheckCircledIcon/>,
+					icon: <CheckCircledIcon />,
 					active: true,
-					subtitle: 'Zur Bestätigung des Probenahme-Umfangs nehmen wir einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.  ',
+					subtitle:
+						'Zur Bestätigung des Probenahme-Umfangs nehmen wir einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.  ',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
 				},
 				Legionellenprüfung: {
-					icon: <MagnifyingGlassIcon/>,
+					icon: <MagnifyingGlassIcon />,
 					active: true,
-					subtitle: 'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
+					subtitle:
+						'Probennahme und Laboranalytik durch ein akkreditiertes Labor sowie Übermittlung des Ergebnisses',
 					price: (appData: AppData) => {
 						return 0.0;
 					},
@@ -170,15 +176,14 @@ const pricingOptions = {
 	],
 	surveyRequired: [
 		{
-			name: 'Vor-Ort-Aufnahme \n' +
-				'in Ihrer Liegenschaft',
+			name: 'Vor-Ort-Aufnahme \n' + 'in Ihrer Liegenschaft',
 			position: 'tw-container-pricing-1',
 			price: (appData: AppData) => {
 				return 249.0;
 			},
 			serviceFeatures: {
 				'Kostenloses Erstgespräch ': {
-					icon: <PhoneIcon/>,
+					icon: <PhoneIcon />,
 					active: true,
 					subtitle:
 						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
@@ -187,7 +192,7 @@ const pricingOptions = {
 					},
 				},
 				'Ermittlung des Probennahme-Umfangs ': {
-					icon: <HouseIcon/>,
+					icon: <HouseIcon />,
 					active: true,
 					subtitle:
 						'Wir nehmen einmalig beim ersten Auftrag die Situation vor Ort auf und legen die relevanten Probenahme-Stellen fest.',
@@ -195,8 +200,8 @@ const pricingOptions = {
 						return 0.0;
 					},
 				},
-				'Legionellenprüfung': {
-					icon: <XCircledIcon/>,
+				Legionellenprüfung: {
+					icon: <XCircledIcon />,
 					active: false,
 					subtitle:
 						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der Vor-Ort-Aufnahme ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
@@ -213,8 +218,7 @@ const pricingOptions = {
 			importantRemark: undefined,
 		},
 		{
-			name: 'Digitale Aufnahme \n' +
-				'per Videotelefonat',
+			name: 'Digitale Aufnahme \n' + 'per Videotelefonat',
 			position: 'tw-container-pricing-3',
 			price: (appData: AppData) => {
 				return 99.0;
@@ -222,7 +226,7 @@ const pricingOptions = {
 			extraServices: {},
 			serviceFeatures: {
 				'Kostenloses Erstgespräch ': {
-					icon: <PhoneIcon/>,
+					icon: <PhoneIcon />,
 					active: true,
 					subtitle:
 						'In unserem „Welcome Call“ nehmen wir alle weiteren Daten auf, die für die Auftragsausführung nötig sind, klären offene Fragen und erklären das weitere Vorgehen. Auf Wunsch mit Video. ',
@@ -231,7 +235,7 @@ const pricingOptions = {
 					},
 				},
 				'Ermittlung des Probennahme-Umfangs im Videotelefonat ': {
-					icon: <CheckInIcon/>,
+					icon: <CheckInIcon />,
 					active: true,
 					subtitle:
 						'Wir leiten Sie durch Ihre Liegenschaft und legen die relevanten Probenahme-Stellen fest. (siehe Hinweis unten)',
@@ -239,8 +243,8 @@ const pricingOptions = {
 						return 0.0;
 					},
 				},
-				'Legionellenprüfung': {
-					icon: <XCircledIcon/>,
+				Legionellenprüfung: {
+					icon: <XCircledIcon />,
 					active: false,
 					subtitle:
 						'Nach der Begehung buchbar. Auf Basis des Ergebnisses der erfolgreichen digitalen Aufnahme Ihrer Liegenschaft ermitteln wir den Preis für Ihre Legionellenprüfung und senden Ihnen im Anschluss ein Angebot zu.',
@@ -249,7 +253,8 @@ const pricingOptions = {
 					},
 				},
 			},
-			importantRemark: "Sollten wir im Gespräch feststellen, dass für die korrekte Ermittlung des Probennahme-Umfangs eine Vor-Ort-Aufnahme notwendig ist, können Sie diese gegen einen Aufpreis zubuchen.",
+			importantRemark:
+				'Sollten wir im Gespräch feststellen, dass für die korrekte Ermittlung des Probennahme-Umfangs eine Vor-Ort-Aufnahme notwendig ist, können Sie diese gegen einen Aufpreis zubuchen.',
 			buttonStyle: 'PRIMARY',
 			text: 'Angebot sichern',
 			type: 'plus',
@@ -263,7 +268,7 @@ export interface PricingProps extends React.HTMLProps<HTMLDivElement> {
 	surveyRequired?: boolean;
 }
 
-const Pricing = ({modal, surveyRequired}: PricingProps) => {
+const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 	const currentAppData = useSelector(
 		(state: AppReduxStoreProps) => state.appData
 	);
@@ -297,7 +302,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 						>
 							{p.recommended && (
 								<div className="rwm-best-price">
-									<Techem/>
+									<Techem />
 								</div>
 							)}
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline tw-whitespace-pre-line">
@@ -307,18 +312,18 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 								([featureName, feature]) => {
 									return (
 										<div
-											className="tw-container-pricing-list tw-flex tw-flex-row tw-items-center"
+											className="tw-container-pricing-list tw-mt-5 tw-grid tw-grid-cols-[50px,1fr]"
 											key={featureName}
 										>
-											<div className="tw-mr-4">
+											<div className="tw-self-start">
 												{(p.serviceFeatures as any)[
 													featureName
-													].active ? (
+												].active ? (
 													(p.serviceFeatures as any)[
 														featureName
-														].icon
+													].icon
 												) : (
-													<XCircledIcon/>
+													<XCircledIcon />
 												)}
 											</div>
 											<div className="tw-flex-grow">
@@ -359,7 +364,13 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 										.toString()
 										.replace('.', ',')}{' '}
 									€
-									<span className={"tw-font-size-price-small tw-ml-3"}>netto</span>
+									<span
+										className={
+											'tw-font-size-price-small tw-ml-3'
+										}
+									>
+										netto
+									</span>
 								</div>
 							</div>
 							<div className="tw-flex tw-justify-center tw-mb-6">
@@ -369,8 +380,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 									pricing={p}
 								/>
 							</div>
-							{
-								/*
+							{/*
 								<div className={'tw-container-pricing-list'}>
 									<div
 										className={
@@ -404,8 +414,7 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 										</div>
 									</div>
 								</div>
-								 */
-							}
+								 */}
 							{p.importantRemark && (
 								<div
 									className={
@@ -416,7 +425,10 @@ const Pricing = ({modal, surveyRequired}: PricingProps) => {
 										<h4> Wichtiger Hinweis</h4>
 									</div>
 									<div
-										className={'tw-font-normal tw-text-[13px] tw-leading-6 tw-text-left tw-text-headline'}>
+										className={
+											'tw-font-normal tw-text-[13px] tw-leading-6 tw-text-left tw-text-headline'
+										}
+									>
 										{p.importantRemark}
 									</div>
 								</div>

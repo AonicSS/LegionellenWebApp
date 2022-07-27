@@ -33,19 +33,17 @@ const Calculator = () => {
 		<Layout>
 			<Modal />
 			<Element name="myScrollToElement"></Element>
-			<section className="rwm-calculator__page-section tw-pt-2 tw-margin-top tw-sticky tw-top-0 tw-bg-white tw-z-[100]">
-				<Stepper />
-			</section>
+			<Stepper />
 			<section className="rwm-calculator__page-section tw-mb-12 tw-mt-16 tw-px-2 lg:tw-px-0">
 				<Form />
 			</section>
 			{currentAppStep !== 3 && (
-				<section className="rwm-calculator__page-section tw-mt-12">
+				<section className="rwm-calculator__page-section tw-my-12">
 					<Button style="NEXT" />
 				</section>
 			)}
 			{currentAppStep === 3 && currentSubStep === 0 && (
-				<section className="rwm-calculator__page-section tw-mt-12">
+				<section className="rwm-calculator__page-section tw-my-12">
 					<Button
 						style={
 							currentAppData.questions[

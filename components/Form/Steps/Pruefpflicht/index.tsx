@@ -47,9 +47,9 @@ const Pruefpflicht = () => {
 						<section className="rwm-calculator__page-section tw-mt-8 tw-mx-6 tw-max-w-lg">
 							<h1 className="tw-text-2xl tw-font-bold tw-text-[#0F172A]">
 								Für Ihre Liegenschaft besteht basierend auf
-								Ihren Angaben eine
+								Ihren Angaben eine{' '}
 								<span className="tw-text-[#E20613]">
-									&nbsp;Prüfpflicht
+									Prüfpflicht
 								</span>
 								. Im nächsten Schritt erfassen wir die
 								wichtigsten Informationen für die Beauftragung.

@@ -6,7 +6,7 @@ import PhoneIcon from '../../public/icons/phone.svg';
 
 const ContactModal = ({ isOpen, setOpen }) => {
 	return (
-		<ModalWrapper isOpen={isOpen} setOpen={setOpen}>
+		<ModalWrapper isOpen={isOpen} setOpen={setOpen} btnText="Schließen">
 			<div className="tw-flex tw-gap-x-5">
 				<HouseIcon className="tw-text-red tw-object-contain tw-w-10 tw-pt-5" />
 				<div className="tw-text-left tw-flex tw-gap-y-3 tw-flex-col">
