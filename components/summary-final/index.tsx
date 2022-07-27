@@ -984,8 +984,8 @@ const SummaryFinal = () => {
 						Erstgespräch. Darin fragen wir noch weitere Angaben ab,
 						die wir für die Ausführung Ihrer Bestellung benötigen.
 						Mit dieser Checkliste können Sie alle nötigen
-						Informationen bereits vorbereiten. Link zur
-						PDF-Checkliste
+						Informationen bereits vorbereiten. <a onClick={(e)=>e.stopPropagation()} target="_blank" href={"https://www.techem.com/content/dam/techem/downloads/kalkulatoren/legionelle/Checkliste%20Legionellen-Welcome-Call%20ausfuellbar.pdf"}>Link zur
+                        PDF-Checkliste</a>
 					</p>
 				</div>
 			</section>
@@ -1005,9 +1005,7 @@ const SummaryFinal = () => {
 						onClick={() => setConsentTerms(!consentTerms)}
 					>
 						<p className="tw-font-size-label tw-pl-6">
-							Ich habe die Allgemeinen Geschäftsbedingungen [Link
-							zu PDF] sowie die Besonderen Geschäftsbedingungen
-							[Link zu PDF] gelesen und akzeptiere diese.*
+                            Ich habe die <a onClick={(e)=>e.stopPropagation()} target="_blank" href={"https://www.techem.com/content/dam/techem/downloads/rechtliches/80493-34-0222-AGB-SC_2022.pdf.coredownload.pdf"}>Allgemeinen Geschäftsbedingungen</a> sowie die <a onClick={(e)=>e.stopPropagation()} target="_blank" href={"https://www.techem.com/content/dam/techem/downloads/kalkulatoren/legionelle/BGB-Legionellen-Widerruf-18-0722.pdf"}>Besonderen Geschäftsbedingungen</a> gelesen und akzeptiere diese.*
 						</p>
 					</div>
 				</div>
