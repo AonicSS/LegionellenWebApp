@@ -4,13 +4,19 @@ import { Dialog, Transition } from '@headlessui/react';
 import Close from '../../public/icons/times.svg';
 import Button from '../Button';
 
-const ModalWrapper = ({ isOpen, setOpen, children, btnText = null }) => {
+const ModalWrapper = ({
+	isOpen,
+	setOpen,
+	children,
+	btnText = null,
+	disabled = false,
+}) => {
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
 			<Dialog
 				as="div"
 				className="tw-relative tw-z-[200]"
-				onClose={() => setOpen(false)}
+				onClose={() => !disabled && setOpen(false)}
 			>
 				<Transition.Child
 					as={Fragment}
@@ -37,7 +43,7 @@ const ModalWrapper = ({ isOpen, setOpen, children, btnText = null }) => {
 						>
 							<Dialog.Panel className="tw-w-full tw-max-w-4xl tw-relative tw-overflow-hidden tw-shadow-xl">
 								<button
-									onClick={() => setOpen(false)}
+									onClick={() => !disabled && setOpen(false)}
 									className="tw-absolute tw-top-2 tw-right-2"
 								>
 									<Close className="rwm-btn-close tw-fill-sharepoint-grey" />
@@ -48,7 +54,9 @@ const ModalWrapper = ({ isOpen, setOpen, children, btnText = null }) => {
 								<div className="tw-bg-light-grey tw-px-10 tw-pt-5 tw-pb-6 tw-flex tw-items-center tw-justify-end">
 									<Button
 										text={btnText ? btnText : 'Speichern'}
-										style={'PRIMARY'}
+										style={
+											disabled ? 'DISACTIVE' : 'PRIMARY'
+										}
 										onClick={() => setOpen(false)}
 									/>
 								</div>
