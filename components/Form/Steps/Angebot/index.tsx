@@ -29,6 +29,7 @@ const Angebot = () => {
 	const scroller = Scroll.scroller;
 
 	const [strangschemaModalOpen, setStrangschemaModalOpen] = useState(false);
+
 	const [probeentnahmeventilenOpen, setProbeentnahmeventilenModalOpen] =
 		useState(false);
 	const [addressModalOpen, setAddressModalOpen] = useState(false);
@@ -247,6 +248,9 @@ const Angebot = () => {
 					</ModalWrapper>
 
 					<ModalWrapper
+						disabled={
+							!streetName || !houseNumber || !postalCode || !city
+						}
 						isOpen={addressModalOpen}
 						setOpen={setAddressModalOpen}
 					>
