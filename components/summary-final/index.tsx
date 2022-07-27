@@ -13,6 +13,7 @@ import {
 } from '../../utils/helpers';
 import { trackSummary } from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
+import CheckIcon from '../../public/icons/check.svg';
 import PenIcon from '../../public/icons/pen.svg';
 import ModalWrapper from '../shared/ModalWrapper';
 import { NumericInput } from '../Form/Input';
@@ -921,7 +922,7 @@ const SummaryFinal = () => {
 											</p>
 											<p>{extraService.subtitle}</p>
 										</div>
-										<div className="tw-container-pricing-label tw-font-size-price-small tw-text-water">
+										<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-small tw-text-water">
 											+{' '}
 											{extraService
 												.price(appData)
