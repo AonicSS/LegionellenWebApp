@@ -29,7 +29,7 @@ const VentileForm = ({ currentAppData }) => {
 				'Sind Probeentnahmeventile verbaut?'
 			]!.answers.find((answer) => answer.name === 'choice')!.value ===
 				'no' && (
-				<div className={'tw-p-6 tw-bg-lightest-grey'}>
+				<div className={'tw-p-6 tw-mt-8 tw-bg-lightest-grey'}>
 					Falls noch nicht vorhanden, müssen die Probeentnahmeventile
 					von einer Fachkraft angebracht werden.
 				</div>
