@@ -93,7 +93,7 @@ export const checkStrangAmount = function (appData) {
 
 export const demoCoupons = {
     'legionelle_5': {
-        description: 'Rabattcode 5% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/einmalig) - Techem Rabattwert 3,05 EUR/Probe und 2,45 EUR einmalig',
+        description: 'Rabattcode 5% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/einmalig)',
         discount: function (appData: AppData) {
             if (checkStrangAmount(appData)) {
                 return 2.45 * 3.05 * appData.strangAmount;
@@ -103,7 +103,7 @@ export const demoCoupons = {
         },
     },
     '10legionelle22': {
-        description: 'Rabattcode 10% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/Probe) - Techem Rabattwert 6,10 EUR/Probe und 4,90 EUR einmalig',
+        description: 'Rabattcode 10% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/Probe)',
         discount: function (appData: AppData) {
             if (checkStrangAmount(appData)) {
                 return 4.90 + 6.10 * appData.strangAmount;
@@ -114,7 +114,7 @@ export const demoCoupons = {
     },
 
     'techem15leg': {
-        description: 'Rabattcode 15% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/Probe) - Techem Rabattwert 9,15 EUR/Probe und 7,35 EUR einmalig',
+        description: 'Rabattcode 15% auf Beprobung (auf 61 EUR/Probe) und Grundpreis (49 EUR/Probe)',
         discount: function (appData: AppData) {
             if (checkStrangAmount(appData)) {
                 return 7.35 + 9.15 * appData.strangAmount;
@@ -124,7 +124,7 @@ export const demoCoupons = {
         },
     },
     'qualitaet4you': {
-        description: 'Rabattcode Qualitätscheck Trinkwasseranlage (1h Beratung) - Techem Rabattwert 49 EUR',
+        description: 'Rabattcode Qualitätscheck Trinkwasseranlage (1h Beratung)',
         discount: function (appData: AppData) {
             if (appData.selectedPricing.serviceFeatures['Prüfung Ihrer Angaben'] && appData.selectedPricing.serviceFeatures['Prüfung Ihrer Angaben'].active) {
                 return 49.0
@@ -137,7 +137,7 @@ export const demoCoupons = {
         },
     },
     'online4you': {
-        description: 'Rabattcode kostenfreie online Begehung zum Kennenlernen - Techem Rabattwert 99 EUR',
+        description: 'Rabattcode kostenfreie online Begehung zum Kennenlernen',
         discount: function (appData: AppData) {
             if (Object.keys(appData.selectedPricing.serviceFeatures).includes('Ermittlung des Probennahme-Umfangs im Videotelefonat ')) {
                 return 49.0
@@ -155,6 +155,6 @@ export const demoCoupons = {
             }
         }
         ,
-        description: 'Rabattcode kostenfreier Infoservice - Techem Rabattwert 5 EUR',
+        description: 'Rabattcode kostenfreier Infoservice',
     },
 };

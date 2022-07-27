@@ -61,6 +61,8 @@ const Summary = () => {
         const formattedAppData = {
             ...partialAppData,
             type: type,
+            discount: totalDiscount,
+            couponCode: selectedCoupon,
             strangAmount: checkStrangAmount(appData),
             selectedPricing: {
                 ...appData.selectedPricing,
@@ -259,7 +261,7 @@ const Summary = () => {
                                     </div>
                                     <div className="tw-flex tw-items-center">
                                         <div className="tw-container-pricing-label tw-font-size-price-large tw-whitespace-nowrap">
-                                            {(total - totalDiscount)
+                                            {(total)
                                                     .toFixed(2)
                                                     .toString()
                                                     .replace('.', ',')}{' '}
@@ -400,6 +402,25 @@ const Summary = () => {
                                             </>
                                     );
                                 })}
+
+                                {(totalDiscount > 0) &&
+                                        <>
+                                            <div className="tw-flex tw-flex-row tw-items-center tw-mb-4 last:tw-mb-0">
+                                                <div className="tw-flex-grow">
+                                                    <p className={'tw-font-bold'}>
+                                                        {demoCoupons[selectedCoupon].code}
+                                                    </p>
+                                                    <p> {demoCoupons[selectedCoupon].description}</p>
+                                                </div>
+                                                <div className="tw-font-size-price-small tw-text-water tw-text-right tw-whitespace-nowrap">
+                                                    {totalDiscount.toFixed(2)
+                                                            .toString()
+                                                            .replace('.', ',')}{' '}
+                                                     €
+                                                </div>
+                                            </div>
+                                        </>
+                                }
 
                                 <div className="tw-mt-2">
                                     <button

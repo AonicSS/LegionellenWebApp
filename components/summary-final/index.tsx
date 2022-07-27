@@ -8,8 +8,8 @@ import Layout from '../../components/Layout';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
 import {
-	getMeasurementValvesInstalled,
-	checkStrangAmount,
+    getMeasurementValvesInstalled,
+    checkStrangAmount, demoCoupons,
 } from '../../utils/helpers';
 import { trackSummary } from '../../utils/tracking';
 import CheckCircledIcon from '../../public/icons/check-circled.svg';
@@ -148,6 +148,9 @@ const SummaryFinal = () => {
 		console.error(err);
 	};
 
+    const selectedCoupon = appData.questions['Coupon'].answers.find((x) => x.name === 'couponCode')!.value as string;
+    const totalDiscount = selectedCoupon ? demoCoupons[selectedCoupon] ? demoCoupons[selectedCoupon].discount(appData) : 0.0 : 0.0;
+
 	useEffect(() => {
 		if (!widget.current && container.current) {
 			widget.current = new WidgetInstance(container.current, {
@@ -183,6 +186,8 @@ const SummaryFinal = () => {
         const formattedAppData = {
             ...partialAppData,
             type: type,
+            discount: totalDiscount,
+            couponCode: selectedCoupon,
             strangAmount: checkStrangAmount(appData),
             selectedPricing: {
                 ...currentAppData.selectedPricing,
@@ -208,7 +213,7 @@ const SummaryFinal = () => {
                         .reduce((x, y) => x + y, 0.0),
                 total:
                         appData.selectedPricing.price(appData) +
-                        totalExtras,
+                        totalExtras - totalDiscount,
             },
         };
 
@@ -1049,6 +1054,21 @@ const SummaryFinal = () => {
 							</div>
 						</div>
 					</div>
+                    {demoCoupons[selectedCoupon] &&
+                    <div className={'tw-bg-white tw-pt-8'}>
+                        <div className="tw-flex tw-flex-row tw-items-center">
+                            <div className="tw-flex-grow tw-basis-[78%]">
+                                <p className={'tw-font-bold'}>
+                                    {demoCoupons[selectedCoupon].description}
+                                </p>
+                            </div>
+                            <div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
+                                - {totalDiscount.toFixed(2).toString().replace('.', ',')}{' '}
+                                €
+                            </div>
+                        </div>
+                    </div>
+                    }
 				</div>
 			</section>
 			<section
