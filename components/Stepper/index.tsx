@@ -36,53 +36,59 @@ const Stepper = () => {
 	};
 
 	return (
-		<div className="rwm-stepper">
-			{(currentSubStep !== 0 || currentAppStep !== 1) && !showModal ? (
-				<Button style="PREVIOUS" />
-			) : (
-				<div className="rwm-icon--hidden"></div>
-			)}
-			{Array(maxSteps)
-				.fill(0)
-				.map((_, key) => (
-					<div
-						key={key}
-						className="tw-flex tw-flex-col tw-items-center"
-					>
+		<section className="tw-pt-5 tw-pb-1 tw-margin-top tw-sticky tw-top-0 tw-bg-white tw-z-[100]">
+			<div className="rwm-stepper tw-relative tw-gap-x-5 tw-mx-auto tw-flex tw-items-center tw-justify-center tw-max-w-3xl ">
+				<div className="tw-absolute tw-left-0">
+					{(currentSubStep !== 0 || currentAppStep !== 1) &&
+					!showModal ? (
+						<Button style="PREVIOUS" />
+					) : (
+						<div className="rwm-icon--hidden"></div>
+					)}
+				</div>
+				{Array(maxSteps)
+					.fill(0)
+					.map((_, key) => (
 						<div
-							className="tw-w-[90px] lg:tw-w-[180px] tw-rounded-full tw-h-[3px]"
-							style={{
-								height: '3px',
-								borderRadius: '9999px',
-								backgroundColor:
-									currentAppStep === key + 1
-										? '#E3E3E3'
-										: currentAppStep >= key + 1
-										? '#e20613'
-										: '#E3E3E3',
-							}}
 							key={key}
-							onClick={() => setAppStep(key + 1)}
+							className="tw-flex tw-flex-col tw-items-center"
 						>
-							{currentAppStep === key + 1 && (
-								<div
-									style={{
-										height: '3px',
-										width: `${
-											(100 * currentSubStep) / maxSubSteps
-										}%`,
-										borderRadius: '9999px',
-										backgroundColor: '#e20913',
-									}}
-								></div>
-							)}
+							<div
+								className="tw-w-[90px] lg:tw-w-[180px] tw-rounded-full tw-h-[3px]"
+								style={{
+									height: '3px',
+									borderRadius: '9999px',
+									backgroundColor:
+										currentAppStep === key + 1
+											? '#E3E3E3'
+											: currentAppStep >= key + 1
+											? '#e20613'
+											: '#E3E3E3',
+								}}
+								key={key}
+								onClick={() => setAppStep(key + 1)}
+							>
+								{currentAppStep === key + 1 && (
+									<div
+										style={{
+											height: '3px',
+											width: `${
+												(100 * currentSubStep) /
+												maxSubSteps
+											}%`,
+											borderRadius: '9999px',
+											backgroundColor: '#e20913',
+										}}
+									></div>
+								)}
+							</div>
+							<div className="!tw-font-semibold stepper-title tw-pt-[10px] tw-leading-4 tw-text-black tw-text-center">
+								{steps[key].title}
+							</div>
 						</div>
-						<div className="!tw-font-semibold stepper-title tw-pt-[10px] tw-leading-4 tw-text-black tw-text-center">
-							{steps[key].title}
-						</div>
-					</div>
-				))}
-		</div>
+					))}
+			</div>
+		</section>
 	);
 };
 

@@ -463,7 +463,7 @@ li span {
 }
 
 .rwm-stepper {
-	@apply tw-flex tw-items-center lg:tw-w-2/4 tw-justify-between;
+	@apply tw-flex tw-items-center tw-justify-between;
 }
 
 .rwm-stepper__rectangle {
@@ -497,9 +497,10 @@ div[name='myScrollToElement'] {
 .ques-title {
 	font-size: 22px;
 }
-.is-show, .is-hide {
+.is-show,
+.is-hide {
 	display: none;
- }
+}
 input[disabled] {
 	@apply tw-bg-transparent;
 }
