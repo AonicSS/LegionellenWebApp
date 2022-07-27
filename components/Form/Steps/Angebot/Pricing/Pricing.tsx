@@ -279,12 +279,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 	return (
 		<div className="tw-pb-12">
 			<div
-				className={
-					'lg:tw-grid-cols-1 lg:tw-grid-cols-2 lg:tw-grid-cols-3 md:tw-grid-cols-1 tw-hidden'
-				}
-			></div>
-			<div
-				className={`tw-grid tw-align-center tw-grid-cols-1 lg:tw-grid-cols-${pricing.length} xl:tw-grid-cols-${pricing.length} tw-gap-[52px] xl:tw-gap-[50px]`}
+				className={`tw-flex tw-flex-col lg:tw-flex-row tw-justify-center tw-gap-10`}
 			>
 				{pricing.map((p) => {
 					//const rentingPrice = getBasePrice(appData);
@@ -296,7 +291,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 						<div
 							key={p.name}
 							className={classNames(
-								'tw-p-5 tw-container-pricing tw-justify-center tw-items-center tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
+								'tw-p-5 tw-container-pricing tw-grid tw-grid-rows-[auto_1fr_auto_auto_minmax(100px,_250px)] tw-border-2 tw-border-grey tw-pb-6 hover:tw-border-[#009BB4] tw-cursor-pointer !tw-rounded-tl-[40px] !tw-rounded-br-[40px]',
 								`${p.position}`
 							)}
 						>
@@ -308,54 +303,61 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 							<div className="tw-container-pricing-headline tw-font-size-pricing-headline tw-whitespace-pre-line">
 								{p.name}
 							</div>
-							{Object.entries(p.serviceFeatures).map(
-								([featureName, feature]) => {
-									return (
-										<div
-											className="tw-container-pricing-list tw-mt-5 tw-grid tw-grid-cols-[50px,1fr]"
-											key={featureName}
-										>
-											<div className="tw-self-start">
-												{(p.serviceFeatures as any)[
-													featureName
-												].active ? (
-													(p.serviceFeatures as any)[
+							<div>
+								{Object.entries(p.serviceFeatures).map(
+									([featureName, feature]) => {
+										return (
+											<div
+												className="tw-container-pricing-list tw-mt-5 tw-grid tw-grid-cols-[50px,1fr]"
+												key={featureName}
+											>
+												<div className="tw-self-start">
+													{(p.serviceFeatures as any)[
 														featureName
-													].icon
-												) : (
-													<XCircledIcon />
-												)}
-											</div>
-											<div className="tw-flex-grow">
-												<p className={'tw-font-bold'}>
-													{featureName}
-												</p>
-												<p>
-													{
+													].active ? (
 														(
 															p.serviceFeatures as any
-														)[featureName].subtitle
-													}
-												</p>
+														)[featureName].icon
+													) : (
+														<XCircledIcon />
+													)}
+												</div>
+												<div className="tw-flex-grow">
+													<p
+														className={
+															'tw-font-bold'
+														}
+													>
+														{featureName}
+													</p>
+													<p>
+														{
+															(
+																p.serviceFeatures as any
+															)[featureName]
+																.subtitle
+														}
+													</p>
+												</div>
 											</div>
-										</div>
-									);
-									// if (isModalVisible || index < 3) {
-									return (
-										<ul
-											key={featureName}
-											className="tw-container-pricing-list tw-list-disc tw-ml-5"
-										>
-											<li className="tw-font-size-pricing-body">
-												<span>{featureName}</span>
-											</li>
-										</ul>
-									);
-									// } else {
-									// 	return null;
-									// }
-								}
-							)}
+										);
+										// if (isModalVisible || index < 3) {
+										return (
+											<ul
+												key={featureName}
+												className="tw-container-pricing-list tw-list-disc tw-ml-5"
+											>
+												<li className="tw-font-size-pricing-body">
+													<span>{featureName}</span>
+												</li>
+											</ul>
+										);
+										// } else {
+										// 	return null;
+										// }
+									}
+								)}
+							</div>
 
 							<div className="tw-flex tw-justify-center tw-mb-12">
 								<div className="tw-container-pricing-label tw-font-size-price-large">
@@ -369,7 +371,7 @@ const Pricing = ({ modal, surveyRequired }: PricingProps) => {
 											'tw-font-size-price-small tw-ml-3'
 										}
 									>
-										netto
+										exkl.Mwst
 									</span>
 								</div>
 							</div>

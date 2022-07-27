@@ -347,8 +347,6 @@ module.exports = {
 					width: '315px',
 					// height: '530px',
 					boxShadow: '0 3px 15px 1px rgba(0, 0, 0, 0.1)',
-					marginLeft: 'auto',
-					marginRight: 'auto',
 					[`@media (min-width: ${lg})`]: {
 						width: '364px',
 					},
