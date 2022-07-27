@@ -130,14 +130,14 @@ const Summary = () => {
 			<Element name="myScrollToElement"></Element>
 			<section className="rwm-calculator__page-section tw-margin-top tw-sticky tw-top-0 tw-bg-white tw-z-[100]">
 				<div className="tw-flex tw-flex-col">
-					<div className="rwm-form__headline-mobile lg:tw-mt-[30px] xl:tw-mt-[30px]">
+					<div className="rwm-form__headline-mobile lg:tw-mt-6">
 						<label className="rwm-form__headline tw-text-center">
 							<h1 className="rwm-form__headline">
 								Zusammenfassung zum Angebot
 							</h1>
 						</label>
 					</div>
-					<div className="tw-grid tw-grid-cols-1 tw-gap-10 xl:tw-gap-14 tw-mt-16">
+					<div className="tw-grid tw-grid-cols-1 tw-gap-10 xl:tw-gap-14 tw-mt-6">
 						<div
 							className={classNames(
 								'tw-container-summary tw-justify-center tw-items-center tw-pb-6'
