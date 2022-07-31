@@ -120,7 +120,7 @@ const pricingOptions = {
 			text: 'Angebot sichern',
 			type: 'plus',
 			recommended: true,
-			importantRemark: undefined,
+			importantRemark: "Für die Durchführung des Online Quality Checks benötigen Sie ein mobiles Gerät mit einer Internetverbindung sowie, wenn Sie die Video-Option nutzen möchten, zusätzlich eine Kamera",
 		},
 		{
 			name: 'Legionellenprüfung\n + Quality Check vor Ort',
