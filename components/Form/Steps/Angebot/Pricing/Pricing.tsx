@@ -254,7 +254,7 @@ const pricingOptions = {
 				},
 			},
 			importantRemark:
-				'Sollten wir im Gespräch feststellen, dass für die korrekte Ermittlung des Probennahme-Umfangs eine Vor-Ort-Aufnahme notwendig ist, können Sie diese gegen einen Aufpreis zubuchen.',
+				'Für die Durchführung der Online-Begehung benötigen Sie ein mobiles Gerät mit einer Internetverbindung sowie, wenn Sie die Video-Option nutzen möchten, zusätzlich eine Kamera. Sollten wir im Gespräch feststellen, dass für die korrekte Ermittlung des Probennahme-Umfangs eine Vor-Ort-Aufnahme notwendig ist, können Sie diese gegen einen Aufpreis zubuchen.',
 			buttonStyle: 'PRIMARY',
 			text: 'Angebot sichern',
 			type: 'plus',
