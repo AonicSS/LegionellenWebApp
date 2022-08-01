@@ -246,7 +246,7 @@ export default async (req, res) => {
         // send mail with defined transport object
         let internalEmail = await transporter.sendMail({
             from: `"Ihre Anfrage" <${process.env['SMTP_USER']}>`, // sender address
-            to: "qiong.wu@gfnork.de, dorothea.heller@techem.de, martin.dudde@aonic.de", // list of receivers
+            to: "dorothea.heller@techem.de, martin.dudde@aonic.de", // list of receivers
             subject: `Betreff: ${(appData.type === 'angebot') ? 'Angebot' : 'Auftrag'} für ${parsedValue.selectedProduct.name} – Legionellen-Rechner`,
             html: ReactDOMServer.renderToStaticMarkup(internalEmailBody),
             attachments: Object.keys(files).filter((fileName) => fileName !== 'appData').map((fileName) => {
