@@ -140,7 +140,7 @@ export const demoCoupons = {
         description: 'Rabattcode kostenfreie online Begehung zum Kennenlernen',
         discount: function (appData: AppData) {
             if (Object.keys(appData.selectedPricing.serviceFeatures).includes('Ermittlung des Probennahme-Umfangs im Videotelefonat ')) {
-                return 49.0
+                return 99.0
             } else {
                 return 0;
             }
