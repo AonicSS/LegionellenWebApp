@@ -969,53 +969,61 @@ const SummaryFinal = () => {
 					</div>
 				</div>
 			</section>
-			<section className="rwm-forms__page-section tw-margin-top">
-				<div className="tw-flex tw-flex-col">
-					<label className="rwm-form__headline">
-						<h1 className="rwm-form__headline">
-							Optionale Zusatzleistung:
-						</h1>
-					</label>
+            {(Object.keys(appData.selectedPricing.extraServices)
+                    .filter(
+                            (x) =>
+                                    appData.selectedPricing.extraServices[x]
+                                            .selected
+                    ).length > 0) &&
 
-					{Object.keys(appData.selectedPricing.extraServices)
-						.filter(
-							(x) =>
-								appData.selectedPricing.extraServices[x]
-									.selected
-						)
-						.map((extraServiceName: string) => {
-							let extraService =
-								appData.selectedPricing.extraServices[
-									extraServiceName
-								];
+                    <section className="rwm-forms__page-section tw-margin-top">
+                        <div className="tw-flex tw-flex-col">
+                            <label className="rwm-form__headline">
+                                <h1 className="rwm-form__headline">
+                                    Optionale Zusatzleistung:
+                                </h1>
+                            </label>
 
-							return (
-								<div
-									className={'tw-bg-white tw-pt-8'}
-									key={extraServiceName}
-								>
-									<div className="tw-flex tw-flex-row tw-items-center">
-										<div className="tw-flex-grow">
-											<p className={'tw-font-bold'}>
-												{extraServiceName}
-											</p>
-											<p>{extraService.subtitle}</p>
-										</div>
-										<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-small tw-text-water">
-											+{' '}
-											{extraService
-												.price(appData)
-												.toFixed(2)
-												.toString()
-												.replace('.', ',')}{' '}
-											€
-										</div>
-									</div>
-								</div>
-							);
-						})}
-				</div>
-			</section>
+                            {Object.keys(appData.selectedPricing.extraServices)
+                                    .filter(
+                                            (x) =>
+                                                    appData.selectedPricing.extraServices[x]
+                                                            .selected
+                                    )
+                                    .map((extraServiceName: string) => {
+                                        let extraService =
+                                                appData.selectedPricing.extraServices[
+                                                        extraServiceName
+                                                        ];
+
+                                        return (
+                                                <div
+                                                        className={'tw-bg-white tw-pt-8'}
+                                                        key={extraServiceName}
+                                                >
+                                                    <div className="tw-flex tw-flex-row tw-items-center">
+                                                        <div className="tw-flex-grow">
+                                                            <p className={'tw-font-bold'}>
+                                                                {extraServiceName}
+                                                            </p>
+                                                            <p>{extraService.subtitle}</p>
+                                                        </div>
+                                                        <div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-small tw-text-water">
+                                                            +{' '}
+                                                            {extraService
+                                                                    .price(appData)
+                                                                    .toFixed(2)
+                                                                    .toString()
+                                                                    .replace('.', ',')}{' '}
+                                                            €
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        );
+                                    })}
+                        </div>
+                    </section>
+            }
 			<section className="rwm-forms__page-section tw-margin-top">
 				<div className="tw-flex tw-flex-col">
 					<label className="rwm-form__headline">
@@ -1048,10 +1056,15 @@ const SummaryFinal = () => {
 									}`}
 								</p>
 							</div>
-							<div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
-								{total.toFixed(2).toString().replace('.', ',')}{' '}
-								€
-							</div>
+                            <div className={"tw-flex tw-flex-col tw-items-end"}>
+                                <div className="tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
+                                    {total.toFixed(2).toString().replace('.', ',')}{' '}
+                                    €
+                                </div>
+                                <div className={"tw-text-sharepoint-grey"}>
+                                    Brutto {((total * 19.0 / 100) + total).toFixed(2).toString().replace('.', ',')}
+                                </div>
+                            </div>
 						</div>
 					</div>
                     {demoCoupons[selectedCoupon] &&
