@@ -76,6 +76,7 @@ export default async (req, res) => {
             discount: demoCoupons[appData.couponCode] ? demoCoupons[appData.couponCode].discount(appData): 0.0,
             couponCode: appData.couponCode,
             strangAmount: appData.strangAmount,
+            strangAmountVorhanden: !!appData.strangAmount,
             probeEntnahmeVentileVorhanden: checkProbeEntnahmeVentile(appData),
             liegenschaftAdresse: {
                 streetName: appData['questions']['Wo befindet sich die zu prüfende Liegenschaft?'].answers.find((x) => x.name === 'streetName').value,
