@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import * as Scroll from 'react-scroll';
 
@@ -10,7 +10,26 @@ import Modal from '../../components/Modal';
 import Form from '../../components/Form';
 import Button from '../../components/Button';
 
+// script load
+const useScript = url => {
+	useEffect(() => {
+	  const script = document.createElement('script');
+  
+	  script.src = url;
+	  script.async = true;
+  
+	  document.body.appendChild(script);
+  
+	  return () => {
+		document.body.removeChild(script);
+	  }
+	}, [url]);
+  };
+
+
 const Calculator = () => {
+	// load iframe resizer cdn
+	useScript("https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js");
 	const [contactModalOpen, setContactModalOpen] = useState(false);
 
 	const currentAppData = useSelector(
