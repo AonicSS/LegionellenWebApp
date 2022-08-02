@@ -1,25 +1,5 @@
 export const trackStepper = (step: number, subStep: number) => {
-	let pageIdentifier;
-
-	switch (step) {
-		case 1:
-			pageIdentifier = 'apartmentCount';
-			break;
-		case 2:
-			pageIdentifier = 'zip';
-			break;
-		case 3:
-			pageIdentifier = 'apartmentRooms';
-			break;
-		case 4:
-			pageIdentifier = 'heatingCustomer';
-			break;
-		case 5:
-			pageIdentifier = 'pricingOptions';
-			break;
-		default:
-			break;
-	}
+	let pageIdentifier = `step: ${step}, subStep: ${subStep}`;
 
 	window.siteDataLayer = window.siteDataLayer || [];
 	window.siteDataLayer.push({
