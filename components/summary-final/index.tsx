@@ -1062,25 +1062,45 @@ const SummaryFinal = () => {
                                     €
                                 </div>
                                 <div className={"tw-text-sharepoint-grey"}>
-                                    Brutto {((total * 19.0 / 100) + total).toFixed(2).toString().replace('.', ',')}
+                                    Brutto {((total * 19.0 / 100) + total).toFixed(2).toString().replace('.', ',')} €
                                 </div>
                             </div>
 						</div>
 					</div>
                     {demoCoupons[selectedCoupon] &&
-                    <div className={'tw-bg-white tw-pt-8'}>
-                        <div className="tw-flex tw-flex-row tw-items-center">
-                            <div className="tw-flex-grow tw-basis-[78%]">
-                                <p className={'tw-font-bold'}>
-                                    {demoCoupons[selectedCoupon].description}
-                                </p>
-                            </div>
-                            <div className="tw-container-pricing-label tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
-                                - {totalDiscount.toFixed(2).toString().replace('.', ',')}{' '}
-                                €
-                            </div>
-                        </div>
-                    </div>
+                            <>
+                                <div className={'tw-bg-white tw-pt-8'}>
+                                    <div className="tw-flex tw-flex-row tw-items-center">
+                                        <div className="tw-flex-grow tw-basis-[78%]">
+                                            <p className={'tw-font-bold'}>
+                                                {demoCoupons[selectedCoupon].description}
+                                            </p>
+                                        </div>
+                                        <div className="tw-text-right tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
+                                            - {totalDiscount.toFixed(2).toString().replace('.', ',')}{' '}
+                                            €
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={'tw-bg-white tw-pt-8'}>
+                                    <div className="tw-flex tw-flex-row tw-items-center">
+                                        <div className="tw-flex-grow tw-basis-[78%]">
+                                            <p className={'tw-font-bold'}>
+                                                Gesamtpreis nach Abzug des Rabatts
+                                            </p>
+                                        </div>
+                                        <div className={"tw-flex tw-flex-col tw-items-end"}>
+                                            <div className="tw-whitespace-nowrap tw-font-size-price-large tw-basis-[22%]">
+                                                {(total - totalDiscount).toFixed(2).toString().replace('.', ',')}{' '}
+                                                €
+                                            </div>
+                                            <div className={"tw-text-sharepoint-grey"}>
+                                                Brutto {(((total - totalDiscount) * 19.0 / 100) + (total - totalDiscount)).toFixed(2).toString().replace('.', ',')} €
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
                     }
 				</div>
 			</section>
