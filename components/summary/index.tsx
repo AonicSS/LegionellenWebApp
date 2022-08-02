@@ -125,6 +125,9 @@ const Summary = () => {
     };
 
     useEffect(() => {
+        scroller.scrollTo('myScrollToElement', {
+            offset: -50,
+        });
         trackSummary('summary', 'test');
     }, []);
 
